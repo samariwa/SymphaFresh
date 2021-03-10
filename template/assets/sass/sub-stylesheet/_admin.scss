@@ -1,0 +1,49 @@
+
+
+.admin-page-section {
+    background-color: #f1f1f1;
+    height: 310px;
+    background-image: url(../images/page-header.jpg);
+    @media #{$large-mobile}{
+        height: 200px;
+    }
+}
+
+.admin-content-area {
+    @media #{$large-mobile}{
+        text-align: center;
+    }
+    .admin-thumb {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 5px solid #fff;
+        box-shadow: 0 0 10px 0 rgba(black, 0.1);
+        position: relative;
+        margin-bottom: 7px;
+        display: inline-block;
+        img {
+            width: 100%;
+        }
+        .image-change-option {
+            position: absolute;
+            right: -10px;
+            top: -10px;
+        }
+    }
+    .admin-content {
+        .name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 0px;
+            color: #363636;
+        }
+        .desc {
+            color: #5f5f5f;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+    }
+}
+

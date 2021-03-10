@@ -1,0 +1,37 @@
+// Font Family
+$rubik: 'Rubik', sans-serif;
+
+
+// Colors ---------------
+
+$white: #ffffff;
+$black: #000000;
+
+
+// Body Color
+$body-color: #fff;
+$body-color-light: #909090;
+$desc: #4b566b;
+
+
+// gray Color
+$grey-1: #f6f6f6;
+$grey-2: #fbfbfb;
+
+// Heading Color
+$heading-color: #222d39;
+
+// Theme Color
+$theme-color: #59b828;
+
+// Responsive Variables
+$extraBig-device : 'only screen and (min-width: 1500px)';
+$laptop-device-min-1300 : 'only screen and (min-width: 1300px)';
+$laptop-device : 'only screen and (min-width: 1200px)';
+$desktop-device : 'only screen and (min-width: 992px)';
+$mobile-device : 'only screen and (max-width: 1200px)';
+$mobile-device-mx-lg : 'only screen and (max-width: 991px)';
+$tablet-device:'only screen and (min-width: 768px)';
+$large-mobile:'only screen and (max-width: 767px)';
+$small-mobile: 'only screen and (max-width: 479px)';
+

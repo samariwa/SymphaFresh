@@ -1,0 +1,14 @@
+
+
+
+.more-product-btn {
+    font-size: 14px;
+    padding: 10px 32px;
+    border-radius: 5px;
+    background-color: white;
+    color: $theme-color;
+    &:hover {
+        background-color: $theme-color;
+        color: white;
+    }
+}

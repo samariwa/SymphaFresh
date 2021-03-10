@@ -1,0 +1,35 @@
+
+
+
+eFlux v1.1.0  Date:- 17 January, 2021
+
+Add New Home Pages
+1. New Home-default2
+2. New Home slider 2
+
+Add New Inner Pages
+3. Blog List page
+4. Blog rightsidebar page
+5. Blog single page
+6. FAQ Page
+7. Brand Pages
+
+Add New Sections
+8. Brand product section
+9. Blog Section
+10. Countdown section
+
+
+Updates and Fixings
+11. Sticky side bar
+12. widget style update
+13. track order page update
+others css error fixing
+
+
+
+
+
+
+eFlux v1.0.0 date:- 2 December, 2020
+Initial Release

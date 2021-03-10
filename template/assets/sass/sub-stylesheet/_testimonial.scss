@@ -1,0 +1,91 @@
+
+
+
+.testimonial-section {
+    padding-bottom: 80px;
+    @media #{$large-mobile}{
+        padding-bottom: 60px;
+    }
+    .section-heading {
+        margin-bottom: 30px;
+    }
+}
+
+.testimonial-container {
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+    // @media #{$mobile-device}{
+    //     width: 100%;
+    // }
+    .testimonial-body {
+        background-color: white;
+        border-radius: 5px;
+        text-align: center;
+        padding: 60px 13%;
+        .testi-author-pic {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .desc {
+            font-size: 14px;
+            line-height: 30px;
+            color: #4b566b;
+            margin-bottom: 25px;
+        }
+        .author-info {
+            .name {
+                font-size: 16px;
+                font-weight: 600;
+            }
+            .rating i {
+                color: #f9d300;
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.testimonial-slider-btn-group {
+    .testimonial-slider-prev,
+    .testimonial-slider-next {
+        position: absolute;
+        top: 50%;
+        width: 45px;
+        height: 45px;
+        margin-top: -22px;
+        background-color: #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 10px 0 rgba(black, 0.1);
+        text-align: center;
+        line-height: 44px;
+        z-index: 2;
+        cursor: pointer;
+        svg {
+            width: 40%;
+            display: inline-block;
+        }
+        &:hover {
+            background-color: $theme-color;
+            svg {
+                fill: white;
+            }
+        }
+    }
+    .testimonial-slider-prev {
+        left: 30px;
+        @media #{$mobile-device}{
+            left: -10px;
+        }
+    }
+    .testimonial-slider-next {
+        right: 30px;
+        @media #{$mobile-device}{
+            right: -10px;
+        }
+    }
+}

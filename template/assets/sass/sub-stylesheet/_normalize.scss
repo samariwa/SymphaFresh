@@ -1,0 +1,426 @@
+/*
+  Template Name: eflux - Grocery & Organic Supermarket Responsive Template;
+  Template URI: https://themeforest.net/user/flux-theme;
+  Author: Flux Theme;
+  Author URI: https://themeforest.net/user/flux-theme;
+  Description: eflux - Grocery Supermarket Responsive html5 Template is a modern, unique, clean and elegant design, easy to customize code  as well as responsive eCommerce Bootstrap template. This Template is suitable for selling organic products such as fruits, organic food, farms, farmer, food retail, Food Company, seed healthy juice.;
+  Version: 1.0.0;
+  Text Domain eflux;
+  Tages: agriculture, bakery, eco food, farm, fresh, modern, natural, organic, organic food, organic fruits, organic life, organic shop, responsive, vegetable
+*/
+/*
+.........................................
+        Table of Contents:
+
+# Theme default CSS
+#  Google Font 
+# Common Style
+# Common Classes
+# Section Padding
+# Overlay styles
+# theme css
+.........................................
+*/
+
+
+
+
+
+
+/*----------------------------------------*/
+/*  01. Theme default CSS
+/*----------------------------------------*/
+
+/*-- Google Font --*/
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap');
+
+/*-- Common Style --*/
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+html, body {
+    height: 100%;
+}
+body{
+    background-color: #f9f9f9;
+    font-family: $rubik;
+    line-height: 28px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: normal;
+    visibility: visible;
+    color: $desc;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: $heading-color;
+    font-weight: 600;
+    margin-top: 0;
+    font-family: $rubik;
+}
+h1 {
+     font-size: 48px;
+}
+h2 {
+    font-size: 36px;
+}
+h3 {
+    font-size: 30px;
+}
+h4 {
+    font-size: 24px;
+}
+h5 {
+    font-size: 20px;
+    margin: 5px 0;
+}
+h6 {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+@media #{$desktop-device}{
+    h3 {
+        font-size: 34px;
+    }
+    h4 {
+        font-size: 22px;
+    }
+}
+@media #{$tablet-device}{
+    h3 {
+        font-size: 30px;
+    }
+    h4 {
+        font-size: 22px;
+    }
+}
+@media #{$large-mobile}{
+    h3 {
+        font-size: 28px;
+    }
+    h4 {
+        font-size: 20px;
+    }
+}
+@media #{$small-mobile}{
+    h3 {
+        font-size: 24px;
+    }
+    h4 {
+        font-size: 18px;
+    }
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+p {
+    font-family: $rubik;
+}
+a, button {
+    color: inherit;
+    display: inline-block;
+    line-height: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+a, button, img, input, span {
+    transition: all 0.3s ease 0s;
+}
+*:focus {
+    outline: none !important;
+}
+a:focus {
+    color: inherit;
+    outline: none;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+    color: $theme-color;
+}
+button, input[type="submit"] {
+    cursor: pointer;
+}
+img {max-width:100%;height:auto}
+ul {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}
+
+/*-- 
+    - Common Classes
+-----------------------------------------*/
+.fix {
+    overflow:hidden
+}
+.hidden {
+    display: none;
+}
+.clear{
+    clear: both;
+}
+.theme-bg {
+    background: $theme-color !important;
+}
+.bg-gray {
+    background: #f6f6f6;
+}
+// @media #{$large-mobile}{
+//     .container {
+//         width: 450px;
+//     }
+// }
+// @media #{$small-mobile}{
+//     .container {
+//         width: 320px;
+//     }
+// }
+
+.capitalize {
+    text-transform: capitalize;
+}
+.uppercase {
+    text-transform: uppercase;
+}
+.no-gutters > .col, .no-gutters > [class*="col-"] {
+	padding-right: 0;
+	padding-left: 0;
+    margin: 0;
+}
+
+
+/*-- 
+    - Section Padding
+-------------------------------------*/
+// Padding Top Bottom 
+.section-ptb {
+    padding: 120px 0;
+    @media #{$desktop-device} {
+        padding: 100px 0;
+    }
+    @media #{$tablet-device} {
+        padding: 80px 0;
+    }
+    @media #{$large-mobile} {
+        padding: 70px 0;
+    }
+    @media #{$small-mobile} {
+        padding: 60px 0;
+    }
+}
+.section-ptb-90 {
+    padding: 90px 0;
+    @media #{$desktop-device} {
+        padding: 80px 0;
+    }
+    @media #{$tablet-device} {
+        padding: 70px 0;
+    }
+    @media #{$large-mobile} {
+        padding: 60px 0;
+    }
+    @media #{$small-mobile} {
+        padding: 40px 0;
+    }
+}
+// Section Padding Top
+.section-pt {
+    padding-top: 120px;
+    
+    @media #{$desktop-device} {
+        padding-top: 100px;
+    }
+    @media #{$tablet-device} {
+        padding-top: 80px;
+    }
+    @media #{$large-mobile} {
+        padding-top: 70px;
+    }
+    @media #{$small-mobile} {
+        padding-top: 60px;
+    }
+}
+.section-pt-90 {
+    padding-top: 90px;
+    
+    @media #{$desktop-device} {
+        padding-top: 60px;
+    }
+    @media #{$tablet-device} {
+        padding-top: 50px;
+    }
+    @media #{$large-mobile} {
+        padding-top: 40px;
+    }
+    @media #{$small-mobile} {
+        padding-top: 30px;
+    }
+}
+.section-pt-60 {
+    padding-top: 60px;
+    
+    @media #{$desktop-device} {
+        padding-top: 40px;
+    }
+    @media #{$tablet-device} {
+        padding-top: 20px;
+    }
+    @media #{$large-mobile} {
+        padding-top: 10px;
+    }
+    @media #{$small-mobile} {
+        padding-top: 0px;
+    }
+}
+.section-pb-70 {
+    padding-bottom: 90px;
+    
+    @media #{$desktop-device} {
+        padding-bottom: 60px;
+    }
+    @media #{$tablet-device} {
+        padding-bottom: 50px;
+    }
+    @media #{$large-mobile} {
+        padding-bottom: 40px;
+    }
+    @media #{$small-mobile} {
+        padding-bottom: 30px;
+    }
+}
+// Section Padding Bottom
+.section-pb {
+    padding-bottom: 120px;
+    
+    @media #{$desktop-device} {
+        padding-bottom: 90px;
+    }
+    @media #{$tablet-device} {
+        padding-bottom: 80px;
+    }
+    @media #{$large-mobile} {
+        padding-bottom: 70px;
+    }
+    @media #{$small-mobile} {
+        padding-bottom: 60px;
+    }
+}
+
+.section-ptb-140{
+    padding: 140px 0;
+    @media #{$desktop-device} {
+        padding: 90px 0;
+    }
+    @media #{$tablet-device} {
+        padding: 80px 0;
+    }
+    @media #{$large-mobile} {
+        padding: 70px 0;
+    }
+    @media #{$small-mobile} {
+        padding: 60px 0;
+    }
+}
+.section-ptb-160{
+    padding: 160px 0;
+    @media #{$desktop-device} {
+        padding: 110px 0;
+    }
+    @media #{$tablet-device} {
+        padding: 80px 0;
+    }
+    @media #{$large-mobile} {
+        padding: 70px 0;
+    }
+    @media #{$small-mobile} {
+        padding: 60px 0;
+    }
+}
+/*-- Margin top --*/
+@for $i from 1 through 25 {
+    .mt--#{5 * $i} {
+        margin-top: 5px *$i;
+    }
+}
+
+/*-- Margin Bottom --*/
+@for $i from 1 through 25 {
+    .mb--#{5 * $i} {
+        margin-bottom: 5px *$i;
+    }
+}
+
+/*-- padding top --*/
+@for $i from 1 through 25 {
+    .pt--#{5 * $i} {
+        padding-top: 5px *$i;
+    }
+}
+
+/*-- padding Bottom --*/
+@for $i from 1 through 25 {
+    .pb--#{5 * $i} {
+        padding-bottom: 5px *$i;
+    }
+}
+
+/*-- Overlay styles --*/
+[data-overlay],
+[data-secondary-overlay],
+[data-black-overlay],
+[data-white-overlay] {
+	position: relative;
+}
+
+[data-overlay]>div,
+[data-overlay]>*,
+[data-secondary-overlay]>div,
+[data-secondary-overlay]>*,
+[data-black-overlay]>div,
+[data-black-overlay]>*,
+[data-white-overlay]>div,
+[data-white-overlay]>* {
+	position: relative;
+	z-index: 2;
+}
+
+[data-overlay]:before,
+[data-secondary-overlay]:before,
+[data-black-overlay]:before,
+[data-white-overlay]:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 2;
+}
+
+[data-overlay]:before {
+	background-color: $theme-color;
+}
+
+[data-secondary-overlay]:before {
+	background-color: #031b38;
+}
+
+[data-black-overlay]:before {
+	background-color: #000000;
+}
+
+[data-white-overlay]:before {
+	background-color: #ffffff;
+}
+
+@for $i from 1 through 10 {
+
+	[data-overlay="#{$i}"]:before,
+	[data-secondary-overlay="#{$i}"]:before,
+	[data-black-overlay="#{$i}"]:before,
+	[data-white-overlay="#{$i}"]:before {
+		opacity: #{$i * 0.10};
+	}
+}

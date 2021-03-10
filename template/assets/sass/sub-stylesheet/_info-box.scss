@@ -1,0 +1,104 @@
+// info-box-section
+.info-box-section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    @media #{$large-mobile}{
+        padding-bottom: 20px;
+        padding-top: 50px;
+        // padding-left: 20px;
+        // padding-right: 20px;
+    }
+}
+// info-box-item
+.info-box-item {
+    background-color: rgba(white, 0.9);
+    padding: 35px 30px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+    &:after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 10px;
+        margin-left: -5px;
+        height: 3px;
+        background-color:$theme-color;
+        opacity: 0;
+        transition: all 0.3s;
+    }
+    .info-icon {
+        width: 70px;
+        display: inline-block;
+        margin-bottom: 10px;
+        img {
+            width: 50px;
+            height: 40px;
+        }
+    }
+    .info-content {
+        padding-left: 20px;
+        h6 {
+            font-size: 18px;
+            font-weight: 500;
+            color: #222533;
+            margin-bottom: 6px;
+            margin-top: 0;
+        }
+        p {
+            font-size: 14px;
+            color: #4b566b;
+            margin-bottom: 0;
+            line-height: 2;
+        }
+        // @media #{$large-mobile}{
+        //     h6 {
+        //         font-size: 17px;
+        //     }
+        //     p {
+        //         font-size: 13px;
+        //     }
+        // }
+    }
+    @media #{$mobile-device-mx-lg}{
+        padding: 20px 30px;
+    }
+}
+
+// .col-lg-4:last-child {
+//     .info-box-item {
+//         margin-bottom: 0;
+//     }
+// }
+
+// .active {
+//     .info-box-item {
+//         background-color: rgba(white, 1);
+//         &:after {
+//             left: 0;
+//             width: 100%;
+//             margin-left: -0px;
+//             opacity: 1;
+//         }
+//     }
+// }
+
+
+// info box-slider
+.info-box-container {
+    overflow: hidden;
+.swiper-slide-active {
+    .info-box-item {
+        background-color: rgba(white, 1);
+        box-shadow: 0px 0px 10px 0px rgba(black, 0.1);
+            &:after {
+                left: 0;
+                width: 100%;
+                margin-left: -0px;
+                opacity: 1;
+            }
+        }
+    }
+}

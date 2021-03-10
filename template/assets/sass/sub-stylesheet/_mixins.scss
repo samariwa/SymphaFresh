@@ -1,0 +1,101 @@
+
+
+// BORDER RADIUS
+// @mixin border-radius($radius){
+// 	-webkit-border-radius: $radius;
+// 	-moz-border-radius: $radius;
+// 	border-radius: $radius;
+// }
+
+
+
+// //   transition 
+// @mixin transition($transition){
+//   -webkit-transition: all $transition ease-in-out;
+//   -moz-transition: all $transition ease-in-out;
+//   transition: all $transition ease-in-out;
+// }
+
+
+// //  transform property
+// @mixin transform($property){
+//   -webkit-transform: $property;
+//   -ms-transform:     $property;
+//   transform:         $property;
+
+// }
+
+
+
+/* transition */
+@mixin transition($property){
+    -webkit-transition: $property;
+        transition: $property;
+}
+
+/* flex */
+@mixin flex($property){
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center
+}
+
+/* transform */
+@mixin transform($property) {
+  -webkit-transform: $property;
+      -ms-transform: $property;
+          transform: $property;
+}
+
+
+/* opacity */
+@mixin opacity($opacity){
+    opacity: $opacity;
+    -ms-filter: $opacity;
+}
+
+
+
+// @mixin breakpoint($point) {
+//    @if $point == xxs {
+//      @media (min-width: 390px) { @content ; }
+//   }
+//    @else if $point == xs {
+//      @media (min-width: 450px) { @content ; }
+//   }
+//    @else if $point == sm {
+//      @media (min-width: 576px) { @content ; }
+//   }
+//    @else if $point == md {
+//      @media (min-width: 768px) { @content ; }
+//   }
+//     @else if $point == lg {
+//      @media (min-width: 992px) { @content ; }
+//   }
+//   @else if $point == mlg {
+//      @media (max-width: 991px) { @content ; }
+//   }
+//     @else if $point == xl {
+//      @media (min-width: 1200px) { @content ; }
+//   }
+//   @else if $point == xl-desktop {
+//      @media (min-width: 1300px) { @content ; }
+//   }
+//   @else if $point == xxl-desktop {
+//      @media (min-width: 1500px) { @content ; }
+//   }
+
+//    @else if $point == d-1024 {
+//      @media (width: 1024px) { @content ; }
+//    }
+//    @else if $point == d-1440 {
+//      @media (width: 1440px) { @content ; }
+//    }
+//    @else if $point == d-1280 {
+//      @media (width: 1280px) { @content ; }
+//    }
+//    @else if $point == d-640 {
+//      @media (width: 640px) { @content ; }
+//    }
+// }

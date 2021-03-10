@@ -1,0 +1,42 @@
+
+
+
+
+.menu {
+    padding-left: 30px;
+    li {
+        a {
+            padding: 10px 20px;
+            display: flex;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 1px solid rgba($color: $theme-color, $alpha: 0.1);
+            justify-content: space-between;
+            align-items: center;
+            @media #{$laptop-device}{
+                padding: 26px 10px;
+                border-bottom: none;
+            }
+            @media #{$extraBig-device}{
+                padding: 26px 20px;
+                border-bottom: none;
+            }
+        }
+       
+        @media #{$laptop-device}{
+            a {
+                display: block;
+            }
+            &:first-child {
+                a {
+                    padding-left: 0;
+                }
+            }
+        }
+        &:last-child {
+            a {
+                border-bottom: none;
+            }
+        }
+    }
+}
