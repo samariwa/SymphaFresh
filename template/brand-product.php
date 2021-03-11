@@ -7,7 +7,7 @@
                     <div class="row">
                         <div class="col-12 d-flex justify-content-between justify-content-md-end">
                             <ul class="breadcrumb">
-                                <li><a href="index.html">Home</a></li>
+                                <li><a href="index.php">Home</a></li>
                                 <li><span>/</span></li>
                                 <li>Brand Page</li>
                             </ul>
@@ -45,7 +45,7 @@
                             <div class="widget widget-head">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h6>Filter</h6>
-                                    <a href="product-list.html">Clear All</a>
+                                    <a href="product-list.php">Clear All</a>
                                 </div>
                             </div>
                             <div class="widget">
@@ -267,7 +267,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -308,7 +308,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -349,7 +349,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -390,7 +390,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -431,7 +431,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -472,7 +472,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -513,7 +513,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -554,7 +554,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -595,7 +595,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -636,7 +636,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -677,7 +677,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -718,7 +718,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -759,7 +759,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -800,7 +800,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -841,7 +841,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -882,7 +882,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -923,7 +923,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -964,7 +964,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -1005,7 +1005,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -1046,7 +1046,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -1087,7 +1087,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -1128,7 +1128,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -1169,7 +1169,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>
@@ -1210,7 +1210,7 @@
                                         </div>
                                         <div class="product-content">
                                             <a href="#" class="cata">Catagory</a>
-                                            <h6><a href="product-detail.html" class="product-title">Product Title Here</a></h6>
+                                            <h6><a href="product-detail.php" class="product-title">Product Title Here</a></h6>
                                             <p class="quantity">1 kg</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="price">$85.00 <del>$100.00</del></div>

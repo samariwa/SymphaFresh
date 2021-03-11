@@ -125,7 +125,7 @@ include('header.php');
                         <div class="catagory-container">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <a href="product-list.html" class="catagory-item">
+                                    <a href="product-list.php" class="catagory-item">
                                         <div class="catagory-icon">
                                           <img src="assets/images/category/chicken.png" alt="chicken" width="60" height="60">
                                         </div>
@@ -134,7 +134,7 @@ include('header.php');
                                 </div>
 
                                 <div class="swiper-slide">
-                                    <a href="product-list.html" class="catagory-item">
+                                    <a href="product-list.php" class="catagory-item">
                                         <div class="catagory-icon">
                                         <img src="assets/images/category/fish.png" alt="chicken" width="105" height="105">
                                         </div>
@@ -143,7 +143,7 @@ include('header.php');
                                 </div>
 
                                 <div class="swiper-slide">
-                                    <a href="product-list.html" class="catagory-item">
+                                    <a href="product-list.php" class="catagory-item">
                                         <div class="catagory-icon">
                                         <img src="assets/images/category/vegetables.png" alt="chicken" width="62" height="62">
                                         </div>
@@ -152,7 +152,7 @@ include('header.php');
                                 </div>
 
                                 <div class="swiper-slide">
-                                    <a href="product-list.html" class="catagory-item">
+                                    <a href="product-list.php" class="catagory-item">
                                         <div class="catagory-icon">
                                         <img src="assets/images/category/meat.png" alt="chicken" width="80" height="80">
                                         </div>
@@ -392,7 +392,7 @@ include('header.php');
                                 </div>
                             </div>
                             <div class="text-center pt-3">
-                                <a href="product-list.html" class="more-product-btn">More Products</a>
+                                <a href="product-list.php" class="more-product-btn">More Products</a>
                             </div>
                         </div>
                     </div>
@@ -680,7 +680,7 @@ include('header.php');
                                 </div>
                             </div>
                             <div class="text-center pt-3">
-                                <a href="product-list.html" class="more-product-btn">More Products</a>
+                                <a href="product-list.php" class="more-product-btn">More Products</a>
                             </div>
                         </div>
                     </div>

@@ -41,14 +41,14 @@
                                     <h5 class="footer-title">Product Catalog</h5>
                                     <div class="widget-wrapper">
                                         <ul>
-                                            <li><a href="product-leftsidebar.html">Fruits</a></li>
-                                            <li><a href="product-leftsidebar.html">Salads</a></li>
-                                            <li><a href="product-leftsidebar.html">Fish & Seafood</a></li>
-                                            <li><a href="product-leftsidebar.html">Fresh Meat</a></li>
-                                            <li><a href="product-leftsidebar.html">Health Products</a></li>
-                                            <li><a href="product-leftsidebar.html">Butter & Eggs</a></li>
-                                            <li><a href="product-leftsidebar.html">Oil & Vinegars</a></li>
-                                            <li><a href="product-leftsidebar.html">Health Products</a></li>
+                                            <li><a href="product-leftsidebar.php">Fruits</a></li>
+                                            <li><a href="product-leftsidebar.php">Salads</a></li>
+                                            <li><a href="product-leftsidebar.php">Fish & Seafood</a></li>
+                                            <li><a href="product-leftsidebar.php">Fresh Meat</a></li>
+                                            <li><a href="product-leftsidebar.php">Health Products</a></li>
+                                            <li><a href="product-leftsidebar.php">Butter & Eggs</a></li>
+                                            <li><a href="product-leftsidebar.php">Oil & Vinegars</a></li>
+                                            <li><a href="product-leftsidebar.php">Health Products</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -60,9 +60,9 @@
                                     <div class="widget-wrapper">
                                         <ul>
                                             <li><a href="about.php">About Us</a></li>
-                                            <li><a href="product-leftsidebar.html">Featured Products</a></li>
+                                            <li><a href="product-leftsidebar.php">Featured Products</a></li>
                                             <li><a href="brand-product.php">Offers</a></li>
-                                            <li><a href="blog-rightsidebar.html">Blog</a></li>
+                                            <li><a href="blog-rightsidebar.php">Blog</a></li>
                                             <li><a href="faq.php">FAQ</a></li>
                                             <li><a href="#">Careers</a></li>
                                             <li><a href="contact.php">Contact Us</a></li>
@@ -219,33 +219,34 @@
                     <i class="fas fa-times"></i>
                 </div>
                 <div class="login-header">
-                    <h4>Create Your Account</h4>
+                    <h4>Sign In</h4>
                     <p>Login with your email & password</p>
                 </div>
                 <div class="login-content">
                     <form action="#" class="login-form">
                         <input type="text" name="name" placeholder="Name">
                         <input type="email" name="email" placeholder="Email">
-                        <button type="submit" class="submit">Sign Up</button>
+                        <button type="submit" class="submit">Sign In</button>
                     </form>
-                    <div class="text-center seperator">
+                    <!--<div class="text-center seperator">
                         <span>Or</span>
                     </div>
                     <div class="othersignup-option">
                         <a class="facebook" href="#"><i class="fab fa-facebook-square"></i>Continue with Facebook</a>
                         <a class="google" href="#"><i class="fab fa-google-plus"></i>Continue with Google</a>
-                    </div>
+                    </div>-->
                     <div class="text-center dont-account py-4">
-                        <p class="mb-0">Don't have any account <a href="#">Sign Up</a></p>
+                        <p class="mb-0">Don't have an account? <a href="#">Sign Up</a></p>
                     </div>
                 </div>
             </div>
             <div class="forgot-password text-center">
-                <p>forgot Passowrd? <a href="#">Reset It</a></p>
+                <p><a href="#">Forgot Password?</a></p>
             </div>
         </div>
     </section>
     <!-- login-area -->
+
 
 
     <!-- mobile-footer -->

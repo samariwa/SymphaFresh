@@ -9,7 +9,7 @@ include('header.php');
                             <ul class="breadcrumb">
                                 <li><a href="index.php">Home</a></li>
                                 <li><span>/</span></li>
-                                <li>Fruits & Vegetables</li>
+                                <li>My Profile</li>
                             </ul>
                         </div>
                     </div>
@@ -20,7 +20,7 @@ include('header.php');
 
 
             <!-- admin-page start -->
-            <section class="admin-page-section d-flex align-items-center">
+            <section class="admin-page-section d-flex align-items-center" style="background-image: url('assets/images/admin/profile-bg.jpg'); background-size: cover;">
                 <div class="aps-wrapper w-100">
                     <div class="container">
                         <div class="row justify-content-center justify-content-md-start">
@@ -30,7 +30,7 @@ include('header.php');
                                     <a href="#" class="image-change-option"><i class="fas fa-camera"></i></a>
                                 </div>
                                 <div class="admin-content">
-                                    <h4 class="name">Jhone Doe</h4>
+                                    <h4 class="name">John Doe</h4>
                                     <p class="desc">Lorem Ipsum is simply dummy text.</p>
                                 </div>
                             </div>
@@ -45,9 +45,9 @@ include('header.php');
             <!-- dashboard-section start -->
             <section id="dashboard-nav" class="dashboard-section">
                 <div class="container">
-                    <ul class="dashbord-nav d-lg-flex flex-wrap align-items-center justify-content-between">
+                    <ul class="dashboard-nav d-lg-flex flex-wrap align-items-center justify-content-between">
                         <li><a href="user-dashboard.php#dashboard-nav"><i class="far fa-list-alt"></i>Your Orders</a></li>
-                        <li><a href="track-order.html#dashboard-nav"><i class="fas fa-shipping-fast"></i>Track Orders</a></li>
+                        <li><a href="track-order.php#dashboard-nav"><i class="fas fa-shipping-fast"></i>Track Orders</a></li>
                         <li><a class="active" href="profile.php#dashboard-nav"><i class="far fa-user"></i>Your Profile</a></li>
                         <li><a href="wishlist.php#dashboard-nav"><i class="far fa-heart"></i>Wish List</a></li>
                     </ul>

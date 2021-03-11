@@ -100,37 +100,28 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <ul class="menu d-xl-flex flex-wrap pl-0 list-unstyled">
-                        <li class="item-has-children"><a data-toggle="collapse" href="#mainmenuid1" role="button" aria-expanded="false" aria-controls="catagory-widget1"><span>Home</span> <i class="fas fa-angle-down"></i></a>
-                            <ul class="submenu collapse" id="mainmenuid1">
-                                <li><a href="home-default.php">Home Default</a></li>
-                                <li><a href="index-icon.html">Home Default2</a></li>
-                                <li><a href="index.php">Home Sticky Sidebar</a></li>
-                                <li><a href="home-search.html">Home Search</a></li>
-                                <li><a href="home-slider.html">Home Slider</a></li>
-                                <li><a href="home-slider2.html">Home Slider2</a></li>
-                            </ul>
-                        </li>
+                        <li <a href="index.php">Home</a></li>
                         <li><a href="product-list.php">Our Products</a></li>
                         <li><a href="about.php">About</a></li>
                         <li><a href="contact.php">Contact Us</a></li>
                         <li class="item-has-children"><a data-toggle="collapse" href="#mainmenuid2" role="button" aria-expanded="false" aria-controls="mainmenuid2"><span>Pages</span> <i class="fas fa-angle-down"></i></a>
                             <ul class="submenu collapse" id="mainmenuid2">
-                                <li><a href="product-leftsidebar.html">Product leftsidebar</a></li>
-                                <li><a href="product-fullwidth.html">Product Fullwidth</a></li>
+                                <li><a href="product-leftsidebar.php">Product leftsidebar</a></li>
+                                <li><a href="product-fullwidth.php">Product Fullwidth</a></li>
                                 <li><a href="brand-product.php">Brand Page</a></li>
-                                <li><a href="product-detail.html">Product Details</a></li>
+                                <li><a href="product-detail.php">Product Details</a></li>
                                 <li><a href="faq.php">FAQ</a></li>
                                 <li><a href="checkout.php">Checkout</a></li>
                                 <li><a href="user-dashboard.php">User Dashboard</a></li>
                                 <li><a href="profile.php">Profile</a></li>
-                                <li><a href="track-order.html">Track Order</a></li>
+                                <li><a href="track-order.php">Track Order</a></li>
                             </ul>
                         </li>
                         <li class="item-has-children"><a data-toggle="collapse" href="#mainmenuid3" role="button" aria-expanded="false" aria-controls="mainmenuid3"><span>Blog</span> <i class="fas fa-angle-down"></i></a>
                             <ul class="submenu collapse" id="mainmenuid3">
                                 <li><a href="blog.php">Blog full width</a></li>
-                                <li><a href="blog-rightsidebar.html">Blog Rightsidebar</a></li>
-                                <li><a href="single.html">Blog Single</a></li>
+                                <li><a href="blog-rightsidebar.php">Blog Rightsidebar</a></li>
+                                <li><a href="single.php">Blog Single</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -316,7 +307,7 @@
                         <a class="bar-btn"><i class="fas fa-bars"></i>All Catagories</a>
                         <a class="close-btn"><i class="fas fa-times"></i>All Catagories</a>
                     </div>
-                    <a href="index.html" class="logo"><img src="assets/images/logo.png" alt="logo"></a>
+                    <a href="index.php" class="logo"><img src="assets/images/logo.png" alt="logo"></a>
                 </div> -->
 
                 <div class="all-catagory-option mobile-device">
@@ -395,16 +386,7 @@
                 <div class="col-md-10">
                     <div class="menu-area d-none d-xl-flex justify-content-between align-items-center">
                         <ul class="menu d-xl-flex flex-wrap list-unstyled">
-                            <li class="item-has-children"><a href="index.php">Home <i class="fas fa-angle-down"></i></a>
-                                <ul class="submenu">
-                                    <li><a href="home-default.php">Home Default</a></li>
-                                    <li><a href="index-icon.html">Home Default2</a></li>
-                                    <li><a href="index.php">Home Sticky Sidebar</a></li>
-                                    <li><a href="home-search.html">Home Search</a></li>
-                                    <li><a href="home-slider.html">Home Slider</a></li>
-                                    <li><a href="home-slider2.html">Home Slider2</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="index.php"> Home</a></li>
                             <li><a href="about.php">About</a></li>
                             <li><a href="product-list.php">Our Products</a></li>
                             <li><a href="contact.php">Contact Us</a></li>
@@ -548,22 +530,22 @@
                             </li>
                             <li class="item-has-children"><a href="index.php">Pages <i class="fas fa-angle-down"></i></a>
                                 <ul class="submenu">
-                                    <li><a href="product-leftsidebar.html">Product leftsidebar</a></li>
-                                    <li><a href="product-fullwidth.html">Product Fullwidth</a></li>
+                                    <li><a href="product-leftsidebar.php">Product leftsidebar</a></li>
+                                    <li><a href="product-fullwidth.php">Product Fullwidth</a></li>
                                     <li><a href="brand-product.php">Brand Page</a></li>
-                                    <li><a href="product-detail.html">Product Details</a></li>
+                                    <li><a href="product-detail.php">Product Details</a></li>
                                     <li><a href="faq.php">FAQ</a></li>
                                     <li><a href="checkout.php">Checkout</a></li>
                                     <li><a href="user-dashboard.php">User Dashboard</a></li>
                                     <li><a href="profile.php">Profile</a></li>
-                                    <li><a href="track-order.html">Track Order</a></li>
+                                    <li><a href="track-order.php">Track Order</a></li>
                                 </ul>
                             </li>
                             <li class="item-has-children"><a href="blog.php">Blog <i class="fas fa-angle-down"></i></a>
                                 <ul class="submenu">
                                     <li><a href="blog.php">Blog full width</a></li>
-                                    <li><a href="blog-rightsidebar.html">Blog Rightsidebar</a></li>
-                                    <li><a href="single.html">Blog Single</a></li>
+                                    <li><a href="blog-rightsidebar.php">Blog Rightsidebar</a></li>
+                                    <li><a href="single.php">Blog Single</a></li>
                                 </ul>
                             </li>
                         </ul>

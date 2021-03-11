@@ -2,15 +2,49 @@
   include('header.php');
 ?>
             <!-- banner-section start -->
-            <section class="banner-section bg-img3 d-flex align-items-center">
-                <div class="banner-content-area">
-                    <div class="container">
-                        <div class="banner-content">
-                            <h6>Organic and fresh food</h6>
-                            <h2>Get freshness delivered<br>on your doorstep.</h2>
-                            <a href="#" class="banner-btn">Read More</a>
+            <section class="slider-banner">
+                <div class="banner-slider-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="banner-content-area">
+                                <div class="slider-image slider-image2"></div>
+                                <div class="container">
+                                    <div class="banner-content text-center text-lg-left">
+                                        <h6>Organic and fresh food</h6>
+                                        <h2>Get freshness delivered<br>on your doorstep.</h2>
+                                        <a href="#" class="banner-btn">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="banner-content-area">
+                                <div class="slider-image slider-image1"></div>
+                                <div class="container">
+                                    <div class="banner-content text-center">
+                                        <h6>Organic and fresh food</h6>
+                                        <h2>Get freshness delivered<br>on your doorstep.</h2>
+                                        <a href="#" class="banner-btn">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="banner-content-area">
+                                <div class="slider-image slider-image3"></div>
+                                <div class="container">
+                                    <div class="banner-content text-center text-lg-left">
+                                        <h6>Organic and fresh food</h6>
+                                        <h2>Get freshness delivered<br>on your doorstep.</h2>
+                                        <a href="#" class="banner-btn">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="swiper-pagination"></div>
                 </div>
             </section>
             <!-- banner-section end -->
@@ -52,7 +86,7 @@
                                         <img src="assets/images/info-item/info.svg" alt="info icon">
                                     </div>
                                     <div class="info-content">
-                                        <h6>Fast Delevary</h6>
+                                        <h6>First Delevary</h6>
                                         <p>Lorem ipsum dolor sit amet, conse ctetur adipisicing elit, sed do.</p>
                                     </div>
                                 </div>
@@ -696,5 +730,5 @@
             </section>
             <!-- testimonial-section end -->
 <?php
-  include('footer.php');
+    include('footer.php');
 ?>

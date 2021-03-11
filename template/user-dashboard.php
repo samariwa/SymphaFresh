@@ -9,7 +9,7 @@
                             <ul class="breadcrumb">
                                 <li><a href="index.php">Home</a></li>
                                 <li><span>/</span></li>
-                                <li>Fruits & Vegetables</li>
+                                <li>My Orders</li>
                             </ul>
                         </div>
                     </div>
@@ -20,7 +20,7 @@
 
 
             <!-- admin-page start -->
-            <section class="admin-page-section d-flex align-items-center">
+            <section class="admin-page-section d-flex align-items-center" style="background-image: url('assets/images/admin/profile-bg.jpg'); background-size: cover;">
                 <div class="aps-wrapper w-100">
                     <div class="container">
                         <div class="row justify-content-center justify-content-md-start">
@@ -45,9 +45,9 @@
             <!-- dashboard-section start -->
             <section id="dashboard-nav" class="dashboard-section">
                 <div class="container">
-                    <ul class="dashbord-nav d-lg-flex flex-wrap align-items-center justify-content-between">
+                    <ul class="dashboard-nav d-lg-flex flex-wrap align-items-center justify-content-between">
                         <li><a class="active" href="user-dashboard.php#dashboard-nav"><i class="far fa-list-alt"></i>Your Orders</a></li>
-                        <li><a href="track-order.html#dashboard-nav"><i class="fas fa-shipping-fast"></i>Track Orders</a></li>
+                        <li><a href="track-order.php#dashboard-nav"><i class="fas fa-shipping-fast"></i>Track Orders</a></li>
                         <li><a href="profile.php#dashboard-nav"><i class="far fa-user"></i>Your Profile</a></li>
                         <li><a href="wishlist.php#dashboard-nav"><i class="far fa-heart"></i>Wish List</a></li>
                     </ul>
@@ -95,12 +95,12 @@
                                                 <tr>
                                                     <td class="px-3">
                                                         <div>
-                                                            <a href="track-order-single.html">Track Order</a>
+                                                            <a href="track-order-single.php">Track Order</a>
                                                         </div>
                                                     </td>
                                                     <td class="text-right px-4" colspan="2">
                                                         <div>
-                                                            <a class="view-details" href="order-details.html">View Details</a>
+                                                            <a class="view-details" href="order-details.php">View Details</a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -140,12 +140,12 @@
                                                 <tr>
                                                     <td class="px-3">
                                                         <div>
-                                                            <a href="track-order-single.html">Track Order</a>
+                                                            <a href="track-order-single.php">Track Order</a>
                                                         </div>
                                                     </td>
                                                     <td class="text-right px-4" colspan="2">
                                                         <div>
-                                                            <a class="view-details" href="order-details.html">View Details</a>
+                                                            <a class="view-details" href="order-details.php">View Details</a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -185,12 +185,12 @@
                                                 <tr>
                                                     <td class="px-3">
                                                         <div>
-                                                            <a href="track-order-single.html">Track Order</a>
+                                                            <a href="track-order-single.php">Track Order</a>
                                                         </div>
                                                     </td>
                                                     <td class="text-right px-4" colspan="2">
                                                         <div>
-                                                            <a class="view-details" href="order-details.html">View Details</a>
+                                                            <a class="view-details" href="order-details.php">View Details</a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -220,7 +220,7 @@
                                                 <tr>
                                                     <td class="text-right px-4">
                                                         <div>
-                                                            <a class="view-details" href="order-details.html">View Details</a>
+                                                            <a class="view-details" href="order-details.php">View Details</a>
                                                         </div>
                                                     </td>
                                                 </tr>

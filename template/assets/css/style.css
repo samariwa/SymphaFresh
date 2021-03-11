@@ -4662,7 +4662,7 @@ blockquote span span {
 .admin-page-section {
   background-color: #f1f1f1;
   height: 310px;
-  background-image: url(../images/page-header.jpg);
+  background-image: url(assets/images/admin/profile-bg.jpg);
 }
 @media only screen and (max-width: 767px) {
   .admin-page-section {

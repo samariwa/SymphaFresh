@@ -8,7 +8,7 @@
                         <div class="col-md-6 col-lg-4 mb--30">
                             <div class="post-item">
                                 <div class="post-thumb">
-                                    <a href="single.html"><img src="assets/images/blog/01.jpg" alt="thumb"></a>
+                                    <a href="single.php"><img src="assets/images/blog/01.jpg" alt="thumb"></a>
                                 </div>
                                 <div class="post-content border-effect">
                                     <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
@@ -21,8 +21,8 @@
                                             <a href="#" class="meta-link">26 Comments</a>
                                         </li>
                                     </ul>
-                                    <h5 class="title mb-3"><a href="single.html">Lorem ipsum dolor sit amet, con sectetuer adipiscing elit......</a></h5>
-                                    <a href="single.html" class="blog-btn">Read More</a>
+                                    <h5 class="title mb-3"><a href="single.php">Lorem ipsum dolor sit amet, con sectetuer adipiscing elit......</a></h5>
+                                    <a href="single.php" class="blog-btn">Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                         <div class="col-md-6 col-lg-4 mb--30">
                             <div class="post-item">
                                 <div class="post-thumb">
-                                    <a href="single.html"><img src="assets/images/blog/02.jpg" alt="thumb"></a>
+                                    <a href="single.php"><img src="assets/images/blog/02.jpg" alt="thumb"></a>
                                 </div>
                                 <div class="post-content border-effect">
                                     <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
@@ -43,8 +43,8 @@
                                             <a href="#" class="meta-link">26 Comments</a>
                                         </li>
                                     </ul>
-                                    <h5 class="title mb-3"><a href="single.html">Lorem ipsum dolor sit amet, con sectetuer adipiscing elit......</a></h5>
-                                    <a href="single.html" class="blog-btn">Read More</a>
+                                    <h5 class="title mb-3"><a href="single.php">Lorem ipsum dolor sit amet, con sectetuer adipiscing elit......</a></h5>
+                                    <a href="single.php" class="blog-btn">Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                         <div class="col-md-6 col-lg-4 mb--30">
                             <div class="post-item">
                                 <div class="post-thumb">
-                                    <a href="single.html"><img src="assets/images/blog/03.jpg" alt="thumb"></a>
+                                    <a href="single.php"><img src="assets/images/blog/03.jpg" alt="thumb"></a>
                                 </div>
                                 <div class="post-content border-effect">
                                     <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
@@ -65,15 +65,15 @@
                                             <a href="#" class="meta-link">26 Comments</a>
                                         </li>
                                     </ul>
-                                    <h5 class="title mb-3"><a href="single.html">Lorem ipsum dolor sit amet, co nsectetuer adipiscing elit......</a></h5>
-                                    <a href="single.html" class="blog-btn">Read More</a>
+                                    <h5 class="title mb-3"><a href="single.php">Lorem ipsum dolor sit amet, co nsectetuer adipiscing elit......</a></h5>
+                                    <a href="single.php" class="blog-btn">Read More</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-4 mb--30">
                             <div class="post-item">
                                 <div class="post-thumb">
-                                    <a href="single.html"><img src="assets/images/blog/04.jpg" alt="thumb"></a>
+                                    <a href="single.php"><img src="assets/images/blog/04.jpg" alt="thumb"></a>
                                 </div>
                                 <div class="post-content border-effect">
                                     <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
@@ -86,30 +86,8 @@
                                             <a href="#" class="meta-link">26 Comments</a>
                                         </li>
                                     </ul>
-                                    <h5 class="title mb-3"><a href="single.html">Lorem ipsum dolor sit amet, con sectetuer adipiscing elit......</a></h5>
-                                    <a href="single.html" class="blog-btn">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 col-lg-4 mb--30">
-                            <div class="post-item">
-                                <div class="post-thumb">
-                                    <a href="single.html"><img src="assets/images/blog/05.jpg" alt="thumb"></a>
-                                </div>
-                                <div class="post-content border-effect">
-                                    <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
-                                        <li>
-                                            <span class="icon"><i class="far fa-clock"></i></span>
-                                            <span class="meta-content">04 February 2020</span>
-                                        </li>
-                                        <li>
-                                            <span class="icon"><i class="far fa-comment-alt"></i></span>
-                                            <a href="#" class="meta-link">26 Comments</a>
-                                        </li>
-                                    </ul>
-                                    <h5 class="title mb-3"><a href="single.html">Lorem ipsum dolor sit amet, con sectetuer adipiscing elit......</a></h5>
-                                    <a href="single.html" class="blog-btn">Read More</a>
+                                    <h5 class="title mb-3"><a href="single.php">Lorem ipsum dolor sit amet, con sectetuer adipiscing elit......</a></h5>
+                                    <a href="single.php" class="blog-btn">Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -117,7 +95,7 @@
                         <div class="col-md-6 col-lg-4 mb--30">
                             <div class="post-item">
                                 <div class="post-thumb">
-                                    <a href="single.html"><img src="assets/images/blog/06.jpg" alt="thumb"></a>
+                                    <a href="single.php"><img src="assets/images/blog/05.jpg" alt="thumb"></a>
                                 </div>
                                 <div class="post-content border-effect">
                                     <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
@@ -130,29 +108,8 @@
                                             <a href="#" class="meta-link">26 Comments</a>
                                         </li>
                                     </ul>
-                                    <h5 class="title mb-3"><a href="single.html">Lorem ipsum dolor sit amet, co nsectetuer adipiscing elit......</a></h5>
-                                    <a href="single.html" class="blog-btn">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 mb--30">
-                            <div class="post-item">
-                                <div class="post-thumb">
-                                    <a href="single.html"><img src="assets/images/blog/07.jpg" alt="thumb"></a>
-                                </div>
-                                <div class="post-content border-effect">
-                                    <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
-                                        <li>
-                                            <span class="icon"><i class="far fa-clock"></i></span>
-                                            <span class="meta-content">04 February 2020</span>
-                                        </li>
-                                        <li>
-                                            <span class="icon"><i class="far fa-comment-alt"></i></span>
-                                            <a href="#" class="meta-link">26 Comments</a>
-                                        </li>
-                                    </ul>
-                                    <h5 class="title mb-3"><a href="single.html">Lorem ipsum dolor sit amet, con sectetuer adipiscing elit......</a></h5>
-                                    <a href="single.html" class="blog-btn">Read More</a>
+                                    <h5 class="title mb-3"><a href="single.php">Lorem ipsum dolor sit amet, con sectetuer adipiscing elit......</a></h5>
+                                    <a href="single.php" class="blog-btn">Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -160,7 +117,7 @@
                         <div class="col-md-6 col-lg-4 mb--30">
                             <div class="post-item">
                                 <div class="post-thumb">
-                                    <a href="single.html"><img src="assets/images/blog/08.jpg" alt="thumb"></a>
+                                    <a href="single.php"><img src="assets/images/blog/06.jpg" alt="thumb"></a>
                                 </div>
                                 <div class="post-content border-effect">
                                     <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
@@ -173,8 +130,29 @@
                                             <a href="#" class="meta-link">26 Comments</a>
                                         </li>
                                     </ul>
-                                    <h5 class="title mb-3"><a href="single.html">Lorem ipsum dolor sit amet, con sectetuer adipiscing elit......</a></h5>
-                                    <a href="single.html" class="blog-btn">Read More</a>
+                                    <h5 class="title mb-3"><a href="single.php">Lorem ipsum dolor sit amet, co nsectetuer adipiscing elit......</a></h5>
+                                    <a href="single.php" class="blog-btn">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 mb--30">
+                            <div class="post-item">
+                                <div class="post-thumb">
+                                    <a href="single.php"><img src="assets/images/blog/07.jpg" alt="thumb"></a>
+                                </div>
+                                <div class="post-content border-effect">
+                                    <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
+                                        <li>
+                                            <span class="icon"><i class="far fa-clock"></i></span>
+                                            <span class="meta-content">04 February 2020</span>
+                                        </li>
+                                        <li>
+                                            <span class="icon"><i class="far fa-comment-alt"></i></span>
+                                            <a href="#" class="meta-link">26 Comments</a>
+                                        </li>
+                                    </ul>
+                                    <h5 class="title mb-3"><a href="single.php">Lorem ipsum dolor sit amet, con sectetuer adipiscing elit......</a></h5>
+                                    <a href="single.php" class="blog-btn">Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -182,7 +160,7 @@
                         <div class="col-md-6 col-lg-4 mb--30">
                             <div class="post-item">
                                 <div class="post-thumb">
-                                    <a href="single.html"><img src="assets/images/blog/03.jpg" alt="thumb"></a>
+                                    <a href="single.php"><img src="assets/images/blog/08.jpg" alt="thumb"></a>
                                 </div>
                                 <div class="post-content border-effect">
                                     <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
@@ -195,8 +173,30 @@
                                             <a href="#" class="meta-link">26 Comments</a>
                                         </li>
                                     </ul>
-                                    <h5 class="title mb-3"><a href="single.html">Lorem ipsum dolor sit amet, co nsectetuer adipiscing elit......</a></h5>
-                                    <a href="single.html" class="blog-btn">Read More</a>
+                                    <h5 class="title mb-3"><a href="single.php">Lorem ipsum dolor sit amet, con sectetuer adipiscing elit......</a></h5>
+                                    <a href="single.php" class="blog-btn">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4 mb--30">
+                            <div class="post-item">
+                                <div class="post-thumb">
+                                    <a href="single.php"><img src="assets/images/blog/03.jpg" alt="thumb"></a>
+                                </div>
+                                <div class="post-content border-effect">
+                                    <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
+                                        <li>
+                                            <span class="icon"><i class="far fa-clock"></i></span>
+                                            <span class="meta-content">04 February 2020</span>
+                                        </li>
+                                        <li>
+                                            <span class="icon"><i class="far fa-comment-alt"></i></span>
+                                            <a href="#" class="meta-link">26 Comments</a>
+                                        </li>
+                                    </ul>
+                                    <h5 class="title mb-3"><a href="single.php">Lorem ipsum dolor sit amet, co nsectetuer adipiscing elit......</a></h5>
+                                    <a href="single.php" class="blog-btn">Read More</a>
                                 </div>
                             </div>
                         </div>

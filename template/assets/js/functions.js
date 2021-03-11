@@ -343,6 +343,7 @@ function OpenSignUpForm() {
     document.getElementById("login-area").classList.add('open-form');
 }
 
+
 function CloseSignUpForm() {
     document.getElementById("login-area").classList.remove('open-form');
 }

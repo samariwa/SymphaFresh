@@ -8,7 +8,7 @@ include('header.php');
                             <ul class="breadcrumb">
                                 <li><a href="index.php">Home</a></li>
                                 <li><span>/</span></li>
-                                <li>Fruits & Vegetables</li>
+                                <li>Checkout</li>
                             </ul>
                         </div>
                     </div>

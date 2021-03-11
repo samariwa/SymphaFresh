@@ -9,7 +9,7 @@
                             <ul class="breadcrumb">
                                 <li><a href="index.php">Home</a></li>
                                 <li><span>/</span></li>
-                                <li>Fruits & Vegetables</li>
+                                <li>Wishlist</li>
                             </ul>
                         </div>
                     </div>
@@ -20,7 +20,7 @@
 
 
             <!-- admin-page start -->
-            <section class="admin-page-section d-flex align-items-center">
+            <section class="admin-page-section d-flex align-items-center" style="background-image: url('assets/images/admin/profile-bg.jpg'); background-size: cover;">
                 <div class="aps-wrapper w-100">
                     <div class="container">
                         <div class="row justify-content-center justify-content-md-start">
@@ -45,9 +45,9 @@
             <!-- dashboard-section start -->
             <section id="dashboard-nav" class="dashboard-section">
                 <div class="container">
-                    <ul class="dashbord-nav d-lg-flex flex-wrap align-items-center justify-content-between">
+                    <ul class="dashboard-nav d-lg-flex flex-wrap align-items-center justify-content-between">
                         <li><a href="user-dashboard.php#dashboard-nav"><i class="far fa-list-alt"></i>Your Orders</a></li>
-                        <li><a href="track-order.html#dashboard-nav"><i class="fas fa-shipping-fast"></i>Track Orders</a></li>
+                        <li><a href="track-order.php#dashboard-nav"><i class="fas fa-shipping-fast"></i>Track Orders</a></li>
                         <li><a href="profile.php#dashboard-nav"><i class="far fa-user"></i>Your Profile</a></li>
                         <li><a class="active" href="wishlist.php#dashboard-nav"><i class="far fa-heart"></i>Wish List</a></li>
                     </ul>
@@ -65,7 +65,7 @@
                                     <a onclick="openModal()"><img src="assets/images//products/cart/01.png" alt="products"></a>
                                 </div>
                                 <div class="product-content">
-                                    <a href="product-detail.html" class="product-title">Daisy Cont Oil</a>
+                                    <a href="product-detail.php" class="product-title">Daisy Cont Oil</a>
                                     <div class="product-cart-info">
                                         1x 31b
                                     </div>
@@ -100,7 +100,7 @@
                                     <a onclick="openModal()"><img src="assets/images//products/cart/02.png" alt="products"></a>
                                 </div>
                                 <div class="product-content">
-                                    <a href="product-detail.html" class="product-title">Daisy Cont Oil</a>
+                                    <a href="product-detail.php" class="product-title">Daisy Cont Oil</a>
                                     <div class="product-cart-info">
                                         1x 31b
                                     </div>
@@ -135,7 +135,7 @@
                                     <a onclick="openModal()"><img src="assets/images//products/cart/03.png" alt="products"></a>
                                 </div>
                                 <div class="product-content">
-                                    <a href="product-detail.html" class="product-title">Daisy Cont Oil</a>
+                                    <a href="product-detail.php" class="product-title">Daisy Cont Oil</a>
                                     <div class="product-cart-info">
                                         1x 31b
                                     </div>
@@ -170,7 +170,7 @@
                                     <a onclick="openModal()"><img src="assets/images//products/cart/04.png" alt="products"></a>
                                 </div>
                                 <div class="product-content">
-                                    <a href="product-detail.html" class="product-title">Daisy Cont Oil</a>
+                                    <a href="product-detail.php" class="product-title">Daisy Cont Oil</a>
                                     <div class="product-cart-info">
                                         1x 31b
                                     </div>
