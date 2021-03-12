@@ -36,7 +36,7 @@
                 <div class="modal-body">
                     <div class="header-top-action-dropdown">
                         <ul>
-                            <li class="signin-option"><a onclick="OpenSignUpForm()" href="#" data-dismiss="modal"><i class="fas fa-user mr-2"></i>Sign In</a></li>
+                            <li class="signin-option"><a href="login.php"><i class="fas fa-user mr-2"></i>Sign In</a></li>
                             <li class="site-phone"><a href="tel:+254 713 932 911"><i class="fas fa-phone"></i> +254 713 932 911</a></li>
                             <li class="site-help"><a href="#"><i class="fas fa-question-circle"></i> Help & More</a></li>
                         </ul>
@@ -368,7 +368,7 @@
                                 <li><a href="#">Sign Out</a></li>
                             </ul>
                         </li>
-                        <li class="signin-option"><a onclick="OpenSignUpForm()" href="#"><i class="fas fa-user mr-2"></i>Sign In</a></li>
+                        <li class="signin-option"><a href="login.php"><i class="fas fa-user mr-2"></i>Sign In</a></li>
                     </ul>
                 </div>
 
