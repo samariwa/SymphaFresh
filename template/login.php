@@ -11,7 +11,7 @@ if (isset($_SESSION['logged_in'])) {
 	if ($_SESSION['logged_in'] == TRUE) {
 //valid user has logged-in to the website
 //Check for unauthorized use of user sessions
-    mysqli_query($connection,"UPDATE `subscribers` SET `on` = '1' WHERE `email` = '$email'");
+    mysqli_query($connection,"UPDATE `users` SET `on` = '1' WHERE `email` = '$email'");
     $iprecreate = $_SERVER['REMOTE_ADDR'];
     $useragentrecreate = $_SERVER["HTTP_USER_AGENT"];
     $signaturerecreate = $_SESSION['signature'];
@@ -39,7 +39,7 @@ if (isset($_SESSION['logged_in'])) {
         exit;
     }
     else{
-        header("Location: $dashboard_url");
+        header("Location: $home_url");
         exit;
     }
 
@@ -103,14 +103,14 @@ if ((isset($_POST["pass"])) && (isset($_POST["email"])) && ($_SESSION['logged_in
     $pass = sanitize($_POST["pass"]);
     $_SESSION['email'] = $email;
 //validate email
-    if (!($fetch = mysqli_fetch_array(mysqli_query($connection,"SELECT `email` FROM `subscribers` WHERE `email`='$email'")))) {
+    if (!($fetch = mysqli_fetch_array(mysqli_query($connection,"SELECT `email` FROM `users` WHERE `email`='$email'")))) {
 //no records of email in database
 //user is not yet registered
         $registered = FALSE;
     }
 
 //Grab login attempts from MySQL database for a corresponding username
-        $result1 = mysqli_query($connection,"SELECT `loginattempt` FROM `subscribers` WHERE `email`='$email'");
+        $result1 = mysqli_query($connection,"SELECT `loginattempt` FROM `users` WHERE `email`='$email'");
         $row = mysqli_fetch_array($result1);
         $loginattempts_email = $row['loginattempt'];
 
@@ -145,13 +145,13 @@ if (($loginattempts_email == 5) && ($registered == TRUE)) {
         $illegalattempts = TRUE; 
     }
 if (($loginattempts_email > 5) && ($registered == TRUE)) {
-      mysqli_query($connection,"UPDATE `subscribers` SET `active` = '2' WHERE `email` = '$email'"); 
+      mysqli_query($connection,"UPDATE `users` SET `active` = '2' WHERE `email` = '$email'"); 
       $deactivated = TRUE; 
     }
 //Get correct hashed password based on given email address stored in MySQL database
 
   //check if account is activated
-      $result3 = mysqli_query($connection,"SELECT `active` FROM `subscribers` WHERE `email`='$email'");
+      $result3 = mysqli_query($connection,"SELECT `active` FROM `users` WHERE `email`='$email'");
         $row3 = mysqli_fetch_array($result3);
         $active = $row3['active'];
         if($active == 1){
@@ -164,7 +164,7 @@ if (($loginattempts_email > 5) && ($registered == TRUE)) {
           $deactivated = TRUE; 
         }
   //check if the account is logged in using another device
-  $result2 = mysqli_query($connection,"SELECT `ipAddress` FROM `subscribers` WHERE `email`='$email'");
+  $result2 = mysqli_query($connection,"SELECT `ipAddress` FROM `users` WHERE `email`='$email'");
   $row2 = mysqli_fetch_array($result2);
   $ipValue = $row2['ipAddress'];
   if ($ipValue == 0) {
@@ -177,11 +177,11 @@ if (($loginattempts_email > 5) && ($registered == TRUE)) {
        $loggedIn = TRUE; 
     }        
 //u is registered in database, now get the hashed password    
-    $result = mysqli_query($connection,"SELECT `password` FROM `subscribers` WHERE `email`='$email'");
+    $result = mysqli_query($connection,"SELECT `password` FROM `users` WHERE `email`='$email'");
         $row = mysqli_fetch_array($result);
         $correctpassword = $row['password'];
     if (!password_verify($pass, $correctpassword) || ($registered == FALSE) || ($activate == FALSE) || ($deactivated == TRUE) || ($loggedIn == TRUE)) {
-    	$result1 = mysqli_query($connection,"SELECT `active` FROM `subscribers` WHERE `email`='$email'");
+    	$result1 = mysqli_query($connection,"SELECT `active` FROM `users` WHERE `email`='$email'");
         $row = mysqli_fetch_array($result1);
         $active = $row['active'];
         if(($active == 0) && ($registered == FALSE) && ($loggedIn = FALSE) || ($active == 0) && !password_verify($pass, $correctpassword) && ($loggedIn = FALSE)){
@@ -226,14 +226,14 @@ if (($loginattempts_email > 5) && ($registered == TRUE)) {
         	 $activate = TRUE;
              $deactivated = FALSE;
              $loggedIn = FALSE;
-              $result1 = mysqli_query($connection,"SELECT `loginattempt` FROM `subscribers` WHERE `email`='$email'");
+              $result1 = mysqli_query($connection,"SELECT `loginattempt` FROM `users` WHERE `email`='$email'");
               $row = mysqli_fetch_array($result1);
               $loginattempts_email = $row['loginattempt'];
             $loginattempts_email = $loginattempts_email + 1;
             $loginattempts_email = intval($loginattempts_email);
 //update login attempt records
          
-            mysqli_query($connection,"UPDATE `subscribers` SET `loginattempt` = '$loginattempts_email' WHERE `email` = '$email'");
+            mysqli_query($connection,"UPDATE `users` SET `loginattempt` = '$loginattempts_email' WHERE `email` = '$email'");
 //Possible brute force attacker is targeting registered emails
 //check if has some IP address records
 
@@ -258,14 +258,14 @@ if (($loginattempts_email > 5) && ($registered == TRUE)) {
              $activate = TRUE;
              $deactivated = FALSE;
              $loggedIn = FALSE;
-              $result1 = mysqli_query($connection,"SELECT `loginattempt` FROM `subscribers` WHERE `email`='$email'");
+              $result1 = mysqli_query($connection,"SELECT `loginattempt` FROM `users` WHERE `email`='$email'");
               $row = mysqli_fetch_array($result1);
               $loginattempts_email = $row['loginattempt'];
             $loginattempts_email = $loginattempts_email + 1;
             $loginattempts_email = intval($loginattempts_email);
 //update login attempt records
          
-            mysqli_query($connection,"UPDATE `subscribers` SET `loginattempt` = '$loginattempts_email' WHERE `email` = '$email'"); 
+            mysqli_query($connection,"UPDATE `users` SET `loginattempt` = '$loginattempts_email' WHERE `email` = '$email'"); 
         }
 //Possible brute force attacker is targeting randomly
 
@@ -311,7 +311,7 @@ if (($loginattempts_email > 5) && ($registered == TRUE)) {
         $loginattempts_total = 0;
         $loginattempts_email = intval($loginattempts_email);
         $loginattempts_total = intval($loginattempts_total);
-        mysqli_query($connection,"UPDATE `subscribers` SET `loginattempt` = '$loginattempts_email' WHERE `email` = '$email'");
+        mysqli_query($connection,"UPDATE `users` SET `loginattempt` = '$loginattempts_email' WHERE `email` = '$email'");
         //mysqli_query("UPDATE `ipcheck` SET `failedattempts` = '$loginattempts_total' WHERE `loggedip` = '$iptocheck'");
 
 //Generate unique signature of the user based on IP address
@@ -344,7 +344,7 @@ if (($loginattempts_email > 5) && ($registered == TRUE)) {
         $_SESSION['logged_in'] = TRUE;
         $_SESSION['LAST_ACTIVITY'] = time();
         if (isset($_SESSION['logged_in'])) {
-            mysqli_query($connection,"UPDATE `subscribers` SET `online` = '1', ipAddress = '$iptocheck' WHERE `email` = '$email'");
+            mysqli_query($connection,"UPDATE `users` SET `online` = '1', ipAddress = '$iptocheck' WHERE `email` = '$email'");
         }
         
     }
@@ -452,7 +452,7 @@ if (!$_SESSION['logged_in']):
 <?php
 else:
 	//redirect to dashboard
-    header("Location: $dashboard_url"); 
+    header("Location: $home_url"); 
     exit();
 endif;
 ?>

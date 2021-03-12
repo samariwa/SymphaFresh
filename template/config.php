@@ -7,9 +7,9 @@
 
 $username = "root";
 $password = "";
-$hostname = "127.0.0.1";
-$database = "zolo";
-$port = "3306";
+$hostname = "192.168.100.150";
+$database = "sympha_fresh";
+$port = "3307";
 
 //Defining length of salt,minimum=10, maximum=35
 $length_salt = 15;
@@ -29,7 +29,7 @@ $sessiontimeout = 60*30;
 
 $connection = mysqli_connect($hostname,$username, $password, $database, $port)
 or die("Unable to connect to Server");
-$login_url = 'login';
+$login_url = 'login.php';
 $logout_url = 'logout.php';
-$dashboard_url = 'dashboard';
+$home_url = 'index.php';
 ?>

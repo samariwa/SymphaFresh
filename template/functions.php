@@ -25,8 +25,6 @@
         }
   function sanitize($data) {
    require('config.php');
-   $connection = mysqli_connect($hostname,$username, $password, $database)
-     or die("Unable to connect to Server");
      $data = trim($data);
      $data = htmlspecialchars($data);
      $data = mysqli_real_escape_string($connection,$data);

@@ -29,21 +29,16 @@ if (isset($_REQUEST['submit_button'])) {
     $last_name = sanitize($_POST["lastname"]);
     $email = sanitize($_POST["email"]);
     $mobile = sanitize($_POST["mobile"]);
-    $business_name = sanitize($_POST["businessname"]);
-    $business_location = sanitize($_POST["businesslocation"]);
-    $business_description = sanitize($_POST["description"]);
-    $desired_username = sanitize($_POST["username"]);
     $desired_password = sanitize($_POST["pass"]);
     $desired_password1 = sanitize($_POST["pass2"]);
-    $random = genRandomString();
+    $random = generateRandomString();
     $hash = password_hash($desired_password, PASSWORD_DEFAULT);
 	//Insert details to database
-    mysqli_query($connection,"INSERT INTO `subscribers` (`firstname`,`lastname`,`serial`,`mobile`,`email`,`username`, `password`) VALUES ('$first_name','$last_name','$random','$mobile','$email','$desired_username', '$hash')") or die(mysqli_error($connection));
-    $result = mysqli_query($connection,"SELECT `id` FROM `subscribers` WHERE `username`='$desired_username'");
+    mysqli_query($connection,"INSERT INTO `users` (`firstname`,`lastname`,`mobile`,`email`,`password`) VALUES ('$first_name','$last_name','$mobile','$email','$hash')") or die(mysqli_error($connection));
+    $result = mysqli_query($connection,"SELECT `id` FROM `users` WHERE `email`='$email'");
           $row = mysqli_fetch_array($result);
           $owner_id = $row['id'];
-    mysqli_query($connection,"INSERT INTO `businesses` (`owner`,`name`,`location`,`description`) VALUES ('$owner_id','$business_name','$business_location','$business_description')") or die(mysqli_error($connection));
-        $_SESSION['user'] = $desired_username;
+        $_SESSION['user'] = $first_name;
         $random = genRandomSaltString();
         $salt_ip = substr($random, 0, $length_salt);
         //hash the ip address, user-agent and the salt
@@ -55,7 +50,7 @@ if (isset($_REQUEST['submit_button'])) {
         $_SESSION['logged_in'] = TRUE;
         $_SESSION['LAST_ACTIVITY'] = time();
         if (isset($_SESSION['logged_in'])) {
-            mysqli_query($connection,"UPDATE `subscribers` SET `online` = '1', ipAddress = '$iptocheck' WHERE `username` = '$desired_username'");
+            mysqli_query($connection,"UPDATE `users` SET `online` = '1', ipAddress = '$iptocheck' WHERE `email` = '$email'");
         }
     //Send notification to email
     require_once "PHPMailer/PHPMailer.php";
@@ -135,7 +130,6 @@ if (isset($_REQUEST['submit_button'])) {
 				</div>  
 				<form class="login100-form" id="registration-form" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 
-				  	<h4 style="color: #666666;">Personal Info</h4>
 					<div class="wrap-input100 m-b-20">
 						<span class="label-input100">First Name</span>
 						<input class="input100" type="text" name="firstname" id="firstname" required placeholder="Christine">
@@ -162,34 +156,6 @@ if (isset($_REQUEST['submit_button'])) {
 						<span class="focus-input100" ></span>
 					</div>
 
-				   	<h4 style="color: #666666;margin-top: 30px">Business Info</h4>
-					<div class="wrap-input100 m-b-20">
-						<span style="color: red;" id="businessname-error"></span>
-						<span class="label-input100">Business Name</span>
-						<input class="input100" type="text" name="businessname" id="businessname" required placeholder="Christine's Cakes">
-						<span class="focus-input100"></span>
-					</div>
-
-					<div class="wrap-input100 m-b-20">
-						<span class="label-input100">Business Location</span>
-						<input class="input100" type="text" name="businesslocation" id="businesslocation" required placeholder="Malindi">
-						<span class="focus-input100"></span>
-					</div>
-
-					<div class="wrap-input100 m-b-20">
-						<span class="label-input100">Business Description</span>
-						<textarea class="input100" type="text" name="description" id="description" required></textarea>    
-						<span class="focus-input100"></span>
-					</div>
-
-				   	<h4 style="color: #666666;margin-top: 30px">Account Setup</h4>
-
-					<div class="wrap-input100 m-b-20">
-						<span style="color: red;" id="username-error"></span>
-						<span class="label-input100">Username</span>
-						<input class="input100" type="text" name="username" id="username" required placeholder="CCakes">
-						<span class="focus-input100" ></span>
-					</div>
 
 					<div class="wrap-input100 m-b-20">
 						<span style="color: red;" id="pass-error"></span>
@@ -235,15 +201,11 @@ if (isset($_REQUEST['submit_button'])) {
 		$(function(){
 		  $(`#email-error`).hide();
 		  $(`#mobile-error`).hide();
-		  $(`#businessname-error`).hide();
-		  $(`#username-error`).hide();
 		  $(`#pass-error`).hide();
 		  $(`#pass2-error`).hide();
 
 		  var emailError = false;
           var mobileError = false;
-          var businessNameError = false;
-          var usernameError = false;
           var passError = false;
           var pass2Error = false;
 
@@ -253,14 +215,8 @@ if (isset($_REQUEST['submit_button'])) {
           $(`#mobile`).focusout(function(){
               check_mobile();
           });
-          $(`#businessname`).focusout(function(){
-              check_businessname();
-          });
-          $(`#username`).focusout(function(){
-              check_username();
-          });
           $(`#pass`).focusout(function(){
-              check_pass();check_username();
+              check_pass();
           });
           $(`#pass2`).focusout(function(){
               check_pass2();
@@ -274,7 +230,7 @@ if (isset($_REQUEST['submit_button'])) {
               function(result){
               	if (result == 'exists') {
               		$(`#email-error`).show();
-              		$(`#email-error`).html('<i class="bx bxs-data bx-flashing"></i>&ensp;This email address is already in the system.');
+              		$(`#email-error`).html('<i class="bx bxs-data bx-flashing"></i>&ensp;This email address already exists.');
               		emailError = true;
 
               	}
@@ -295,7 +251,7 @@ if (isset($_REQUEST['submit_button'])) {
               function(result){
               	if (result == 'exists') {
               		$(`#mobile-error`).show();
-              		$(`#mobile-error`).html('<i class="bx bxs-data bx-flashing"></i>&ensp;This mobile number is already in the system.');
+              		$(`#mobile-error`).html('<i class="bx bxs-data bx-flashing"></i>&ensp;This mobile number already exists.');
               		mobileError = true;
               	}
               	else{
@@ -306,41 +262,6 @@ if (isset($_REQUEST['submit_button'])) {
           });
         }
 
-        function check_businessname(){
-          	var businessname = $(`#businessname`).val();
-          	var where = 'businessname';
-              $.post("verification.php",{businessname:businessname,where:where},
-              function(result){
-              	if (result == 'exists') {
-              		$(`#businessname-error`).show();
-              		$(`#business-error`).html('<i class="bx bxs-data bx-flashing"></i>&ensp;This business has already been registered.');
-              		businessNameError = true;
-              	}
-              	else{
-              		$(`#businessname-error`).hide();
-              		$(`#businessname-error`).html('');
-              		emailError = false;
-              	}
-          });
-        }
-
-        function check_username(){
-          	var username = $(`#username`).val();
-          	var where = 'username';
-              $.post("verification.php",{username:username,where:where},
-              function(result){
-              	if (result == 'exists') {
-              		$(`#username-error`).show();
-              		$(`#username-error`).html('<i class="bx bxs-data bx-flashing"></i>&ensp;User already exists.');
-              		usernameError = true;
-              	}
-              	else{
-              		$(`#username-error`).hide();
-              		$(`#username-error`).html('');
-              		emailError = false;
-              	}
-          });
-        }
         function check_pass(){
           	var pass = $(`#pass`).val().length;
           	if (pass > 0 && pass < 8) {
@@ -374,19 +295,15 @@ if (isset($_REQUEST['submit_button'])) {
         $(`#registration-form`).submit(function(){
           emailError = false;
           mobileError = false;
-          businessNameError = false;
-          usernameError = false;
           passError = false;
           pass2Error = false;
 
           check_email();
           check_mobile();
-          check_businessname();  
-          check_username(); 
           check_pass(); 
           check_pass2();          
 
-          if (emailError == false && mobileError == false && businessNameError == false && usernameError == false && passError == false && pass2Error == false) {
+          if (emailError == false && mobileError == false && passError == false && pass2Error == false) {
           	return true;
           }else{
           	return false;
