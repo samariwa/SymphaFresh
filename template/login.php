@@ -101,7 +101,10 @@ if ((isset($_POST["pass"])) && (isset($_POST["email"])) && ($_SESSION['logged_in
 
     $email = sanitize($_POST["email"]);
     $pass = sanitize($_POST["pass"]);
-    $_SESSION['email'] = $email;
+    $Name = mysqli_query($connection,"SELECT * FROM `users` WHERE `email`='$email'");
+        $row = mysqli_fetch_array($Name);
+        $identity = $row['firstname'];
+    $_SESSION['user'] = $identity;
 //validate email
     if (!($fetch = mysqli_fetch_array(mysqli_query($connection,"SELECT `email` FROM `users` WHERE `email`='$email'")))) {
 //no records of email in database

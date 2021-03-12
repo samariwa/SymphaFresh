@@ -1,5 +1,51 @@
 <?php
-
+ session_start();
+ require('config.php');
+ require('functions.php');
+ if (isset($_SESSION['logged_in'])) {
+   if ($_SESSION['logged_in'] == TRUE) {
+ //valid user has logged-in to the website
+ //Check for unauthorized use of user sessions
+    
+     $iprecreate = $_SERVER['REMOTE_ADDR'];
+     $useragentrecreate = $_SERVER["HTTP_USER_AGENT"];
+     $signaturerecreate = $_SESSION['signature'];
+ 
+ //Extract original salt from authorized signature
+ 
+     $saltrecreate = substr($signaturerecreate, 0, $length_salt);
+ 
+ //Extract original hash from authorized signature
+ 
+     $originalhash = substr($signaturerecreate, $length_salt, 40);
+ 
+ //Re-create the hash based on the user IP and user agent
+ //then check if it is authorized or not
+ 
+     $hashrecreate = sha1($saltrecreate . $iprecreate . $useragentrecreate);
+     if (!($hashrecreate == $originalhash)) {
+ 
+ //Signature submitted by the user does not matched with the
+ //authorized signature
+ //This is unauthorized access
+ //Block it
+         header("Location: $home_url");
+         exit;
+     }
+     $logged_in_user = $_SESSION['user'];
+        $result1 = mysqli_query($connection,"SELECT `active` FROM `users` WHERE `email`='$logged_in_user'");
+         $row = mysqli_fetch_array($result1);
+         $active = $row['active'];
+ //Session Lifetime control for inactivity
+ 
+     if ((isset($_SESSION['LAST_ACTIVITY'])) && (time() - $_SESSION['LAST_ACTIVITY'] > $sessiontimeout) || (isset($_SESSION['LAST_ACTIVITY'])) && ($active == 2)) {
+ //redirect the user back to login page for re-authentication
+          header("Location: $logout_url");
+         exit;
+     }
+     $_SESSION['LAST_ACTIVITY'] = time();
+ }
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -362,13 +408,25 @@
                         <li class="site-phone"><a href="tel:+254 713 932 911"><i class="fas fa-phone"></i> +254 713 932 911</a></li>
                         <li class="site-help"><a href="#"><i class="fas fa-question-circle"></i> Help & More</a></li>
                         <li class="wish-list"><a href="wishlist.php"><i class="fas fa-heart"></i> <span class="count">04</span></a></li>
-                        <li class="my-account d-none"><a class="dropdown-toggle" href="#" role="button" id="myaccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user mr-1"></i> My Account</a>
+                        <?php
+                        if (isset($_SESSION['logged_in'])) {
+                          if ($_SESSION['logged_in'] == TRUE) {
+                        ?>
+                        <li class="my-account"><a class="dropdown-toggle" href="#" role="button" id="myaccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user mr-1"></i> Hello, <?php echo $logged_in_user; ?></a>
                             <ul class="submenu dropdown-menu" aria-labelledby="myaccount">
                                 <li><a href="profile.php">Profile</a></li>
-                                <li><a href="#">Sign Out</a></li>
+                                <li><a href="logout.php">Sign Out</a></li>
                             </ul>
                         </li>
+                        <?php
+                          }
+                        }
+                          else{
+                        ?>
                         <li class="signin-option"><a href="login.php"><i class="fas fa-user mr-2"></i>Sign In</a></li>
+                        <?php
+                          }
+                        ?>
                     </ul>
                 </div>
 
