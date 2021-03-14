@@ -33,6 +33,7 @@
                                         <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
                                         <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
                                     </ul>
+                                    <img src="assets/images/halal.png" class="ml-4" width="120px" height="120px" alt="halal">
                                 </div>
                             </div>
 

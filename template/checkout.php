@@ -145,17 +145,20 @@ include('header.php');
 
                                     <div class="input-item radio">
                                         <input type="radio" name="payment" value="cash on delivary">
-                                        <label>Cash on delivary</label>
+                                        <label>Cash on delivery</label>
                                     </div>
 
                                     <div class="input-item radio">
                                         <input type="radio" name="payment" value="paypal">
-                                        <label>Paypal</label>
+                                        <label>M-pesa</label>
                                     </div>
                                 </form>
-                                <div class="payment-image">
-                                    <img src="assets/images/payment/01.png" alt="payment">
-                                </div>
+                                <div class="payment-method d-flex flex-wrap">
+                                            <a href="#"><img src="assets/images/payment/Mpesa-Logo.png" height="35px" width="55px" alt="payment"></a>
+                                            <a href="#"><img src="assets/images/payment/visa.png" alt="payment"></a>
+                                            <a href="#"><img src="assets/images/payment/Mastercard-Logo.png" height="30px" width="50px" alt="payment"></a>
+                                            <a href="#"><img src="assets/images/payment/paypal.png" alt="payment"></a>
+                                        </div>
                                 <div class="text-right">
                                     <a href="#" class="place-order-btn">Place Order</a>
                                 </div>

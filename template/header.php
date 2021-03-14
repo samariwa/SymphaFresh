@@ -75,7 +75,7 @@
         </div>
     </a>
 
-     <!-- admin Modal -->
+     <!-- admin Modal 
      <div class="modal fade" id="useradmin1" tabindex="-1" aria-labelledby="useradmin1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -90,7 +90,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
      <!--siteinfo Modal -->
      <div class="modal fade" id="siteinfo1" tabindex="-1" aria-labelledby="siteinfo1" aria-hidden="true">
@@ -325,7 +325,7 @@
         <div class="cart-footer">
             <div class="product-other-charge">
                 <p class="d-flex justify-content-between">
-                    <span>Delevery charge</span> 
+                    <span>Delivery charge</span> 
                     <span>Ksh8.00</span>
                 </p>
                 <a href="#">Do you have a voucher?</a>
@@ -437,8 +437,8 @@
             <div class="row m-0 align-items-center">
                 <div class="col-md-2 p-0 d-none d-xl-block">
                     <div class="all-catagory-option">
-                        <a class="bar-btn"><i class="fas fa-bars"></i>All Catagories</a>
-                        <a class="close-btn"><i class="fas fa-times"></i>All Catagories</a>
+                        <a class="bar-btn"><i class="fas fa-bars"></i>All Categories</a>
+                        <a class="close-btn"><i class="fas fa-times"></i>All Categories</a>
                     </div>
                 </div>
                 <div class="col-md-10">

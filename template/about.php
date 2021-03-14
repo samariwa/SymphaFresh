@@ -96,7 +96,23 @@ include('header.php');
                 </div>
             </section>
             <!-- about-coroussel-section end -->
-
+            <section class="about-section section-ptb">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 order-lg-last pr-xl-5">
+                            <div class="about-content mb-4 mb-lg-0 pr-lg-5">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur quibusdam enim expedita sed nesciunt incidunt accusamus adipisci officia libero laboriosam!</p>
+                                <p>Proin gravida nibh vel velit auctor aliquet. nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Duis sed odio sit amet nibh vultate cursus a sit amet mauris.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 order-lg-first">
+                            <div class="about-image">
+                                <img src="assets/images/halal.png" alt="halal">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <!-- about section end -->
 <?php
 include('footer.php');

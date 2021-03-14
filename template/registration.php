@@ -27,6 +27,7 @@ if (isset($_REQUEST['submit_button'])) {
 		//sanitize user inputs
     $first_name = sanitize($_POST["firstname"]);
     $last_name = sanitize($_POST["lastname"]);
+	$location = sanitize($_POST["location"]);
     $email = sanitize($_POST["email"]);
     $mobile = sanitize($_POST["mobile"]);
     $desired_password = sanitize($_POST["pass"]);
@@ -34,7 +35,7 @@ if (isset($_REQUEST['submit_button'])) {
     $random = generateRandomString();
     $hash = password_hash($desired_password, PASSWORD_DEFAULT);
 	//Insert details to database
-    mysqli_query($connection,"INSERT INTO `users` (`firstname`,`lastname`,`mobile`,`email`,`password`) VALUES ('$first_name','$last_name','$mobile','$email','$hash')") or die(mysqli_error($connection));
+    mysqli_query($connection,"INSERT INTO `users` (`firstname`,`lastname`,`mobile`,`email`,`location`,`password`) VALUES ('$first_name','$last_name','$mobile','$email','$location','$hash')") or die(mysqli_error($connection));
     $result = mysqli_query($connection,"SELECT `id` FROM `users` WHERE `email`='$email'");
           $row = mysqli_fetch_array($result);
           $owner_id = $row['id'];
@@ -143,19 +144,24 @@ if (isset($_REQUEST['submit_button'])) {
 					</div>
 
 					<div class="wrap-input100 m-b-20">
+						<span class="label-input100">Physical Address</span>
+						<input class="input100" type="text" name="location" id="location" required placeholder="&#xf041; Lang'ata, Nairobi, Kenya" style="font-family:Arial, FontAwesome">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 m-b-20">
 						<span style="color: red;" id="email-error"></span>
 						<span class="label-input100">Email Address</span>
-						<input class="input100" type="email" name="email" id="email" required placeholder="christine*****@gmail.com">
+						<input class="input100" type="email" name="email" id="email" required placeholder="&#xf0e0; christine*****@gmail.com" style="font-family:Arial, FontAwesome">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 m-b-20">
 						<span style="color: red;" id="mobile-error"></span>
 						<span class="label-input100">Mobile Number</span>
-						<input class="input100" type="text" name="mobile" id="mobile" required placeholder="+254 7## ### ###">
+						<input class="input100" type="text" name="mobile" id="mobile" required placeholder="&#xf095; +254 7## ### ###" style="font-family:Arial, FontAwesome">
 						<span class="focus-input100" ></span>
 					</div>
-
 
 					<div class="wrap-input100 m-b-20">
 						<span style="color: red;" id="pass-error"></span>
