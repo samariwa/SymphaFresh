@@ -1,5 +1,12 @@
 <?php
 include('header.php');
+$profile_details = mysqli_query($connection,"SELECT firstname,lastname,email,location,mobile FROM users where email = '$logged_in_email' ")or die($connection->error);
+$result = mysqli_fetch_array($profile_details);
+$firstname = $result['firstname'];
+$lastname = $result['lastname'];
+$mobile = $result['mobile'];
+$email = $result['email'];
+$location = $result['location'];
 ?>          
             <!-- page-header-section start -->
             <div class="page-header-section">
@@ -26,12 +33,12 @@ include('header.php');
                         <div class="row justify-content-center justify-content-md-start">
                             <div class="admin-content-area">
                                 <div class="admin-thumb">
-                                    <img src="assets/images/admin/thumb.jpg" alt="">
+                                    <img src="assets/images/admin/thumbnail-avatar.png" alt="">
                                     <a href="#" class="image-change-option"><i class="fas fa-camera"></i></a>
                                 </div>
                                 <div class="admin-content">
-                                    <h4 class="name">John Doe</h4>
-                                    <p class="desc">Lorem Ipsum is simply dummy text.</p>
+                                    <h4 class="name"><?php echo $firstname.' '.$lastname; ?></h4>
+                                    <p class="desc"><?php echo $email; ?></p>
                                 </div>
                             </div>
                         </div>
@@ -61,40 +68,24 @@ include('header.php');
                             <ul class="list-profile-info list-unstyled">
                                 <li>
                                     <span class="title">Your Name</span>
-                                    <span class="desc">Jhone Doe</span>
+                                    <span class="desc"><?php echo $firstname.' '.$lastname; ?></span>
                                 </li>
                                 <li>
                                     <span class="title">Email</span>
-                                    <span class="desc">jhondoe@gmail.com</span>
+                                    <span class="desc"><?php echo $email; ?></span>
                                 </li>
                                 <li>
                                     <span class="title">Mobile</span>
-                                    <span class="desc">000 111 122 333</span>
+                                    <span class="desc"><?php echo $mobile; ?></span>
                                 </li>
                                 <li>
-                                    <span class="title">Website</span>
-                                    <span class="desc">jhondow.com</span>
-                                </li>
-                                <li>
-                                    <span class="title">City</span>
-                                    <span class="desc">San Bruno</span>
-                                </li>
-                                <li>
-                                    <span class="title">State</span>
-                                    <span class="desc">California</span>
-                                </li>
-                                <li>
-                                    <span class="title">Zip</span>
-                                    <span class="desc">94066</span>
-                                </li>
-                                <li>
-                                    <span class="title">Country</span>
-                                    <span class="desc">USA</span>
+                                    <span class="title">Physical Address</span>
+                                    <span class="desc"><?php echo $location; ?>
                                 </li>
                             </ul>
                         </div>
 
-                        <!-- address -->
+                        <!-- address 
                         <div class="profile-address-book">
                             <h3 class="title">Address Book</h3>
                             <ul class="address-list">
@@ -153,7 +144,7 @@ include('header.php');
                                     <button type="button" data-toggle="modal" data-target="#address-add" class="add-new-btn">Add New Address</button>
                                 </li>
                             </ul>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </section>

@@ -1,5 +1,12 @@
 <?php
   include('header.php');
+  $profile_details = mysqli_query($connection,"SELECT firstname,lastname,email,location,mobile FROM users where email = '$logged_in_email' ")or die($connection->error);
+$result = mysqli_fetch_array($profile_details);
+$firstname = $result['firstname'];
+$lastname = $result['lastname'];
+$mobile = $result['mobile'];
+$email = $result['email'];
+$location = $result['location'];
 ?>
             <!-- page-header-section start -->
             <div class="page-header-section">
@@ -26,12 +33,12 @@
                         <div class="row justify-content-center justify-content-md-start">
                             <div class="admin-content-area">
                                 <div class="admin-thumb">
-                                    <img src="assets/images/admin/thumb.jpg" alt="">
+                                    <img src="assets/images/admin/thumbnail-avatar.png" alt="">
                                     <a href="#" class="image-change-option"><i class="fas fa-camera"></i></a>
                                 </div>
                                 <div class="admin-content">
-                                    <h4 class="name">Jhone Doe</h4>
-                                    <p class="desc">Lorem Ipsum is simply dummy text.</p>
+                                    <h4 class="name"><?php echo $firstname.' '.$lastname; ?></h4>
+                                    <p class="desc"><?php echo $email; ?></p>
                                 </div>
                             </div>
                         </div>

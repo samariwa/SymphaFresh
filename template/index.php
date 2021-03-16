@@ -6,26 +6,26 @@ include('header.php');
                 <div class="banner-slider-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <div class="banner-content-area">
+                            <div class="banner-content-area" style="background-image:url('assets/images/banner/banner-image1')">
                                 <div class="slider-image slider-image2"></div>
                                 <div class="container">
                                     <div class="banner-content text-center text-lg-left">
                                         <h6>Organic and fresh food</h6>
                                         <h2>Get freshness delivered<br>on your doorstep.</h2>
-                                        <a href="#" class="banner-btn">Read More</a>
+                                        <a href="about.php" class="banner-btn">Read More</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="swiper-slide">
-                            <div class="banner-content-area">
+                            <div class="banner-content-area" style="background-image:url('assets/images/banner/banner-image3')">
                                 <div class="slider-image slider-image1"></div>
                                 <div class="container">
                                     <div class="banner-content text-center">
                                         <h6>Organic and fresh food</h6>
                                         <h2>Get freshness delivered<br>on your doorstep.</h2>
-                                        <a href="#" class="banner-btn">Read More</a>
+                                        <a href="about.php" class="banner-btn">Read More</a>
                                     </div>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@ include('header.php');
                                     <div class="banner-content text-center text-lg-left">
                                         <h6>Organic and fresh food</h6>
                                         <h2>Get freshness delivered<br>on your doorstep.</h2>
-                                        <a href="#" class="banner-btn">Read More</a>
+                                        <a href="about.php" class="banner-btn">Read More</a>
                                     </div>
                                 </div>
                             </div>

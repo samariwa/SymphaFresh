@@ -39,17 +39,13 @@
 
                             <div class="col-md-6 col-lg-3">
                                 <div class="footer-widget">
-                                    <h5 class="footer-title">Product Catalog</h5>
+                                    <h5 class="footer-title">Product Categories</h5>
                                     <div class="widget-wrapper">
                                         <ul>
-                                            <li><a href="product-leftsidebar.php">Fruits</a></li>
-                                            <li><a href="product-leftsidebar.php">Salads</a></li>
-                                            <li><a href="product-leftsidebar.php">Fish & Seafood</a></li>
-                                            <li><a href="product-leftsidebar.php">Fresh Meat</a></li>
-                                            <li><a href="product-leftsidebar.php">Health Products</a></li>
-                                            <li><a href="product-leftsidebar.php">Butter & Eggs</a></li>
-                                            <li><a href="product-leftsidebar.php">Oil & Vinegars</a></li>
-                                            <li><a href="product-leftsidebar.php">Health Products</a></li>
+                                            <li><a href="#">Chicken Products</a></li>
+                                            <li><a href="#">Fish</a></li>
+                                            <li><a href="#">Vegetables</a></li>
+                                            <li><a href="#">Meat</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -61,11 +57,10 @@
                                     <div class="widget-wrapper">
                                         <ul>
                                             <li><a href="about.php">About Us</a></li>
-                                            <li><a href="product-leftsidebar.php">Featured Products</a></li>
-                                            <li><a href="brand-product.php">Offers</a></li>
-                                            <li><a href="blog-rightsidebar.php">Blog</a></li>
+                                            <li><a href="product-list.php">Our Products</a></li>
+                                            <!--<li><a href="blog-rightsidebar.php">Blog</a></li>-->
                                             <li><a href="faq.php">FAQ</a></li>
-                                            <li><a href="#">Careers</a></li>
+                                            <!--<li><a href="#">Careers</a></li>-->
                                             <li><a href="contact.php">Contact Us</a></li>
                                         </ul>
                                     </div>
@@ -211,7 +206,7 @@
 
 
 
-    <!-- login-area -->
+    <!-- login-area 
     <section id="login-area" class="login-area">
         <div onclick="CloseSignUpForm()" class="overlay"></div>
         <div class="login-body-wrapper">
@@ -229,13 +224,13 @@
                         <input type="email" name="email" placeholder="Email">
                         <button type="submit" class="submit">Sign In</button>
                     </form>
-                    <!--<div class="text-center seperator">
+                    <div class="text-center seperator">
                         <span>Or</span>
                     </div>
                     <div class="othersignup-option">
                         <a class="facebook" href="#"><i class="fab fa-facebook-square"></i>Continue with Facebook</a>
                         <a class="google" href="#"><i class="fab fa-google-plus"></i>Continue with Google</a>
-                    </div>-->
+                    </div>
                     <div class="text-center dont-account py-4">
                         <p class="mb-0">Don't have an account? <a href="#">Sign Up</a></p>
                     </div>
@@ -246,7 +241,7 @@
             </div>
         </div>
     </section>
-    <!-- login-area -->
+    login-area -->
 
 
 
@@ -269,7 +264,8 @@
 
 
 
-    <div id="popup" class="popup" style="display: none">
+   <!--ad popup 
+       <div id="popup" class="popup" style="display: none">
         <div class="popup-overlay"></div>
         <div class="popup-wrapper">
             <div class="popupbox">
@@ -277,7 +273,7 @@
                 <button class="popup-close"><img src="assets/images/popup-close.png" alt="popup-close"></button>
             </div>
         </div>
-    </div>
+    </div>-->
 
     <a href="#top-page" class="to-top js-scroll-trigger"><span><i class="fas fa-arrow-up"></i></span></a>
     <script src='assets/js/jquery.min.js'></script>

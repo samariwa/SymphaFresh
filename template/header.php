@@ -33,6 +33,7 @@
          exit;
      }
      $logged_in_user = $_SESSION['user'];
+     $logged_in_email = $_SESSION['email'];
         $result1 = mysqli_query($connection,"SELECT `active` FROM `users` WHERE `email`='$logged_in_user'");
          $row = mysqli_fetch_array($result1);
          $active = $row['active'];
@@ -65,6 +66,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body id="top-page" class="sticky-sidebar-home">
+<!--
     <a class="position-absolute" href="javascript:void(0)" onclick="cartopen()">
         <div id="sitebar-drawar" class="sitebar-drawar">
             <div class="cart-count d-flex align-items-center">
@@ -74,6 +76,7 @@
             <div class="total-price">Ksh 3415.00</div>
         </div>
     </a>
+-->
 
      <!-- admin Modal 
      <div class="modal fade" id="useradmin1" tabindex="-1" aria-labelledby="useradmin1" aria-hidden="true">
@@ -92,7 +95,7 @@
         </div>
     </div> -->
 
-     <!--siteinfo Modal -->
+     <!--siteinfo Modal 
      <div class="modal fade" id="siteinfo1" tabindex="-1" aria-labelledby="siteinfo1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -107,8 +110,8 @@
             </div>
         </div>
     </div>
-
-     <!--search Modal -->
+    -->
+     <!--search Modal 
      <div class="modal fade" id="search-select-id" tabindex="-1" aria-labelledby="search-select-id" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -137,10 +140,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
-     <!-- menu modal -->
+     <!-- menu modal 
      <div class="modal fade" id="menu-id" tabindex="-1" aria-labelledby="menu-id" aria-hidden="true">
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
@@ -174,11 +177,14 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
 
-
+    <?php
+        if (isset($_SESSION['logged_in'])) {
+        if ($_SESSION['logged_in'] == TRUE) {
+    ?>
     <!-- sidebar-cart -->
     <div id="sitebar-cart" class="sitebar-cart">
         <div class="sc-head d-flex justify-content-between align-items-center">
@@ -344,6 +350,12 @@
             </div>
         </div>
     </div>
+    <!--end of side cart-->
+    <?php
+        }
+    }
+    ?>
+
     <!-- header section start -->
     <header class="header">
         <div class="header-top">
@@ -354,12 +366,12 @@
                         <a class="close-btn"><i class="fas fa-times"></i>All Catagories</a>
                     </div>
                     <a href="index.php" class="logo"><img src="assets/images/logo.png" alt="logo"></a>
-                </div> -->
+                </div> 
 
                 <div class="all-catagory-option mobile-device">
                     <a class="bar-btn"><i class="fas fa-bars"></i><span class="ml-2 d-none d-md-inline">All Catagories</span></a>
                     <a class="close-btn"><i class="fas fa-times"></i><span class="ml-2 d-none d-md-inline">All Catagories</span></a>
-                </div>
+                </div> -->
                 <a href="index.php" class="logo"><img src="assets/images/logo.png" alt="logo"></a>
 
                 <!-- search select -->
@@ -445,165 +457,23 @@
                     <div class="menu-area d-none d-xl-flex justify-content-between align-items-center">
                         <ul class="menu d-xl-flex flex-wrap list-unstyled">
                             <li><a href="index.php"> Home</a></li>
-                            <li><a href="about.php">About</a></li>
+                            <li class="item-has-children" ><a href="#">About Us <i class="fas fa-angle-down"></i></a>
+                            <ul class="submenu">
+                                    <li><a href="about.php">Who We Are</a></li>
+                                    <li><a href="about.php">Mission & Vision</a></li>
+                                    <li><a href="faq.php">FAQs</a></li>
+                            </ul>  
+                            </li>      
                             <li><a href="product-list.php">Our Products</a></li>
+                            <li><a href="blog.php">Blog</a></li>
                             <li><a href="contact.php">Contact Us</a></li>
-                            <li class="item-has-mega-menu"><a href="#">Featured Products <i class="fas fa-angle-down"></i></a>
-                                <div class="mega-menu-container">
-                                    <div class="row m-0">
-                                        <div class="col-lg-3">
-                                            <div class="ctagory-item">
-                                                <h6 class="title">Vegetables</h6>
-                                                <ul>
-                                                    <li><a href="product-list.php">Artichoke.</a></li>
-                                                    <li><a href="product-list.php">Aubergune(eggpiant)</a></li>
-                                                    <li><a href="product-list.php">Asparagus</a></li>
-                                                    <li><a href="product-list.php">Broccoflower(a hyrbid)</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="ctagory-item">
-                                                <h6 class="title">Frouts</h6>
-                                                <ul>
-                                                    <li><a href="product-list.php">Artichoke.</a></li>
-                                                    <li><a href="product-list.php">Aubergune(eggpiant)</a></li>
-                                                    <li><a href="product-list.php">Asparagus</a></li>
-                                                    <li><a href="product-list.php">Broccoflower(a hyrbid)</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="ctagory-item">
-                                                <h6 class="title">Salads</h6>
-                                                <ul>
-                                                    <li><a href="product-list.php">Artichoke.</a></li>
-                                                    <li><a href="product-list.php">Aubergune(eggpiant)</a></li>
-                                                    <li><a href="product-list.php">Asparagus</a></li>
-                                                    <li><a href="product-list.php">Broccoflower(a hyrbid)</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="ctagory-item">
-                                                <h6 class="title">Health Care</h6>
-                                                <ul>
-                                                    <li><a href="product-list.php">Artichoke.</a></li>
-                                                    <li><a href="product-list.php">Aubergune(eggpiant)</a></li>
-                                                    <li><a href="product-list.php">Asparagus</a></li>
-                                                    <li><a href="product-list.php">Broccoflower(a hyrbid)</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="ctagory-item">
-                                                <h6 class="title">Vegetables</h6>
-                                                <ul>
-                                                    <li><a href="product-list.php">Artichoke.</a></li>
-                                                    <li><a href="product-list.php">Aubergune(eggpiant)</a></li>
-                                                    <li><a href="product-list.php">Asparagus</a></li>
-                                                    <li><a href="product-list.php">Broccoflower(a hyrbid)</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="ctagory-item">
-                                                <h6 class="title">Frouts</h6>
-                                                <ul>
-                                                    <li><a href="product-list.php">Artichoke.</a></li>
-                                                    <li><a href="product-list.php">Aubergune(eggpiant)</a></li>
-                                                    <li><a href="product-list.php">Asparagus</a></li>
-                                                    <li><a href="product-list.php">Broccoflower(a hyrbid)</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="ctagory-item">
-                                                <h6 class="title">Salads</h6>
-                                                <ul>
-                                                    <li><a href="product-list.php">Artichoke.</a></li>
-                                                    <li><a href="product-list.php">Aubergune(eggpiant)</a></li>
-                                                    <li><a href="product-list.php">Asparagus</a></li>
-                                                    <li><a href="product-list.php">Broccoflower(a hyrbid)</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="ctagory-item">
-                                                <h6 class="title">Health Care</h6>
-                                                <ul>
-                                                    <li><a href="product-list.php">Artichoke.</a></li>
-                                                    <li><a href="product-list.php">Aubergune(eggpiant)</a></li>
-                                                    <li><a href="product-list.php">Asparagus</a></li>
-                                                    <li><a href="product-list.php">Broccoflower(a hyrbid)</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="ctagory-item">
-                                                <h6 class="title active">Fruits</h6>
-                                                <ul>
-                                                    <li><a href="product-list.php">Artichoke.</a></li>
-                                                    <li><a href="product-list.php">Aubergune(eggpiant)</a></li>
-                                                    <li><a class="active" href="product-list.php">Asparagus</a></li>
-                                                    <li><a href="product-list.php">Broccoflower(a hyrbid)</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="ctagory-item">
-                                                <h6 class="title">Vegetables</h6>
-                                                <ul>
-                                                    <li><a href="product-list.php">Artichoke.</a></li>
-                                                    <li><a href="product-list.php">Aubergune(eggpiant)</a></li>
-                                                    <li><a href="product-list.php">Asparagus</a></li>
-                                                    <li><a href="product-list.php">Broccoflower(a hyrbid)</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="ctagory-item">
-                                                <h6 class="title">Health Care</h6>
-                                                <ul>
-                                                    <li><a href="product-list.php">Artichoke.</a></li>
-                                                    <li><a href="product-list.php">Aubergune(eggpiant)</a></li>
-                                                    <li><a href="product-list.php">Asparagus</a></li>
-                                                    <li><a href="product-list.php">Broccoflower(a hyrbid)</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="ctagory-item">
-                                                <h6 class="title">Fruits</h6>
-                                                <ul>
-                                                    <li><a href="product-list.php">Artichoke.</a></li>
-                                                    <li><a href="product-list.php">Aubergune(eggpiant)</a></li>
-                                                    <li><a href="product-list.php">Asparagus</a></li>
-                                                    <li><a href="product-list.php">Broccoflower(a hyrbid)</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
                             <li class="item-has-children"><a href="index.php">Pages <i class="fas fa-angle-down"></i></a>
                                 <ul class="submenu">
                                     <li><a href="product-leftsidebar.php">Product leftsidebar</a></li>
                                     <li><a href="product-fullwidth.php">Product Fullwidth</a></li>
                                     <li><a href="brand-product.php">Brand Page</a></li>
                                     <li><a href="product-detail.php">Product Details</a></li>
-                                    <li><a href="faq.php">FAQ</a></li>
-                                    <li><a href="checkout.php">Checkout</a></li>
                                     <li><a href="user-dashboard.php">User Dashboard</a></li>
-                                    <li><a href="profile.php">Profile</a></li>
-                                    <li><a href="track-order.php">Track Order</a></li>
-                                </ul>
-                            </li>
-                            <li class="item-has-children"><a href="blog.php">Blog <i class="fas fa-angle-down"></i></a>
-                                <ul class="submenu">
-                                    <li><a href="blog.php">Blog full width</a></li>
-                                    <li><a href="blog-rightsidebar.php">Blog Rightsidebar</a></li>
-                                    <li><a href="single.php">Blog Single</a></li>
                                 </ul>
                             </li>
                         </ul>

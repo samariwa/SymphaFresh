@@ -23,7 +23,7 @@
             <section class="blog-section section-ptb">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-9 main-content">
+                        <div class="col-lg-12 main-content">
                             <div class="entry-wrapper">
                                 <div class="entry-single">
                                     <div class="entry-header">
@@ -170,120 +170,6 @@
                                     </form>
                                 </div>
                             </div>                            
-                        </div>
-                        <div class="col-lg-3 sidebar blog-sidebar">
-                            <div class="widget searh-widget">
-                                <form class="search-form">
-                                    <input type="text" name="search" placeholder="Search">
-                                    <i class="fas fa-search"></i>
-                                </form>
-                            </div>
-
-                            <div class="widget">
-                                <h5 class="widget-title">Catagories</h5>
-                                <div class="widget-wrapper1">
-                                    <ul class="catagory-list list-unstyled">
-                                        <li><a class="d-flex align-items-center justify-content-between" href="#">
-                                            <span class="text">Web Design</span>
-                                            <span class="count">432</span>
-                                        </a></li>
-
-                                        <li><a class="d-flex align-items-center justify-content-between" href="#">
-                                            <span class="text">Marketing</span>
-                                            <span class="count">232</span>
-                                        </a></li>
-
-                                        <li><a class="d-flex align-items-center justify-content-between" href="#">
-                                            <span class="text">WordPress</span>
-                                            <span class="count">132</span>
-                                        </a></li>
-
-                                        <li><a class="d-flex align-items-center justify-content-between" href="#">
-                                            <span class="text">Graphic Design</span>
-                                            <span class="count">432</span>
-                                        </a></li>
-
-                                        <li><a class="d-flex align-items-center justify-content-between" href="#">
-                                            <span class="text">Photography</span>
-                                            <span class="count">472</span>
-                                        </a></li>
-
-                                        <li><a class="d-flex align-items-center justify-content-between" href="#">
-                                            <span class="text">eCommerce</span>
-                                            <span class="count">234</span>
-                                        </a></li>
-
-                                        <li><a class="d-flex align-items-center justify-content-between" href="#">
-                                            <span class="text">HTML</span>
-                                            <span class="count">78</span>
-                                        </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="widget">
-                                <h5 class="widget-title">Recent Blog</h5>
-                                <div class="widget-wrapper1">
-                                    <div class="small-post-list">
-                                        <div class="post-item d-flex">
-                                            <div class="post-thumb">
-                                                <a href="single.php"><img src="assets/images/blog/01.jpg" alt="thumb"></a>
-                                            </div>
-                                            <div class="post-content">
-                                                <a class="title" href="#">Claritas etiam processus equitur</a>
-                                                <ul class="meta-post list-unstyled pl-0 d-flex">
-                                                    <li>
-                                                        <span class="meta-content">04 February 2020</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <div class="post-item d-flex">
-                                            <div class="post-thumb">
-                                                <a href="single.php"><img src="assets/images/blog/02.jpg" alt="thumb"></a>
-                                            </div>
-                                            <div class="post-content">
-                                                <a class="title" href="#">Claritas etiam processus equitur</a>
-                                                <ul class="meta-post list-unstyled pl-0 d-flex">
-                                                    <li>
-                                                        <span class="meta-content">04 February 2020</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <div class="post-item d-flex">
-                                            <div class="post-thumb">
-                                                <a href="single.php"><img src="assets/images/blog/03.jpg" alt="thumb"></a>
-                                            </div>
-                                            <div class="post-content">
-                                                <a class="title" href="#">Claritas etiam processus equitur</a>
-                                                <ul class="meta-post list-unstyled pl-0 d-flex">
-                                                    <li>
-                                                        <span class="meta-content">04 February 2020</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="widget">
-                                <h5 class="widget-title">Tag Widgets</h5>
-                                <div class="widget-wrapper1">
-                                    <ul class="tag-list list-unstyled">
-                                        <li><a href="#">Mockups</a></li>
-                                        <li><a href="#">Art</a></li>
-                                        <li><a href="#">Icons</a></li>
-                                        <li><a href="#">Prints</a></li>
-                                        <li><a href="#">WordPress Theme</a></li>
-                                        <li><a href="#">UI</a></li>
-                                        <li><a href="#">Joomla</a></li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -1971,7 +1971,7 @@ ul {
 @media only screen and (max-width: 1200px) {
   .banner-section {
     height: 350px;
-    background-image: url(../images/banner/banner-image1.jpg);
+    background-image: url(../images/banner/banner-image3.jpg);
   }
 }
 @media only screen and (max-width: 479px) {
@@ -1980,11 +1980,11 @@ ul {
     background-position: 48% 38%;
   }
 }
-.banner-section.bg-img2 {
+.banner-section .bg-img2 {
   background-image: url(../images/banner/banner-bg3.jpg);
   background-position: top center;
 }
-.banner-section.bg-img3 {
+.banner-section .bg-img3 {
   background-image: url(../images/banner-slider/3-3.jpg);
   background-position: top center;
 }
@@ -2122,15 +2122,15 @@ ul {
   top: 0;
   width: 100%;
   height: 100%;
-  background-image: url(../images/banner-slider/banner-image2.jpg);
+  background-image: url(../images/banner-slider/banner-image3.jpg);
 }
 .banner-slider-container .swiper-slide .banner-content-area .slider-image .slider-image2 {
-  background-image: url(../images/banner-slider/banner-image2.jpg);
+  background-image: url(../images/banner-slider/banner-image3.jpg);
   background-size: 100%;
   background-position: 100% 36%;
 }
 .banner-slider-container .swiper-slide .banner-content-area .slider-image .slider-image3 {
-  background-image: url(../images/banner-slider/banner-image1.jpg);
+  background-image: url(../images/banner-slider/banner-image3.jpg);
   background-size: 130%;
   background-position: 4% 62%;
 }
