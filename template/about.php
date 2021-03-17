@@ -32,7 +32,7 @@ include('header.php');
                         </div>
                         <div class="col-lg-5 order-lg-first">
                             <div class="about-image">
-                                <img src="assets/images/about/01.jpg" alt="about image">
+                                <img src="../assets/images/about/01.jpg" alt="about image">
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@ include('header.php');
                             <div class="swiper-slide">
                                 <div class="info-box-item d-sm-flex text-center text-sm-left">
                                     <div class="info-icon">
-                                        <img src="assets/images/info-item/quality.png" height="20px" width="30px" alt="info icon">
+                                        <img src="../assets/images/info-item/quality.png" height="20px" width="30px" alt="info icon">
                                     </div>
                                     <div class="info-content">
                                         <h6>Superior Quality</h6>
@@ -59,7 +59,7 @@ include('header.php');
                             <div class="swiper-slide">
                                 <div class="info-box-item d-sm-flex text-center text-sm-left">
                                     <div class="info-icon">
-                                        <img src="assets/images/info-item/fresh.png" height="20px" width="20px" alt="info icon">
+                                        <img src="../assets/images/info-item/fresh.png" height="20px" width="20px" alt="info icon">
                                     </div>
                                     <div class="info-content">
                                         <h6>Always Fresh</h6>
@@ -71,7 +71,7 @@ include('header.php');
                             <div class="swiper-slide">
                                 <div class="info-box-item d-sm-flex text-center text-sm-left">
                                     <div class="info-icon">
-                                        <img src="assets/images/info-item/free_delivery.png" height="20px" width="55px" alt="info icon">
+                                        <img src="../assets/images/info-item/free_delivery.png" height="20px" width="55px" alt="info icon">
                                     </div>
                                     <div class="info-content">
                                         <h6>Free Delivery</h6>
@@ -83,7 +83,7 @@ include('header.php');
                             <div class="swiper-slide">
                                 <div class="info-box-item d-sm-flex text-center text-sm-left">
                                     <div class="info-icon">
-                                        <img src="assets/images/info-item/support.png" alt="info icon">
+                                        <img src="../assets/images/info-item/support.png" alt="info icon">
                                     </div>
                                     <div class="info-content">
                                         <h6>24/7 Support</h6>
@@ -107,7 +107,7 @@ include('header.php');
                         </div>
                         <div class="col-lg-5 order-lg-first">
                             <div class="about-image">
-                                <img src="assets/images/halal.png" alt="halal">
+                                <img src="../assets/images/halal.png" alt="halal">
                             </div>
                         </div>
                     </div>

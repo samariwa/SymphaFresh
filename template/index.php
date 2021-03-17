@@ -6,7 +6,7 @@ include('header.php');
                 <div class="banner-slider-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <div class="banner-content-area" style="background-image:url('assets/images/banner/banner-image1')">
+                            <div class="banner-content-area" style="background-image:url('../assets/images/banner/banner-image1')">
                                 <div class="slider-image slider-image2"></div>
                                 <div class="container">
                                     <div class="banner-content text-center text-lg-left">
@@ -19,7 +19,7 @@ include('header.php');
                         </div>
 
                         <div class="swiper-slide">
-                            <div class="banner-content-area" style="background-image:url('assets/images/banner/banner-image3')">
+                            <div class="banner-content-area" style="background-image:url('../assets/images/banner/banner-image3')">
                                 <div class="slider-image slider-image1"></div>
                                 <div class="container">
                                     <div class="banner-content text-center">
@@ -59,7 +59,7 @@ include('header.php');
                             <div class="swiper-slide">
                                 <div class="info-box-item d-sm-flex text-center text-sm-left">
                                     <div class="info-icon">
-                                        <img src="assets/images/info-item/place-order.png" alt="info icon">
+                                        <img src="../assets/images/info-item/place-order.png" alt="info icon">
                                     </div>
                                     <div class="info-content">
                                         <h6>Place order</h6>
@@ -71,7 +71,7 @@ include('header.php');
                             <div class="swiper-slide">
                                 <div class="info-box-item d-sm-flex text-center text-sm-left">
                                     <div class="info-icon">
-                                        <img src="assets/images/info-item/credit-card.svg" alt="info icon">
+                                        <img src="../assets/images/info-item/credit-card.svg" alt="info icon">
                                     </div>
                                     <div class="info-content">
                                         <h6>Easy Payment</h6>
@@ -83,7 +83,7 @@ include('header.php');
                             <div class="swiper-slide">
                                 <div class="info-box-item d-sm-flex text-center text-sm-left">
                                     <div class="info-icon">
-                                        <img src="assets/images/info-item/stopwatch.png" alt="info icon">
+                                        <img src="../assets/images/info-item/stopwatch.png" alt="info icon">
                                     </div>
                                     <div class="info-content">
                                         <h6>Fast Delivery</h6>
@@ -127,7 +127,7 @@ include('header.php');
                                 <div class="swiper-slide">
                                     <a href="product-list.php" class="catagory-item">
                                         <div class="catagory-icon">
-                                          <img src="assets/images/category/chicken.png" alt="chicken" width="60" height="60">
+                                          <img src="../assets/images/category/chicken.png" alt="chicken" width="60" height="60">
                                         </div>
                                         <p class="catagory-name">Chicken Products</p>
                                     </a>
@@ -136,7 +136,7 @@ include('header.php');
                                 <div class="swiper-slide">
                                     <a href="product-list.php" class="catagory-item">
                                         <div class="catagory-icon">
-                                        <img src="assets/images/category/fish.png" alt="chicken" width="105" height="105">
+                                        <img src="../assets/images/category/fish.png" alt="chicken" width="105" height="105">
                                         </div>
                                         <p class="catagory-name">Fish</p>
                                     </a>
@@ -145,7 +145,7 @@ include('header.php');
                                 <div class="swiper-slide">
                                     <a href="product-list.php" class="catagory-item">
                                         <div class="catagory-icon">
-                                        <img src="assets/images/category/vegetables.png" alt="chicken" width="62" height="62">
+                                        <img src="../assets/images/category/vegetables.png" alt="chicken" width="62" height="62">
                                         </div>
                                         <p class="catagory-name">Vegetables</p>
                                     </a>
@@ -154,7 +154,7 @@ include('header.php');
                                 <div class="swiper-slide">
                                     <a href="product-list.php" class="catagory-item">
                                         <div class="catagory-icon">
-                                        <img src="assets/images/category/meat.png" alt="chicken" width="80" height="80">
+                                        <img src="../assets/images/category/meat.png" alt="chicken" width="80" height="80">
                                         </div>
                                         <p class="catagory-name">Meat</p>
                                     </a>
@@ -198,7 +198,7 @@ include('header.php');
                                     <div class="swiper-slide">
                                         <div class="product-item">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="assets/images/products/full-broiler-chicken.jpeg" alt="product"></a>
+                                                <a onclick="openModal()"><img src="../assets/images/products/full-broiler-chicken.jpeg" alt="product"></a>
                                                 <span class="batch sale">Sale</span>
                                                 <a class="wish-link" href="#">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
@@ -238,7 +238,7 @@ include('header.php');
                                     <div class="swiper-slide">
                                         <div class="product-item stock-out">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="assets/images/products/chicken-gizzards.jpeg" alt="product"></a>
+                                                <a onclick="openModal()"><img src="../assets/images/products/chicken-gizzards.jpeg" alt="product"></a>
                                                 <span class="batch">-30%</span>
                                                 <a class="wish-link" href="#">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
@@ -277,7 +277,7 @@ include('header.php');
                                     <div class="swiper-slide">
                                         <div class="product-item">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="assets/images/products/fillet.jpeg" alt="product"></a>
+                                                <a onclick="openModal()"><img src="../assets/images/products/fillet.jpeg" alt="product"></a>
                                                 <span class="batch">-10%</span>
                                                 <a class="wish-link" href="#">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
@@ -315,7 +315,7 @@ include('header.php');
                                     <div class="swiper-slide">
                                         <div class="product-item">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="assets/images/products/pork.jpeg" alt="product"></a>
+                                                <a onclick="openModal()"><img src="../assets/images/products/pork.jpeg" alt="product"></a>
                                                 <span class="batch sale">Sale</span>
                                                 <a class="wish-link" href="#">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
@@ -354,7 +354,7 @@ include('header.php');
                                     <div class="swiper-slide">
                                         <div class="product-item">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="assets/images/products/chicken-breasts.png" alt="product"></a>
+                                                <a onclick="openModal()"><img src="../assets/images/products/chicken-breasts.png" alt="product"></a>
                                                 <span class="batch sale">Sale</span>
                                                 <a class="wish-link" href="#">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
@@ -401,7 +401,7 @@ include('header.php');
             <!-- featured product-section end -->
 
             <!-- countdown section start -->
-            <section class="countdown-section section-ptb" style="background-image:url('assets/images/countdown-bg.jpeg')">
+            <section class="countdown-section section-ptb" style="background-image:url('../assets/images/countdown-bg.jpeg')">
                 <div class="container">
                     <div class="section-header text-center">
                         <h3>Deal of the Day</h3>
@@ -444,10 +444,10 @@ include('header.php');
                 <div class="container">
                     <div class="row mb-4">
                         <div class="col-lg-6">
-                            <a href="#"><img src="assets/images/advertise/01.jpg" alt="advertise"></a>
+                            <a href="#"><img src="../assets/images/advertise/01.jpg" alt="advertise"></a>
                         </div>
                         <div class="col-lg-6">
-                            <a href="#"><img src="assets/images/advertise/02.jpg" alt="advertise"></a>
+                            <a href="#"><img src="../assets/images/advertise/02.jpg" alt="advertise"></a>
                         </div>
                     </div>
                 </div>
@@ -487,7 +487,7 @@ include('header.php');
                                     <div class="swiper-slide">
                                         <div class="product-item">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="assets/images/products/chicken-drumsticks.jpeg" alt="product"></a>
+                                                <a onclick="openModal()"><img src="../assets/images/products/chicken-drumsticks.jpeg" alt="product"></a>
                                                 <span class="batch sale">Sale</span>
                                                 <a class="wish-link" href="#">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
@@ -526,7 +526,7 @@ include('header.php');
                                     <div class="swiper-slide">
                                         <div class="product-item">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="assets/images/products/kales.jpeg" alt="product"></a>
+                                                <a onclick="openModal()"><img src="../assets/images/products/kales.jpeg" alt="product"></a>
                                                 <span class="batch">-30%</span>
                                                 <a class="wish-link" href="#">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
@@ -565,7 +565,7 @@ include('header.php');
                                     <div class="swiper-slide">
                                         <div class="product-item">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="assets/images/products/chicken-wings.jpeg" alt="product"></a>
+                                                <a onclick="openModal()"><img src="../assets/images/products/chicken-wings.jpeg" alt="product"></a>
                                                 <span class="batch">-30%</span>
                                                 <a class="wish-link" href="#">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
@@ -603,7 +603,7 @@ include('header.php');
                                     <div class="swiper-slide">
                                         <div class="product-item">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="assets/images/products/fillet.jpeg" alt="product"></a>
+                                                <a onclick="openModal()"><img src="../assets/images/products/fillet.jpeg" alt="product"></a>
                                                 <span class="batch sale">-10%</span>
                                                 <a class="wish-link" href="#">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
@@ -642,7 +642,7 @@ include('header.php');
                                     <div class="swiper-slide">
                                         <div class="product-item">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="assets/images/products/tilapia.jpeg" alt="product"></a>
+                                                <a onclick="openModal()"><img src="../assets/images/products/tilapia.jpeg" alt="product"></a>
                                                 <span class="batch sale">Sale</span>
                                                 <a class="wish-link" href="#">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
@@ -694,13 +694,13 @@ include('header.php');
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-4">
-                            <a href="#"><img src="assets/images/advertise/10.jpg" alt="advertise"></a>
+                            <a href="#"><img src="../assets/images/advertise/10.jpg" alt="advertise"></a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="#"><img src="assets/images/advertise/11.jpg" alt="advertise"></a>
+                            <a href="#"><img src="../assets/images/advertise/11.jpg" alt="advertise"></a>
                         </div>
                         <div class="col-lg-4">
-                            <a href="#"><img src="assets/images/advertise/12.jpg" alt="advertise"></a>
+                            <a href="#"><img src="../assets/images/advertise/12.jpg" alt="advertise"></a>
                         </div>
                     </div>
                 </div>
@@ -721,7 +721,7 @@ include('header.php');
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="testimonial-body">
-                                        <div class="testi-author-pic"><img src="assets/images/testimonial/author.jpg" alt="author"></div>
+                                        <div class="testi-author-pic"><img src="../assets/images/testimonial/author.jpg" alt="author"></div>
                                         <p class="desc">What a load of rubbish bits and bobs pear shaped owt to do with me good tinkety tonk old fruit, car boot my good sir buggered plastered cheeky David, haggle young delinquent say so I said bite your arm off</p>
                                         <div class="author-info">
                                             <h6 class="name">Jhon Doe</h6>

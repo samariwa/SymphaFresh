@@ -8,7 +8,7 @@
                         <div class="col-md-6 col-lg-4 mb--30">
                             <div class="post-item">
                                 <div class="post-thumb">
-                                    <a href="blog-single.php"><img src="assets/images/blog/01.jpg" alt="thumb"></a>
+                                    <a href="blog-single.php"><img src="../assets/images/blog/01.jpg" alt="thumb"></a>
                                 </div>
                                 <div class="post-content border-effect">
                                     <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
@@ -30,7 +30,7 @@
                         <div class="col-md-6 col-lg-4 mb--30">
                             <div class="post-item">
                                 <div class="post-thumb">
-                                    <a href="blog-single.php"><img src="assets/images/blog/02.jpg" alt="thumb"></a>
+                                    <a href="blog-single.php"><img src="../assets/images/blog/02.jpg" alt="thumb"></a>
                                 </div>
                                 <div class="post-content border-effect">
                                     <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
@@ -52,7 +52,7 @@
                         <div class="col-md-6 col-lg-4 mb--30">
                             <div class="post-item">
                                 <div class="post-thumb">
-                                    <a href="blog-single.php"><img src="assets/images/blog/03.jpg" alt="thumb"></a>
+                                    <a href="blog-single.php"><img src="../assets/images/blog/03.jpg" alt="thumb"></a>
                                 </div>
                                 <div class="post-content border-effect">
                                     <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
@@ -73,7 +73,7 @@
                         <div class="col-md-6 col-lg-4 mb--30">
                             <div class="post-item">
                                 <div class="post-thumb">
-                                    <a href="blog-single.php"><img src="assets/images/blog/04.jpg" alt="thumb"></a>
+                                    <a href="blog-single.php"><img src="../assets/images/blog/04.jpg" alt="thumb"></a>
                                 </div>
                                 <div class="post-content border-effect">
                                     <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
@@ -95,7 +95,7 @@
                         <div class="col-md-6 col-lg-4 mb--30">
                             <div class="post-item">
                                 <div class="post-thumb">
-                                    <a href="blog-single.php"><img src="assets/images/blog/05.jpg" alt="thumb"></a>
+                                    <a href="blog-single.php"><img src="../assets/images/blog/05.jpg" alt="thumb"></a>
                                 </div>
                                 <div class="post-content border-effect">
                                     <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
@@ -117,7 +117,7 @@
                         <div class="col-md-6 col-lg-4 mb--30">
                             <div class="post-item">
                                 <div class="post-thumb">
-                                    <a href="blog-single.php"><img src="assets/images/blog/06.jpg" alt="thumb"></a>
+                                    <a href="blog-single.php"><img src="../assets/images/blog/06.jpg" alt="thumb"></a>
                                 </div>
                                 <div class="post-content border-effect">
                                     <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
@@ -138,7 +138,7 @@
                         <div class="col-md-6 col-lg-4 mb--30">
                             <div class="post-item">
                                 <div class="post-thumb">
-                                    <a href="blog-single.php"><img src="assets/images/blog/07.jpg" alt="thumb"></a>
+                                    <a href="blog-single.php"><img src="../assets/images/blog/07.jpg" alt="thumb"></a>
                                 </div>
                                 <div class="post-content border-effect">
                                     <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
@@ -160,7 +160,7 @@
                         <div class="col-md-6 col-lg-4 mb--30">
                             <div class="post-item">
                                 <div class="post-thumb">
-                                    <a href="blog-single.php"><img src="assets/images/blog/08.jpg" alt="thumb"></a>
+                                    <a href="blog-single.php"><img src="../assets/images/blog/08.jpg" alt="thumb"></a>
                                 </div>
                                 <div class="post-content border-effect">
                                     <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
@@ -182,7 +182,7 @@
                         <div class="col-md-6 col-lg-4 mb--30">
                             <div class="post-item">
                                 <div class="post-thumb">
-                                    <a href="blog-single.php"><img src="assets/images/blog/03.jpg" alt="thumb"></a>
+                                    <a href="blog-single.php"><img src="../assets/images/blog/03.jpg" alt="thumb"></a>
                                 </div>
                                 <div class="post-content border-effect">
                                     <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">

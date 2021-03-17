@@ -1,0 +1,32 @@
+.page-header-section {
+    background-color: #f6f6f6;
+    padding: 10px 0;
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.06);
+    position: relative;
+}
+
+// breadcrumb
+.breadcrumb {
+    background-color: transparent;
+    margin-bottom: 0;
+    li {
+        color: #52545d;
+        font-weight: 500;
+        margin-left: 10px;
+        &:first-child {
+            margin-left: 0;
+        }
+        span {
+            margin: 0 10px;
+            color: #bebebe;
+        }
+        a {
+            font-size: 13px;
+            color: #bebebe;
+            font-weight: 400;
+            &:hover {
+                color: $theme-color;
+            }
+        }
+    }
+}

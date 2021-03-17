@@ -27,7 +27,7 @@
                             <div class="entry-wrapper">
                                 <div class="entry-single">
                                     <div class="entry-header">
-                                       <img src="assets/images/blog-single/01.jpg" alt="thumb">
+                                       <img src="../assets/images/blog-single/01.jpg" alt="thumb">
                                     </div>
                                     <div class="entry-content">
                                         <ul class="meta-post list-unstyled pl-0 d-flex">
@@ -85,7 +85,7 @@
                                         <div class="comment-item">
                                             <div class="comment-author d-flex flex-wrap">
                                                 <div class="author-image">
-                                                    <img src="assets/images/blog-single/comment/01.jpg" alt="comment author">
+                                                    <img src="../assets/images/blog-single/comment/01.jpg" alt="comment author">
                                                 </div>
                                                 <div class="author-name-info">
                                                     <h6 class="name">John Dow</h6>
@@ -101,7 +101,7 @@
                                         <div class="comment-item">
                                             <div class="comment-author d-flex flex-wrap">
                                                 <div class="author-image">
-                                                    <img src="assets/images/blog-single/comment/02.jpg" alt="comment author">
+                                                    <img src="../assets/images/blog-single/comment/02.jpg" alt="comment author">
                                                 </div>
                                                 <div class="author-name-info">
                                                     <h6 class="name">John Dow</h6>
@@ -116,7 +116,7 @@
                                             <div class="comment-item">
                                                 <div class="comment-author d-flex flex-wrap">
                                                     <div class="author-image">
-                                                        <img src="assets/images/blog-single/comment/03.jpg" alt="comment author">
+                                                        <img src="../assets/images/blog-single/comment/03.jpg" alt="comment author">
                                                     </div>
                                                     <div class="author-name-info">
                                                         <h6 class="name">John Dow</h6>
@@ -133,7 +133,7 @@
                                         <div class="comment-item">
                                             <div class="comment-author d-flex flex-wrap">
                                                 <div class="author-image">
-                                                    <img src="assets/images/blog-single/comment/01.jpg" alt="comment author">
+                                                    <img src="../assets/images/blog-single/comment/01.jpg" alt="comment author">
                                                 </div>
                                                 <div class="author-name-info">
                                                     <h6 class="name">John Dow</h6>

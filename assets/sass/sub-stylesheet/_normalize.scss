@@ -1,3 +1,32 @@
+/*
+  Template Name: eflux - Grocery & Organic Supermarket Responsive Template;
+  Template URI: https://themeforest.net/user/flux-theme;
+  Author: Flux Theme;
+  Author URI: https://themeforest.net/user/flux-theme;
+  Description: eflux - Grocery Supermarket Responsive html5 Template is a modern, unique, clean and elegant design, easy to customize code  as well as responsive eCommerce Bootstrap template. This Template is suitable for selling organic products such as fruits, organic food, farms, farmer, food retail, Food Company, seed healthy juice.;
+  Version: 1.0.0;
+  Text Domain eflux;
+  Tages: agriculture, bakery, eco food, farm, fresh, modern, natural, organic, organic food, organic fruits, organic life, organic shop, responsive, vegetable
+*/
+/*
+.........................................
+        Table of Contents:
+
+# Theme default CSS
+#  Google Font 
+# Common Style
+# Common Classes
+# Section Padding
+# Overlay styles
+# theme css
+.........................................
+*/
+
+
+
+
+
+
 /*----------------------------------------*/
 /*  01. Theme default CSS
 /*----------------------------------------*/
@@ -13,6 +42,7 @@ html, body {
     height: 100%;
 }
 body{
+    background-color: #f9f9f9;
     font-family: $rubik;
     line-height: 28px;
     font-size: 14px;
@@ -137,6 +167,16 @@ ul {
 .bg-gray {
     background: #f6f6f6;
 }
+// @media #{$large-mobile}{
+//     .container {
+//         width: 450px;
+//     }
+// }
+// @media #{$small-mobile}{
+//     .container {
+//         width: 320px;
+//     }
+// }
 
 .capitalize {
     text-transform: capitalize;

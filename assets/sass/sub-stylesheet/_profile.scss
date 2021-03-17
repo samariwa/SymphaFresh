@@ -1,0 +1,381 @@
+
+.dashboard-section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    @media #{$mobile-device}{
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+.dashbord-nav {
+    background-color: #fff;
+    // border: 1px solid #f3f3f3;
+    margin-bottom: 60px;
+    border-radius: 10px;
+    overflow: hidden;
+    li {
+        text-align: center;
+        a {
+            padding: 10px 25px;
+            display: block;
+            background-color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: left;
+            border: 1px solid #f3f3f3;
+            &.active {
+                background-color: $theme-color;
+                color: white;
+            }
+            i {
+                margin-right: 10px;
+            }
+        }
+    }
+    @media #{$desktop-device}{
+        padding: 10px 30px;
+        border-radius: 10px;
+        border: 1px solid #f3f3f3;
+        li {
+            a {
+                border-radius: 5px;
+                border: none;
+                i {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+
+.dashboard-body {
+    border: 1px solid #f3f3f3;
+    box-shadow: 0 0 30px 0 rgba(black, 0.1);
+    .profile {
+        position: relative;
+        >.title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 0;
+            display: block;
+            padding: 25px 30px;
+            border: 1px solid #f3f3f3;
+            background-color: #fff;
+            position: relative;
+            .edit {
+                position: absolute;
+                right: 25px;
+                top: 50%;
+                margin-top: -10px;
+                cursor: pointer;
+                color: $theme-color;
+            }
+        }
+        .list-profile-info {
+            padding: 10px 30px;
+            background: #fafafa;
+            li {
+                display: flex;
+                padding: 15px 0;
+               .title {
+                   width: 100px;
+                   display: block;
+                   font-size: 15px;
+                   font-weight: 600;
+               } 
+               .desc {
+                   padding-left: 50px;
+                   font-size: 13px;
+                   margin-bottom: 0;;
+               }
+            }
+        }
+    }
+    .profile-address-book {
+        >.title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 0;
+            display: block;
+            padding: 25px 30px;
+            border: 1px solid #f3f3f3;
+            background-color: #fff;
+            margin-bottom: 0;
+        }
+        .address-list {
+            li {
+                display: flex;
+                padding: 20px 25px;
+                position: relative;
+                border-bottom: 1px solid #f3f3f3;
+                .edit-delete-btn {
+                    position: absolute;
+                    right: 15px;
+                    top: 20px;
+                    button {
+                        border: none;
+                        outline: none;
+                        background-color: transparent;
+                        &.edit {
+                            color: $theme-color;
+                        }
+                        &.delete {
+                            color: red;
+                        }
+                    }
+                }
+                .icon {
+                    width: 40px;
+                    font-size: 18px;
+                    color: #efefef;
+                }
+                .address-text {
+                    width: calc(100% - 40px);
+                    h6 {
+                        margin-bottom: 7px;
+                        font-weight: 700;
+                        font-size: 14px;
+                    }
+                    p {
+                        margin-bottom: 0;
+                        font-size: 14px;
+                    }
+                }
+                &.active {
+                    background-color: #fff;
+                    border: 1px solid #c0e0b0;
+                    .icon {
+                        background-color: transparent;
+                        color: $theme-color;
+                    }
+                }
+                &:hover {
+                    background-color: #fff;
+                    .icon {
+                        background-color: transparent;
+                        color: $theme-color;
+                    }
+                }
+                &.addnew {
+                    background-color: #fff;
+                    padding: 25px 50px;
+                    .add-new-btn {
+                        padding: 10px 35px;
+                        background-color:$theme-color;
+                        color: white;
+                        border-radius: 30px;
+                        border: none;
+                        outline: none;
+                        &:hover {
+                            background-color: #438e1c;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+// edit form edit
+.profile-edit {
+    .modal-dialog {
+        max-width: 600px;
+    }
+}
+.profile-edit-container {
+    max-width: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 30px 0 rgba(black,0.1);
+    border-radius: 10px;
+    padding: 40px 40px;
+    position: relative;
+    z-index: 9;
+    .head {
+        margin-bottom: 30px;
+        p {
+            margin-bottom: 0;
+        }
+    }
+    .title {
+        font-size: 24px;
+        display: block;
+        text-align: center;
+        margin-top: 0;
+    }
+}
+
+.profile-form {
+    .input-item {
+        margin-bottom: 15px;
+        label {
+            display: block;
+            margin-bottom: 0px;
+        }
+        input {
+            width: 100%;
+            padding: 6px 15px;
+            border: 1px solid #f3f3f3;
+            &::placeholder {
+                color: #bbbbc1;
+                font-weight: 300;
+                font-size: 12px;
+            }
+        }
+        textarea{
+            width: 100%;
+            padding: 6px 25px;
+            border: 1px solid #f3f3f3;
+            min-height: 100px;
+        }
+        .select-selected {
+            background-color: white;
+            border: 1px solid #f3f3f3;
+            color: #bbbbc1;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        .select-selected:after {
+            top: 21px;
+            position: absolute;
+            border: 6px solid transparent;
+            border-color: #dad5d5 transparent transparent transparent;
+        }
+        .select-selected.select-arrow-active:after {
+            border-color: transparent transparent #dad5d5 transparent;
+            top: 13px;
+        }
+        .select-items {
+            background-color: #fff;
+            box-shadow: 0px 1px 3px 0px rgba(black,0.1);
+            div {
+                color: #bbbbc1;
+                border-color: transparent transparent rgba(0, 0, 0, 0.02) transparent;
+                font-size: 12px;
+                &:hover {
+                    background-color: $theme-color;
+                    color: white;
+                }
+            }
+        }
+    }
+    .submit {
+        border: none;
+        outline: none;
+        padding: 10px 35px;
+        border-radius: 5px;
+        background-color: $theme-color;
+        color: white;
+        cursor: pointer;
+    }
+    .cencel {
+        border: none;
+        outline: none;
+        padding: 10px 35px;
+        border-radius: 5px;
+        background-color: black;
+        color: white;
+        cursor: pointer;
+    }
+}
+
+
+
+// address-edit-box
+.address-edit-box {
+    .modal-body {
+        padding: 30px;
+    }
+    h4 {
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+    .address-form {
+        .input-item {
+            margin-bottom: 15px;
+            label {
+                font-size: 13px;
+                font-weight: 500;
+                margin-bottom: 6px;
+            }
+            input {
+                width: 100%;
+                padding: 6px 25px;
+                border: 1px solid #f3f3f3;
+                border-radius: 3px;
+                &::placeholder {
+                    color: #bbbbc1;
+                    font-weight: 300;
+                    font-size: 12px;
+                }
+            }
+            textarea {
+                width: 100%;
+                padding: 6px 25px;
+                border: 1px solid #f3f3f3;
+                border-radius: 3px;
+                min-height: 150px;
+                &::placeholder {
+                    color: #bbbbc1;
+                    font-weight: 300;
+                    font-size: 12px;
+                }
+            }
+            .select-selected {
+                background-color: white;
+                border: 1px solid #f3f3f3;
+                color: #dad5d5;
+                border-radius: 3px;
+                color: #bbbbc1;
+                font-size: 12px;
+            }
+            .select-selected:after {
+                top: 21px;
+                position: absolute;
+                border: 6px solid transparent;
+                border-color: #dad5d5 transparent transparent transparent;
+            }
+            .select-selected.select-arrow-active:after {
+                border-color: transparent transparent #dad5d5 transparent;
+                top: 13px;
+            }
+            .select-items {
+                background-color: #fff;
+                box-shadow: 0px 1px 3px 0px rgba(black,0.1);
+                div {
+                    color: #bbbbc1;
+                    border-color: transparent transparent rgba(0, 0, 0, 0.02) transparent;
+                    font-size: 12px;
+                    &:hover {
+                        background-color: $theme-color;
+                        color: white;
+                    }
+                }
+            }
+        }
+        .submit{
+            background-color: $theme-color;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 3px;
+            border: none;
+            outline: none;
+            line-height: 1;
+        }
+        .cancel{
+            background-color: #222222;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 3px;
+            border: none;
+            outline: none;
+            line-height: 1;
+        }
+    }
+}

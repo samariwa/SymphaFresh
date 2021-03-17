@@ -26,29 +26,29 @@
                             <div class="product-zoom-area">
                                 <span class="batch">30%</span>
                                     <div class="product-slick">
-                                        <div><img src="assets/images/product-detail/01.jpg" alt=""
+                                        <div><img src="../assets/images/product-detail/01.jpg" alt=""
                                                 class="img-fluid blur-up lazyload image_zoom_cls-0"></div>
-                                        <div><img src="assets/images/product-detail/02.jpg" alt=""
+                                        <div><img src="../assets/images/product-detail/02.jpg" alt=""
                                                 class="img-fluid blur-up lazyload image_zoom_cls-1"></div>
-                                        <div><img src="assets/images/product-detail/03.jpg" alt=""
+                                        <div><img src="../assets/images/product-detail/03.jpg" alt=""
                                                 class="img-fluid blur-up lazyload image_zoom_cls-2"></div>
-                                        <div><img src="assets/images/product-detail/01.jpg" alt=""
+                                        <div><img src="../assets/images/product-detail/01.jpg" alt=""
                                                 class="img-fluid blur-up lazyload image_zoom_cls-3"></div>
-                                        <!-- <div><img src="assets/images/product-detail/02.jpg" alt=""
+                                        <!-- <div><img src="../assets/images/product-detail/02.jpg" alt=""
                                                 class="img-fluid blur-up lazyload image_zoom_cls-4"></div> -->
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="slider-nav">
-                                                <div><img src="assets/images/product-detail/01.jpg" alt=""
+                                                <div><img src="../assets/images/product-detail/01.jpg" alt=""
                                                         class="img-fluid blur-up lazyload"></div>
-                                                <div><img src="assets/images/product-detail/02.jpg" alt=""
+                                                <div><img src="../assets/images/product-detail/02.jpg" alt=""
                                                         class="img-fluid blur-up lazyload"></div>
-                                                <div><img src="assets/images/product-detail/03.jpg" alt=""
+                                                <div><img src="../assets/images/product-detail/03.jpg" alt=""
                                                         class="img-fluid blur-up lazyload"></div>
-                                                <div><img src="assets/images/product-detail/01.jpg" alt=""
+                                                <div><img src="../assets/images/product-detail/01.jpg" alt=""
                                                         class="img-fluid blur-up lazyload"></div>
-                                                <!-- <div><img src="assets/images/product-detail/02.jpg" alt=""
+                                                <!-- <div><img src="../assets/images/product-detail/02.jpg" alt=""
                                                         class="img-fluid blur-up lazyload"></div> -->
                                             </div>
                                         </div>
@@ -112,7 +112,7 @@
                                     <div class="review-comment-list">
                                         <div class="review-comment-item d-md-flex">
                                             <div class="thumb">
-                                                <img src="assets/images/review/01.jpg" alt="review-thumb">
+                                                <img src="../assets/images/review/01.jpg" alt="review-thumb">
                                             </div>
                                             <div class="content">
                                                 <div class="head d-md-flex align-items-center justify-content-between">
@@ -138,7 +138,7 @@
 
                                         <div class="review-comment-item d-md-flex">
                                             <div class="thumb">
-                                                <img src="assets/images/review/03.jpg" alt="review-thumb">
+                                                <img src="../assets/images/review/03.jpg" alt="review-thumb">
                                             </div>
                                             <div class="content">
                                                 <div class="head d-md-flex align-items-center justify-content-between">
@@ -164,7 +164,7 @@
 
                                         <div class="review-comment-item d-md-flex">
                                             <div class="thumb">
-                                                <img src="assets/images/review/02.jpg" alt="review-thumb">
+                                                <img src="../assets/images/review/02.jpg" alt="review-thumb">
                                             </div>
                                             <div class="content">
                                                 <div class="head d-md-flex align-items-center justify-content-between">
@@ -312,7 +312,7 @@
                                     <div class="swiper-slide">
                                         <div class="product-item">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="assets/images/products/01.png" alt="product"></a>
+                                                <a onclick="openModal()"><img src="../assets/images/products/01.png" alt="product"></a>
                                                 <span class="batch sale">Sale</span>
                                                 <a class="wish-link" href="#">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
@@ -353,7 +353,7 @@
                                     <div class="swiper-slide">
                                         <div class="product-item">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="assets/images/products/02.png" alt="product"></a>
+                                                <a onclick="openModal()"><img src="../assets/images/products/02.png" alt="product"></a>
                                                 <span class="batch">30%</span>
                                                 <a class="wish-link" href="#">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
@@ -392,7 +392,7 @@
                                     <div class="swiper-slide">
                                         <div class="product-item">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="assets/images/products/03.png" alt="product"></a>
+                                                <a onclick="openModal()"><img src="../assets/images/products/03.png" alt="product"></a>
                                                 <span class="batch">10%</span>
                                                 <a class="wish-link" href="#">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
@@ -430,7 +430,7 @@
                                     <div class="swiper-slide">
                                         <div class="product-item">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="assets/images/products/04.png" alt="product"></a>
+                                                <a onclick="openModal()"><img src="../assets/images/products/04.png" alt="product"></a>
                                                 <span class="batch sale">Sale</span>
                                                 <a class="wish-link" href="#">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
@@ -469,7 +469,7 @@
                                     <div class="swiper-slide">
                                         <div class="product-item">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="assets/images/products/01.png" alt="product"></a>
+                                                <a onclick="openModal()"><img src="../assets/images/products/01.png" alt="product"></a>
                                                 <span class="batch sale">Sale</span>
                                                 <a class="wish-link" href="#">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>

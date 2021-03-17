@@ -1,0 +1,170 @@
+
+
+
+.login-area {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -999;
+    opacity: 0;
+    visibility: hidden;
+    .overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(black, 0.65);
+        z-index: 1;
+        opacity: 0;
+    }
+    .login-body-wrapper {
+        max-width: 545px;
+        width: 90%;
+        position: relative;
+        z-index: 2;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 20px 0 rgba(black, 0.1);
+        overflow: hidden;
+        transform: scale(0);
+        transition: all 0.5s ease;
+        max-height: 90vh;
+        overflow-y: auto;
+        .forgot-password {
+            background-color: #f8f8f8;
+            padding: 20px 15px;
+            a {
+                color: $theme-color;
+            }
+        }
+    }
+    .login-body {
+        width: 100%;
+        padding: 40px 40px 0px 40px;
+        position: relative;
+        .close-icon {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 26px;
+            font-size: 12px;
+            background-color: #59b828;
+            color: white;
+            position: absolute;
+            right: 6px;
+            top: 6px;
+
+        }
+        @media #{$small-mobile}{
+            padding: 20px 20px 0px 20px;
+        }
+        .login-header {
+            margin-bottom: 20px;
+            text-align: center;
+            h4 {
+                font-size: 26px;
+                color: $theme-color;
+                @media #{$small-mobile}{
+                    font-size: 22px;
+                }
+            }
+            p {
+                font-size: 14px;
+                color: #363636;
+                margin-bottom: 0;
+            }
+        }
+        .login-form {
+            input {
+                width: 100%;
+                border: 1px solid #e4e4e4;
+                background-color: #e7e7e7;
+                padding: 15px 35px;
+                margin-bottom: 25px;
+                border-radius: 3px;
+            }
+            .submit {
+                width: 100%;
+                border: 1px solid $theme-color;
+                background-color: $theme-color;
+                padding: 12px 35px;
+                margin-bottom: 5px;
+                color: white;
+                outline: none;
+                border-radius: 3px;
+            }
+            @media #{$small-mobile}{
+                input {
+                    padding: 10px 25px;
+                }
+                .submit {
+                    padding: 9px 25px;
+                }
+            }
+        }
+
+        .seperator {
+            margin: 20px 0;
+        }
+
+        .othersignup-option {
+            a {
+                width: 100%;
+                border: 1px solid $theme-color;
+                background-color: $theme-color;
+                padding: 12px 35px;
+                margin-bottom: 25px;
+                color: white;
+                outline: none;
+                border-radius: 3px;
+                text-align: center;
+                i {
+                    margin-right: 10px;
+                }
+                &.facebook {
+                    border: 1px solid #4267b2;
+                    background-color: #4267b2;
+                }
+                &.google {
+                    border: 1px solid #4285f4;
+                    background-color: #4285f4;
+                }
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+            @media #{$small-mobile}{
+                a {
+                    padding: 9px 15px;
+                }
+            }
+        }
+        .dont-account {
+            p {
+                font-weight: 300;
+                a {
+                    color: $theme-color;
+                }
+            }
+        }
+    }
+    &.open-form {
+        z-index: 999;
+        opacity: 1;
+        visibility: visible;
+        .overlay {
+            opacity: 1;
+            cursor: zoom-out;
+        }
+        .login-body-wrapper {
+            transform: scale(1);
+        }
+    }
+}

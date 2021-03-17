@@ -1,36 +1,14 @@
 
 
-.flux-btn {
-    padding: 5px 15px;
-    background-color: $theme-color;
-    font-size: 13px;
-    font-weight: 500;
-    color: white;
-    border-radius: 40px;
-    transition: all 0.3s ease;
-    @media #{$laptop-device}{
-        padding: 8px 28px;
-    }
-    &:hover {
-        color: white;
-        background-color: rgba($theme-color, 0.8);
-    }
-}
 
-
-.flux-btn-lg {
-    padding: 9px 30px;
-    background-color: $theme-color;
+.more-product-btn {
     font-size: 14px;
-    font-weight: 500;
-    color: white;
-    border-radius: 40px;
-    transition: all 0.3s ease;
-    @media #{$desktop-device}{
-        padding: 12px 40px;
-    }
+    padding: 10px 32px;
+    border-radius: 5px;
+    background-color: white;
+    color: $theme-color;
     &:hover {
+        background-color: $theme-color;
         color: white;
-        background-color: rgba($theme-color, 0.8);
     }
 }

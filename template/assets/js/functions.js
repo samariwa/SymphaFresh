@@ -220,11 +220,10 @@
         // $("p").toggleClass("main");
     });
 
-    $(".all-catagory-option > a").on("click",function(e){
-        $('.page-layout').toggleClass('open-side-menu')
-        $('body').toggleClass('open-side-menu')
-        // $(this).toggleClass('open-bar')
-    });
+  //  $(".all-catagory-option > a").on("click",function(e){
+  //      $('.page-layout').toggleClass('open-side-menu')
+   //     $('body').toggleClass('open-side-menu')
+ //  });
     var contentwidth = jQuery(window).width();
     if ((contentwidth) > '1200') {
         $('.home-layout').addClass('open-side-menu')
@@ -342,7 +341,6 @@ function closeModal() {
 function OpenSignUpForm() {
     document.getElementById("login-area").classList.add('open-form');
 }
-
 
 function CloseSignUpForm() {
     document.getElementById("login-area").classList.remove('open-form');

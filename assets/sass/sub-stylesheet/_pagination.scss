@@ -1,0 +1,69 @@
+
+// pagination scss
+.pagination {
+	li {
+		margin-right: 10px;
+		a {
+			width: 35px;
+			height: 35px;
+			border-radius: 3px;
+			background-color: #f3f3f3;
+			color: $heading-color;
+			text-align: center;
+			line-height: 35px;
+			display: block;
+			font-size: 13px;
+			overflow: hidden;
+			transition: all 0.3s ease;
+			&.active,&:hover {
+				background-color: $theme-color;
+				color: white;
+			}
+		}
+		&:last-child {
+			margin-right: 0;
+			a {
+				width: auto;
+				height: auto;
+				.icon {
+					width: 35px;
+					height: 35px;
+					background-color: #3da20a;
+					line-height: 35px;
+					text-align: center;
+					color: white;
+					// display: inline-block;
+				}
+				.text {
+					padding: 0px 20px;
+					background-color: #59b828;
+					// display: inline-block;
+					color: white;
+				}
+
+			}
+		}
+		&:first-child {
+			a {
+				width: auto;
+				height: auto;
+				.icon {
+					width: 35px;
+					height: 35px;
+					background-color: #3da20a;
+					line-height: 35px;
+					text-align: center;
+					color: white;
+					// display: inline-block;
+				}
+				.text {
+					padding: 0px 20px;
+					background-color: #59b828;
+					// display: inline-block;
+					color: white;
+				}
+
+			}
+		}
+	}
+}

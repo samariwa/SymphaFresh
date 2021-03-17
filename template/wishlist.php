@@ -27,13 +27,13 @@ $location = $result['location'];
 
 
             <!-- admin-page start -->
-            <section class="admin-page-section d-flex align-items-center" style="background-image: url('assets/images/admin/profile-bg.jpg'); background-size: cover;">
+            <section class="admin-page-section d-flex align-items-center" style="background-image: url('../assets/images/admin/profile-bg.jpg'); background-size: cover;">
                 <div class="aps-wrapper w-100">
                     <div class="container">
                         <div class="row justify-content-center justify-content-md-start">
                             <div class="admin-content-area">
                                 <div class="admin-thumb">
-                                    <img src="assets/images/admin/thumbnail-avatar.png" alt="">
+                                    <img src="../assets/images/admin/thumbnail-avatar.png" alt="">
                                     <a href="#" class="image-change-option"><i class="fas fa-camera"></i></a>
                                 </div>
                                 <div class="admin-content">
@@ -69,7 +69,7 @@ $location = $result['location'];
                             <div class="wishlist-item product-item d-flex align-items-center">
                                 <span class="close-item"><i class="fas fa-times"></i></span>
                                 <div class="thumb">
-                                    <a onclick="openModal()"><img src="assets/images//products/cart/01.png" alt="products"></a>
+                                    <a onclick="openModal()"><img src="../assets/images//products/cart/01.png" alt="products"></a>
                                 </div>
                                 <div class="product-content">
                                     <a href="product-detail.php" class="product-title">Daisy Cont Oil</a>
@@ -104,7 +104,7 @@ $location = $result['location'];
                             <div class="wishlist-item product-item d-flex align-items-center">
                                 <span class="close-item"><i class="fas fa-times"></i></span>
                                 <div class="thumb">
-                                    <a onclick="openModal()"><img src="assets/images//products/cart/02.png" alt="products"></a>
+                                    <a onclick="openModal()"><img src="../assets/images//products/cart/02.png" alt="products"></a>
                                 </div>
                                 <div class="product-content">
                                     <a href="product-detail.php" class="product-title">Daisy Cont Oil</a>
@@ -139,7 +139,7 @@ $location = $result['location'];
                             <div class="wishlist-item product-item d-flex align-items-center">
                                 <span class="close-item"><i class="fas fa-times"></i></span>
                                 <div class="thumb">
-                                    <a onclick="openModal()"><img src="assets/images//products/cart/03.png" alt="products"></a>
+                                    <a onclick="openModal()"><img src="../assets/images//products/cart/03.png" alt="products"></a>
                                 </div>
                                 <div class="product-content">
                                     <a href="product-detail.php" class="product-title">Daisy Cont Oil</a>
@@ -174,7 +174,7 @@ $location = $result['location'];
                             <div class="wishlist-item product-item d-flex align-items-center">
                                 <span class="close-item"><i class="fas fa-times"></i></span>
                                 <div class="thumb">
-                                    <a onclick="openModal()"><img src="assets/images//products/cart/04.png" alt="products"></a>
+                                    <a onclick="openModal()"><img src="../assets/images//products/cart/04.png" alt="products"></a>
                                 </div>
                                 <div class="product-content">
                                     <a href="product-detail.php" class="product-title">Daisy Cont Oil</a>

@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="col-md-6 col-lg-3">
                                 <div class="footer-widget">
-                                    <a href="index.php" class="footer-logo"><img src="assets/images/logo.png" alt="logo"></a>
+                                    <a href="index.php" class="footer-logo"><img src="../assets/images/logo.png" alt="logo"></a>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod teincididunt ut labore et </p>
                                     <ul class="social-media-list d-flex flex-wrap">
                                         <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
@@ -33,7 +33,7 @@
                                         <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
                                         <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
                                     </ul>
-                                    <img src="assets/images/halal.png" class="ml-4" width="120px" height="120px" alt="halal">
+                                    <img src="../assets/images/halal.png" class="ml-4" width="120px" height="120px" alt="halal">
                                 </div>
                             </div>
 
@@ -72,14 +72,14 @@
                                     <h5 class="footer-title">Download Apps</h5>
                                     <div class="widget-wrapper">
                                         <div class="apps-store">
-                                            <a href=""><img src="assets/images/app-store/apple.png" alt="app"></a>
-                                            <a href=""><img src="assets/images/app-store/google.png" alt="app"></a>
+                                            <a href=""><img src="../assets/images/app-store/apple.png" alt="app"></a>
+                                            <a href=""><img src="../assets/images/app-store/google.png" alt="app"></a>
                                         </div>
                                         <div class="payment-method d-flex flex-wrap">
-                                            <a href="#"><img src="assets/images/payment/Mpesa-Logo.png" height="35px" width="55px" alt="payment"></a>
-                                            <a href="#"><img src="assets/images/payment/visa.png" alt="payment"></a>
-                                            <a href="#"><img src="assets/images/payment/Mastercard-Logo.png" height="30px" width="50px" alt="payment"></a>
-                                            <a href="#"><img src="assets/images/payment/paypal.png" alt="payment"></a>
+                                            <a href="#"><img src="../assets/images/payment/Mpesa-Logo.png" height="35px" width="55px" alt="payment"></a>
+                                            <a href="#"><img src="../assets/images/payment/visa.png" alt="payment"></a>
+                                            <a href="#"><img src="../assets/images/payment/Mastercard-Logo.png" height="30px" width="50px" alt="payment"></a>
+                                            <a href="#"><img src="../assets/images/payment/paypal.png" alt="payment"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -141,29 +141,29 @@
                                 </div>
                             </div>
                             <div class="product-slick">
-                                <div><img src="assets/images/product-detail/01.jpg" alt=""
+                                <div><img src="../assets/images/product-detail/01.jpg" alt=""
                                         class="img-fluid blur-up lazyload image_zoom_cls-0"></div>
-                                <div><img src="assets/images/product-detail/02.jpg" alt=""
+                                <div><img src="../assets/images/product-detail/02.jpg" alt=""
                                         class="img-fluid blur-up lazyload image_zoom_cls-1"></div>
-                                <div><img src="assets/images/product-detail/03.jpg" alt=""
+                                <div><img src="../assets/images/product-detail/03.jpg" alt=""
                                         class="img-fluid blur-up lazyload image_zoom_cls-2"></div>
-                                <div><img src="assets/images/product-detail/01.jpg" alt=""
+                                <div><img src="../assets/images/product-detail/01.jpg" alt=""
                                         class="img-fluid blur-up lazyload image_zoom_cls-3"></div>
-                                <!-- <div><img src="assets/images/product-detail/02.jpg" alt=""
+                                <!-- <div><img src="../assets/images/product-detail/02.jpg" alt=""
                                         class="img-fluid blur-up lazyload image_zoom_cls-4"></div> -->
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <div class="slider-nav">
-                                        <div><img src="assets/images/product-detail/01.jpg" alt=""
+                                        <div><img src="../assets/images/product-detail/01.jpg" alt=""
                                                 class="img-fluid blur-up lazyload"></div>
-                                        <div><img src="assets/images/product-detail/02.jpg" alt=""
+                                        <div><img src="../assets/images/product-detail/02.jpg" alt=""
                                                 class="img-fluid blur-up lazyload"></div>
-                                        <div><img src="assets/images/product-detail/03.jpg" alt=""
+                                        <div><img src="../assets/images/product-detail/03.jpg" alt=""
                                                 class="img-fluid blur-up lazyload"></div>
-                                        <div><img src="assets/images/product-detail/01.jpg" alt=""
+                                        <div><img src="../assets/images/product-detail/01.jpg" alt=""
                                                 class="img-fluid blur-up lazyload"></div>
-                                        <!-- <div><img src="assets/images/product-detail/02.jpg" alt=""
+                                        <!-- <div><img src="../assets/images/product-detail/02.jpg" alt=""
                                                 class="img-fluid blur-up lazyload"></div> -->
                                     </div>
                                 </div>
@@ -269,26 +269,26 @@
         <div class="popup-overlay"></div>
         <div class="popup-wrapper">
             <div class="popupbox">
-                <a href="https://www.google.com/"><img src="assets/images/popup.png" alt="popup"></a>
-                <button class="popup-close"><img src="assets/images/popup-close.png" alt="popup-close"></button>
+                <a href="https://www.google.com/"><img src="../assets/images/popup.png" alt="popup"></a>
+                <button class="popup-close"><img src="../assets/images/popup-close.png" alt="popup-close"></button>
             </div>
         </div>
     </div>-->
 
     <a href="#top-page" class="to-top js-scroll-trigger"><span><i class="fas fa-arrow-up"></i></span></a>
-    <script src='assets/js/jquery.min.js'></script>
-    <script src='assets/js/bootstrap.bundle.min.js'></script>
-    <script src='assets/js/swiper.min.js'></script>
-    <script src="assets/js/slick.js"></script>
-    <script src='assets/js/jquery-easeing.min.js'></script>
-    <script src='assets/js/scroll-nav.js'></script>
-    <script src="assets/js/jquery.elevatezoom.js"></script>
-    <script src='assets/js/price-range.js'></script>
-    <script src='assets/js/custom-select.js'></script>
-    <script src='assets/js/fly-cart.js'></script>
-    <script src='assets/js/multi-countdown.js'></script>
-    <script src='assets/js/theia-sticky-sidebar.js'></script>
-    <script src='assets/js/functions.js'></script>
+    <script src='../assets/js/jquery.min.js'></script>
+    <script src='../assets/js/bootstrap.bundle.min.js'></script>
+    <script src='../assets/js/swiper.min.js'></script>
+    <script src="../assets/js/slick.js"></script>
+    <script src='../assets/js/jquery-easeing.min.js'></script>
+    <script src='../assets/js/scroll-nav.js'></script>
+    <script src="../assets/js/jquery.elevatezoom.js"></script>
+    <script src='../assets/js/price-range.js'></script>
+    <script src='../assets/js/custom-select.js'></script>
+    <script src='../assets/js/fly-cart.js'></script>
+    <script src='../assets/js/multi-countdown.js'></script>
+    <script src='../assets/js/theia-sticky-sidebar.js'></script>
+    <script src='../assets/js/functions.js'></script>
    <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();

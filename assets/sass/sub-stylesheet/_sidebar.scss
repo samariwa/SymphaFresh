@@ -1,0 +1,543 @@
+
+// product sidebar css
+.widget.widget-head {
+    padding-bottom: 20px !important;
+    h6 {
+        font-size: 14px;
+    }
+    a {
+        font-size: 14px;
+        font-weight: 600;
+    }
+    @media #{$desktop-device}{
+        padding-bottom: 15px !important;
+    }
+    
+}
+.sidebar {
+    .widget {
+        background-color: #fff;
+        box-shadow: 0 0 15px 0 rgba(black, 0.1);
+        padding: 10px 20px 0px 20px;
+        border-radius: 3px;
+        @media #{$desktop-device}{
+            padding: 20px 20px 20px 20px;
+            margin-bottom: 30px;
+        }
+    }
+    .widget-wrapper {
+        padding-bottom: 20px;
+        @media #{$desktop-device}{
+            padding-bottom: 0px;
+        }
+    }
+
+    .widget-title {
+        position: relative;
+        padding-bottom: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 1px;
+            background-color: #b8b8b8;
+            display: none;
+        }
+        @media #{$desktop-device}{
+            padding-bottom: 8px;
+            font-size: 18px;
+            &:after {
+                display: block;
+            }
+        }
+    }
+
+    // checkbox css
+    .catagory-menu > li >a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #f2f2f2;
+        padding: 6px 0px;
+    }
+    .catagory-menu > li{
+        &:last-child {
+            >a {
+                border-bottom: none;
+            }
+        }
+    }
+    .catagory-submenu {
+        padding-top: 10px;
+        padding-left: 20px;
+    }
+    .checkbox-item {
+        position: relative;
+    }
+    .checkbox-item input {
+        opacity: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        cursor: pointer;
+    }
+    .checkbox-item .checkbox {
+        width: 12px;
+        height: 12px;
+        border: 1px solid #ccc;
+        display: inline-block;
+        position: relative;
+    }
+    .checkbox-item .checkbox:after {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 0px;
+        width: 60%;
+        height: 85%;
+        border-right: 2px solid #ccc;
+        border-bottom: 2px solid #ccc;
+        transform: rotate(30deg);
+        opacity: 0;
+    }
+    .checkbox-item input[type=checkbox]:checked ~ .checkbox {
+        border-color: #878aa0;
+    }
+    .checkbox-item input[type=checkbox]:checked ~ .checkbox:after {
+        opacity: 1;
+        border-color: #878aa0;
+    }
+    .checkbox-item .label {
+        font-size: 13px;
+        color: #464646;
+        text-transform: uppercase;
+        margin-left: 3px;
+    }
+
+    .catagory-menu li > a .plus-minus:after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 9px;
+        height: 1px;
+        background-color: #fff;
+        margin-left: -4.5px;
+        margin-top: -0.5px;
+    }
+    .catagory-menu li > a .plus-minus:before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 9px;
+        height: 1px;
+        background-color: #fff;
+        margin-left: -4.5px;
+        margin-top: -0.5px;
+        transform-origin: middle;
+    }
+    .catagory-menu > li > a > .plus-minus {
+        background-color: $theme-color;
+        width: 21px;
+        height: 21px;
+        border-radius: 3px;
+        position: relative;
+    }
+    .catagory-menu > li > a.collapsed > .plus-minus:after {
+        background-color: white;
+    }
+    .catagory-menu > li > a.collapsed > .plus-minus:before {
+        transform: rotate(90deg);
+        background-color: white;
+    }
+
+    .catagory-menu li > a.collapsed .plus-minus {
+        width: 21px;
+        height: 21px;
+        background-image: linear-gradient(to bottom right, #f2f2f2, #f2f2f2);
+        border-radius: 3px;
+        position: relative;
+    }
+
+
+
+
+
+    //   price ranger css
+    .irs {
+        position: relative;
+        display: block;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        height: 55px;
+    }
+
+    .irs-line {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        outline: none !important;
+        height: 10px;
+        top: 12px;
+        background: #ececec;
+        border-radius: 16px;
+        -moz-border-radius: 16px;
+    }
+
+    .irs-line-left,
+    .irs-line-mid,
+    .irs-line-right {
+        position: absolute;
+        display: block;
+        top: 0;
+    }
+
+    .irs-line-left {
+        left: 0;
+        width: 11%;
+        height: 8px;
+    }
+
+    .irs-line-mid {
+        left: 9%;
+        width: 82%;
+        height: 8px;
+    }
+
+    .irs-line-right {
+        right: 0;
+        width: 11%;
+        height: 8px;
+    }
+
+    .irs-bar {
+        position: absolute;
+        display: block;
+        left: 0;
+        width: 0;
+        height: 4px;
+        top: 15px;
+        background: $theme-color;
+    }
+
+    .irs-bar-edge {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        height: 10px;
+        top: 15px;
+        width: 14px;
+        border: 1px solid #428bca;
+        border-right: 0;
+        background: #428bca;
+        background: -webkit-gradient(linear, left bottom, left top, from(#428bca), to(#7fc3e8));
+        background: linear-gradient(to top, #428bca 0%, #7fc3e8 100%);
+        border-radius: 16px 0 0 16px;
+        -moz-border-radius: 16px 0 0 16px;
+    }
+
+    .irs-shadow {
+        position: absolute;
+        display: none;
+        left: 0;
+        width: 0;
+        height: 2px;
+        top: 38px;
+        background: #000;
+        opacity: 0.3;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+    }
+
+    .irs-slider {
+        position: absolute;
+        display: block;
+        cursor: default;
+        z-index: 1;
+        top: 11px;
+        width: 8px;
+        height: 12px;
+        background: $theme-color;
+        border-radius: 27px;
+        cursor: pointer;
+    }
+
+    .irs-slider.type_last {
+        z-index: 2;
+    }
+
+    .irs-min {
+        position: absolute;
+        display: block;
+        left: 0;
+        cursor: default;
+    }
+
+    .irs-max {
+        position: absolute;
+        display: block;
+        right: 0;
+        cursor: default;
+    }
+
+    .irs-from,
+    .irs-to,
+    .irs-single {
+        position: absolute;
+        display: block;
+        top: 35px;
+        left: 0;
+        cursor: default;
+        white-space: nowrap;
+        color: black;
+        font-size: 12px;
+        line-height: 1.333;
+        text-shadow: none;
+        padding: 1px 5px;
+        background: transparent;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        font-weight: 700;
+    }
+
+    .irs-grid {
+        position: absolute;
+        display: none;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 20px;
+        height: 27px;
+    }
+
+    .irs-with-grid {
+        height: 75px;
+    }
+
+    .irs-with-grid .irs-grid {
+        display: block;
+    }
+
+    .irs-grid-pol {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1px;
+        height: 8px;
+        background: #000;
+        opacity: 0.5;
+        background: #428bca;
+    }
+
+    .irs-grid-pol.small {
+        height: 4px;
+        background: #999;
+    }
+
+    .irs-grid-text {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        white-space: nowrap;
+        text-align: center;
+        font-size: 9px;
+        line-height: 9px;
+        padding: 0 3px;
+        color: #000;
+        bottom: 5px;
+        color: #99a4ac;
+    }
+
+    .irs-disable-mask {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: -1%;
+        width: 102%;
+        height: 100%;
+        cursor: default;
+        background: rgba(0, 0, 0, 0);
+        z-index: 2;
+    }
+
+    .lt-ie9 .irs-disable-mask {
+        background: #000;
+        filter: alpha(opacity=0);
+        cursor: not-allowed;
+    }
+
+    .lt-ie9 .irs-shadow {
+        filter: alpha(opacity=30);
+    }
+
+    .irs-disabled {
+        opacity: 0.4;
+    }
+
+    .irs-hidden-input {
+        position: absolute !important;
+        display: block !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        font-size: 0 !important;
+        line-height: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        outline: none !important;
+        z-index: -9999 !important;
+        background: none !important;
+        border-style: solid !important;
+        border-color: transparent !important;
+    }
+
+    .irs-min,
+    .irs-max {
+        display: none;
+        color: #333;
+        font-size: 12px;
+        line-height: 1.333;
+        text-shadow: none;
+        top: 0;
+        padding: 1px 5px;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+    }
+
+    .lt-ie9 .irs-min,
+    .lt-ie9 .irs-max {
+        background: #ccc;
+    }
+
+    .lt-ie9 .irs-from,
+    .lt-ie9 .irs-to,
+    .lt-ie9 .irs-single {
+        background: #999;
+    }
+
+    .irs-to {
+        background-color: $theme-color;
+        color: white;
+        padding: 3px;
+    }
+
+    .range-slider {
+        position: relative;
+        padding-bottom: 30px;
+    }
+    .range-slider .submit {
+        border: none;
+        background-color: #333;
+        color: white;
+        padding: 6px 15px;
+        font-size: 13px;
+        line-height: 1;
+        border-radius: 3px;
+        position: absolute;
+        right: 50%;
+        bottom: 13px;
+        margin-right: -27px;
+    }
+
+
+
+
+
+    // catagory filter by size
+    .widget-wrapper {
+        ul {
+            li {
+                a {
+                    padding: 9px 0;
+                    border-bottom: 1px solid #f2f2f2;
+                    .amount {
+                        width: 30px;
+                        height: 20px;
+                        background-color: #f5f5f5;
+                        color: #d7d7d7;
+                        line-height: 1.7;
+                        font-size: 13px;
+                        text-align: center;
+                        border-radius: 2px;
+                    }
+                    &:hover {
+                        .amount{
+                            background-color: $theme-color;
+                            color: white;
+                        }
+                    }
+                }
+                &:last-child {
+                    a {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+        // select {
+        //     width: 100%;
+        //     padding: 7px 30px;
+        //     border: 1px solid #f2f2f2;
+        //     appearance: none;
+        //     background-image: url(../images/select-arrow-bg.png);
+        //     background-repeat: no-repeat;
+        //     background-position: right top;
+        //     margin-top: 15px;
+        // }
+        .flux-custom-select {
+            margin-top: 20px;
+            width: 100%;
+            @media #{$tablet-device}{
+                width: 100%;
+            }
+            background-color: #f8f8f8;
+            border: none;
+            .select-selected {
+                background-color: #f8f8f8;
+                border: 1px solid #ededed; 
+                color: #4b566b;
+                &:after {
+                    border-color: #4b566b transparent transparent transparent;
+                    top: 20px;
+                }
+                &.select-arrow-active:after {
+                    border-color: transparent transparent #4b566b transparent;
+                    top: 14px;
+                }
+            }
+            .select-items {
+                background-color: #fff;
+                div {
+                    color: #4b566b;
+                    display: block;
+                    padding: 5px 15px;
+                    font-size: 13px;
+                    border: none;
+                    border-bottom: 1px solid rgba(89, 184, 40, 0.1);
+                    &:hover,&.same-as-selected {
+                        background-color: $theme-color;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+}

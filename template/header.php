@@ -1,7 +1,7 @@
 <?php
  session_start();
- require('config.php');
- require('functions.php');
+ require('../config.php');
+ require('../functions.php');
  if (isset($_SESSION['logged_in'])) {
    if ($_SESSION['logged_in'] == TRUE) {
  //valid user has logged-in to the website
@@ -29,7 +29,7 @@
  //authorized signature
  //This is unauthorized access
  //Block it
-         header("Location: $home_url");
+         header("Location: ../$home_url");
          exit;
      }
      $logged_in_user = $_SESSION['user'];
@@ -55,17 +55,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sympha Fresh - Fresh and on Time!</title>
-    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png" />
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/css/swiper.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/slick.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/slick-theme.css">
-    <link rel="stylesheet" href="assets/css/custom-select.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/images/favicon.png" />
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/animate.css">
+    <link rel="stylesheet" href="../assets/css/swiper.min.css">
+    <link rel="stylesheet" type="../text/css" href="../assets/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/slick-theme.css">
+    <link rel="stylesheet" href="../assets/css/custom-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body id="top-page" class="sticky-sidebar-home">
+<body id="top-page">
 <!--
     <a class="position-absolute" href="javascript:void(0)" onclick="cartopen()">
         <div id="sitebar-drawar" class="sitebar-drawar">
@@ -208,7 +208,7 @@
                 <div class="row align-items-center">
                     <div class="col-6 p-0">
                         <div class="thumb">
-                            <a href="#"><img src="assets/images/products/cart/01.png" alt="products"></a>
+                            <a href="#"><img src="../assets/images/products/cart/01.png" alt="products"></a>
                         </div>
                     </div>
                     <div class="col-6">
@@ -251,7 +251,7 @@
                 <div class="row align-items-center">
                     <div class="col-6 p-0">
                         <div class="thumb">
-                            <a href="#"><img src="assets/images//products/cart/02.png" alt="products"></a>
+                            <a href="#"><img src="../assets/images//products/cart/02.png" alt="products"></a>
                         </div>
                     </div>
                     <div class="col-6">
@@ -292,7 +292,7 @@
                 <div class="row align-items-center">
                     <div class="col-6 p-0">
                         <div class="thumb">
-                            <a href="#"><img src="assets/images//products/cart/03.png" alt="products"></a>
+                            <a href="#"><img src="../assets/images//products/cart/03.png" alt="products"></a>
                         </div>
                     </div>
                     <div class="col-6">
@@ -365,14 +365,14 @@
                         <a class="bar-btn"><i class="fas fa-bars"></i>All Catagories</a>
                         <a class="close-btn"><i class="fas fa-times"></i>All Catagories</a>
                     </div>
-                    <a href="index.php" class="logo"><img src="assets/images/logo.png" alt="logo"></a>
+                    <a href="index.php" class="logo"><img src="../assets/images/logo.png" alt="logo"></a>
                 </div> 
 
                 <div class="all-catagory-option mobile-device">
                     <a class="bar-btn"><i class="fas fa-bars"></i><span class="ml-2 d-none d-md-inline">All Catagories</span></a>
                     <a class="close-btn"><i class="fas fa-times"></i><span class="ml-2 d-none d-md-inline">All Catagories</span></a>
                 </div> -->
-                <a href="index.php" class="logo"><img src="assets/images/logo.png" alt="logo"></a>
+                <a href="index.php" class="logo"><img src="../assets/images/logo.png" alt="logo"></a>
 
                 <!-- search select -->
                 <div class="text-center mobile-search">
@@ -389,7 +389,7 @@
             </div>
             <div class="d-none d-xl-flex row align-items-center">
                 <div class="col-5 col-md-2">
-                    <a href="index.php" class="logo"><img src="assets/images/logo.png" alt="logo"></a>
+                    <a href="index.php" class="logo"><img src="../assets/images/logo.png" alt="logo"></a>
                 </div>
                 <div class="col-5 col-md-9 col-lg-5">
                    
@@ -397,16 +397,10 @@
                         <div class="flux-custom-select">
                             <select>
                               <option value="0">Select Catagory</option>
-                              <option value="1">Vegetables</option>
-                              <option value="2">Fruits</option>
-                              <option value="3">Salads</option>
-                              <option value="4">Fish & Seafood</option>
-                              <option value="5">Fresh Meat</option>
-                              <option value="6">Health Product</option>
-                              <option value="7">Butter & Eggs</option>
-                              <option value="8">Oils & Venegar</option>
-                              <option value="9">Frozen Food</option>
-                              <option value="10">Jam & Honey</option>
+                              <option value="1">Chicken Products</option>
+                              <option value="2">Fish</option>
+                              <option value="3">Vegetables</option>
+                              <option value="4">Meat</option>
                             </select>
                         </div>
                         <form action="#" class="search-form">
@@ -427,7 +421,7 @@
                         <li class="my-account"><a class="dropdown-toggle" href="#" role="button" id="myaccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user mr-1"></i> Hello, <?php echo $logged_in_user; ?></a>
                             <ul class="submenu dropdown-menu" aria-labelledby="myaccount">
                                 <li><a href="profile.php">Profile</a></li>
-                                <li><a href="logout.php">Sign Out</a></li>
+                                <li><a href="../auth/logout.php">Sign Out</a></li>
                             </ul>
                         </li>
                         <?php
@@ -435,7 +429,7 @@
                         }
                           else{
                         ?>
-                        <li class="signin-option"><a href="login.php"><i class="fas fa-user mr-2"></i>Sign In</a></li>
+                        <li class="signin-option"><a href="../auth/login.php"><i class="fas fa-user mr-2"></i>Sign In</a></li>
                         <?php
                           }
                         ?>
@@ -447,13 +441,15 @@
         <hr>
         <div class="header-bottom">
             <div class="row m-0 align-items-center">
+            <!--
                 <div class="col-md-2 p-0 d-none d-xl-block">
                     <div class="all-catagory-option">
                         <a class="bar-btn"><i class="fas fa-bars"></i>All Categories</a>
                         <a class="close-btn"><i class="fas fa-times"></i>All Categories</a>
                     </div>
                 </div>
-                <div class="col-md-10">
+                -->
+                <div class="col-md-12">
                     <div class="menu-area d-none d-xl-flex justify-content-between align-items-center">
                         <ul class="menu d-xl-flex flex-wrap list-unstyled">
                             <li><a href="index.php"> Home</a></li>
@@ -467,15 +463,6 @@
                             <li><a href="product-list.php">Our Products</a></li>
                             <li><a href="blog.php">Blog</a></li>
                             <li><a href="contact.php">Contact Us</a></li>
-                            <li class="item-has-children"><a href="index.php">Pages <i class="fas fa-angle-down"></i></a>
-                                <ul class="submenu">
-                                    <li><a href="product-leftsidebar.php">Product leftsidebar</a></li>
-                                    <li><a href="product-fullwidth.php">Product Fullwidth</a></li>
-                                    <li><a href="brand-product.php">Brand Page</a></li>
-                                    <li><a href="product-detail.php">Product Details</a></li>
-                                    <li><a href="user-dashboard.php">User Dashboard</a></li>
-                                </ul>
-                            </li>
                         </ul>
                         <ul class="menu-action d-none d-lg-block">
                             <li class="cart-option"><a onclick="cartopen()" href="#"><span class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="count">3</span></span> <span class="cart-amount">Ksh 3415.00</span></a>
@@ -489,7 +476,7 @@
     <!-- header section end -->
 
 
-    <div class="page-layout home-layout">
+    <div class="page-layout">
         <div class="catagory-sidebar-area">
             <div class="catagory-sidebar-area-inner">
                 <div class="catagory-sidebar all-catagory-option">
@@ -587,5 +574,5 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div>         
         <div class="main-content-area">

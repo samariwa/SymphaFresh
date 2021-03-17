@@ -26,13 +26,13 @@ $location = $result['location'];
 
 
             <!-- admin-page start -->
-            <section class="admin-page-section d-flex align-items-center" style="background-image: url('assets/images/admin/profile-bg.jpg'); background-size: cover;">
+            <section class="admin-page-section d-flex align-items-center" style="background-image: url('../assets/images/admin/profile-bg.jpg'); background-size: cover;">
                 <div class="aps-wrapper w-100">
                     <div class="container">
                         <div class="row justify-content-center justify-content-md-start">
                             <div class="admin-content-area">
                                 <div class="admin-thumb">
-                                    <img src="assets/images/admin/thumbnail-avatar.png" alt="">
+                                    <img src="../assets/images/admin/thumbnail-avatar.png" alt="">
                                     <a href="#" class="image-change-option"><i class="fas fa-camera"></i></a>
                                 </div>
                                 <div class="admin-content">
@@ -80,7 +80,7 @@ $location = $result['location'];
                             <div class="order-details-container d-none d-md-block">
                                 <div class="order-details-item d-sm-flex flex-wrap text-center text-sm-left align-items-center justify-content-between">
                                     <div class="thumb d-sm-flex flex-wrap align-items-center">
-                                        <a  onclick="openModal()"><img src="assets/images//products/cart/03.png" alt="products"></a>
+                                        <a  onclick="openModal()"><img src="../assets/images//products/cart/03.png" alt="products"></a>
                                         <div class="product-content">
                                             <a  onclick="openModal()" class="product-title">Daisy Cont Oil</a>
                                         </div>
@@ -100,7 +100,7 @@ $location = $result['location'];
 
                                 <div class="order-details-item d-sm-flex flex-wrap text-center text-sm-left align-items-center justify-content-between">
                                     <div class="thumb d-sm-flex flex-wrap align-items-center">
-                                        <a  onclick="openModal()"><img src="assets/images//products/cart/03.png" alt="products"></a>
+                                        <a  onclick="openModal()"><img src="../assets/images//products/cart/03.png" alt="products"></a>
                                         <div class="product-content">
                                             <a  onclick="openModal()" class="product-title">Daisy Cont Oil</a>
                                         </div>
@@ -120,7 +120,7 @@ $location = $result['location'];
 
                                 <div class="order-details-item d-sm-flex text-center text-sm-left flex-wrap align-items-center justify-content-between">
                                     <div class="thumb d-sm-flex flex-wrap align-items-center">
-                                        <a  onclick="openModal()"><img src="assets/images//products/cart/03.png" alt="products"></a>
+                                        <a  onclick="openModal()"><img src="../assets/images//products/cart/03.png" alt="products"></a>
                                         <div class="product-content">
                                             <a  onclick="openModal()" class="product-title">Daisy Cont Oil</a>
                                         </div>
@@ -143,7 +143,7 @@ $location = $result['location'];
                                     <div class="row align-items-center">
                                         <div class="col-5 p-0">
                                             <div class="thumb">
-                                                <a href="#"><img src="assets/images/products/cart/03.png" alt="products"></a>
+                                                <a href="#"><img src="../assets/images/products/cart/03.png" alt="products"></a>
                                             </div>
                                         </div>
                                         <div class="col-7">
@@ -164,7 +164,7 @@ $location = $result['location'];
                                     <div class="row align-items-center">
                                         <div class="col-5 p-0">
                                             <div class="thumb">
-                                                <a href="#"><img src="assets/images/products/cart/02.png" alt="products"></a>
+                                                <a href="#"><img src="../assets/images/products/cart/02.png" alt="products"></a>
                                             </div>
                                         </div>
                                         <div class="col-7">
@@ -185,7 +185,7 @@ $location = $result['location'];
                                     <div class="row align-items-center">
                                         <div class="col-5 p-0">
                                             <div class="thumb">
-                                                <a href="#"><img src="assets/images/products/cart/01.png" alt="products"></a>
+                                                <a href="#"><img src="../assets/images/products/cart/01.png" alt="products"></a>
                                             </div>
                                         </div>
                                         <div class="col-7">
@@ -309,7 +309,7 @@ $location = $result['location'];
                             <div class="order-details-container d-none d-md-block">
                                 <div class="order-details-item d-sm-flex flex-wrap text-center text-sm-left align-items-center justify-content-between">
                                     <div class="thumb d-sm-flex flex-wrap align-items-center">
-                                        <a  onclick="openModal()"><img src="assets/images//products/cart/03.png" alt="products"></a>
+                                        <a  onclick="openModal()"><img src="../assets/images//products/cart/03.png" alt="products"></a>
                                         <div class="product-content">
                                             <a  onclick="openModal()" class="product-title">Daisy Cont Oil</a>
                                         </div>
@@ -329,7 +329,7 @@ $location = $result['location'];
 
                                 <div class="order-details-item d-sm-flex flex-wrap text-center text-sm-left align-items-center justify-content-between">
                                     <div class="thumb d-sm-flex flex-wrap align-items-center">
-                                        <a  onclick="openModal()"><img src="assets/images//products/cart/03.png" alt="products"></a>
+                                        <a  onclick="openModal()"><img src="../assets/images//products/cart/03.png" alt="products"></a>
                                         <div class="product-content">
                                             <a  onclick="openModal()" class="product-title">Daisy Cont Oil</a>
                                         </div>
@@ -349,7 +349,7 @@ $location = $result['location'];
 
                                 <div class="order-details-item d-sm-flex text-center text-sm-left flex-wrap align-items-center justify-content-between">
                                     <div class="thumb d-sm-flex flex-wrap align-items-center">
-                                        <a  onclick="openModal()"><img src="assets/images//products/cart/03.png" alt="products"></a>
+                                        <a  onclick="openModal()"><img src="../assets/images//products/cart/03.png" alt="products"></a>
                                         <div class="product-content">
                                             <a  onclick="openModal()" class="product-title">Daisy Cont Oil</a>
                                         </div>
@@ -372,7 +372,7 @@ $location = $result['location'];
                                     <div class="row align-items-center">
                                         <div class="col-5 p-0">
                                             <div class="thumb">
-                                                <a href="#"><img src="assets/images/products/cart/03.png" alt="products"></a>
+                                                <a href="#"><img src="../assets/images/products/cart/03.png" alt="products"></a>
                                             </div>
                                         </div>
                                         <div class="col-7">
@@ -393,7 +393,7 @@ $location = $result['location'];
                                     <div class="row align-items-center">
                                         <div class="col-5 p-0">
                                             <div class="thumb">
-                                                <a href="#"><img src="assets/images/products/cart/02.png" alt="products"></a>
+                                                <a href="#"><img src="../assets/images/products/cart/02.png" alt="products"></a>
                                             </div>
                                         </div>
                                         <div class="col-7">
@@ -414,7 +414,7 @@ $location = $result['location'];
                                     <div class="row align-items-center">
                                         <div class="col-5 p-0">
                                             <div class="thumb">
-                                                <a href="#"><img src="assets/images/products/cart/01.png" alt="products"></a>
+                                                <a href="#"><img src="../assets/images/products/cart/01.png" alt="products"></a>
                                             </div>
                                         </div>
                                         <div class="col-7">

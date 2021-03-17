@@ -154,10 +154,10 @@ include('header.php');
                                     </div>
                                 </form>
                                 <div class="payment-method d-flex flex-wrap">
-                                            <a href="#"><img src="assets/images/payment/Mpesa-Logo.png" height="35px" width="55px" alt="payment"></a>
-                                            <a href="#"><img src="assets/images/payment/visa.png" alt="payment"></a>
-                                            <a href="#"><img src="assets/images/payment/Mastercard-Logo.png" height="30px" width="50px" alt="payment"></a>
-                                            <a href="#"><img src="assets/images/payment/paypal.png" alt="payment"></a>
+                                            <a href="#"><img src="../assets/images/payment/Mpesa-Logo.png" height="35px" width="55px" alt="payment"></a>
+                                            <a href="#"><img src="../assets/images/payment/visa.png" alt="payment"></a>
+                                            <a href="#"><img src="../assets/images/payment/Mastercard-Logo.png" height="30px" width="50px" alt="payment"></a>
+                                            <a href="#"><img src="../assets/images/payment/paypal.png" alt="payment"></a>
                                         </div>
                                 <div class="text-right">
                                     <a href="#" class="place-order-btn">Place Order</a>
@@ -171,7 +171,7 @@ include('header.php');
                                         <div class="row align-items-center">
                                             <div class="col-6 p-0">
                                                 <div class="thumb">
-                                                    <a onclick="openModal()"><img src="assets/images//products/cart/01.png" alt="products"></a>
+                                                    <a onclick="openModal()"><img src="../assets/images//products/cart/01.png" alt="products"></a>
                                                 </div>
                                             </div>
                                             <div class="col-6">
@@ -211,7 +211,7 @@ include('header.php');
                                         <div class="row align-items-center">
                                             <div class="col-6 p-0">
                                                 <div class="thumb">
-                                                    <a onclick="openModal()"><img src="assets/images//products/cart/02.png" alt="products"></a>
+                                                    <a onclick="openModal()"><img src="../assets/images//products/cart/02.png" alt="products"></a>
                                                 </div>
                                             </div>
                                             <div class="col-6">
@@ -251,7 +251,7 @@ include('header.php');
                                         <div class="row align-items-center">
                                             <div class="col-6 p-0">
                                                 <div class="thumb">
-                                                    <a onclick="openModal()"><img src="assets/images//products/cart/04.png" alt="products"></a>
+                                                    <a onclick="openModal()"><img src="../assets/images//products/cart/04.png" alt="products"></a>
                                                 </div>
                                             </div>
                                             <div class="col-6">
@@ -291,7 +291,7 @@ include('header.php');
                                         <div class="row align-items-center">
                                             <div class="col-6 p-0">
                                                 <div class="thumb">
-                                                    <a onclick="openModal()"><img src="assets/images//products/cart/03.png" alt="products"></a>
+                                                    <a onclick="openModal()"><img src="../assets/images//products/cart/03.png" alt="products"></a>
                                                 </div>
                                             </div>
                                             <div class="col-6">
