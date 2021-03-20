@@ -34,14 +34,14 @@
      }
      $logged_in_user = $_SESSION['user'];
      $logged_in_email = $_SESSION['email'];
-        $result1 = mysqli_query($connection,"SELECT `active` FROM `users` WHERE `email`='$logged_in_user'");
+        $result1 = mysqli_query($connection,"SELECT `active` FROM `users` WHERE `email`='$logged_in_email'");
          $row = mysqli_fetch_array($result1);
          $active = $row['active'];
  //Session Lifetime control for inactivity
  
      if ((isset($_SESSION['LAST_ACTIVITY'])) && (time() - $_SESSION['LAST_ACTIVITY'] > $sessiontimeout) || (isset($_SESSION['LAST_ACTIVITY'])) && ($active == 2)) {
  //redirect the user back to login page for re-authentication
-          header("Location: $logout_url");
+          header("Location: ../auth/$logout_url");
          exit;
      }
      $_SESSION['LAST_ACTIVITY'] = time();
@@ -452,7 +452,7 @@
                 <div class="col-md-12">
                     <div class="menu-area d-none d-xl-flex justify-content-between align-items-center">
                         <ul class="menu d-xl-flex flex-wrap list-unstyled">
-                            <li><a href="index.php"> Home</a></li>
+                            <li class="nav-item"><a href="index.php"> Home</a></li>
                             <li class="item-has-children" ><a href="#">About Us <i class="fas fa-angle-down"></i></a>
                             <ul class="submenu">
                                     <li><a href="about.php">Who We Are</a></li>
@@ -460,9 +460,9 @@
                                     <li><a href="faq.php">FAQs</a></li>
                             </ul>  
                             </li>      
-                            <li><a href="product-list.php">Our Products</a></li>
-                            <li><a href="blog.php">Blog</a></li>
-                            <li><a href="contact.php">Contact Us</a></li>
+                            <li class="nav-item"><a href="product-list.php">Our Products</a></li>
+                            <li class="nav-item"><a href="blog.php">Blog</a></li>
+                            <li class="nav-item"><a href="contact.php">Contact Us</a></li>
                         </ul>
                         <ul class="menu-action d-none d-lg-block">
                             <li class="cart-option"><a onclick="cartopen()" href="#"><span class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="count">3</span></span> <span class="cart-amount">Ksh 3415.00</span></a>
@@ -477,6 +477,7 @@
 
 
     <div class="page-layout">
+    <!--
         <div class="catagory-sidebar-area">
             <div class="catagory-sidebar-area-inner">
                 <div class="catagory-sidebar all-catagory-option">
@@ -574,5 +575,6 @@
                     </ul>
                 </div>
             </div>
-        </div>         
+        </div>   
+        -->      
         <div class="main-content-area">

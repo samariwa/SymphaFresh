@@ -39,8 +39,21 @@ if (isset($_SESSION['logged_in'])) {
         exit;
     }
     else{
-        header("Location: ../$home_url");
-        exit;
+      $logged_in_email = $_SESSION['email'];
+      $session_access = mysqli_query($connection,"SELECT * FROM `users` WHERE `email`='$logged_in_email'");
+        $row = mysqli_fetch_array($session_access);
+        $access = $row['access'];
+      if($access == 'customer'){
+        header("Location: ../$home_url"); 
+        exit();
+      }else{
+        $roleSession = mysqli_query($connection,"SELECT jobs.Name as Name FROM `users` inner join jobs on users.Job_id = jobs.id WHERE `email`='$logged_in_email'");
+        $row5 = mysqli_fetch_array($roleSession);
+        $role = $row5['Name'];      
+         $_SESSION['role'] = $role;
+        header("Location: ../$admin_url"); 
+        exit();
+      }
     }
 
 //Session Lifetime control for inactivity
@@ -104,6 +117,7 @@ if ((isset($_POST["pass"])) && (isset($_POST["email"])) && ($_SESSION['logged_in
         $row = mysqli_fetch_array($Name);
         $identity = $row['firstname'];
         $user_email = $row['email'];
+        $access = $row['access'];
     $_SESSION['user'] = $identity;
     $_SESSION['email'] = $user_email;
 //validate email
@@ -456,7 +470,16 @@ if (!$_SESSION['logged_in']):
 <?php
 else:
 	//redirect to dashboard
+  if($access == 'customer'){
     header("Location: ../$home_url"); 
     exit();
+  }else{
+       $roleSession = mysqli_query($connection,"SELECT jobs.Name as Name FROM `users` inner join jobs on users.Job_id = jobs.id WHERE `email`='$logged_in_email'");
+        $row5 = mysqli_fetch_array($roleSession);
+        $role = $row5['Name'];      
+         $_SESSION['role'] = $role;
+    header("Location: ../$admin_url"); 
+    exit();
+  }
 endif;
 ?>

@@ -1,7 +1,7 @@
 <?php
 session_start();
-require('config.php');
-require('functions.php');
+require('../config.php');
+require('../functions.php');
 $view = $_SESSION['role'];
 if (isset($_SESSION['logged_in'])) {
   if ($_SESSION['logged_in'] == TRUE) {
@@ -34,14 +34,15 @@ if (isset($_SESSION['logged_in'])) {
         exit;
     }
     $logged_in_user = $_SESSION['user'];
-       $result1 = mysqli_query($connection,"SELECT `active` FROM `users` WHERE `username`='$logged_in_user'");
+    $logged_in_email = $_SESSION['email'];
+        $result1 = mysqli_query($connection,"SELECT `active` FROM `users` WHERE `email`='$logged_in_email'");
         $row = mysqli_fetch_array($result1);
         $active = $row['active'];
 //Session Lifetime control for inactivity
 
     if ((isset($_SESSION['LAST_ACTIVITY'])) && (time() - $_SESSION['LAST_ACTIVITY'] > $sessiontimeout) || (isset($_SESSION['LAST_ACTIVITY'])) && ($active == 2)) {
 //redirect the user back to login page for re-authentication
-         header("Location: $logout_url");
+         header("Location: ../auth/$logout_url");
         exit;
     }
     $_SESSION['LAST_ACTIVITY'] = time();
@@ -235,7 +236,7 @@ Preloader
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">Kwanza Tukule</p>
+            <p class="loader__label">Sympha Fresh</p>
         </div>
     </div>
   <!-- Page Wrapper -->
@@ -532,7 +533,7 @@ Preloader
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="profile.php"><i class="fa fa-user"></i>&ensp;Profile</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="logout.php"><i class="fa fa-sign-out"></i>&ensp;Logout</a>
+                <a class="dropdown-item" href="../auth/logout.php"><i class="fa fa-sign-out"></i>&ensp;Logout</a>
               </div>
             </li>
               <?php

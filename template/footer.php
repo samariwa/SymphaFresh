@@ -90,7 +90,10 @@
                     <div class="footer-bottom">
                         <div class="row">
                             <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
-                                <p class="copyright">Copyright &copy; 2021 <a href="">Sympha Fresh</a> | All Rights Reserved.</p>
+                            <?php
+                            $currentYear = date("Y");
+                            ?>
+                                <p class="copyright">Copyright &copy; <?php echo $currentYear; ?> <a href="">Sympha Fresh</a> | All Rights Reserved.</p>
                             </div>
 
                             <div class="col-md-6 d-flex justify-content-center justify-content-md-end">
