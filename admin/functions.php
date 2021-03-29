@@ -9,7 +9,7 @@
             return $string;
    }
    function redirectToLoginPage(){
-   require('config.php');
+   require('../config.php');
  	header('Location:$login_url');
    	exit();
  }
@@ -24,7 +24,7 @@
             return $string;
         }
   function sanitize($data) {
-   require('config.php');
+   require('../config.php');
    $connection = mysqli_connect($hostname,$username, $password, $database)
      or die("Unable to connect to Server");
      $data = trim($data);

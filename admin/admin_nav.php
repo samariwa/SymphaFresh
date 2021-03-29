@@ -30,8 +30,8 @@ if (isset($_SESSION['logged_in'])) {
 //authorized signature
 //This is unauthorized access
 //Block it
-        header("Location: $dashboard_url");
-        exit;
+        header("Location: ../$admin_url");
+        exit();
     }
     $logged_in_user = $_SESSION['user'];
     $logged_in_email = $_SESSION['email'];
@@ -42,7 +42,7 @@ if (isset($_SESSION['logged_in'])) {
 
     if ((isset($_SESSION['LAST_ACTIVITY'])) && (time() - $_SESSION['LAST_ACTIVITY'] > $sessiontimeout) || (isset($_SESSION['LAST_ACTIVITY'])) && ($active == 2)) {
 //redirect the user back to login page for re-authentication
-         header("Location: ../auth/$logout_url");
+         header("Location: ../$logout_url");
         exit;
     }
     $_SESSION['LAST_ACTIVITY'] = time();
@@ -57,8 +57,8 @@ if (isset($_SESSION['logged_in'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
- <link rel = "icon" href ="assets/img/logo.png" type = "image/x-icon">
- <title>Kwanza Tukule | Admin Dashboard</title>
+ <link rel = "icon" href ="../assets/img/logo.png" type = "image/x-icon">
+ <title>Sympha Fresh | Admin Dashboard</title>
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -73,11 +73,8 @@ if (isset($_SESSION['logged_in'])) {
 <!--Datatables-->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.css"/>
 <!--Calendar-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css" />
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
 <!-- MDBootstrap Datatables  -->
 <link href="css/addons/datatables.min.css" rel="stylesheet">
@@ -393,43 +390,9 @@ Preloader
       <?php
        }
        ?>  
-
-       <li class="nav-item">&emsp;
-        <a style="color: black;" href="documents.php">
-           <i class="fa fa-fw fa-folder"></i>
-          <span>Documents</span></a>
-      </li>
-     
-      <br> 
-
-        <li class="nav-item">&emsp;
-        <a style="color: black;" href="calendar.php">
-           <i class="fa fa-calendar"></i>
-          <span>Calendar</span></a>
-      </li>
      
       <br>   
-
-      <li class="nav-item">&emsp;
-        <a style="color: black;" href="notes.php">
-           <i class="bx bx-notepad"></i>
-          <span>NoteBook</span></a>
-      </li>
-     
-      <br>
-      <li class="nav-item">&emsp;
-        <a style="color: black;" href="users.php">
-           <i class="fa fa-users"></i>
-          <span>Users</span></a>
-      </li>
-      
-      <br>
-      <li class="nav-item">&emsp;
-        <a style="color: black;" href="help.php">
-           <i class="fa fa-question-circle"></i>
-          <span>Help Center</span></a>
-      </li>
-    
+ 
     </ul>
     <!-- End of Sidebar -->
 
@@ -464,7 +427,7 @@ Preloader
                 Notifications<i class="fa fa-bell"></i>
                 <!-- Counter - Alerts -->
                 <?php
-                 include('queries.php');
+                 include('../queries.php');
                     $restockNumber = mysqli_num_rows($restockExists);
                     $notesNumber = mysqli_num_rows($notesExists);
                     $notificationNumber = $restockNumber + $notesNumber - 1;

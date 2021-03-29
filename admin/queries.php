@@ -1,5 +1,5 @@
 <?php  
-require('config.php');
+require('../config.php');
 //MySQL and MariaDB queries.
 //All queries are hybrid unless specified.
 $customersList = mysqli_query($connection,"SELECT id,Name,Location,Number,Deliverer,Status,Note FROM customers WHERE Status != 'blacklisted'ORDER BY id DESC")or die($connection->error);

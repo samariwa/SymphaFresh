@@ -1,7 +1,7 @@
 <?php
-require_once "functions.php";
+require_once "../functions.php";
   generateRandomString();
-require('config.php');
+require('../config.php');
 $passwordnotempty = TRUE;
 $passwordvalidate = TRUE;
 $passwordmatch  = TRUE;
@@ -55,7 +55,7 @@ $passwordmatch  = TRUE;
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Kwanza Tukule | Reset Password</title>
+    <title>Sympha Fresh | Reset Password</title>
     <link rel="stylesheet" href="auth.css"/>
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -66,7 +66,7 @@ $passwordmatch  = TRUE;
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="response.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <link rel = "icon" href ="assets/img/logo.png" type = "image/x-icon">
+    <link rel = "icon" href ="../assets/img/logo.png" type = "image/x-icon">
   </head>
   <body>
             <nav style="background-color: white;opacity: 0.9">

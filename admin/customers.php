@@ -1,6 +1,6 @@
 <?php
  include "admin_nav.php";
- include('queries.php');
+ include('../queries.php');
  ?> 
 
         <!-- Begin Page Content -->
@@ -39,7 +39,7 @@
                  <div class="row">
                  <input type="text" name="number" id= "number"class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Contact Number...">
                   </div><br>
-                 <div class="row">
+                <!-- <div class="row">
                  <select type="text" name="deliverer" id="deliverer" class="form-control col-md-9" style="padding-right:15px;padding-left:15px;margin-left: 60px" required onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();' required>
                   <option value="" selected="selected" disabled>Deliverer...</option>
                   <?php
@@ -48,12 +48,12 @@
                      $count++;
                     $driver = $row['firstname'];
                   ?>
-                   <option value="<?php echo $driver; ?>"><?php echo $driver; ?></option>
+                   <option value="<?php #echo $driver; ?>"><?php #echo $driver; ?></option>
                   <?php
                     }
                   ?>
                  </select>
-                  </div>
+                  </div>-->
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary" style="margin-right: 50px" id="addCustomer">Add Customer</button>

@@ -1,10 +1,10 @@
 <?php
 include('header.php');
-$profile_details = mysqli_query($connection,"SELECT firstname,lastname,email,location,mobile FROM users where email = '$logged_in_email' ")or die($connection->error);
+$profile_details = mysqli_query($connection,"SELECT firstname,lastname,email,location,number FROM users where email = '$logged_in_email' ")or die($connection->error);
 $result = mysqli_fetch_array($profile_details);
 $firstname = $result['firstname'];
 $lastname = $result['lastname'];
-$mobile = $result['mobile'];
+$mobile = $result['number'];
 $email = $result['email'];
 $location = $result['location'];
 ?>          

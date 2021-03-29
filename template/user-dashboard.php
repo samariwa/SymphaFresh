@@ -4,7 +4,7 @@ $profile_details = mysqli_query($connection,"SELECT firstname,lastname,email,loc
 $result = mysqli_fetch_array($profile_details);
 $firstname = $result['firstname'];
 $lastname = $result['lastname'];
-$mobile = $result['mobile'];
+$mobile = $result['number'];
 $email = $result['email'];
 $location = $result['location'];
 ?>

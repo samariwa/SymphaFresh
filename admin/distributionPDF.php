@@ -1,7 +1,7 @@
 <?php
  session_start();
- require('config.php');
- require_once "functions.php";
+ require('../config.php');
+ require_once "../functions.php";
  $deliverer = $_POST['deliverer'];
  $time = $_POST['time'];
  $random = generateRandomString();

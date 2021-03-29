@@ -1,6 +1,6 @@
 <?php
  session_start();
- require('config.php');
+ require('../config.php');
  $staffID = $_POST['id'];
  $name = $_POST['name'];
  $grossSalary = $_POST['gross'];

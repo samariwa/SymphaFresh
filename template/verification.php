@@ -13,7 +13,7 @@ if($where == 'email' )
 elseif($where == 'mobile' )
 {
     $mobile = $_POST['mobile'];
-   $row = mysqli_query($connection,"SELECT mobile FROM users WHERE mobile = '".$mobile."'")or die($connection->error);
+   $row = mysqli_query($connection,"SELECT mobile FROM users WHERE number = '".$mobile."'")or die($connection->error);
    $result = mysqli_fetch_array($row);
    if ( $result == TRUE) {
     echo "exists";

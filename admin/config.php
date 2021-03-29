@@ -8,7 +8,7 @@
 $username = "root";
 $password = "";
 $hostname = "192.168.100.150";
-$database = "tukule_kwanza";
+$database = "sympha_fresh";
 $port = "3307";
 
 //Definition of canonical domain including trailing slash!:

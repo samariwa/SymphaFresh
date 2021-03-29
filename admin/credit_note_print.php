@@ -1,7 +1,7 @@
 <?php
  session_start();
- require('config.php');
- require_once "functions.php";
+ require('../config.php');
+ require_once "../functions.php";
  $deliverer = $_POST['deliverer'];
  $unformateddate = $_POST['date'];
  $date = '';

@@ -35,11 +35,14 @@ if (isset($_REQUEST['submit_button'])) {
     $random = generateRandomString();
     $hash = password_hash($desired_password, PASSWORD_DEFAULT);
 	//Insert details to database
-    mysqli_query($connection,"INSERT INTO `users` (`firstname`,`lastname`,`mobile`,`email`,`location`,`password`) VALUES ('$first_name','$last_name','$mobile','$email','$location','$hash')") or die(mysqli_error($connection));
+    mysqli_query($connection,"INSERT INTO `users` (`firstname`,`lastname`,`number`,`email`,`location`,`password`) VALUES ('$first_name','$last_name','$mobile','$email','$location','$hash')") or die(mysqli_error($connection));
+	$customer_fullname = $first_name.' '.$last_name;
+	mysqli_query($connection,"INSERT INTO `customers` (`Name`,`Number`,`Location`,`Status`,`Note`) VALUES ('$customer_fullname','$mobile','$location','clean','Add Note...')") or die(mysqli_error($connection));
     $result = mysqli_query($connection,"SELECT `id` FROM `users` WHERE `email`='$email'");
           $row = mysqli_fetch_array($result);
           $owner_id = $row['id'];
         $_SESSION['user'] = $first_name;
+        $_SESSION['email'] = $email;
         $random = genRandomSaltString();
         $salt_ip = substr($random, 0, $length_salt);
         //hash the ip address, user-agent and the salt
@@ -53,34 +56,6 @@ if (isset($_REQUEST['submit_button'])) {
         if (isset($_SESSION['logged_in'])) {
             mysqli_query($connection,"UPDATE `users` SET `online` = '1', ipAddress = '$iptocheck' WHERE `email` = '$email'");
         }
-    //Send notification to email
-    require_once "PHPMailer/PHPMailer.php";
-    require_once "PHPMailer/Exception.php";
-    require_once "PHPMailer/SMTP.php";
-    $mail = new PHPMailer(true);
-    $mail -> addAddress("kwanzatukuleauthenticator@gmail.com", "Kwanza Tukule");
-    $mail -> setFrom("kwanzatukuleauthenticator@gmail.com", "Kwanza Tukule");
-    $mail->IsSMTP();
-    $mail->Host = "smtp.gmail.com";
-    // optional
-    // used only when SMTP requires authentication  
-    $mail->SMTPAuth = true;
-    $mail->Username = 'kwanzatukuleauthenticator@gmail.com';
-    $mail->Password = 'Kenya.2030';
-    $mail -> Subject = "New User";
-    $mail -> isHTML(true);
-    $mail -> Body = "
-          Hey there,<br><br>
-            A new user has just been registered. Kindly verify user details.<br><br>
-            User details:<br> 
-            Name: $first_name&ensp;$last_name<br> 
-            Email Address:$email<br> <br> <br> 
-            <form action='http://192.168.64.2/QRCode/index'>
-		       <input type='submit' value='Verify' />
-            </form>
-            Kind Regards,
-            ";
-    $mail -> send();
      header("Location: ../$home_url");
      exit;
 	}
@@ -190,6 +165,10 @@ if (isset($_REQUEST['submit_button'])) {
 						<button class="login100-form-btn" name="submit_button">
 							Register
 						</button>
+					</div>
+					<div>
+						<br>
+						<p>Already have an account?&ensp;<a href="login.php" style="color: inherit;text-decoration: underline;">Login</a></p>
 					</div>	
 					<div style="margin-top: 20px">
 		                  <!-- Display error -->

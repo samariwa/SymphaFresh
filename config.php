@@ -33,4 +33,14 @@ $login_url = 'auth/login.php';
 $logout_url = 'auth/logout.php';
 $home_url = 'template/index.php';
 $admin_url = 'admin/dashboard.php';
+$protocol = $_SERVER['SERVER_PROTOCOL'];
+if(strpos($protocol, "HTTPS"))
+{
+    $protocol="HTTPS://";
+}
+else
+{
+    $protocol="HTTP://";
+}
+$redirect_link = $protocol.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 ?>

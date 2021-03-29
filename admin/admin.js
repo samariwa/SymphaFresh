@@ -32,7 +32,7 @@ setTime();
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
          var where = 'fastmoving';
-       $.post("charts.php",{where:where},
+       $.post("../charts.php",{where:where},
         function(result){
           var data = $.parseJSON(result);
           var data0 = data[0][0];
@@ -79,7 +79,7 @@ setTime();
       google.charts.setOnLoadCallback(drawChart2);
       function drawChart2() {
          var where = 'fastselling';
-       $.post("charts.php",{where:where},
+       $.post("../charts.php",{where:where},
         function(result){
           var data = $.parseJSON(result);
           var data0 = data[0][0];
@@ -127,7 +127,7 @@ setTime();
 
       function drawVisualization() {
         var where = 'salescomparison';
-       $.post("charts.php",{where:where},
+       $.post("../charts.php",{where:where},
         function(result){
                    var data = google.visualization.arrayToDataTable([
           ['Day', 'Royson', 'Ken', 'Reuben', 'Damaris', 'George', 'Average'],
@@ -155,7 +155,7 @@ setTime();
     google.charts.setOnLoadCallback(drawComparison1);
     function drawComparison1() {
       var where = 'salescomparison1';
-       $.post("charts.php",{where:where},
+       $.post("../charts.php",{where:where},
         function(result){
      var data = google.visualization.arrayToDataTable([
         ['Deliverer', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
@@ -181,7 +181,7 @@ setTime();
     google.charts.setOnLoadCallback(drawComparison2);
     function drawComparison2() {
       var where = 'salescomparison2';
-       $.post("charts.php",{where:where},
+       $.post("../charts.php",{where:where},
         function(result){
      var data = google.visualization.arrayToDataTable([
         ['Deliverer', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
@@ -207,7 +207,7 @@ setTime();
     google.charts.setOnLoadCallback(drawComparison3);
     function drawComparison3() {
       var where = 'salescomparison3';
-       $.post("charts.php",{where:where},
+       $.post("../charts.php",{where:where},
         function(result){
      var data = google.visualization.arrayToDataTable([
         ['Deliverer', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
@@ -233,7 +233,7 @@ setTime();
     google.charts.setOnLoadCallback(drawComparison4);
     function drawComparison4() {
       var where = 'salescomparison4';
-       $.post("charts.php",{where:where},
+       $.post("../charts.php",{where:where},
         function(result){
           var data = $.parseJSON(result);
           // alert(data)
@@ -264,7 +264,7 @@ setTime();
     google.charts.setOnLoadCallback(drawComparison5);
     function drawComparison5() {
       var where = 'salescomparison5';
-       $.post("charts.php",{where:where},
+       $.post("../charts.php",{where:where},
         function(result){
           var data = $.parseJSON(result);
           var data0 = data[0];
@@ -292,7 +292,7 @@ setTime();
     google.charts.setOnLoadCallback(drawComparison6);
     function drawComparison6() {
       var where = 'salescomparison6';
-       $.post("charts.php",{where:where},
+       $.post("../charts.php",{where:where},
         function(result){
           var data = $.parseJSON(result);
           var data0 = data[0];
@@ -328,7 +328,7 @@ setTime();
     google.charts.setOnLoadCallback(drawExpenditureChart);
     function drawExpenditureChart() {
       var where = 'biggestExpenses';
-       $.post("charts.php",{where:where},
+       $.post("../charts.php",{where:where},
         function(result){
          var data = $.parseJSON(result);  
         var data0 = data[0][0];
@@ -374,7 +374,7 @@ setTime();
       google.charts.setOnLoadCallback(drawKeyCustomersChart);
       function drawKeyCustomersChart() {
         var where = 'biggestPayers';
-       $.post("charts.php",{where:where},
+       $.post("../charts.php",{where:where},
         function(result){
           var data = $.parseJSON(result);
           var data0 = data[0][0];
@@ -410,7 +410,7 @@ setTime();
 
       function drawRevenueExpenseChart() {
         var where = 'salesExpenses';
-       $.post("charts.php",{where:where},
+       $.post("../charts.php",{where:where},
         function(result){
           var data = $.parseJSON(result);
           var data0 = data[0];
@@ -445,7 +445,7 @@ setTime();
 
       function drawProfitChart() {
         var where = 'profit/loss';
-       $.post("charts.php",{where:where},
+       $.post("../charts.php",{where:where},
         function(result){
            var data = $.parseJSON(result);
           var data0 = data[0];
@@ -511,7 +511,7 @@ setTime();
 
       function drawSalesChart() {
         var where = 'salesTotal';
-       $.post("charts.php",{where:where},
+       $.post("../charts.php",{where:where},
         function(result){
           var data = $.parseJSON(result);
           var data0 = data[0];
@@ -620,7 +620,7 @@ setTime();
             if(txt != '')
             {
               $.ajax({
-                url: 'search.php',
+                url: '../search.php',
                 type:"post",
                 data:{search:txt,where:where},
                 dataType:"text",
@@ -634,7 +634,7 @@ setTime();
             {
               $('#customer_results').html('');
               $.ajax({
-                url: 'search.php',
+                url: '../search.php',
                 type:"post",
                 data:{search:txt,where:where},
                 dataType:"text",
@@ -650,7 +650,7 @@ setTime();
         $("#customer_results").html('');
         var customerId = $('#customerSearch').val();
            var where = 'customerDetails';
-           $.post("search.php",{customerId:customerId,where:where},
+           $.post("../search.php",{customerId:customerId,where:where},
             function(result){var data = $.parseJSON(result);
               var customerDetails = "";
               var Name = data[0].Name;
@@ -680,7 +680,7 @@ setTime();
             if(txt != '')
             {
               $.ajax({
-                url: 'search.php',
+                url: '../search.php',
                 type:"post",
                 data:{search2:txt,where:where},
                 dataType:"text",
@@ -694,7 +694,7 @@ setTime();
             {
               $('#product_results').html('');
               $.ajax({
-                url: 'search.php',
+                url: '../search.php',
                 type:"post",
                 data:{search2:txt,where:where},
                 dataType:"text",
@@ -731,7 +731,7 @@ setTime();
            var productName = $('#productSearch').val();
            var productQty = $('#orderQty').val();
            var where = 'cart';
-           $.post("search.php",{productName:productName,where:where},
+           $.post("../search.php",{productName:productName,where:where},
             function(result){var data = $.parseJSON(result);
               var Quantity = data[0].Quantity;
               alert(Quantity);
@@ -776,7 +776,7 @@ function updateProfile(){
   var nationalid = $(`#nationalid`).val();
   var staffid = $(`#staffid`).text();
    var where = 'profile';
-  $.post("save.php",{staffid:staffid,username:username,email:email,number:number,nationalid:nationalid,where:where},
+  $.post("../save.php",{staffid:staffid,username:username,email:email,number:number,nationalid:nationalid,where:where},
   function(result){if (result == 'saved') {alert("Profile Updated");}});
 }
 
@@ -1038,7 +1038,7 @@ function getIndexOfProduct(arr, k) {
       function completeOrderBalance(custID,cartArr){
         for (var i = 0; i < cartArr.length; i++) {
           var stockID = cartArr[i][0];
-          $.post("add.php",{where:'order',price:cartArr[i][2],quantity:cartArr[i][3], discount:cartArr[i][4] ,customer:custID, stockid:cartArr[i][0], lateOrder:$(`#deliveryDate`).val()},
+          $.post("../add.php",{where:'order',price:cartArr[i][2],quantity:cartArr[i][3], discount:cartArr[i][4] ,customer:custID, stockid:cartArr[i][0], lateOrder:$(`#deliveryDate`).val()},
           function(result){
             if (result=='success') {
                 cartArr.shift();
@@ -1062,7 +1062,7 @@ function getIndexOfProduct(arr, k) {
       function completeSalesBalance(sellerID,cartArr){
         for (var i = 0; i < cartArr.length; i++) {
           var stockID = cartArr[i][0];
-          $.post("add.php",{where:'sales',price:cartArr[i][2],quantity:cartArr[i][3], discount:cartArr[i][4] ,seller:sellerID, stockid:cartArr[i][0], salesDate:$(`#deliveryDate`).val()},
+          $.post("../add.php",{where:'sales',price:cartArr[i][2],quantity:cartArr[i][3], discount:cartArr[i][4] ,seller:sellerID, stockid:cartArr[i][0], salesDate:$(`#deliveryDate`).val()},
           function(result){
             if (result=='success') {
                 cartArr.shift();
@@ -1081,7 +1081,7 @@ function getIndexOfProduct(arr, k) {
            var id = idx;
            var balance = $(`#balanceLastMonth${id}`).text();
               var where = 'fine';
-              $.post("save.php",{id:id,balance:balance,where:where},
+              $.post("../save.php",{id:id,balance:balance,where:where},
               function(result){
                 //alert(result);
                 location.reload(true);
@@ -1095,7 +1095,7 @@ function getIndexOfProduct(arr, k) {
            var id = idx;
            var balance = $(`#balanceYesterday${id}`).text();
               var where = 'fine';
-              $.post("save.php",{id:id,balance:balance,where:where},
+              $.post("../save.php",{id:id,balance:balance,where:where},
               function(result){
                 //alert(result);
                 location.reload(true);
@@ -1108,7 +1108,7 @@ function getIndexOfProduct(arr, k) {
            var id = idx;
            var balance = $(`#balanceToday${id}`).text();
               var where = 'fine';
-              $.post("save.php",{id:id,balance:balance,where:where},
+              $.post("../save.php",{id:id,balance:balance,where:where},
               function(result){
                 //alert(result);
                 location.reload(true);
@@ -1121,7 +1121,7 @@ function getIndexOfProduct(arr, k) {
            var id = idx;
            var balance = $(`#balanceTomorrow${id}`).text();
               var where = 'fine';
-              $.post("save.php",{id:id,balance:balance,where:where},
+              $.post("../save.php",{id:id,balance:balance,where:where},
               function(result){
                 //alert(result);
                 location.reload(true);
@@ -1137,7 +1137,7 @@ function getIndexOfProduct(arr, k) {
         var where = 'order';
             bootbox.confirm('Do you really want to delete the selected order?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,cost:cost,where:where},
+          $.post("../delete.php",{id:id,cost:cost,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -1156,7 +1156,7 @@ function getIndexOfProduct(arr, k) {
         var where = 'sales';
             bootbox.confirm('Do you really want to delete the selected product from the sales?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,cost:cost,where:where},
+          $.post("../delete.php",{id:id,cost:cost,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -1175,7 +1175,7 @@ function getIndexOfProduct(arr, k) {
         var where = 'order';
             bootbox.confirm('Do you really want to delete the selected order?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,cost:cost,where:where},
+          $.post("../delete.php",{id:id,cost:cost,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -1194,7 +1194,7 @@ function getIndexOfProduct(arr, k) {
         var where = 'order';
             bootbox.confirm('Do you really want to delete the selected order?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,cost:cost,where:where},
+          $.post("../delete.php",{id:id,cost:cost,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -1213,7 +1213,7 @@ function getIndexOfProduct(arr, k) {
         var where = 'sales';
             bootbox.confirm('Do you really want to delete the selected product from the sales?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,cost:cost,where:where},
+          $.post("../delete.php",{id:id,cost:cost,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -1232,7 +1232,7 @@ function getIndexOfProduct(arr, k) {
         var where = 'order';
             bootbox.confirm('Do you really want to delete the selected order?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,cost:cost,where:where},
+          $.post("../delete.php",{id:id,cost:cost,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -1251,7 +1251,7 @@ function getIndexOfProduct(arr, k) {
         var where = 'sales';
             bootbox.confirm('Do you really want to delete the selected product from the sales?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,cost:cost,where:where},
+          $.post("../delete.php",{id:id,cost:cost,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -1270,7 +1270,7 @@ function getIndexOfProduct(arr, k) {
         var where = 'order';
             bootbox.confirm('Do you really want to delete the selected product from the requested products?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,cost:cost,where:where},
+          $.post("../delete.php",{id:id,cost:cost,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -1289,7 +1289,7 @@ function getIndexOfProduct(arr, k) {
         var where = 'sales';
             bootbox.confirm('Do you really want to delete the selected product from the requested products?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,cost:cost,where:where},
+          $.post("../delete.php",{id:id,cost:cost,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -1316,7 +1316,7 @@ function getIndexOfProduct(arr, k) {
   var deliverer = $(`#deliverer${rowx}`).text();
   var note = $(`#note${rowx}`).text();
   var where = 'customer';
-  $.post("save.php",{id:id,name:name,location:location,number:number,deliverer:deliverer,note:note,where:where},
+  $.post("../save.php",{id:id,name:name,location:location,number:number,deliverer:deliverer,note:note,where:where},
   function(result){});
 });
 
@@ -1335,7 +1335,7 @@ function getIndexOfProduct(arr, k) {
   var qty = $(`#qty${rowx}`).text();
   var restock_Level = $(`#restock_Level${rowx}`).text();
   var where = 'stock';
-  $.post("save.php",{id:id,name:name,bp:bp,restock_Level:restock_Level,category:category,qty:qty,sp:sp,where:where},
+  $.post("../save.php",{id:id,name:name,bp:bp,restock_Level:restock_Level,category:category,qty:qty,sp:sp,where:where},
   function(result){});
 });
 
@@ -1351,7 +1351,7 @@ $('#blacklistEditable').editableTableWidget();
   var number = $(`#number${rowx}`).text();
   var balance = $(`#balance${rowx}`).text();
   var where = 'blacklist';
-  $.post("save.php",{id:id,location:location,number:number,balance:balance,where:where},
+  $.post("../save.php",{id:id,location:location,number:number,balance:balance,where:where},
   function(result){});
 });
 
@@ -1365,7 +1365,7 @@ $('#categoriesEditable').editableTableWidget();
   var id = $(`#id${rowx}`).text();
   var name = $(`#category${rowx}`).text();
   var where = 'categories';
-  $.post("save.php",{id:id,name:name,where:where},
+  $.post("../save.php",{id:id,name:name,where:where},
   function(result){});
 });
 
@@ -1378,7 +1378,7 @@ $('#categoriesEditable').editableTableWidget();
   var id = $(`#id${rowx}`).text();
   var name = $(`#unit${rowx}`).text();
   var where = 'inventory_units';
-  $.post("save.php",{id:id,name:name,where:where},
+  $.post("../save.php",{id:id,name:name,where:where},
   function(result){});
 });
 
@@ -1391,7 +1391,7 @@ $('#categoriesEditable').editableTableWidget();
   var id = $(`#id${rowx}`).text();
   var qty = $(`#newDamaged${rowx}`).text();
   var where = 'damaged';
-  $.post("save.php",{id:id,qty:qty,where:where},
+  $.post("../save.php",{id:id,qty:qty,where:where},
   function(result){
     location.reload(true);
   });
@@ -1406,7 +1406,7 @@ $('#categoriesEditable').editableTableWidget();
   var id = $(`#id${rowx}`).text();
   var difference = $(`#difference${rowx}`).text();
   var where = 'leftovers';
-  $.post("save.php",{id:id,difference:difference,where:where},
+  $.post("../save.php",{id:id,difference:difference,where:where},
   function(result){
     location.reload(true);
   });
@@ -1421,7 +1421,7 @@ $('#suppliersEditable').editableTableWidget();
   var id = $(`#id${rowx}`).text();
   var contact = $(`#contact${rowx}`).text();
   var where = 'suppliers';
-  $.post("save.php",{id:id,contact:contact,where:where},
+  $.post("../save.php",{id:id,contact:contact,where:where},
   function(result){});
 });
 
@@ -1435,7 +1435,7 @@ $('#vehiclesEditable').editableTableWidget();
   var route = $(`#route${rowx}`).text();
   var mileage = $(`#mileage${rowx}`).text();
   var where = 'vehicles';
-  $.post("save.php",{id:id,route:route,mileage:mileage,where:where},
+  $.post("../save.php",{id:id,route:route,mileage:mileage,where:where},
   function(result){});
 });
 
@@ -1450,7 +1450,7 @@ $('#vehiclesEditable').editableTableWidget();
   var start = $(`#start${rowx}`).text();
   var days = $(`#days${rowx}`).text();
   var where = 'sickoff';
-  $.post("save.php",{id:id,reason:reason,start:start,days:days,where:where},
+  $.post("../save.php",{id:id,reason:reason,start:start,days:days,where:where},
   function(result){});
 });
 
@@ -1465,7 +1465,7 @@ $('#vehiclesEditable').editableTableWidget();
   var start = $(`#start${rowx}`).text();
   var days = $(`#days${rowx}`).text();
   var where = 'leave';
-  $.post("save.php",{id:id,standIn:standIn,start:start,days:days,where:where},
+  $.post("../save.php",{id:id,standIn:standIn,start:start,days:days,where:where},
   function(result){alert(result);});
 });
 
@@ -1484,7 +1484,7 @@ $('#vehiclesEditable').editableTableWidget();
   var nhif = $(`#nhif${rowx}`).text();
   var salary = $(`#salary${rowx}`).text();
   var where = 'deliverer';
-  $.post("save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,kra:kra,nssf:nssf,nhif:nhif,salary:salary,where:where},
+  $.post("../save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,kra:kra,nssf:nssf,nhif:nhif,salary:salary,where:where},
   function(result){});
 });
 
@@ -1503,7 +1503,7 @@ $('#vehiclesEditable').editableTableWidget();
   var nhif = $(`#nhif${rowx}`).text();
   var salary = $(`#salary${rowx}`).text();
   var where = 'cook';
-  $.post("save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,kra:kra,nssf:nssf,nhif:nhif,salary:salary,where:where},
+  $.post("../save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,kra:kra,nssf:nssf,nhif:nhif,salary:salary,where:where},
   function(result){});
 });
 
@@ -1522,7 +1522,7 @@ $('#vehiclesEditable').editableTableWidget();
   var nhif = $(`#nhif${rowx}`).text();
   var salary = $(`#salary${rowx}`).text();
   var where = 'cleaner';
-  $.post("save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,kra:kra,nssf:nssf,nhif:nhif,salary:salary,where:where},
+  $.post("../save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,kra:kra,nssf:nssf,nhif:nhif,salary:salary,where:where},
   function(result){});
 });
 
@@ -1542,7 +1542,7 @@ $('#officeEditable').editableTableWidget();
   var salary = $(`#salary${rowx}`).text();
   var role = $(`#role${rowx}`).text();
   var where = 'office';
-  $.post("save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,kra:kra,nssf:nssf,nhif:nhif,salary:salary,role:role,where:where},
+  $.post("../save.php",{id:id,contact:contact,staffId:staffId,nationalId:nationalId,kra:kra,nssf:nssf,nhif:nhif,salary:salary,role:role,where:where},
   function(result){});
 });
 
@@ -1562,7 +1562,7 @@ $('#officeEditable').editableTableWidget();
   var slip = $(`#slipLastMonth${rowx}`).text();
   var banker = $(`#bankerLastMonth${rowx}`).text();
   var where = 'orders';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,returned:returned,date:date,banked:banked,slip:slip,banker:banker,where:where},
+  $.post("../save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,returned:returned,date:date,banked:banked,slip:slip,banker:banker,where:where},
   function(result){
     if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
@@ -1582,35 +1582,6 @@ $('#officeEditable').editableTableWidget();
   });
 });
 
-   $('#extraSalesEditableLastMonth').editableTableWidget();
-  $('#extraSalesEditableLastMonth td.uneditable').on('change', function(evt, newValue) {
-  return false;
-});
-  $('#extraSalesEditableLastMonth td').on('change', function(evt, newValue) {
-   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
-  var id = $(`#idLastMonth${rowx}`).text();
-  var qty = $(`#qtyLastMonth${rowx}`).text();
-  var mpesa = $(`#mpesaLastMonth${rowx}`).text();
-  var cash = $(`#cashLastMonth${rowx}`).text();
-  var banked = $(`#bankedLastMonth${rowx}`).text();
-  var returned = $(`#returnedLastMonth${rowx}`).text();
-  var slip = $(`#slipLastMonth${rowx}`).text();
-  var banker = $(`#bankerLastMonth${rowx}`).text();
-  var discount = $(`#discountLastMonth${rowx}`).text();
-  var where = 'sales';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,discount:discount,cash:cash,returned:returned,banked:banked,slip:slip,banker:banker,where:where},
-  function(result){
-     if (result == 'Unavailable') {
-      alert("Quantity Entered Unavailable");
-    }
-    else if (result == 'excess returned') {
-      alert("Error: Returned greater than quantity requested");
-    }
-    else{
-    //location.reload(true);
-  }
-  });
-});
 
   $('#salesEditableNextMonth').editableTableWidget();
   $('#salesEditableNextMonth td.uneditable').on('change', function(evt, newValue) {
@@ -1628,7 +1599,7 @@ $('#officeEditable').editableTableWidget();
   var slip = $(`#slipNextMonth${rowx}`).text();
   var banker = $(`#bankerNextMonth${rowx}`).text();
   var where = 'orders';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
+  $.post("../save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
   function(result){
      if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
@@ -1658,7 +1629,7 @@ $('#officeEditable').editableTableWidget();
   var slip = $(`#slipYesterday${rowx}`).text();
   var banker = $(`#bankerYesterday${rowx}`).text();
   var where = 'orders';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
+  $.post("../save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
   function(result){
      if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
@@ -1672,35 +1643,6 @@ $('#officeEditable').editableTableWidget();
   });
 });
 
-$('#extraSalesEditableYesterday').editableTableWidget();
-  $('#extraSalesEditableYesterday td.uneditable').on('change', function(evt, newValue) {
-  return false;
-});
-  $('#extraSalesEditableYesterday td').on('change', function(evt, newValue) {
-   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
-  var id = $(`#idYesterday${rowx}`).text();
-  var qty = $(`#qtyYesterday${rowx}`).text();
-  var mpesa = $(`#mpesaYesterday${rowx}`).text();
-  var cash = $(`#cashYesterday${rowx}`).text();
-  var banked = $(`#bankedYesterday${rowx}`).text();
-   var returned = $(`#returnedYesterday${rowx}`).text();
-  var slip = $(`#slipYesterday${rowx}`).text();
-  var banker = $(`#bankerYesterday${rowx}`).text();
-  var discount = $(`#discountYesterday${rowx}`).text();
-  var where = 'sales';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,discount:discount,returned:returned,banked:banked,slip:slip,banker:banker,where:where},
-  function(result){
-     if (result == 'Unavailable') {
-      alert("Quantity Entered Unavailable");
-    }
-    else if (result == 'excess returned') {
-      alert("Error: Returned greater than quantity requested");
-    }
-    else{
-    //location.reload(true);
-  }
-  });
-});
 
   $('#salesEditableToday').editableTableWidget();
   $('#salesEditableToday td.uneditable').on('change', function(evt, newValue) {
@@ -1718,7 +1660,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   var slip = $(`#slipToday${rowx}`).text();
   var banker = $(`#bankerToday${rowx}`).text();
   var where = 'orders';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
+  $.post("../save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
   function(result){
      if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
@@ -1729,40 +1671,6 @@ $('#extraSalesEditableYesterday').editableTableWidget();
     else{
     //location.reload(true);
   }
-  });
-});
-
-  $('#extraSalesEditableToday').editableTableWidget();
-  $('#extraSalesEditableToday td.uneditable').on('change', function(evt, newValue) {
-  return false;
-});
-  $('#extraSalesEditableToday td').on('change', function(evt, newValue) {
-   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
-  var id = $(`#idToday${rowx}`).text();
-  var qty = $(`#qtyToday${rowx}`).text();
-  var mpesa = $(`#mpesaToday${rowx}`).text();
-  var cash = $(`#cashToday${rowx}`).text();
-  var discount = $(`#discountToday${rowx}`).text();
-  var banked = $(`#bankedToday${rowx}`).text();
-  var returned = $(`#returnedToday${rowx}`).text();
-  var slip = $(`#slipToday${rowx}`).text();
-  var banker = $(`#bankerToday${rowx}`).text();
-  var where = 'sales';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,discount:discount,cash:cash,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
-  function(result){
-     if (result == 'Unavailable') {
-      alert("Quantity Entered Unavailable");
-    }
-    else if (result == 'excess returned') {
-      alert("Error: Returned greater than quantity requested");
-    }
-    else{
-      //readsales();
-      //var data = JSON.parse(result);
-     // $('#extraSalesEditableToday').DataTable().ajax.reload();
-      //location.reload(true);
-      //$('#extraSalesEditableToday').load("loadExtraSalesToday.php");
-  } 
   });
 });
 
@@ -1777,59 +1685,6 @@ $('#extraSalesEditableYesterday').editableTableWidget();
             })
         }
 
-  $('#extraSalesEditableTomorrow').editableTableWidget();
-  $('#extraSalesEditableTomorrow td.uneditable').on('change', function(evt, newValue) {
-  return false;
-});
-  $('#extraSalesEditableTomorrow td').on('change', function(evt, newValue) {
-   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
-  var id = $(`#idTomorrow${rowx}`).text();
-  var qty = $(`#qtyTomorrow${rowx}`).text();
-  var discount = $(`#discountTomorrow${rowx}`).text();
-  var mpesa = 0;
-  var cash = 0;
-  var banked = 0;
-  var returned = 0;
-  var slip = "N/A";
-  var banker = "N/A";
-  var where = 'sales';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,discount:discount,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
-  function(result){
-     if (result == 'Unavailable') {
-      alert("Quantity Entered Unavailable");
-    }
-    else{
-    //location.reload(true);
-  }
-  });
-});
-
-   $('#extraSalesEditableNextMonth').editableTableWidget();
-  $('#extraSalesEditableNextMonth td.uneditable').on('change', function(evt, newValue) {
-  return false;
-});
-  $('#extraSalesEditableNextMonth td').on('change', function(evt, newValue) {
-   var rowx = parseInt(evt.target._DT_CellIndex.row)+1;
-  var id = $(`#idNextMonth${rowx}`).text();
-  var qty = $(`#qtyNextMonth${rowx}`).text();
-  var discount = $(`#discountNextMonth${rowx}`).text();
-  var mpesa = 0;
-  var cash = 0;
-  var banked = 0;
-  var returned = 0;
-  var slip = "N/A";
-  var banker = "N/A";
-  var where = 'sales';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,discount:discount,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
-  function(result){
-     if (result == 'Unavailable') {
-      alert("Quantity Entered Unavailable");
-    }
-    else{
-    //location.reload(true);
-  }
-  });
-});
 
   $('#salesEditableTomorrow').editableTableWidget();
   $('#salesEditableTomorrow td.uneditable').on('change', function(evt, newValue) {
@@ -1847,7 +1702,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   var slip = $(`#slipTomorrow${rowx}`).text();
   var banker = $(`#bankerTomorrow${rowx}`).text();
   var where = 'orders';
-  $.post("save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,returned:returned,banker:banker,where:where},
+  $.post("../save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,slip:slip,returned:returned,banker:banker,where:where},
   function(result){
      if (result == 'Unavailable') {
       alert("Quantity Entered Unavailable");
@@ -1867,7 +1722,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   var id = $(`#id${rowx}`).text();
   var name = $(`#name${rowx}`).text();
   var where = 'expenseHeading';
-  $.post("save.php",{id:id,name:name,where:where},
+  $.post("../save.php",{id:id,name:name,where:where},
   function(result){
   });
 });
@@ -1886,7 +1741,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
      var due = total - paid;
      var date = $(`#date${rowx}`).text();
   var where = 'expense';
-  $.post("save.php",{id:id,party:party,particular:particular,total:total,paid:paid,due:due,date:date,where:where},
+  $.post("../save.php",{id:id,party:party,particular:particular,total:total,paid:paid,due:due,date:date,where:where},
   function(result){
   });
 });
@@ -1895,9 +1750,8 @@ $('#extraSalesEditableYesterday').editableTableWidget();
         var name = $('#name').val();
         var number = $('#number').val();
         var location = $('#location').val();
-        var deliverer = $('#deliverer').val();
         var where = 'customer';
-        $.post("add.php",{name:name,number:number,location:location,deliverer:deliverer,where:where},
+        $.post("../add.php",{name:name,number:number,location:location,where:where},
         function(result){
          if (result == 'success') {
           alert('Customer Added Successfully');
@@ -1922,13 +1776,15 @@ $('#extraSalesEditableYesterday').editableTableWidget();
         var sp = $('#sp').val();
         var qty = $('#qty').val();
         var unit = $('#unit').val();
+        var upload = $('#upload').val();
         var contains = $('#contains').val();
         var subunit = $('#subunit').val();
         var replenish = $('#replenish').val();
         var restock = $('#restock').val();
         var where = 'stock';
-        $.post("add.php",{name:name,category:category,unit:unit,contains:contains,subunit:subunit,replenish:replenish,supplier:supplier,restock:restock,received:received,expiry:expiry,bp:bp,sp:sp,qty:qty,where:where},
+        $.post("../add.php",{name:name,category:category,unit:unit,contains:contains,upload:upload,subunit:subunit,replenish:replenish,supplier:supplier,restock:restock,received:received,expiry:expiry,bp:bp,sp:sp,qty:qty,where:where},
         function(result){
+          alert(result);
          if (result == 'success') {
           alert('Stock Added Successfully');
           location.reload(true);
@@ -1952,7 +1808,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
         var location = $('#location').val();
         var where = 'files';
         alert("Hi")
-        $.post("add.php",{name:name,description:description,location:location,upload:upload,where:where},
+        $.post("../add.php",{name:name,description:description,location:location,upload:upload,where:where},
         function(result){
          if (result == 'success') {
           alert('File Uploaded Successfully');
@@ -1970,7 +1826,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   $(document).on('click','#addCategory',function(){
         var category = $('#category').val();
         var where = 'categories';
-        $.post("add.php",{category:category,where:where},
+        $.post("../add.php",{category:category,where:where},
         function(result){
          if (result == 'success') {
           alert('Category Added Successfully');
@@ -1988,7 +1844,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   $(document).on('click','#addUnit',function(){
         var unit = $('#unit').val();
         var where = 'units';
-        $.post("add.php",{unit:unit,where:where},
+        $.post("../add.php",{unit:unit,where:where},
         function(result){
          if (result == 'success') {
           alert('Unit Added Successfully');
@@ -2013,7 +1869,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
         var replenish = $(`#replenish${id}`).val();
         var restock = $(`#restock${id}`).val();
         var where = 'stock_automation';
-        $.post("save.php",{stock:stock,unit:unit,contains:contains,subunit:subunit,replenish:replenish,restock:restock,where:where},
+        $.post("../save.php",{stock:stock,unit:unit,contains:contains,subunit:subunit,replenish:replenish,restock:restock,where:where},
         function(result){
          if (result == 'success') {
           alert('Automation Successfully Set for Selected Stock');
@@ -2029,7 +1885,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
         var name = $('#name').val();
          var contact = $('#contact').val();
         var where = 'supplier';
-        $.post("add.php",{name:name,contact:contact,where:where},
+        $.post("../add.php",{name:name,contact:contact,where:where},
         function(result){
          if (result == 'success') {
           alert('Supplier Added Successfully');
@@ -2054,7 +1910,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
           }
          }
         var where = 'note';
-        $.post("add.php",{title:title,message:message,access:access,where:where},
+        $.post("../add.php",{title:title,message:message,access:access,where:where},
         function(result){
          if (result == 'success') {
           alert('Note Added Successfully');
@@ -2072,7 +1928,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
          var reg = $('#reg').val();
          var route = $('#route').val();
         var where = 'vehicles';
-        $.post("add.php",{type:type,driver:driver,reg:reg,route:route,where:where},
+        $.post("../add.php",{type:type,driver:driver,reg:reg,route:route,where:where},
         function(result){
          if (result == 'success') {
           alert('Vehicle Added Successfully');
@@ -2096,7 +1952,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
          var due = total - paid;
          var date = $('#date').val();
         var where = 'expense';
-        $.post("add.php",{heading:heading,particular:particular,party:party,total:total,paid:paid,due:due,date:date,where:where},
+        $.post("../add.php",{heading:heading,particular:particular,party:party,total:total,paid:paid,due:due,date:date,where:where},
         function(result){
          if (result == 'success') {
           alert('Expense Added Successfully');
@@ -2114,7 +1970,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
          var start = $('#sickOffStart').val();
          var number = $('#sickoffNumber').val();
         var where = 'sickoff';
-        $.post("add.php",{employee:employee,reason:reason,start:start,number:number,where:where},
+        $.post("../add.php",{employee:employee,reason:reason,start:start,number:number,where:where},
         function(result){
          if (result == 'success') {
           alert('Sick leave application successfull');
@@ -2133,7 +1989,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
          var number = $('#leaveNumber').val();
          var standIn = $('#standIn').val();
         var where = 'leave';
-        $.post("add.php",{employee:employee,standIn:standIn,start:start,number:number,where:where},
+        $.post("../add.php",{employee:employee,standIn:standIn,start:start,number:number,where:where},
         function(result){
          if (result == 'success') {
           alert('Leave application successful');
@@ -2154,7 +2010,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
   $(document).on('click','#addExpenseHeading',function(){
         var heading = $('#heading').val();
         var where = 'expenseHeading';
-        $.post("add.php",{heading:heading,where:where},
+        $.post("../add.php",{heading:heading,where:where},
         function(result){
           alert(result);
          if (result == 'success') {
@@ -2177,7 +2033,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
          var gender = $('#gender').val();
          var salary = $('#salary').val();
         var where = 'deliverer';
-        $.post("add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,gender:gender,salary:salary,where:where},
+        $.post("../add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,gender:gender,salary:salary,where:where},
         function(result){
          if (result == 'success') {
           alert('Deliverer Added Successfully');
@@ -2202,7 +2058,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
          var gender = $('#gender').val();
          var salary = $('#salary').val();
         var where = 'cook';
-        $.post("add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,gender:gender,salary:salary,where:where},
+        $.post("../add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,gender:gender,salary:salary,where:where},
         function(result){
          if (result == 'success') {
           alert('Cook Added Successfully');
@@ -2227,7 +2083,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
          var gender = $('#gender').val();
          var salary = $('#salary').val();
         var where = 'cook';
-        $.post("add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,gender:gender,salary:salary,where:where},
+        $.post("../add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,gender:gender,salary:salary,where:where},
         function(result){
          if (result == 'success') {
           alert('Cleaner Added Successfully');
@@ -2253,7 +2109,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
          var role = $('#role').val();
          var salary = $('#salary').val();
         var where = 'office';
-        $.post("add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,role:role,gender:gender,salary:salary,where:where},
+        $.post("../add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,role:role,gender:gender,salary:salary,where:where},
         function(result){
          if (result == 'success') {
           alert('Office Staff Added Successfully');
@@ -2275,7 +2131,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       var id = el.attr("id");
       bootbox.confirm('Do you really want to delete the selected customer?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,where:where},
+          $.post("../delete.php",{id:id,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -2295,7 +2151,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       var id = el.attr("id");
       bootbox.confirm('Do you really want to delete the selected stock?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,where:where},
+          $.post("../delete.php",{id:id,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -2315,7 +2171,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       var id = el.attr("id");
       bootbox.confirm('Do you really want to delete the selected blacklisted customer?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,where:where},
+          $.post("../delete.php",{id:id,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -2335,7 +2191,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       var id = el.attr("id");
       bootbox.confirm('Do you really want to delete the selected expense heading?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,where:where},
+          $.post("../delete.php",{id:id,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -2355,7 +2211,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       var id = el.attr("id");
       bootbox.confirm('Do you really want to delete the selected expense?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,where:where},
+          $.post("../delete.php",{id:id,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -2376,7 +2232,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       var id = el.attr("id");
       bootbox.confirm('Do you really want to delete the selected category?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,where:where},
+          $.post("../delete.php",{id:id,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -2396,7 +2252,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       var id = el.attr("id");
       bootbox.confirm('Do you really want to delete the selected inventory unit?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,where:where},
+          $.post("../delete.php",{id:id,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -2416,7 +2272,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       var id = el.attr("id");
       bootbox.confirm('Do you really want to delete the selected supplier?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,where:where},
+          $.post("../delete.php",{id:id,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -2436,7 +2292,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       var id = el.attr("id");
       bootbox.confirm('Do you really want to delete the selected vehicle?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,where:where},
+          $.post("../delete.php",{id:id,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -2456,7 +2312,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       var id = el.attr("id");
       bootbox.confirm('Do you really want to delete the selected deliverer?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,where:where},
+          $.post("../delete.php",{id:id,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -2476,7 +2332,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       var id = el.attr("id");
       bootbox.confirm('Do you really want to delete the selected cook?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,where:where},
+          $.post("../delete.php",{id:id,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -2496,7 +2352,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       var id = el.attr("id");
       bootbox.confirm('Do you really want to delete the selected office staff?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,where:where},
+          $.post("../delete.php",{id:id,where:where},
         function(result){
             if(result == 1){
               $(el).closest('tr').css('background','tomato');
@@ -2516,7 +2372,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       var id = el.attr("id");
       bootbox.confirm('Do you really want to delete the selected note?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,where:where},
+          $.post("../delete.php",{id:id,where:where},
         function(result){
             if(result == 1){
               $(el).closest(`#card${id}`).css('background','silver');
@@ -2536,7 +2392,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
       var id = el.attr("id");
       bootbox.confirm('Do you really want to delete the selected note?',function(result)
         {if(result){
-          $.post("delete.php",{id:id,where:where},
+          $.post("../delete.php",{id:id,where:where},
         function(result){
           alert(result);
             if(result == 1){
@@ -2599,7 +2455,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
         var id = el.attr("id");
         var title = $(`#title${id}`).val();
         var body = $(`#body${id}`).val();
-        $.post("save.php",{id:id,title:title,body:body,where:where},
+        $.post("../save.php",{id:id,title:title,body:body,where:where},
         function(result){
           location.reload(true);
          });
@@ -2611,7 +2467,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
         var id = el.attr("id");
         var title = $(`#title${id}`).val();
         var body = $(`#body${id}`).val();
-        $.post("save.php",{id:id,title:title,body:body,where:where},
+        $.post("../save.php",{id:id,title:title,body:body,where:where},
         function(result){
           location.reload(true);
          });
@@ -2626,7 +2482,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
          var bp = $(`#bp${id}`).val();
         var sp = $(`#sp${id}`).val();
         var expiry = $(`#expiry${id}`).val();
-        $.post("add.php",{id:id,received:received,qty:qty,bp:bp,sp:sp,expiry:expiry,where:where},
+        $.post("../add.php",{id:id,received:received,qty:qty,bp:bp,sp:sp,expiry:expiry,where:where},
         function(result){
           location.reload(true);
          });
@@ -2639,7 +2495,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
         var now = $(`#now${id}`).val();
         var note = $(`#note${id}`).val();
          var next = $(`#next${id}`).val();
-        $.post("save.php",{id:id,now:now,note:note,next:next,where:where},
+        $.post("../save.php",{id:id,now:now,note:note,next:next,where:where},
         function(result){
           location.reload(true);
          });
@@ -2652,7 +2508,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
         var now = $(`#Now${id}`).val();
         var note = $(`#Note${id}`).val();
          var next = $(`#Next${id}`).val();
-        $.post("save.php",{id:id,now:now,note:note,next:next,where:where},
+        $.post("../save.php",{id:id,now:now,note:note,next:next,where:where},
         function(result){
            location.reload(true);
          });
@@ -2663,7 +2519,7 @@ $('#extraSalesEditableYesterday').editableTableWidget();
         var el = $(this);
         var id = el.attr("id");
         var driver = $(`#driver${id}`).val();
-        $.post("save.php",{id:id,driver:driver,where:where},
+        $.post("../save.php",{id:id,driver:driver,where:where},
         function(result){
            alert("Vehicle driver Successfully changed");
          });

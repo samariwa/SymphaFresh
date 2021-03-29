@@ -1,6 +1,6 @@
 <?php
  include "admin_nav.php";
- include('queries.php');
+ include('../queries.php');
  ?> 
 
         <!-- Begin Page Content -->
@@ -105,6 +105,10 @@
                  </select>
                   </div><br>
                   <div class="row">
+                 <label for="upload" style="margin-left: 60px">Upload product image:</label>
+                 <input type="file" id="upload" name="upload" style="padding:15px;margin-left: 50px" onchange="displayname(this,$(this))" required>
+                  </div><br>
+                  <div class="row">
                     <label for="received" style="margin-left: 60px;">Date Received:</label>
                  <input type="date" name="received" id="received" class="form-control col-md-9" required  style="padding:15px;margin-left: 60px" >
                   </div><br>
@@ -133,14 +137,11 @@
         </div>
       </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
       <a href="shelf_life.php" class="btn btn-info btn-md active" role="button" aria-pressed="true">Stock Shelf Life</a>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-3">
       <a href="damaged.php" class="btn btn-secondary btn-md active" role="button" aria-pressed="true" >Damaged Stock</a>
-      </div>
-      <div class="col-md-2">
-      <a href="leftovers.php" class="btn btn-light btn-md active" role="button" aria-pressed="true" >Leftover Cereals</a>
       </div>
       <div class="col-md-2">
       <a href="valuation.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" >Stock Valuation</a>

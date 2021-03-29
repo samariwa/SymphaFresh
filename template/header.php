@@ -2,6 +2,7 @@
  session_start();
  require('../config.php');
  require('../functions.php');
+ require('../queries.php');
  if (isset($_SESSION['logged_in'])) {
    if ($_SESSION['logged_in'] == TRUE) {
  //valid user has logged-in to the website
@@ -41,7 +42,7 @@
  
      if ((isset($_SESSION['LAST_ACTIVITY'])) && (time() - $_SESSION['LAST_ACTIVITY'] > $sessiontimeout) || (isset($_SESSION['LAST_ACTIVITY'])) && ($active == 2)) {
  //redirect the user back to login page for re-authentication
-          header("Location: ../auth/$logout_url");
+          header("Location: ../$logout_url");
          exit;
      }
      $_SESSION['LAST_ACTIVITY'] = time();
@@ -360,18 +361,18 @@
     <header class="header">
         <div class="header-top">
             <div class="mobile-header d-flex justify-content-between align-items-center d-xl-none">
-                <!-- <div class="d-flex align-items-center">
+                 <div class="d-flex align-items-center">
                     <div class="all-catagory-option mobile-device">
-                        <a class="bar-btn"><i class="fas fa-bars"></i>All Catagories</a>
-                        <a class="close-btn"><i class="fas fa-times"></i>All Catagories</a>
+                        <a class="bar-btn"><i class="fas fa-bars"></i>All Categories</a>
+                        <a class="close-btn"><i class="fas fa-times"></i>All Categories</a>
                     </div>
                     <a href="index.php" class="logo"><img src="../assets/images/logo.png" alt="logo"></a>
                 </div> 
 
                 <div class="all-catagory-option mobile-device">
-                    <a class="bar-btn"><i class="fas fa-bars"></i><span class="ml-2 d-none d-md-inline">All Catagories</span></a>
-                    <a class="close-btn"><i class="fas fa-times"></i><span class="ml-2 d-none d-md-inline">All Catagories</span></a>
-                </div> -->
+                    <a class="bar-btn"><i class="fas fa-bars"></i><span class="ml-2 d-none d-md-inline">All Categories</span></a>
+                    <a class="close-btn"><i class="fas fa-times"></i><span class="ml-2 d-none d-md-inline">All Categories</span></a>
+                </div> 
                 <a href="index.php" class="logo"><img src="../assets/images/logo.png" alt="logo"></a>
 
                 <!-- search select -->
@@ -396,11 +397,18 @@
                     <div class="select-search-option d-none d-md-flex">
                         <div class="flux-custom-select">
                             <select>
-                              <option value="0">Select Catagory</option>
-                              <option value="1">Chicken Products</option>
-                              <option value="2">Fish</option>
-                              <option value="3">Vegetables</option>
-                              <option value="4">Meat</option>
+                              <option value="0">Select Category</option>
+                              <?php
+                                $count = 0;
+                                foreach($categoriesList as $row){
+                                $count++;
+                                $id = $row['id'];
+                                $category = $row['Category_Name'];
+                            ?>
+                              <option value="<?php echo $id; ?>"><?php echo $category; ?></option>
+                            <?php
+                                }
+                            ?>  
                             </select>
                         </div>
                         <form action="#" class="search-form">
@@ -421,7 +429,7 @@
                         <li class="my-account"><a class="dropdown-toggle" href="#" role="button" id="myaccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user mr-1"></i> Hello, <?php echo $logged_in_user; ?></a>
                             <ul class="submenu dropdown-menu" aria-labelledby="myaccount">
                                 <li><a href="profile.php">Profile</a></li>
-                                <li><a href="../auth/logout.php">Sign Out</a></li>
+                                <li><a href="../auth/logout.php?page_url=<?php echo $redirect_link; ?>">Sign Out</a></li>
                             </ul>
                         </li>
                         <?php
@@ -429,7 +437,7 @@
                         }
                           else{
                         ?>
-                        <li class="signin-option"><a href="../auth/login.php"><i class="fas fa-user mr-2"></i>Sign In</a></li>
+                        <li class="signin-option"><a href="../auth/login.php?page_url=<?php echo $redirect_link; ?>"><i class="fas fa-user mr-2"></i>Sign In</a></li>
                         <?php
                           }
                         ?>

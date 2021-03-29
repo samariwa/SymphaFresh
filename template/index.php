@@ -124,41 +124,25 @@ include('header.php');
                         </div>
                         <div class="catagory-container">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
+                            <?php
+                                $count = 0;
+                                foreach($categoriesList as $row){
+                                $count++;
+                                $id = $row['id'];
+                                $category = $row['Category_Name'];
+                                $icon = $row['Icon'];
+                            ?>
+                                  <div class="swiper-slide">
                                     <a href="product-list.php" class="catagory-item">
                                         <div class="catagory-icon">
-                                          <img src="../assets/images/category/chicken.png" alt="chicken" width="60" height="60">
+                                          <img src="../assets/images/category/<?php echo $icon; ?>" alt="chicken" width="60" height="60">
                                         </div>
-                                        <p class="catagory-name">Chicken Products</p>
+                                        <p class="catagory-name"><?php echo $category; ?></p>
                                     </a>
                                 </div>
-
-                                <div class="swiper-slide">
-                                    <a href="product-list.php" class="catagory-item">
-                                        <div class="catagory-icon">
-                                        <img src="../assets/images/category/fish.png" alt="chicken" width="105" height="105">
-                                        </div>
-                                        <p class="catagory-name">Fish</p>
-                                    </a>
-                                </div>
-
-                                <div class="swiper-slide">
-                                    <a href="product-list.php" class="catagory-item">
-                                        <div class="catagory-icon">
-                                        <img src="../assets/images/category/vegetables.png" alt="chicken" width="62" height="62">
-                                        </div>
-                                        <p class="catagory-name">Vegetables</p>
-                                    </a>
-                                </div>
-
-                                <div class="swiper-slide">
-                                    <a href="product-list.php" class="catagory-item">
-                                        <div class="catagory-icon">
-                                        <img src="../assets/images/category/meat.png" alt="chicken" width="80" height="80">
-                                        </div>
-                                        <p class="catagory-name">Meat</p>
-                                    </a>
-                                </div>
+                            <?php
+                            }
+                            ?>
 
                             </div>
                         </div>

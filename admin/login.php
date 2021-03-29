@@ -5,8 +5,8 @@ use PHPMailer\PHPMailer\SMTP;
 //Start PHP session
 session_start();
 //require user configuration and database connection parameters
-require('config.php');
-require_once "functions.php";
+require('../config.php');
+require_once "../functions.php";
 if (isset($_SESSION['logged_in'])) {
 	if ($_SESSION['logged_in'] == TRUE) {
 //valid user has logged-in to the website
@@ -360,7 +360,7 @@ if (!$_SESSION['logged_in']):
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Kwanza Tukule | Login</title>
+    <title>Sympha Fresh | Login</title>
     <link rel="stylesheet" href="auth.css"/>
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -371,7 +371,7 @@ if (!$_SESSION['logged_in']):
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="response.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <link rel = "icon" href ="assets/img/logo.png" type = "image/x-icon">
+    <link rel = "icon" href ="../assets/img/logo.png" type = "image/x-icon">
   </head>
   <body>
             <nav style="background-color: white;opacity: 0.9">

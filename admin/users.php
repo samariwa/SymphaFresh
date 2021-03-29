@@ -1,6 +1,6 @@
 <?php
  include "admin_nav.php";
- include('queries.php');
+ include('../queries.php');
  ?> 
 
         <!-- Begin Page Content -->
@@ -42,8 +42,8 @@
            $count = 0;
            foreach($usersList as $row){
             $count++;
-             $name = $row['username'];
-            $activity = $row['on'];
+             $name = $row['firstname'];
+            $activity = $row['online'];
             $lastActivity = $row['lastActivity'];
             $active = $row['active'];
             $login = $row['loginattempt'];
@@ -88,8 +88,8 @@
            $count2 = 0;
            foreach($usersList as $row){
             $count2++;
-             $name = $row['username'];
-            $activity = $row['on'];
+             $name = $row['firstname'];
+            $activity = $row['online'];
             $active = $row['active'];
             $login = $row['loginattempt'];
             $lastActivity = $row['lastActivity'];

@@ -1,6 +1,6 @@
 <?php
  include "admin_nav.php";
- include('queries.php');
+ include('../queries.php');
  ?>
 
         <!-- Begin Page Content -->
@@ -30,20 +30,17 @@
        if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Stores Manager') {
         ?>
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
       <a href="addOrder.php" class="btn btn-success btn-md active" role="button" aria-pressed="true"><i class="fa fa-plus-circle"></i>&ensp;New Order</a>
       </div>
-      <div class="col-md-2">
-      <a href="distribution.php" class="btn btn-warning btn-md active offset-3" role="button" aria-pressed="true" >Goods Distribution</a>
-    </div>
       <div class="col-md-3">
-      <a href="extra_sales.php" class="btn btn-primary btn-md active offset-6" role="button" aria-pressed="true" >Extra Sales</a>
+      <a href="distribution.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" >Goods Distribution</a>
     </div>
     <div class="col-md-3">
-      <a href="gatePass.php" class="btn btn-dark btn-md active offset-4" role="button" aria-pressed="true" >Gate Pass</a>
+      <a href="gatePass.php" class="btn btn-dark btn-md active offset-6" role="button" aria-pressed="true" >Gate Pass</a>
     </div>
-    <div class="col-md-2">
-      <a href="returned.php" class="btn btn-info btn-md active" role="button" aria-pressed="true">Returned Goods</a>
+    <div class="col-md-3">
+      <a href="returned.php" class="btn btn-info btn-md active offset-6" role="button" aria-pressed="true">Returned Goods</a>
     </div>
     </div><br>
      <?php

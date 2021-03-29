@@ -1,5 +1,5 @@
 <?php
-require('config.php');
+require('../config.php');
 session_start();
 $user = $_SESSION['user'];
 $userId = mysqli_query($connection,"SELECT id  FROM `users` WHERE username = '$user'")or die($connection->error);

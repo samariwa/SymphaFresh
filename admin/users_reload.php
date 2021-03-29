@@ -1,5 +1,5 @@
 <?php
- include('queries.php');
+ include('../queries.php');
  session_start();
 $view = $_SESSION['role'];
  ?>

@@ -1,5 +1,5 @@
 <?php
- include('queries.php');
+ include('../queries.php');
 $where =$_POST['where'];
 if($where == 'fastmoving' )
 {   

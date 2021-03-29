@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('config.php');
+require('../config.php');
 
 function sanitize($data) {
     $data = trim($data);

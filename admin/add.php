@@ -1,6 +1,6 @@
 <?php
-require('config.php');
-require_once "functions.php";
+require('../config.php');
+require_once "../functions.php";
 $where =$_POST['where'];
 session_start();
 if($where == 'customer' )
@@ -8,15 +8,15 @@ if($where == 'customer' )
    $name = $_POST['name'];
    $location = $_POST['location'];
    $number = $_POST['number'];
-   $deliverer = $_POST['deliverer'];
-   $row = mysqli_query($connection,"SELECT id,Name,Location,Number,Deliverer,Status,Note FROM customers WHERE Name = '".$name."' OR Number = '".$number."'")or die($connection->error);
+   #$deliverer = $_POST['deliverer'];
+   $row = mysqli_query($connection,"SELECT id,Name,Location,Number,Status,Note FROM customers WHERE Name = '".$name."' OR Number = '".$number."'")or die($connection->error);
    $result = mysqli_fetch_array($row);
    if ( $result == TRUE) {
     echo "exists";
    }
    else{
      echo "success";
-    mysqli_query($connection,"INSERT INTO `customers` (`Name`,`Location`,`Number`,`Deliverer`) VALUES ('$name','$location','$number','$deliverer')") or die(mysqli_error($connection));
+    mysqli_query($connection,"INSERT INTO `customers` (`Name`,`Location`,`Number`) VALUES ('$name','$location','$number')") or die(mysqli_error($connection));
    }
 }
 else if ($where == 'stock') {
@@ -199,9 +199,9 @@ else if ($where == 'note') {
      $title = $_POST['title'];
      $message = $_POST['message'];
      $access = $_POST['access'];
-     $user = $_SESSION['user'];
+     $email = $_SESSION['email'];
       echo "success";
-     $row = mysqli_query($connection,"SELECT id FROM users WHERE username = '".$user."'")or die($connection->error);
+     $row = mysqli_query($connection,"SELECT id FROM users WHERE email = '".$email."'")or die($connection->error);
      $result = mysqli_fetch_array($row);
      $id = $result['id'];
       mysqli_query($connection,"INSERT INTO `notes` (`User_id`,`Title`,`Note`,`Public`) VALUES ('$id','$title','$message','$access')") or die(mysqli_error($connection));
@@ -222,8 +222,8 @@ elseif ($where == 'calendar') {
   $title = $_POST["title"];
   $start_event = $_POST["start"];
   $end_event = $_POST["end"];
-  $user = $_SESSION['user'];
-   $userId = mysqli_query($connection,"SELECT id  FROM `users` WHERE username = '$user'")or die($connection->error);
+  $user = $_SESSION['email'];
+   $userId = mysqli_query($connection,"SELECT id  FROM `users` WHERE email = '$user'")or die($connection->error);
    $value = mysqli_fetch_array($userId);
    $userID = $value['id'];
   mysqli_query($connection,"INSERT INTO event (title,User_id, start_event, end_event) VALUES ('$title','$userID', '$start_event', '$end_event')") or die(mysqli_error($connection));
@@ -759,8 +759,8 @@ elseif ($where == 'files') {
   $description = $_POST['description'];
   $upload = $_POST['upload'];
   $location = $_POST['location'];
-  $owner = $_SESSION['user'];
-  $owner_id= mysqli_query($connection,"SELECT staffID FROM users WHERE username = '".$owner."'")or die($connection->error);
+  $owner = $_SESSION['email'];
+  $owner_id= mysqli_query($connection,"SELECT staffID FROM users WHERE email = '".$owner."'")or die($connection->error);
     $uploader_id = mysqli_fetch_array($owner_id);
      $uploader = $uploader_id['staffID'];
       $exists= mysqli_query($connection,"SELECT *  FROM files WHERE file_name = '".$name."'")or die($connection->error);

@@ -1,8 +1,8 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
-require_once "functions.php";
-require('config.php');
+require_once "../functions.php";
+require('../config.php');
 $verified = FALSE;
 $no_Error = TRUE;
 $exists = TRUE;
@@ -55,7 +55,7 @@ $exists = TRUE;
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Kwanza Tukule | Forgot Password</title>
+    <title>Sympha Fresh | Forgot Password</title>
     <link rel="stylesheet" href="auth.css"/>
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -66,7 +66,7 @@ $exists = TRUE;
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="response.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <link rel = "icon" href ="assets/img/logo.png" type = "image/x-icon">
+    <link rel = "icon" href ="../assets/img/logo.png" type = "image/x-icon">
   </head>
   <body>
             <nav style="background-color: white;opacity: 0.9">

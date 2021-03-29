@@ -47,10 +47,6 @@ if (isset($_SESSION['logged_in'])) {
         header("Location: ../$home_url"); 
         exit();
       }else{
-        $roleSession = mysqli_query($connection,"SELECT jobs.Name as Name FROM `users` inner join jobs on users.Job_id = jobs.id WHERE `email`='$logged_in_email'");
-        $row5 = mysqli_fetch_array($roleSession);
-        $role = $row5['Name'];      
-         $_SESSION['role'] = $role;
         header("Location: ../$admin_url"); 
         exit();
       }
@@ -118,6 +114,10 @@ if ((isset($_POST["pass"])) && (isset($_POST["email"])) && ($_SESSION['logged_in
         $identity = $row['firstname'];
         $user_email = $row['email'];
         $access = $row['access'];
+        $roleSession = mysqli_query($connection,"SELECT jobs.Name as Name FROM `users` inner join jobs on users.Job_id = jobs.id WHERE `email`='$user_email'");
+        $row5 = mysqli_fetch_array($roleSession);
+        $role = $row5['Name'];      
+     $_SESSION['role'] = $role;
     $_SESSION['user'] = $identity;
     $_SESSION['email'] = $user_email;
 //validate email
@@ -441,6 +441,10 @@ if (!$_SESSION['logged_in']):
               Login
             </button>
           </div>
+          <div>
+            <br>
+             <p>Don't have an account?&ensp;<a href="registration.php" style="color: inherit;text-decoration: underline;">Register</a></p>
+          </div>
           <?php 
           if (($validationresults == FALSE) || ($registered == FALSE) || ($activate == FALSE) || ($deactivated == TRUE) || ($loggedIn == FALSE) || ($illegalattempts == TRUE)){
           ?>
@@ -471,13 +475,16 @@ if (!$_SESSION['logged_in']):
 else:
 	//redirect to dashboard
   if($access == 'customer'){
-    header("Location: ../$home_url"); 
+    $redirect_page = $_REQUEST['page_url'];
+    if($redirect_link == ''){
+      header("Location: ../$home_url"); 
+      exit();
+    }
+    else{
+      header("Location: $redirect_page"); 
     exit();
+    }
   }else{
-       $roleSession = mysqli_query($connection,"SELECT jobs.Name as Name FROM `users` inner join jobs on users.Job_id = jobs.id WHERE `email`='$logged_in_email'");
-        $row5 = mysqli_fetch_array($roleSession);
-        $role = $row5['Name'];      
-         $_SESSION['role'] = $role;
     header("Location: ../$admin_url"); 
     exit();
   }
