@@ -26,14 +26,7 @@
         else{
           $salesYesterday = "0.00";
         }
-        $row1 = mysqli_fetch_array($extraSalesYesterday);
-        if ($row1['Sales_yesterday'] > "0") {
-          $extraSalesYesterday = $row1['Sales_yesterday'];
-        }
-        else{
-          $extraSalesYesterday = 0;
-        }
-        $totalSalesYesterday = $salesYesterday + $extraSalesYesterday;
+        $totalSalesYesterday = $salesYesterday;
         if ($totalSalesYesterday > 0) {
           $totalSalesYesterday = $totalSalesYesterday;
         }
@@ -47,14 +40,7 @@
         else{
           $revenueYesterday = 0;
         }
-        $row3 = mysqli_fetch_array($extraRevenueYesterday);
-        if ($row3['Revenue_yesterday'] > "0") {
-        $extraRevenueYesterday = $row3['Revenue_yesterday'];
-         }
-        else{
-          $extraRevenueYesterday = 0;
-        }
-        $totalRevenueYesterday = $revenueYesterday + $extraRevenueYesterday;
+        $totalRevenueYesterday = $revenueYesterday;
         if ($totalRevenueYesterday > 0) {
           $totalRevenueYesterday = $totalRevenueYesterday;
         }
@@ -68,14 +54,7 @@
          else{
           $mpesaYesterday = 0;
         }
-        $row5 = mysqli_fetch_array($extraMpesaYesterday);
-         if ($row5['Mpesa_yesterday'] > "0") {
-        $extraMpesaYesterday = $row5['Mpesa_yesterday'];
-        }
-         else{
-          $mpesaYesterday = 0;
-        }
-        $totalMpesaYesterday = $mpesaYesterday + $row5['Mpesa_yesterday'];
+        $totalMpesaYesterday = $mpesaYesterday;
         if ($totalMpesaYesterday > 0) {
           $totalMpesaYesterday = $totalMpesaYesterday;
         }
@@ -89,14 +68,7 @@
         else{
           $cashYesterday = 0;
         }
-        $row7 = mysqli_fetch_array($extraCashYesterday);
-        if ($row7['Cash_yesterday'] > "0") {
-        $extraCashYesterday = $row7['Cash_yesterday'];
-         }
-        else{
-          $extraCashYesterday = 0;
-        }
-        $totalCashYesterday = $cashYesterday + $extraCashYesterday;
+        $totalCashYesterday = $cashYesterday;
         if ($totalCashYesterday > 0) {
           $totalCashYesterday = $totalCashYesterday;
         }
@@ -110,14 +82,7 @@
         else{
           $mpesaDebt = 0;
         }
-        $row9 = mysqli_fetch_array($extraMpesaDebt);
-        if ( $row9['Mpesa_debt'] > "0") {
-       $extraMpesaDebt = $row9['Mpesa_debt']; 
-         }
-        else{
-          $extraMpesaDebt = 0;
-        }
-        $totalMpesaDebt = $mpesaDebt + $extraMpesaDebt;
+        $totalMpesaDebt = $mpesaDebt;
         if ($totalMpesaDebt > 0) {
           $totalMpesaDebt = $totalMpesaDebt;
         }
@@ -131,14 +96,7 @@
         else{
           $cashDebt = 0;
         }
-        $row11 = mysqli_fetch_array($extraCashDebt);
-         if ( $row11['Cash_debt'] > "0") {
-        $extraCashDebt = $row11['Cash_debt'];
-         }
-        else{
-          $extraCashDebt = 0;
-        }
-        $totalCashDebt = $cashDebt + $extraCashDebt;
+        $totalCashDebt = $cashDebt;
         if ($totalCashDebt > 0) {
           $totalCashDebt = $totalCashDebt;
         }
@@ -152,14 +110,7 @@
         else{
           $bankedYesterday = 0;
         }
-        $row13 = mysqli_fetch_array($extraBankedYesterday);
-        if ( $row13['Banked_yesterday'] > "0") {
-        $extraBankedYesterday = $row13['Banked_yesterday'];
-        }
-        else{
-          $extraBankedYesterday = 0;
-        }
-        $totalBankedYesterday = $bankedYesterday + $extraBankedYesterday;
+        $totalBankedYesterday = $bankedYesterday;
         if ($totalBankedYesterday > 0) {
           $totalBankedYesterday = $totalBankedYesterday;
         }

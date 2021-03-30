@@ -16,7 +16,7 @@
            include "dashboard_tabs.php";
           ?>
  <div class="row">
-  <div class="col-md-2">
+  <div class="col-md-3">
              <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true"><i class="fa fa-plus-circle"></i>&ensp;New Deliverer</a>
        <!-- Modal -->
       <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
@@ -68,8 +68,8 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3">
-      <a href="payroll.php" class="btn btn-warning btn-md active offset-2" role="button" aria-pressed="true" >Employee Payroll</a>
+    <div class="col-md-2">
+      <a href="payroll.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" >Employee Payroll</a>
       </div>
      <div class="col-md-2">
            <?php
@@ -80,7 +80,7 @@
     <div class="col-md-2">
       <a href="sickoff.php" class="btn btn-light btn-md active offset-4" role="button" aria-pressed="true" >Employee Sick Off</a>
       </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
       <a href="leave.php" class="btn btn-primary btn-md active offset-7" role="button" aria-pressed="true" >Employee Leave</a>
       </div>
         </div><br>

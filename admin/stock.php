@@ -32,7 +32,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form method="POST">
+              <form method="POST" id="stock_form">
                 <div class="row">
                  <select type="text" name="category" id="category" class="form-control col-md-9" style="padding-right:15px;padding-left:15px;margin-left: 60px" required onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
                   <option value="" selected="selected" disabled>Category...</option>
@@ -130,7 +130,7 @@
                   </div>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" style="margin-right: 50px" id="addStock">Add Stock</button>
+              <button type="button" class="btn btn-primary" style="margin-right: 50px" id="addStock">Add Stock</button>
             </form>
             </div>
           </div>

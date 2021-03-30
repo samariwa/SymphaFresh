@@ -8,7 +8,7 @@ $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor($_SESSION["user"]);
-$pdf->SetTitle('Kwanza Tukule Report');
+$pdf->SetTitle('Sympha Fresh Report');
 $pdf->SetSubject('Report');
 $pdf->SetKeywords('PDF, Report, export');
 
@@ -49,14 +49,10 @@ $pdf->AddPage();
 $date = date( 'l, F d, Y ', time());
 $result1 = mysqli_fetch_array($monthSalesValue);
 $sales = $result1['sum'];
-$result16 = mysqli_fetch_array($monthExtraSalesValue);
-$extra_sales = $result16['sum'];
-$total_sales = $sales + $extra_sales;
+$total_sales = $sales;
 $result2 = mysqli_fetch_array($monthIncomeValue);
 $income = $result2['sum'];
-$result17 = mysqli_fetch_array($monthExtraIncomeValue);
-$extra_income = $result17['sum'];
-$total_income = $income + $extra_income;
+$total_income = $income;
 $result3 = mysqli_fetch_array($monthExpenseValue);
 $expenses = $result3['sum'];
 $result4 = mysqli_fetch_array($salariesTotal);
@@ -79,15 +75,11 @@ elseif ($net < 0) {
 }
 $result5 = mysqli_fetch_array($lastmonthSalesValue);
 $last_sales = $result5['sum'];
-$result14 = mysqli_fetch_array($lastmonthExtraSalesValue);
-$last_extra_sales = $result14['sum'];
 $result6 = mysqli_fetch_array($lastmonthIncomeValue);
 $last_income = $result6['sum'];
-$result15 = mysqli_fetch_array($lastmonthExtraIncomeValue);
-$last_extra_income = $result15['sum'];
 $result7 = mysqli_fetch_array($lastmonthExpenseValue);
 $last_expenses = $result7['sum'];
-$last_gross = ($last_income + $last_extra_income) - ($last_sales + $last_extra_sales);
+$last_gross = ($last_income) - ($last_sales);
 $gross_up_down = '';
 if ($last_gross < $gross) {
  $gross_up_down = 'an upward';
@@ -126,26 +118,12 @@ elseif ($last_net < 0) {
   $resultArrayfast = array($name, $total);
   array_push($fastmovingproducts, $resultArrayfast);
   }
-  $fastsellingproducts = array();
-  foreach($fastsellingMonth as $row){
-  $name = $row['name'];
-  $total = $row['sum'];
-  $resultArrayextrafast = array($name, $total);
-  array_push($fastsellingproducts, $resultArrayextrafast);
-  }
   $slowmovingproducts = array();
   foreach($slowmovingMonth as $row){
   $name = $row['name'];
   $total = $row['sum'];
   $resultArrayslow = array($name, $total);
   array_push($slowmovingproducts, $resultArrayslow);
-  }
-  $slowsellingproducts = array();
-  foreach($slowsellingMonth as $row){
-  $name = $row['name'];
-  $total = $row['sum'];
-  $resultArrayextraslow = array($name, $total);
-  array_push($slowsellingproducts, $resultArrayextraslow);
   }
   $payerList = array();
   foreach($biggestPayers as $row){

@@ -1,7 +1,6 @@
 (function ($) {
     "use strict";
 
-
     // catagory-container swiper slider init
     var catagoryContainer = new Swiper('.catagory-container', {
         slidesPerView: 6,
@@ -397,3 +396,41 @@ $("input[type='radio']").click(function(){
     else{ $('.myratings').css('color','green'); $(".myratings").text(sim); } 
     }); 
 });
+
+
+$(document).on('click','.userSubscription',function(){
+    var email = $('.userSubscription').val();
+    var where = 'newsletter'
+    $.post("../add.php",{email:email,where:where},
+    function(result){
+        if (result == 'success') {
+            alert('Thank you. Your newsletter subsription was successful!');
+            location.reload(true);
+           }
+            else if (result == 'exists') {
+            alert('You are already subscribed for our newsletter.');
+           }
+            else{
+            alert("Something went wrong");
+           }
+    });        
+});
+
+$(document).on('click','.anonymousSubscription',function(){
+    var email = $('#anonymousEmail').val();
+    var where = 'newsletter'
+    $.post("../add.php",{email:email,where:where},
+    function(result){
+        if (result == 'success') {
+            alert('Thank you. Your newsletter subsription was successful!');
+            location.reload(true);
+           }
+            else if (result == 'exists') {
+            alert('You are already subscribed for our newsletter.');
+           }
+            else{
+            alert("Something went wrong");
+           }
+    }); 
+  });
+

@@ -33,9 +33,12 @@ else if ($where == 'stock') {
        $supplier = $_POST['supplier'];
        $received = $_POST['received'];
        $expiry = $_POST['expiry'];
-       $image = $_POST['upload'];
+       echo "Hi";
+       $image = $_POST['image'];
+       $image2 = $_FILES['image']['tmp_name'];
        $imageName = time() . '.png';
        echo $image;
+       echo $image2;
        //file_put_contents($imageName, $image);
        //$image_file = addslashes(file_get_contents($imageName));
        //echo $image_file;
@@ -793,5 +796,25 @@ elseif ($where == 'files') {
       }
 }
 
-
+elseif ($where == 'newsletter') {
+  $email = $_POST['email'];
+  $row = mysqli_query($connection,"SELECT * FROM newsletter_subscribers WHERE email = '".$email."'")or die($connection->error);
+   $result = mysqli_fetch_array($row);
+   if ( $result == TRUE) {
+     echo "exists";
+   }
+   else{
+    echo "success";
+    $registered = "";
+    $row = mysqli_query($connection,"SELECT * FROM users WHERE email = '".$email."'")or die($connection->error);
+    $result = mysqli_fetch_array($row);
+    if ( $result == TRUE) {
+      $registered = "1";
+    }
+    else{
+      $registered = "0";
+    }
+    mysqli_query($connection,"INSERT INTO `newsletter_subscribers` (`email`, `registered_user`) VALUES ('$email','$registered')") or die(mysqli_error($connection));
+   }
+}
  ?>

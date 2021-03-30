@@ -434,6 +434,11 @@
                         </li>
                         <?php
                           }
+                            else{
+                            ?>
+                              <li class="signin-option"><a href="../auth/login.php?page_url=<?php echo $redirect_link; ?>"><i class="fas fa-user mr-2"></i>Sign In</a></li>    
+                            <?php
+                          }
                         }
                           else{
                         ?>

@@ -384,3 +384,12 @@ $("input[type='radio']").click(function(){
     else{ $('.myratings').css('color','green'); $(".myratings").text(sim); } 
     }); 
 });
+
+function userSubscription(){
+    alert("Hi");
+   }
+   
+   
+   function anonymousSubscription(){
+       alert("Hi");
+   }
