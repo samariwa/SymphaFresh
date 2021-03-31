@@ -39,6 +39,8 @@ $passwordmatch  = TRUE;
              if(($passwordnotempty == TRUE) && ($passwordnotempty1 == TRUE) && ($passwordmatch == TRUE)){
                  $hash = password_hash($desired_password, PASSWORD_DEFAULT);
                  mysqli_query($connection, "UPDATE users SET password= '$hash' WHERE email='$email'");
+                 $message = "Your password reset was successfull!";
+                  echo "<script type='text/javascript'>alert('$message');</script>";
                  //redirect to login page
 		         header("Location: $login_url"); 
 		         exit;
