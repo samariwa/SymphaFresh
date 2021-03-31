@@ -373,7 +373,7 @@ if (!$_SESSION['logged_in']):
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Registration</title>
+  <title>Login</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->  
@@ -431,7 +431,7 @@ if (!$_SESSION['logged_in']):
               </label>
             </div>
             <div>
-              <a href="#" class="txt1" style="text-decoration: none;">
+              <a href="forgot.php" class="txt1" style="text-decoration: none;">
                 Forgot Password?
               </a>
             </div>

@@ -1,6 +1,5 @@
 <?php
 require_once "../functions.php";
-  generateRandomString();
 require('../config.php');
 $passwordnotempty = TRUE;
 $passwordvalidate = TRUE;

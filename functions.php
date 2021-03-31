@@ -10,7 +10,7 @@
    }
    function redirectToLoginPage(){
    require('config.php');
- 	header('Location:$login_url');
+ 	header("Location:../$login_url?page_url=../$home_url");
    	exit();
  }
  function genRandomSaltString() {
