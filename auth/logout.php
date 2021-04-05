@@ -27,7 +27,7 @@ if (isset($_SESSION['logged_in'])) {
         exit();
         }
       }else{
-        header("Location: ../$home_url"); 
+        header("Location: ../$admin_url"); 
         exit();
       }
 }

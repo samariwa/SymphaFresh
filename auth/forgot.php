@@ -22,14 +22,14 @@ $exists = TRUE;
         require_once "PHPMailer/SMTP.php";
          $mail = new PHPMailer(true);
         $mail -> addAddress($email,'Recepient');
-        $mail -> setFrom("symphauthenticator@gmail.com", "Sympha Fresh");
+        $mail -> setFrom($authenticator_email,$organization);
         $mail->IsSMTP();
-        $mail->Host = "smtp.gmail.com";
+        $mail->Host = $mail_host;
         // optional
         // used only when SMTP requires authentication  
         $mail->SMTPAuth = true;
-        $mail->Username = 'symphauthenticator@gmail.com';
-        $mail->Password = 'Kenya.2030';
+        $mail->Username = $authenticator_email;
+        $mail->Password = $authenticator_password;
         $mail -> Subject = "Reset Password";
         $mail -> isHTML(true);
         $mail -> Body = "

@@ -6,7 +6,6 @@ require('../functions.php');
 session_start();
 $botDetect = FALSE;
 if (isset($_REQUEST['submit_button'])) {
-	$iptocheck = $_SERVER['REMOTE_ADDR'];
 	$url = "https://www.google.com/recaptcha/api/siteverify";
 	$data = [
 		'secret' => "6LcD5ggaAAAAAKBfRn4dI-qMbsY0yUEERC-dZ7jy",
@@ -46,7 +45,6 @@ if (isset($_REQUEST['submit_button'])) {
         $random = genRandomSaltString();
         $salt_ip = substr($random, 0, $length_salt);
         //hash the ip address, user-agent and the salt
-        $useragent = $_SERVER["HTTP_USER_AGENT"];
         $hash_user = sha1($salt_ip . $iptocheck . $useragent);
         //concatenate the salt and the hash to form a signature
         $signature = $salt_ip . $hash_user;

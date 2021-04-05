@@ -117,7 +117,7 @@
                             <?php
                             $currentYear = date("Y");
                             ?>
-                                <p class="copyright">Copyright &copy; <?php echo $currentYear; ?> <a href="">Sympha Fresh</a> | All Rights Reserved.</p>
+                                <p class="copyright">Copyright &copy; <?php echo $currentYear; ?> <a href=""><?php echo $organization ?></a> | All Rights Reserved.</p>
                             </div>
 
                             <div class="col-md-6 d-flex justify-content-center justify-content-md-end">

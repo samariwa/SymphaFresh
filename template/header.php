@@ -56,7 +56,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sympha Fresh - Fresh and on Time!</title>
+    <title><?php echo $organization ?> - Fresh and on Time!</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/favicon.png" />
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/all.min.css">
@@ -308,7 +308,28 @@
                     <span>Total</span> 
                     <span>Ksh<?php echo number_format($total,2); ?></span>   
                 </p>
-                <a <?php if($count == 0){?> href="#" <?php } else{ ?>href="checkout.php" <?php } ?> class="procced-checkout"  >Proceed to Checkout</a>
+                <a <?php if(($count == 0)){
+                ?> 
+                href="#" 
+                <?php 
+                  } else{ 
+                    if (isset($_SESSION['logged_in'])) {
+                        if ($_SESSION['logged_in'] == TRUE) {
+                ?> 
+                     href="checkout.php" 
+                <?php 
+                        }
+                        else{ ?>
+                            href="../auth/login.php?page_url=<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/checkout.php' ?>"
+                        <?php }
+                    }  
+                    else{
+                        ?>
+                        href="../auth/login.php?page_url=<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/checkout.php' ?>"
+                    <?php
+                    } 
+                  } 
+                ?> class="procced-checkout">Proceed to Checkout</a>
                 <a <?php if($count == 0){?> href="#" <?php } else{ ?>href="<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/product-list.php?action=clear' ?>" <?php } ?> class="clear-cart" style=" background-color: #df4759;color: white;display: block;text-align: center;padding: 10px 30px;border-radius: 5px;margin-top: 10px;">Clear Cart</a>
             </div>
         </div>
@@ -396,13 +417,13 @@
                           }
                             else{
                             ?>
-                              <li class="signin-option"><a href="../auth/login.php?page_url=<?php echo $redirect_link; ?>"><i class="fas fa-user mr-2"></i>Sign In</a></li>    
+                              <li class="signin-option"><a href="<?php echo  '../auth/login.php?page_url='.$redirect_link; ?>"><i class="fas fa-user mr-2"></i>Sign In</a></li>    
                             <?php
                           }
                         }
                           else{
                         ?>
-                        <li class="signin-option"><a href="../auth/login.php?page_url=<?php echo $redirect_link; ?>"><i class="fas fa-user mr-2"></i>Sign In</a></li>
+                        <li class="signin-option"><a href="<?php echo  '../auth/login.php?page_url='.$redirect_link; ?>"><i class="fas fa-user mr-2"></i>Sign In</a></li>
                         <?php
                           }
                         ?>

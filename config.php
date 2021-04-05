@@ -11,16 +11,42 @@ $hostname = "192.168.100.150";
 $database = "sympha_fresh";
 $port = "3307";
 
+//Defining authenticator credentials
+$authenticator_email = 'symphauthenticator@gmail.com';
+$authenticator_password = 'Kenya.2030';
+
+//mail host
+$mail_host = "smtp.gmail.com";
+
+//Defining organization details
+$organization = 'Sympha Fresh';
+
+//Defining Recaptcha parameters
+$privatekey = "Recaptcha private key";
+$publickey = "Recaptcha public key";
+
 //Defining length of salt,minimum=10, maximum=35
 $length_salt = 15;
 
+//User browser
+$useragent = $_SERVER["HTTP_USER_AGENT"];
+
 //Defining the maximum number of failed attempts to ban brute force attackers
 //minimum is 5
-$maxfailedattempt = 5;
+$maxfailedattempts = 5;
 
 //Defining session timeout in seconds
 //minimum 60 (for one minute)
 $sessiontimeout = 60*30;
+
+//client ip address
+$iptocheck = $_SERVER['REMOTE_ADDR'];
+
+//Defining cookies timeout in seconds
+//remember me cookies
+$remember_me_expiry = time()+60*60*7*24;
+//cart cookies
+$cart_expiry = time() +60*60*7*24;
 
 ////////////////////////////////////
 //END OF USER CONFIGURATION/////////
@@ -34,13 +60,13 @@ $logout_url = 'auth/logout.php';
 $home_url = 'template/index.php';
 $admin_url = 'admin/dashboard.php';
 $protocol = $_SERVER['SERVER_PROTOCOL'];
-if(strpos($protocol, "HTTPS"))
+if(strpos($protocol, "https"))
 {
-    $protocol="HTTPS://";
+    $protocol="https://";
 }
 else
 {
-    $protocol="HTTP://";
+    $protocol="http://";
 }
 $redirect_link = $protocol.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 ?>

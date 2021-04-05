@@ -1,5 +1,12 @@
 <?php
 include('header.php');
+$profile_details = mysqli_query($connection,"SELECT firstname,lastname,email,location,number FROM users where email = '$logged_in_email' ")or die($connection->error);
+$result = mysqli_fetch_array($profile_details);
+$firstname = $result['firstname'];
+$lastname = $result['lastname'];
+$mobile = $result['number'];
+$email = $result['email'];
+$location = $result['location'];
 ?>             <!-- page-header-section start -->
             <div class="page-header-section">
                 <div class="container">
@@ -50,68 +57,37 @@ include('header.php');
                             </div>-->
 
                             <div class="form-item billing-item bg-color-white box-shadow p-3 p-lg-5 border-radius5">
-                                <h6>User Accounts</h6>
+                                <h6>Kindly Confirm your Details</h6>
                                 <form action="#" class="billing-form">
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="input-item">
                                                 <label>First Name*</label>
-                                                <input type="text" name="name">
+                                                <input type="text" name="name" value="<?php echo $firstname; ?>">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="input-item">
                                                 <label>Last Name*</label>
-                                                <input type="text" name="name">
+                                                <input type="text" name="name" value="<?php echo $lastname; ?>">
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="input-item">
-                                                <label>Country*</label>
-                                                <div class="flux-custom-select">
-                                                    <select>
-                                                      <option value="0">Country</option>
-                                                      <option value="1">USA</option>
-                                                      <option value="2"> UK</option>
-                                                      <option value="3">Spain</option>
-                                                      <option value="4">Italy</option>
-                                                      <option value="5">Portgal</option>
-                                                    </select>
-                                                </div>
+                                                <label>Physical Address*</label>
+                                                <input type="text" name="address" value="<?php echo $location; ?>">
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
-                                            <div class="input-item">
-                                                <label>Address*</label>
-                                                <input type="text" name="address">
-                                                <input type="text" name="address">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="input-item">
-                                                <label>Town or City*</label>
-                                                <div class="flux-custom-select">
-                                                    <select>
-                                                      <option value="0">City</option>
-                                                      <option value="1">British Columbia</option>
-                                                      <option value="2">Manitoba</option>
-                                                      <option value="3">New Brunswick</option>
-                                                      <option value="4">Nova Scotia</option>
-                                                      <option value="5">Ontario</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
                                             <div class="input-item">
                                                 <label>Email*</label>
-                                                <input type="text" name="email">
+                                                <input type="text" name="email" value="<?php echo $email; ?>">
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-12">
                                             <div class="input-item">
                                                 <label>Mobile*</label>
-                                                <input type="text" name="mobile">
+                                                <input type="text" name="mobile" value="<?php echo $mobile; ?>">
                                             </div>
                                         </div>
                                     </div>

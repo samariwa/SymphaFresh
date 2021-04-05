@@ -42,7 +42,7 @@ if(isset($_POST['cart_button'])){
         $cart_data[] = $item_array;
     } 
     $item_data = json_encode($cart_data);
-    setcookie('shopping_cart', $item_data, time() +60*60*7*24);
+    setcookie('shopping_cart', $item_data, $cart_expiry);
     header('location:'.$refresh_page.'?success=1');
 }
 
@@ -72,7 +72,7 @@ if($where == 'cart_increase' )
                     $cart_data[$keys]['item_quantity'] += 1;
                 }
                 $item_data = json_encode($cart_data);
-                setcookie('shopping_cart', $item_data, time() +60*60*7*24);
+                setcookie('shopping_cart', $item_data, $cart_expiry);
             }
         }
 }
@@ -94,7 +94,7 @@ elseif($where == 'cart_decrease' )
                     $cart_data[$keys]['item_quantity'] -= 1;
                 }
                 $item_data = json_encode($cart_data);
-                setcookie('shopping_cart', $item_data, time() +60*60*7*24);
+                setcookie('shopping_cart', $item_data, $cart_expiry);
             }
         }
 }
@@ -111,14 +111,14 @@ if(isset($_GET['action']))
             {
                 unset($cart_data[$keys]);
                 $item_data = json_encode($cart_data);
-                setcookie('shopping_cart', $item_data, time() +60*60*7*24);
+                setcookie('shopping_cart', $item_data, $cart_expiry);
                 header('location:'.$refresh_page.'?remove=1');
             }
         }
     }
     if($_GET['action'] == 'clear')
     {
-        setcookie('shopping_cart', '', time() +60*60*7*24);
+        setcookie('shopping_cart', '', $cart_expiry);
         header('location:'.$refresh_page.'?clear=1');
     }
 }

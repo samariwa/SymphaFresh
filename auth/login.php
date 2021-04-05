@@ -12,8 +12,6 @@ if (isset($_SESSION['logged_in'])) {
 //valid user has logged-in to the website
 //Check for unauthorized use of user sessions
     mysqli_query($connection,"UPDATE `users` SET `on` = '1' WHERE `email` = '$email'");
-    $iprecreate = $_SERVER['REMOTE_ADDR'];
-    $useragentrecreate = $_SERVER["HTTP_USER_AGENT"];
     $signaturerecreate = $_SESSION['signature'];
 
 //Extract original salt from authorized signature
@@ -27,7 +25,7 @@ if (isset($_SESSION['logged_in'])) {
 //Re-create the hash based on the user IP and user agent
 //then check if it is authorized or not
 
-    $hashrecreate = sha1($saltrecreate . $iprecreate . $useragentrecreate);
+    $hashrecreate = sha1($saltrecreate . $iptocheck . $useragent);
 
     if (!($hashrecreate == $originalhash)) {
 
@@ -72,22 +70,15 @@ $deactivated = FALSE;
 $loggedIn = FALSE;
 //Trapped brute force attackers and give them more hard work by providing a captcha-protected page
 
-$iptocheck = $_SERVER['REMOTE_ADDR'];
 /*$iptocheck = mysqli_real_escape_string($iptocheck);
-
 if ($fetch = mysqli_fetch_array(mysqli_query("SELECT `loggedip` FROM `ipcheck` WHERE `loggedip`='$iptocheck'"))) {
-
 //Already has some IP address records in the database
 //Get the total failed login attempts associated with this IP address
-
     $resultx = mysqli_query("SELECT `failedattempts` FROM `ipcheck` WHERE `loggedip`='$iptocheck'");
     $rowx = mysqli_fetch_array($resultx);
     $loginattempts_total = $rowx['failedattempts'];
-
     If ($loginattempts_total > $maxfailedattempt) {
-
 //too many failed attempts allowed, redirect and give 403 forbidden.
-
         header(sprintf("Location: %s", $forbidden_url));
         exit;
     }
@@ -132,22 +123,22 @@ if ((isset($_POST["pass"])) && (isset($_POST["email"])) && ($_SESSION['logged_in
         $row = mysqli_fetch_array($result1);
         $loginattempts_email = $row['loginattempt'];
 
-    if (($loginattempts_email == 5) && ($registered == TRUE)) {
+    if (($loginattempts_email == $maxfailedattempts) && ($registered == TRUE)) {
 //Require those user with login attempts failed records to
 //send an email to inform admin of unusual login attempt.
        require_once "PHPMailer/PHPMailer.php";
         require_once "PHPMailer/Exception.php";
         require_once "PHPMailer/SMTP.php";
          $mail = new PHPMailer(true);
-        $mail -> addAddress('symphauthenticator@gmail.com','Sympha Fresh');
-        $mail -> setFrom("symphauthenticator@gmail.com", "Sympha Fresh");
+        $mail -> addAddress($authenticator_email,$organization);
+        $mail -> setFrom($authenticator_email,$organization);
         $mail->IsSMTP();
-        $mail->Host = "smtp.gmail.com";
+        $mail->Host = $mail_host;
         // optional
         // used only when SMTP requires authentication  
         $mail->SMTPAuth = true;
-        $mail->Username = 'symphauthenticator@gmail.com';
-        $mail->Password = 'Kenya.2030';
+        $mail->Username = $authenticator_email;
+        $mail->Password = $authenticator_password;
         $mail -> Subject = "Unusual Login Attempt";
         $mail -> isHTML(true);
         $mail -> Body = "
@@ -159,10 +150,10 @@ if ((isset($_POST["pass"])) && (isset($_POST["email"])) && ($_SESSION['logged_in
         
     }
     //display warning message
-if (($loginattempts_email == 5) && ($registered == TRUE)) {
+if (($loginattempts_email == $maxfailedattempts) && ($registered == TRUE)) {
         $illegalattempts = TRUE; 
     }
-if (($loginattempts_email > 5) && ($registered == TRUE)) {
+if (($loginattempts_email > $maxfailedattempts) && ($registered == TRUE)) {
       mysqli_query($connection,"UPDATE `users` SET `active` = '2' WHERE `email` = '$email'"); 
       $deactivated = TRUE; 
     }
@@ -256,17 +247,13 @@ if (($loginattempts_email > 5) && ($registered == TRUE)) {
 //check if has some IP address records
 
         /*    if (!($fetch = mysqli_fetch_array(mysqli_query($connection,"SELECT `loggedip` FROM `ipcheck` WHERE `loggedip`='$iptocheck'")))) {
-
 //no records
 //insert failed attempts
-
                 $loginattempts_total = 1;
                 $loginattempts_total = intval($loginattempts_total);
                 mysqli_query($connection,"INSERT INTO `ipcheck` (`loggedip`, `failedattempts`) VALUES ('$iptocheck', '$loginattempts_total')");
             } else {
-
 //has some records, increment attempts
-
                 $loginattempts_total = $loginattempts_total + 1;
                 mysqli_query($connection,"UPDATE `ipcheck` SET `failedattempts` = '$loginattempts_total' WHERE `loggedip` = '$iptocheck'");
             }*/
@@ -289,17 +276,13 @@ if (($loginattempts_email > 5) && ($registered == TRUE)) {
 
       /*  if ($registered == FALSE) {
             if (!($fetch = mysqli_fetch_array(mysqli_query($connection,"SELECT `loggedip` FROM `ipcheck` WHERE `loggedip`='$iptocheck'")))) {
-
 //no records
 //insert failed attempts
-
                 $loginattempts_total = 1;
                 $loginattempts_total = intval($loginattempts_total);
                 mysqli_query($connection,"INSERT INTO `ipcheck` (`loggedip`, `failedattempts`) VALUES ('$iptocheck', '$loginattempts_total')");
             } else {
-
 //has some records, increment attempts
-
                 $loginattempts_total = $loginattempts_total + 1;
                 mysqli_query($connection,"UPDATE `ipcheck` SET `failedattempts` = '$loginattempts_total' WHERE `loggedip` = '$iptocheck'");
             }
@@ -309,8 +292,8 @@ if (($loginattempts_email > 5) && ($registered == TRUE)) {
     	//remember me functionality
         $rem = sanitize($_POST["remember"]);
         if(isset($rem)){
-        setcookie('email', $email, time()+60*60*7*24);
-        setcookie('pass', $pass, time()+60*60*7*24);
+        setcookie('email', $email, $remember_me_expiry);
+        setcookie('pass', $pass, $remember_me_expiry);
         }
         else{
         	if(isset($_COOKIE['email']))
@@ -343,7 +326,6 @@ if (($loginattempts_email > 5) && ($registered == TRUE)) {
         $salt_ip = substr($random, 0, $length_salt);
 
 //hash the ip address, user-agent and the salt
-        $useragent = $_SERVER["HTTP_USER_AGENT"];
         $hash_user = sha1($salt_ip . $iptocheck . $useragent);
 
 //concatenate the salt and the hash to form a signature
