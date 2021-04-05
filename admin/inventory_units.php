@@ -19,10 +19,10 @@
       <a href="stock_settings.php" class="btn btn-primary btn-md active " role="button" aria-pressed="true"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
       </div>
       <?php
-        $categoriesrowcount = mysqli_num_rows($categoriesList);
+        $unitsrowcount = mysqli_num_rows($unitsList);
       ?>
       <div class="col-md-4">   
-      <h6 class="offset-3">Total Number: <?php echo $categoriesrowcount; ?></h6>
+      <h6 class="offset-3">Total Number: <?php echo $unitsrowcount; ?></h6>
     </div>
       <?php
        if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {

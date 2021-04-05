@@ -19,8 +19,7 @@
  
 <br>
 <h4>Stock Flow</h4>
-<div class="row offset-4"> <h6>Stock flow records shown are for as at now.</h6></div>
-<h5>(Orders Made)</h5>  
+<div class="row offset-4"> <h6>Stock flow records shown are for as at now.</h6></div> 
     <?php
      $yesterday1 = date('d/m/Y',strtotime('-2 day'));
      $yesterday2 = date('d/m/Y',strtotime('-3 day'));
@@ -100,7 +99,7 @@
 
 <div class="row">
   <div class="col-md-6">
-    <h4>Brand Sales Comparison (Orders Made)</h4>
+    <h4>Product Sales Comparison</h4>
   </div>
   <div class="col-md-6">
     <h4>Expenditure</h4>
@@ -111,11 +110,6 @@
 <div id="barchart_values" style="width: 500px; height: 400px;"></div>
 </div>
 <br>
-<div class="row">
-  <div class="col-md-6">
-    <h4>Brand Sales Comparison (Sales Done)</h4>
-  </div>
-</div>
 <div class="row">
   <div id="piechart2" style="width: 420px; height: 400px;"></div>   
 </div>

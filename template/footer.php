@@ -308,12 +308,12 @@
     <script src='../assets/js/jquery-easeing.min.js'></script>
     <script src='../assets/js/scroll-nav.js'></script>
     <script src="../assets/js/jquery.elevatezoom.js"></script>
-    <script src='../assets/js/price-range.js'></script>
+    <script src='../assets/js/price-range.js?29082'></script>
     <script src='../assets/js/custom-select.js'></script>
-    <script src='../assets/js/fly-cart.js'></script>
+    <script src='../assets/js/fly-cart.js?3759597'></script>
     <script src='../assets/js/multi-countdown.js'></script>
     <script src='../assets/js/theia-sticky-sidebar.js'></script>
-    <script src='../assets/js/functions.js?86923649382'></script>
+    <script src='../assets/js/functions.js?893456849658364'></script>
    <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();

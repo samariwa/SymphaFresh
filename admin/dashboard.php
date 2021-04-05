@@ -143,29 +143,16 @@
             <div class="col-lg-3 mb-5" style="margin-left: -10px;margin-top: 50px">
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-success">Average Daily Orders</h6>
+                  <h6 class="m-0 font-weight-bold text-success">Newsletter Subscribers</h6>
                 </div>
                 <div class="card-body" style=" height: 200px;">  
                   <br>
-                  <i class="fa fa-clipboard fa-4x" style="margin-left: 70px"></i>
+                  <i class="fa fa-envelope fa-4x" style="margin-left: 70px"></i>
                   <br><br>
                   <?php 
-                      $row1 = mysqli_fetch_array($distributionTotalFiveDaysAgo);
-                      $fiveDaysAgoSum = $row1['count'];
-                      $row2 = mysqli_fetch_array($distributionTotalFourDaysAgo);
-                      $fourDaysAgoSum = $row2['count'];
-                      $row3 = mysqli_fetch_array($distributionTotalThreeDaysAgo);
-                      $threeDaysAgoSum = $row3['count'];
-                      $row4 = mysqli_fetch_array($distributionTotalTwoDaysAgo);
-                      $twoDaysAgoSum = $row4['count'];
-                      $row5 = mysqli_fetch_array($distributionTotalYesterday);
-                      $YesterdaySum = $row5['count'];
-                      $row6 = mysqli_fetch_array($distributionTotalToday);
-                      $TodaySum = $row6['count'];
-                      $total = $fiveDaysAgoSum + $fourDaysAgoSum + $threeDaysAgoSum + $twoDaysAgoSum + $YesterdaySum + $TodaySum;
-                      $average = $total / 6;
+                  $subscribersrowcount = mysqli_num_rows($subscribersList);
                   ?>
-                  <p style="text-align: center;font-size: 35px"><?php echo intval($average) ?></p>
+                  <p style="text-align: center;font-size: 35px"><?php echo $subscribersrowcount ?></p>
                 </div>
               </div>
             </div>

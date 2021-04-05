@@ -1,5 +1,5 @@
 <?php
- include('../queries.php');
+ include('queries.php');
 $where =$_POST['where'];
 if($where == 'fastmoving' )
 {   
@@ -54,24 +54,16 @@ else if($where == 'salesTotal')
        $salesTotal = array();
         $row1 = mysqli_fetch_array($salesWk1);
         $total1 = $row1['sum'];
-        $row5 = mysqli_fetch_array($extraSalesWk1);
-        $total5 = $row5['sum'];
-        $Total1 = $total1 + $total5;
+        $Total1 = $total1;
         $row2 = mysqli_fetch_array($salesWk2);
         $total2 = $row2['sum'];
-        $row6 = mysqli_fetch_array($extraSalesWk2);
-        $total6 = $row6['sum'];
-        $Total2 = $total2 + $total6;
+        $Total2 = $total2;
         $row3 = mysqli_fetch_array($salesWk3);
         $total3 = $row3['sum'];
-        $row7 = mysqli_fetch_array($extraSalesWk3);
-        $total7 = $row7['sum'];
-        $Total3 = $total3 + $total7;
+        $Total3 = $total3;
         $row4 = mysqli_fetch_array($salesWk4);
         $total4 = $row4['sum'];
-        $row8 = mysqli_fetch_array($extraSalesWk4);
-        $total8 = $row8['sum'];
-        $Total4 = $total4 + $total8;
+        $Total4 = $total4;
         array_push($salesTotal, $Total1);
         array_push($salesTotal, $Total2);
         array_push($salesTotal, $Total3);

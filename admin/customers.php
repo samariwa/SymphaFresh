@@ -16,7 +16,7 @@
            include "dashboard_tabs.php";
           ?>
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-md-3">
       <a data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-success btn-md active" role="button" aria-pressed="true"><i class="fa fa-plus-circle"></i>&ensp;New Customer</a>
       <!-- Modal -->
       <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
@@ -63,14 +63,14 @@
         </div>
       </div>
        </div>
-       <div class="col-md-7">
+       <div class="col-md-5">
       <?php
         $customersrowcount = mysqli_num_rows($customersList);
       ?>
       <h6 class="offset-5">Total Number: <?php echo $customersrowcount; ?></h6>
       </div>
-      <div class="col-md-2">
-      <a href="blacklisted.php" class="btn btn-dark btn-md active offset-4" role="button" aria-pressed="true" >Blacklisted Customers</a>
+      <div class="col-md-4">
+      <a href="blacklisted.php" class="btn btn-dark btn-md active offset-5" role="button" aria-pressed="true" >Blacklisted Customers</a>
       </div>
     </div><br>
     <table id="customersEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">

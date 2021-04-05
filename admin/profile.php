@@ -17,7 +17,7 @@
          <br>
         <?php
          $user = $_SESSION['user'];
-         $profileQuery = mysqli_query($connection,"SELECT firstname,lastname,number,email,jobs.Name as job,nationalID,staffID,yob,gender,username FROM users INNER JOIN jobs WHERE username = '$user'")or die($connection->error);
+         $profileQuery = mysqli_query($connection,"SELECT firstname,lastname,number,email,jobs.Name as job,nationalID,staffID,yob,gender FROM users INNER JOIN jobs WHERE firstname = '$user'")or die($connection->error);
           $result = mysqli_fetch_array($profileQuery);
           $firstname = $result['firstname'];
           $lastname = $result['lastname'];
@@ -28,7 +28,6 @@
           $staffid = $result['staffID'];
           $yob = $result['yob'];
           $gender = $result['gender'];
-          $username = $result['username'];
           $currentYear = date("Y");
           $age = $currentYear - $yob;
         ?>

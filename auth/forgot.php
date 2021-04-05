@@ -12,23 +12,23 @@ $exists = TRUE;
        $check=mysqli_query($connection,$sql);
        $row = mysqli_fetch_array($check);
       $exists=mysqli_num_rows($check);
-      
         $name = $row['firstname'];
       if ($exists > 0){
         $random = generateRandomString();
+        $reset_link = $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/auth/reset.php?email='.$email.'&token='.$random;
         mysqli_query($connection, "UPDATE users SET token= '$random',tokenExpire=DATE_ADD(NOW(), INTERVAL 5 MINUTE )WHERE email='$email'");
         require_once "PHPMailer/PHPMailer.php";
         require_once "PHPMailer/Exception.php";
         require_once "PHPMailer/SMTP.php";
          $mail = new PHPMailer(true);
         $mail -> addAddress($email,'Recepient');
-        $mail -> setFrom("kwanzatukuleauthenticator@gmail.com", "Kwanza Tukule");
+        $mail -> setFrom("symphauthenticator@gmail.com", "Sympha Fresh");
         $mail->IsSMTP();
         $mail->Host = "smtp.gmail.com";
         // optional
         // used only when SMTP requires authentication  
         $mail->SMTPAuth = true;
-        $mail->Username = 'kwanzatukuleauthenticator@gmail.com';
+        $mail->Username = 'symphauthenticator@gmail.com';
         $mail->Password = 'Kenya.2030';
         $mail -> Subject = "Reset Password";
         $mail -> isHTML(true);
@@ -36,7 +36,7 @@ $exists = TRUE;
               Hi $name;<br><br>
                 In order to reset your password, please click on the link below:<br>
                 <a href='
-                http://192.168.64.2/SymphaFresh/auth/reset.php?email=$email&token=$random'>Password Reset Link</a><br><br>
+                $reset_link'>Password Reset Link</a><br><br>
                 Kindly reset your password in the given time limit of 5 minutes.<br><br>
                 Kind Regards,
                 ";

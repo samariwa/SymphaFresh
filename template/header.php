@@ -3,6 +3,7 @@
  require('../config.php');
  require('../functions.php');
  require('../queries.php');
+ include('cart.php');
  if (isset($_SESSION['logged_in'])) {
    if ($_SESSION['logged_in'] == TRUE) {
  //valid user has logged-in to the website
@@ -42,7 +43,7 @@
  
      if ((isset($_SESSION['LAST_ACTIVITY'])) && (time() - $_SESSION['LAST_ACTIVITY'] > $sessiontimeout) || (isset($_SESSION['LAST_ACTIVITY'])) && ($active == 2)) {
  //redirect the user back to login page for re-authentication
-          header("Location: ../$logout_url");
+          header("Location: ../$logout_url?page_url=<?php echo $redirect_link; ?>");
          exit;
      }
      $_SESSION['LAST_ACTIVITY'] = time();
@@ -67,17 +68,18 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body id="top-page">
-<!--
+
     <a class="position-absolute" href="javascript:void(0)" onclick="cartopen()">
-        <div id="sitebar-drawar" class="sitebar-drawar">
-            <div class="cart-count d-flex align-items-center">
+    <!-- you can add class 'sitebar-drawar' in the div below-->
+        <div id="sitebar-drawar" >
+           <!-- <div class="cart-count d-flex align-items-center">
                 <i class="fas fa-shopping-basket"></i>
                 <span>3 Items</span>
             </div>
-            <div class="total-price">Ksh 3415.00</div>
-        </div>
+            <div class="total-price">Ksh 3415.00</div>-->
+        </div> 
     </a>
--->
+
 
      <!-- admin Modal 
      <div class="modal fade" id="useradmin1" tabindex="-1" aria-labelledby="useradmin1" aria-hidden="true">
@@ -183,8 +185,8 @@
 
 
     <?php
-        if (isset($_SESSION['logged_in'])) {
-        if ($_SESSION['logged_in'] == TRUE) {
+      //  if (isset($_SESSION['logged_in'])) {
+       // if ($_SESSION['logged_in'] == TRUE) {
     ?>
     <!-- sidebar-cart -->
     <div id="sitebar-cart" class="sitebar-cart">
@@ -199,162 +201,122 @@
                    c6.476,2.709,11.031,9.104,11.031,16.568C164.363,206.586,156.319,214.625,146.402,214.625z M310.484,214.625
                    c-9.922,0-17.959-8.044-17.959-17.961c0-7.269,4.341-13.495,10.548-16.325v17.994h14.338v-18.241
                    c6.478,2.714,11.037,9.108,11.037,16.568C328.448,206.586,320.407,214.625,310.484,214.625z"/></svg>
-                   <span>3 Items</span>
+                   <?php
+                        $count=0;
+                        if(isset($_COOKIE['shopping_cart'])){
+                        $cookie_data = stripslashes($_COOKIE['shopping_cart']);
+                        $cart_data = json_decode($cookie_data, true); 
+                        foreach($cart_data as $cart){
+                            $count++;
+                        }
+                    }
+                    ?>
+                   <span><?php echo $count; ?> Items</span>
                 </div>
                 <span onclick="cartclose()" class="close-icon"><i class="fas fa-times"></i></span>
         </div>
-        <div class="cart-product-container">
+    <div class="cart-product-container">
+        <?php
+        $total = 0;
+        if(isset($_COOKIE['shopping_cart']))
+        {     
+            $cookie_data = stripslashes($_COOKIE['shopping_cart']);
+            $cart_data = json_decode($cookie_data, true);
+            foreach($cart_data as $keys => $values)
+            {
+        ?>
             <div class="cart-product-item">
-                <div class="close-item"><i class="fas fa-times"></i></div>
                 <div class="row align-items-center">
                     <div class="col-6 p-0">
                         <div class="thumb">
-                            <a href="#"><img src="../assets/images/products/cart/01.png" alt="products"></a>
+                            <a href="#"><img src="../assets/images/products/<?php echo $values["item_image"]; ?>" alt="products"></a>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="product-content">
-                            <a href="#" class="product-title">Daisy Cont Oil</a>
+                            <a href="#" class="product-title"><?php echo $values["item_name"]; ?></a>
                             <div class="product-cart-info">
-                                1x 31b
+                            Ksh<?php echo number_format($values["item_price"],2); ?> /unit
+                            <br>
+                            x<?php echo $values["item_quantity"]; ?> <?php echo $values["item_unit"]; ?>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row align-items-center">
+  
+                <div class="row align-items-center mt-1">
                     <div class="col-6">
                         <div class="price-increase-decrese-group d-flex">
+                        
                             <span class="decrease-btn">
                                 <button type="button"
-                                    class="btn quantity-left-minus" data-type="minus" data-field="">-
+                                    class="btn quantity-left-minus cart_decrease" id="<?php echo $values['item_id']; ?>" data-type="minus" data-field="">-
                                 </button> 
                             </span>
-                            <input type="text" name="quantity" class="form-controls input-number" value="1">
+                            <input type="text" name="quantity" class="form-controls input-number" value="<?php echo $values["item_quantity"]; ?>">
+                            
                             <span class="increase">
                                 <button type="button"
-                                    class="btn quantity-right-plus" data-type="plus" data-field="">+
+                                    class="btn quantity-right-plus cart_increase" id="<?php echo $values['item_id']; ?>" data-type="plus" data-field="" >+
                                 </button>
                             </span>
+                          
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="product-price">
-                            <del>Ksh8.00</del><span class="ml-2">Ksh5.00</span>
+                        <div >
+                            <!--<del>Ksh8.00</del>--><span class="ml-2">Ksh<?php echo number_format($values["item_quantity"] * $values["item_price"],2); ?></span>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="row align-items-center mt-1">
+                <div class="col-6">
 
-            
-
-            <div class="cart-product-item">
-                <div class="close-item"><i class="fas fa-times"></i></div>
-                <div class="row align-items-center">
-                    <div class="col-6 p-0">
-                        <div class="thumb">
-                            <a href="#"><img src="../assets/images//products/cart/02.png" alt="products"></a>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="product-content">
-                            <a href="#" class="product-title">Daisy Cont Oil</a>
-                            <div class="product-cart-info">
-                                1x 31b
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <div class="row align-items-center">
-                    <div class="col-6">
-                        <div class="price-increase-decrese-group d-flex">
-                            <span class="decrease-btn">
-                                <button type="button"
-                                    class="btn quantity-left-minus" data-type="minus" data-field="">-
-                                </button> 
-                            </span>
-                            <input type="text" name="quantity" class="form-controls input-number" value="1">
-                            <span class="increase">
-                                <button type="button"
-                                    class="btn quantity-right-plus" data-type="plus" data-field="">+
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="product-price">
-                            <del>Ksh8.00</del><span class="ml-2">Ksh5.00</span>
-                        </div>
-                    </div>
+                  <div class="col-6">
+                    <a href="<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/product-list.php?action=delete&id='.$values["item_id"] ?>" class="ml-5 text-danger"><i class="fas fa-times"></i> Remove</a>
+                  </div>
                 </div>
-            </div>
-
-            <div class="cart-product-item">
-                <div class="close-item"><i class="fas fa-times"></i></div>
-                <div class="row align-items-center">
-                    <div class="col-6 p-0">
-                        <div class="thumb">
-                            <a href="#"><img src="../assets/images//products/cart/03.png" alt="products"></a>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="product-content">
-                            <a href="#" class="product-title">Daisy Cont Oil</a>
-                            <div class="product-cart-info">
-                                1x 31b
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row align-items-center">
-                    <div class="col-6">
-                        <div class="price-increase-decrese-group d-flex">
-                            <span class="decrease-btn">
-                                <button type="button"
-                                    class="btn quantity-left-minus" data-type="minus" data-field="">-
-                                </button> 
-                            </span>
-                            <input type="text" name="quantity" class="form-controls input-number" value="1">
-                            <span class="increase">
-                                <button type="button"
-                                    class="btn quantity-right-plus" data-type="plus" data-field="">+
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="product-price">
-                            <del>Ksh350.00</del><span class="ml-2">Ksh300.00</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            </div>   
+        <?php 
+          $total = $total + ($values["item_quantity"] * $values["item_price"]); 
+            }      
+        }
+        else{
+            echo'
+            <h4 style="text-align:center;" class="mt-5">No Item in Cart</h4>
+            ';
+        }
+        ?>
+        <br><br><br>
+        </div> 
         <div class="cart-footer">
-            <div class="product-other-charge">
+           <!-- <div class="product-other-charge">
                 <p class="d-flex justify-content-between">
                     <span>Delivery charge</span> 
-                    <span>Ksh8.00</span>
+                    <span>Ksh8.00</span> 
                 </p>
-                <a href="#">Do you have a voucher?</a>
-            </div>
+                  <a href="#">Do you have a voucher?</a> 
+            </div> -->
     
             <div class="cart-total">
-                <p class="saving d-flex justify-content-between">
+              <!--  <p class="saving d-flex justify-content-between">
                     <span>Total Savings</span> 
                     <span>Ksh11.00</span>
-                </p>
+                </p> -->
                 <p class="total-price d-flex justify-content-between">
                     <span>Total</span> 
-                    <span>Ksh35.00</span>
+                    <span>Ksh<?php echo number_format($total,2); ?></span>   
                 </p>
-                <a href="checkout.php" class="procced-checkout">Proceed to Checkout</a>
+                <a <?php if($count == 0){?> href="#" <?php } else{ ?>href="checkout.php" <?php } ?> class="procced-checkout"  >Proceed to Checkout</a>
+                <a <?php if($count == 0){?> href="#" <?php } else{ ?>href="<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/product-list.php?action=clear' ?>" <?php } ?> class="clear-cart" style=" background-color: #df4759;color: white;display: block;text-align: center;padding: 10px 30px;border-radius: 5px;margin-top: 10px;">Clear Cart</a>
             </div>
         </div>
     </div>
     <!--end of side cart-->
     <?php
-        }
-    }
+      //  }
+    //}
     ?>
 
     <!-- header section start -->
@@ -399,9 +361,7 @@
                             <select>
                               <option value="0">Select Category</option>
                               <?php
-                                $count = 0;
                                 foreach($categoriesList as $row){
-                                $count++;
                                 $id = $row['id'];
                                 $category = $row['Category_Name'];
                             ?>
@@ -478,7 +438,7 @@
                             <li class="nav-item"><a href="contact.php">Contact Us</a></li>
                         </ul>
                         <ul class="menu-action d-none d-lg-block">
-                            <li class="cart-option"><a onclick="cartopen()" href="#"><span class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="count">3</span></span> <span class="cart-amount">Ksh 3415.00</span></a>
+                            <li class="cart-option"><a onclick="cartopen()" href="#"><span class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="count"><?php echo $count; ?></span></span> <span class="cart-amount">Ksh <?php echo number_format($total,2); ?></span></a>
                             </li>
                         </ul>
                     </div>

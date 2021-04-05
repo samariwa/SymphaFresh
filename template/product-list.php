@@ -16,7 +16,7 @@
                 </div>
             </div>
             <!-- page-header-section end -->
-
+            <?php echo $message; ?>
             <!-- page-content -->
             <section class="page-content section-ptb-90">
                 <div class="container">
@@ -34,171 +34,34 @@
 
                                 <div class="widget-wrapper" id="scatagory-widget01">
                                     <ul class="catagory-menu collapse show" id="catagory-main">
-                                        <li><a class="" data-toggle="collapse" href="#catagory-widget-s1" role="button" aria-expanded="false" aria-controls="catagory-widget-s1">Vegetables s<span class="plus-minus"></span></a>
-                                            <ul class="catagory-submenu collapse show" id="catagory-widget-s1">
+                                    <?php 
+                                    $count = 0;
+                                    foreach($categoriesList as $row){
+                                        $count++;
+                                        $id = $row['id'];
+                                        $category = $row['Category_Name'];
+                                    ?>    
+                                        <li><a class="collapsed"  data-toggle="collapse" href="#catagory-widget-s<?php echo $count; ?>" role="button" aria-expanded="false" aria-controls="catagory-widget-s<?php echo $count; ?>"><?php echo $category; ?> <span class="plus-minus"></span></a>
+                                            <ul class="catagory-submenu collapse" id="catagory-widget-s<?php echo $count; ?>">
+                                            <?php
+                                            $stockSubmenu = mysqli_query($connection,"SELECT id, Name from stock where Category_id = '$id';")or die($connection->error);                              
+                                                foreach($stockSubmenu as $row){
+                                                $stock_id = $row['id'];    
+                                                $name = $row['Name'];
+                                            ?>
                                                 <li class="checkbox-item">
                                                     <input type="checkbox">
                                                     <span class="checkbox"></span>
-                                                    <span class="label">All Products</span>
+                                                    <span class="label"><?php echo $name; ?></span>
                                                 </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">Shorts</span>
-                                                </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">Jeans & Trousers</span>
-                                                </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">T shirts</span>
-                                                </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">Jacket & coats</span>
-                                                </li>
+                                                <?php
+                                                }
+                                                ?>
                                             </ul>
                                         </li>
-                                        <li><a class="collapsed"  data-toggle="collapse" href="#catagory-widget-s2" role="button" aria-expanded="false" aria-controls="catagory-widget-s2">Fruits <span class="plus-minus"></span></a>
-                                            <ul class="catagory-submenu collapse" id="catagory-widget-s2">
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">All Products</span>
-                                                </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">Shorts</span>
-                                                </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">Jeans & Trousers</span>
-                                                </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">T shirts</span>
-                                                </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">Jacket & coats</span>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="collapsed"  data-toggle="collapse" href="#catagory-widget-s3" role="button" aria-expanded="false" aria-controls="catagory-widget-s3">Salads <span class="plus-minus"></span></a>
-                                            <ul class="catagory-submenu collapse" id="catagory-widget-s3">
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">All Products</span>
-                                                </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">Shorts</span>
-                                                </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">Jeans & Trousers</span>
-                                                </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">T shirts</span>
-                                                </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">Jacket & coats</span>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="collapsed"  data-toggle="collapse" href="#catagory-widget-s4" role="button" aria-expanded="false" aria-controls="catagory-widget-s4">Fish & seafood <span class="plus-minus"></span></a>
-                                            <ul class="catagory-submenu collapse" id="catagory-widget-s4">
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">All Products</span>
-                                                </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">Shorts</span>
-                                                </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">Jeans & Trousers</span>
-                                                </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">T shirts</span>
-                                                </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">Jacket & coats</span>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="collapsed"  data-toggle="collapse" href="#catagory-widget-s5" role="button" aria-expanded="false" aria-controls="catagory-widget-s5">Fresh Meat <span class="plus-minus"></span></a>
-                                            <ul class="catagory-submenu collapse" id="catagory-widget-s5">
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">All Products</span>
-                                                </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">Shorts</span>
-                                                </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">Jeans & Trousers</span>
-                                                </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">T shirts</span>
-                                                </li>
-
-                                                <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
-                                                    <span class="label">Jacket & coats</span>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                    <?php
+                                    }
+                                    ?>
                                     </ul>
                                 </div>
                             </div>
@@ -215,7 +78,7 @@
                                 </div>
                             </div>
 
-                            <div class="widget">
+                           <!-- <div class="widget">
                                 <h4 class="widget-title d-none d-lg-block">Filter by Brand Name</h4>
                                 <a class="widget-title d-lg-none" data-toggle="collapse" href="#scatagory-widget03" role="button" aria-expanded="false" aria-controls="scatagory-widget03">Filte by Brand Name<i class="fas fa-angle-down"></i></a>
 
@@ -232,13 +95,14 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="col-lg-9 order-lg-first">
                             <div class="row product-list">
                             <?php
                                 foreach($stockList as $row){
                                 $count++;
+                                $id = $row['id'];
                                 $category = $row['Category_Name'];
                                 $name = $row['Name'];
                                 $image = $row['image'];
@@ -248,7 +112,7 @@
                                 $restock_level = $row['Restock_Level'];
                                 if($quantity > $restock_level ){
                             ?>
-                                <div class="col-sm-6 col-xl-4">
+                                <div class="col-sm-6 col-xl-4" id="<?php echo $name; ?>">
                                     <div class="product-item">
                                         <div class="product-thumb">
                                             <a onclick="openModal()"><img src="../assets/images/products/<?php echo $image; ?>" alt="product"></a>
@@ -262,12 +126,20 @@
                                             <h6><a href="product-detail.php" class="product-title"><?php echo $name; ?></a></h6>
                                             <p class="quantity"><?php echo $unit_name; ?></p>
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <div class="price">Ksh.<?php echo $selling_price; ?> <!--<del>Ksh.600</del>--></div>
-
-                                                <div class="cart-btn-toggle" onclick="cartopen()">
-                                                    <span class="cart-btn"><i class="fas fa-shopping-cart"></i> Cart</span>
-
-                                                    <div class="price-btn">
+                                                <div class="price">Ksh.<?php echo number_format($selling_price,2); ?> <!--<del>Ksh.600</del>--></div>
+            
+                                                <div class="cart-btn-toggle">
+                                                <form method="POST">
+                                                <input type="hidden" name="hidden_id" value="<?php echo $id; ?>">
+                                                <input type="hidden" name="hidden_name" value="<?php echo $name; ?>">
+                                                <input type="hidden" name="hidden_unit" value="<?php echo $unit_name; ?>">
+                                                <input type="hidden" name="hidden_price" value="<?php echo $selling_price; ?>">
+                                                <input type="hidden" name="hidden_image" value="<?php echo $image; ?>">
+                                                <button type="submit" class="cart-btn" name="cart_button">
+                                                    <span ><i class="fas fa-shopping-cart"></i> Cart</span>
+                                                </button>
+                                                </form>
+                                                  <!--  <div class="price-btn">
                                                         <div class="price-increase-decrese-group d-flex">
                                                             <span class="decrease-btn">
                                                                 <button type="button"
@@ -281,7 +153,7 @@
                                                                 </button>
                                                             </span>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                                 
                                             </div>
@@ -305,7 +177,7 @@
                                             <h6><a href="product-detail.php" class="product-title"><?php echo $name; ?></a></h6>
                                             <p class="quantity"><?php echo $unit_name; ?></p>
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <div class="price">Ksh.<?php echo $selling_price; ?> <!--<del>Ksh.600</del>--></div>
+                                                <div class="price">Ksh.<?php echo number_format($selling_price,2); ?> <!--<del>Ksh.600</del>--></div>
 
                                                 <div class="cart-btn-toggle" onclick="cartopen()">
                                                     <span class="cart-btn"><i class="fas fa-shopping-cart"></i> Cart</span>

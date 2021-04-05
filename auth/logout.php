@@ -18,7 +18,7 @@ if (isset($_SESSION['logged_in'])) {
     session_unset();
     if($access == 'customer'){
         $redirect_page = $_REQUEST['page_url'];
-        if($redirect_link == ''){
+        if(($redirect_link == '') || ($redirect_link == $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/auth/login.php')){
           header("Location: ../$home_url"); 
           exit();
         }

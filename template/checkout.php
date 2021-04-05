@@ -23,7 +23,7 @@ include('header.php');
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-7">
-                            <div class="form-item contact-number-item bg-color-white box-shadow p-3 p-lg-5 border-radius5">
+                            <!--<div class="form-item contact-number-item bg-color-white box-shadow p-3 p-lg-5 border-radius5">
                                 <h6>Contact Number</h6>
                                 <p>We need your phone number so we can inform you about any delay or problem.<br>5 digits code send your phone <strong>+111223366548</strong></p>
                                 <div class="mb-2">
@@ -47,7 +47,7 @@ include('header.php');
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <div class="form-item billing-item bg-color-white box-shadow p-3 p-lg-5 border-radius5">
                                 <h6>User Accounts</h6>
@@ -167,18 +167,29 @@ include('header.php');
                         <div class="col-lg-5">
                             <div class="cart-item sitebar-cart bg-color-white box-shadow p-3 p-lg-5 border-radius5">
                                 <div class="cart-product-container">
+                                <?php
+                                $total = 0;
+                                if(isset($_COOKIE['shopping_cart']))
+                                {     
+                                    $cookie_data = stripslashes($_COOKIE['shopping_cart']);
+                                    $cart_data = json_decode($cookie_data, true);
+                                    foreach($cart_data as $keys => $values)
+                                    {
+                                ?>
                                     <div class="cart-product-item">
                                         <div class="row align-items-center">
                                             <div class="col-6 p-0">
                                                 <div class="thumb">
-                                                    <a onclick="openModal()"><img src="../assets/images//products/cart/01.png" alt="products"></a>
+                                                    <a onclick="openModal()"><img src="../assets/images/products/<?php echo $values["item_image"]; ?>" alt="products"></a>
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <div class="product-content">
-                                                    <a onclick="openModal()" class="product-title">Daisy Cont Oil</a>
+                                                    <a onclick="openModal()" class="product-title"><?php echo $values["item_name"]; ?></a>
                                                     <div class="product-cart-info">
-                                                        1x 31b
+                                                    Ksh<?php echo number_format($values["item_price"],2); ?> /unit
+                                                    <br>
+                                                    x<?php echo $values["item_quantity"]; ?> <?php echo $values["item_unit"]; ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -188,144 +199,29 @@ include('header.php');
                                                 <div class="price-increase-decrese-group d-flex">
                                                     <span class="decrease-btn">
                                                         <button type="button"
-                                                            class="btn quantity-left-minus" data-type="minus" data-field="">-
+                                                            class="btn quantity-left-minus cart_decrease" id="<?php echo $values['item_id']; ?>" data-type="minus" data-field="">-
                                                         </button> 
                                                     </span>
-                                                    <input type="text" name="quantity" class="form-controls input-number" value="1">
+                                                    <input type="text" name="quantity" class="form-controls input-number" value="<?php echo $values["item_quantity"]; ?>">
                                                     <span class="increase">
                                                         <button type="button"
-                                                            class="btn quantity-right-plus" data-type="plus" data-field="">+
+                                                            class="btn quantity-right-plus cart_increase" id="<?php echo $values['item_id']; ?>" data-type="plus" data-field="">+
                                                         </button>
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="col-6">
-                                                <div class="product-price">
-                                                    <del>Ksh8.00</del><span class="ml-4">Ksh5.00</span>
-                                                </div>
+                                                <!--<div class="product-price">
+                                                    <del>Ksh8.00</del>--><span class="ml-4">Ksh<?php echo number_format($values["item_quantity"] * $values["item_price"],2); ?></span>
+                                                <!--</div>-->
                                             </div>
                                         </div>
                                     </div>
-                        
-                                    <div class="cart-product-item">
-                                        <div class="row align-items-center">
-                                            <div class="col-6 p-0">
-                                                <div class="thumb">
-                                                    <a onclick="openModal()"><img src="../assets/images//products/cart/02.png" alt="products"></a>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="product-content">
-                                                    <a onclick="openModal()" class="product-title">Daisy Cont Oil</a>
-                                                    <div class="product-cart-info">
-                                                        1x 31b
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row align-items-center">
-                                            <div class="col-6">
-                                                <div class="price-increase-decrese-group d-flex">
-                                                    <span class="decrease-btn">
-                                                        <button type="button"
-                                                            class="btn quantity-left-minus" data-type="minus" data-field="">-
-                                                        </button> 
-                                                    </span>
-                                                    <input type="text" name="quantity" class="form-controls input-number" value="1">
-                                                    <span class="increase">
-                                                        <button type="button"
-                                                            class="btn quantity-right-plus" data-type="plus" data-field="">+
-                                                        </button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="product-price">
-                                                    <del>Ksh8.00</del><span class="ml-4">Ksh5.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                        
-                                    <div class="cart-product-item">
-                                        <div class="row align-items-center">
-                                            <div class="col-6 p-0">
-                                                <div class="thumb">
-                                                    <a onclick="openModal()"><img src="../assets/images//products/cart/04.png" alt="products"></a>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="product-content">
-                                                    <a onclick="openModal()" class="product-title">Daisy Cont Oil</a>
-                                                    <div class="product-cart-info">
-                                                        1x 31b
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row align-items-center">
-                                            <div class="col-6">
-                                                <div class="price-increase-decrese-group d-flex">
-                                                    <span class="decrease-btn">
-                                                        <button type="button"
-                                                            class="btn quantity-left-minus" data-type="minus" data-field="">-
-                                                        </button> 
-                                                    </span>
-                                                    <input type="text" name="quantity" class="form-controls input-number" value="1">
-                                                    <span class="increase">
-                                                        <button type="button"
-                                                            class="btn quantity-right-plus" data-type="plus" data-field="">+
-                                                        </button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="product-price">
-                                                    <del>Ksh8.00</del><span class="ml-4">Ksh5.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="cart-product-item">
-                                        <div class="row align-items-center">
-                                            <div class="col-6 p-0">
-                                                <div class="thumb">
-                                                    <a onclick="openModal()"><img src="../assets/images//products/cart/03.png" alt="products"></a>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="product-content">
-                                                    <a onclick="openModal()" class="product-title">Daisy Cont Oil</a>
-                                                    <div class="product-cart-info">
-                                                        1x 31b
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row align-items-center">
-                                            <div class="col-6">
-                                                <div class="price-increase-decrese-group d-flex">
-                                                    <span class="decrease-btn">
-                                                        <button type="button"
-                                                            class="btn quantity-left-minus" data-type="minus" data-field="">-
-                                                        </button> 
-                                                    </span>
-                                                    <input type="text" name="quantity" class="form-controls input-number" value="1">
-                                                    <span class="increase">
-                                                        <button type="button"
-                                                            class="btn quantity-right-plus" data-type="plus" data-field="">+
-                                                        </button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="product-price">
-                                                    <del>Ksh8.00</del><span class="ml-4">Ksh5.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <?php 
+                                    $total = $total + ($values["item_quantity"] * $values["item_price"]); 
+                                        }      
+                                    }
+                                    ?>
                                 </div>
                                 <div class="cart-footer">
                                     <div class="product-other-charge">
@@ -337,13 +233,13 @@ include('header.php');
                                     </div>
                             
                                     <div class="cart-total">
-                                        <p class="saving d-flex justify-content-between">
+                                        <!--<p class="saving d-flex justify-content-between">
                                             <span>Total Savings</span> 
                                             <span>Ksh11.00</span>
-                                        </p>
+                                        </p>-->
                                         <p class="total-price d-flex justify-content-between">
                                             <span>Total</span> 
-                                            <span>KSh20.00</span>
+                                            <span>KSh<?php echo number_format($total,2); ?></span>
                                         </p>
                                     </div>
                                 </div>

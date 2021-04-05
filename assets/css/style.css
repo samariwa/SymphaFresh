@@ -3575,12 +3575,21 @@ blockquote span span {
 .cart-total .procced-checkout {
   background-color: #59b828;
   color: white;
-  display: block;
   text-align: center;
   padding: 10px 30px;
   border-radius: 5px;
   margin-top: 10px;
 }
+
+.cart-total .clear-cart{
+  background-color: #df4759;
+  color: white;
+  text-align: center;
+  padding: 10px 30px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
 .cart-total .procced-checkout:hover {
   background-color: #438e1c;
 }

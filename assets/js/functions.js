@@ -332,6 +332,7 @@
 
 
 function cartopen() {
+    //alert("Hi")
     document.getElementById("sitebar-cart").classList.add('open-cart');
     document.getElementById("sitebar-drawar").classList.add('hide-drawer');
 }
@@ -431,6 +432,28 @@ $(document).on('click','.anonymousSubscription',function(){
             else{
             alert("Something went wrong");
            }
+    }); 
+  });
+
+  $(document).on('click','.cart_increase',function(){
+    var el = $(this);
+    var id = el.attr("id");
+    var where = 'cart_increase'
+    $.post("cart.php",{id:id,where:where},
+    function(result){
+        if (result == 'max') {
+            alert('Quantity Unavailable');
+           }
+    }); 
+  });
+
+  $(document).on('click','.cart_decrease',function(){
+    var el = $(this);
+    var id = el.attr("id");
+    var where = 'cart_decrease'
+    $.post("cart.php",{id:id,where:where},
+    function(result){
+
     }); 
   });
 

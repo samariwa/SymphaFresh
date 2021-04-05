@@ -2531,7 +2531,7 @@ $('#officeEditable').editableTableWidget();
                     type: 'get',
                     dataType: 'html',
                     success:function(data) {
-                        var mywindow = window.open('', 'Kwanza Tukule', 'height=400,width=600');
+                        var mywindow = window.open('', 'Sympha Fresh', 'height=400,width=600');
                         mywindow.document.write('<html><head><title></title>');
                         mywindow.document.write('</head><body>');
                         mywindow.document.write(data);
@@ -2551,7 +2551,7 @@ $('#officeEditable').editableTableWidget();
                     type: 'get',
                     dataType: 'html',
                     success:function(data) {
-                        var mywindow = window.open('', 'Kwanza Tukule', 'height=400,width=600');
+                        var mywindow = window.open('', 'Sympha Fresh', 'height=400,width=600');
                         mywindow.document.write('<html><head><title></title>');
                         mywindow.document.write('</head><body>');
                         mywindow.document.write(data);
@@ -2571,7 +2571,7 @@ $('#officeEditable').editableTableWidget();
                     type: 'get',
                     dataType: 'html',
                     success:function(data) {
-                        var mywindow = window.open('', 'Kwanza Tukule', 'height=400,width=600');
+                        var mywindow = window.open('', 'Sympha Fresh', 'height=400,width=600');
                         mywindow.document.write('<html><head><title></title>');
                         mywindow.document.write('</head><body>');
                         mywindow.document.write(data);
@@ -2591,7 +2591,7 @@ $('#officeEditable').editableTableWidget();
                     type: 'get',
                     dataType: 'html',
                     success:function(data) {
-                        var mywindow = window.open('', 'Kwanza Tukule', 'height=400,width=600');
+                        var mywindow = window.open('', 'Sympha Fresh', 'height=400,width=600');
                         mywindow.document.write('<html><head><title></title>');
                         mywindow.document.write('</head><body>');
                         mywindow.document.write(data);
@@ -2609,7 +2609,7 @@ $('#officeEditable').editableTableWidget();
          var deliverer = $(`#deliverer`).val();
         var time = $(`#gatePassTime`).val();
         $.post("gatePassPDF.php",{deliverer:deliverer,time:time},
-        function(result){ var mywindow = window.open('', 'Kwanza Tukule', 'height=400,width=600');
+        function(result){ var mywindow = window.open('', 'Sympha Fresh', 'height=400,width=600');
                         mywindow.document.write('<html><head><title></title>');
                         mywindow.document.write('</head><body>');
                         mywindow.document.write(result);
@@ -2626,7 +2626,7 @@ $('#officeEditable').editableTableWidget();
         var time = $(`#distributionTime`).val();
         $.post("distributionPDF.php",{deliverer:deliverer,time:time},
         function(result){
-           var mywindow = window.open('', 'Kwanza Tukule', 'height=400,width=600');
+           var mywindow = window.open('', 'Sympha Fresh', 'height=400,width=600');
                         mywindow.document.write('<html><head><title></title>');
                         mywindow.document.write('</head><body>');
                         mywindow.document.write(result);
@@ -2643,7 +2643,7 @@ $('#officeEditable').editableTableWidget();
         var date = $(`#invoiceDate`).val();
         $.post("sales_invoice_print.php",{deliverer:deliverer,date:date},
         function(result){
-           var mywindow = window.open('', 'Kwanza Tukule', 'height=400,width=600');
+           var mywindow = window.open('', 'Sympha Fresh', 'height=400,width=600');
                         mywindow.document.write('<html><head><title></title>');
                         mywindow.document.write('</head><body>');
                         mywindow.document.write(result);
@@ -2660,7 +2660,7 @@ $('#officeEditable').editableTableWidget();
         var date = $(`#creditDate`).val();
         $.post("credit_note_print.php",{deliverer:deliverer,date:date},
         function(result){
-           var mywindow = window.open('', 'Kwanza Tukule', 'height=400,width=600');
+           var mywindow = window.open('', 'Sympha Fresh', 'height=400,width=600');
                         mywindow.document.write('<html><head><title></title>');
                         mywindow.document.write('</head><body>');
                         mywindow.document.write(result);
@@ -2677,7 +2677,7 @@ $('#officeEditable').editableTableWidget();
         var date = $(`#statusDate`).val();
         $.post("payment_status_print.php",{deliverer:deliverer,date:date},
         function(result){
-           var mywindow = window.open('', 'Kwanza Tukule', 'height=400,width=600');
+           var mywindow = window.open('', 'Sympha Fresh', 'height=400,width=600');
                         mywindow.document.write('<html><head><title></title>');
                         mywindow.document.write('</head><body>');
                         mywindow.document.write(result);

@@ -35,7 +35,7 @@ if (isset($_SESSION['logged_in'])) {
 //authorized signature
 //This is unauthorized access
 //Block it
-        header("Location: ../$logout_url");
+        header("Location: ../$logout_url?page_url=<?php echo $redirect_link; ?>");
         exit;
     }
     else{
@@ -56,7 +56,7 @@ if (isset($_SESSION['logged_in'])) {
 
     if ((isset($_SESSION['LAST_ACTIVITY'])) && (time() - $_SESSION['LAST_ACTIVITY'] > $sessiontimeout)) {
 //redirect the user back to login page for re-authentication
-         header("Location: ../$logout_url");
+         header("Location: ../$logout_url?page_url=<?php echo $redirect_link; ?>");
         exit;
     }
     $_SESSION['LAST_ACTIVITY'] = time();
@@ -139,14 +139,14 @@ if ((isset($_POST["pass"])) && (isset($_POST["email"])) && ($_SESSION['logged_in
         require_once "PHPMailer/Exception.php";
         require_once "PHPMailer/SMTP.php";
          $mail = new PHPMailer(true);
-        $mail -> addAddress('kwanzatukuleauthenticator@gmail.com','Kwanza Tukule');
-        $mail -> setFrom("kwanzatukuleauthenticator@gmail.com", "Kwanza Tukule");
+        $mail -> addAddress('symphauthenticator@gmail.com','Sympha Fresh');
+        $mail -> setFrom("symphauthenticator@gmail.com", "Sympha Fresh");
         $mail->IsSMTP();
         $mail->Host = "smtp.gmail.com";
         // optional
         // used only when SMTP requires authentication  
         $mail->SMTPAuth = true;
-        $mail->Username = 'kwanzatukuleauthenticator@gmail.com';
+        $mail->Username = 'symphauthenticator@gmail.com';
         $mail->Password = 'Kenya.2030';
         $mail -> Subject = "Unusual Login Attempt";
         $mail -> isHTML(true);

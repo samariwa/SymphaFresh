@@ -3,10 +3,11 @@ require('config.php');
 //MySQL and MariaDB queries.
 //All queries are hybrid unless specified.
 $customersList = mysqli_query($connection,"SELECT id,Name,Location,Number,Deliverer,Status,Note FROM customers WHERE Status != 'blacklisted'ORDER BY id DESC")or die($connection->error);
+$subscribersList = mysqli_query($connection,"SELECT * FROM newsletter_subscribers ORDER BY id DESC")or die($connection->error);
 $customersPrintList = mysqli_query($connection,"SELECT customers.id as id,Name,Location,Number,Deliverer,Status,Note FROM customers inner join orders on customers.id=orders.Customer_id WHERE Status != 'blacklisted' and DATE(orders.Late_order) >= DATE_ADD(CURRENT_DATE(), INTERVAL -10 DAY) group by customers.id")or die($connection->error);
 $blacklistedList =  mysqli_query($connection,"SELECT customers.id as id,customers.Name, MAX(orders.created_at),customers.Location,customers.Number,customers.Deliverer,orders.Balance FROM orders INNER JOIN customers ON orders.Customer_id=customers.id where customers.Status='blacklisted' GROUP BY customers.id;")or die($connection->error);
 $categoriesList = mysqli_query($connection,"SELECT * FROM category ORDER BY id ASC")or die($connection->error);
-$unitsList = mysqli_query($connection,"SELECT * FROM inventory_units ORDER BY id DESC")or die($connection->error);
+$unitsList = mysqli_query($connection,"SELECT * FROM inventory_units ORDER BY id ASC")or die($connection->error);
 $stockFlowSettingsList = mysqli_query($connection,"SELECT s.id as stock_id,u.id as unit_id,s.Name as stock_name,s.Restock_Level as restock_level,s.Subunit_id as subunit_id,u.Name as unit_name,s.Contains as contains, s.subunit_replenish_qty as replenish_qty FROM stock s INNER JOIN inventory_units u ON s.Unit_id = u.id ORDER BY s.id ASC")or die($connection->error);
 //mariaDB ONLY
 //$stockList = mysqli_query($connection,"SELECT sid as id, sname as Name,Buying_price, Selling_price as Price,category as Category_Name,Restock_Level,Quantity FROM (SELECT s.id as sid, sf.id as sfid , s.Name as sname ,s.Opening_stock as Opening_stock,c.Category_Name as category,sf.purchased as purchased,Restock_Level,s.Quantity as Quantity,sf.Selling_price as Selling_Price,sf.Buying_price as Buying_price,sf.Received_date as received, sf.Expiry_date as expiry, sf.Created_at,ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY sf.Created_at DESC) as rn FROM stock s JOIN stock_flow sf ON s.id = sf.Stock_id JOIN category c ON s.Category_id=c.id ) q WHERE rn = 1")or die($connection->error);
