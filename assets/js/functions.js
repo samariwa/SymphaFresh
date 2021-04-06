@@ -1,3 +1,5 @@
+
+
 (function ($) {
     "use strict";
 
@@ -412,7 +414,7 @@ $(document).on('click','.userSubscription',function(){
             alert('You are already subscribed for our newsletter.');
            }
             else{
-            alert("Something went wrong");
+            alert("Something went wrong. Please try again later.");
            }
     });        
 });
@@ -430,7 +432,7 @@ $(document).on('click','.anonymousSubscription',function(){
             alert('You are already subscribed for our newsletter.');
            }
             else{
-            alert("Something went wrong");
+            alert("Something went wrong. Please try again later.");
            }
     }); 
   });
@@ -438,8 +440,9 @@ $(document).on('click','.anonymousSubscription',function(){
   $(document).on('click','.cart_increase',function(){
     var el = $(this);
     var id = el.attr("id");
+    var qty = $(`#cart_qty${id}`).val();
     var where = 'cart_increase'
-    $.post("cart.php",{id:id,where:where},
+    $.post("cart.php",{id:id,qty:qty,where:where},
     function(result){
         if (result == 'max') {
             alert('Quantity Unavailable');
@@ -450,10 +453,45 @@ $(document).on('click','.anonymousSubscription',function(){
   $(document).on('click','.cart_decrease',function(){
     var el = $(this);
     var id = el.attr("id");
+    var qty = $(`#cart_qty${id}`).val();
     var where = 'cart_decrease'
-    $.post("cart.php",{id:id,where:where},
+    $.post("cart.php",{id:id,qty:qty,where:where},
     function(result){
 
     }); 
   });
+
+  $(document).on('click','#user_contact',function(){
+    var email = $('#hidden_email').val();
+    var message = $('#message').val();
+    var where = 'site_contact'
+    $.post("../add.php",{email:email,message:message,where:where},
+    function(result){
+        if (result == 'success') {
+            alert('Your message was successfully sent! We shall get back to you in the shortest instance possible.');
+            location.reload(true);
+           }
+            else{
+            alert("Something went wrong. Please try again later.");
+           }
+    });        
+});
+
+$(document).on('click','#anonymous_contact',function(){
+    var name = $('#full_name').val();
+    var email = $('#email_address').val();
+    var number = $('#mobile_number').val();
+    var message = $('#message').val();
+    var where = 'site_contact'
+    $.post("../add.php",{name:name,email:email,number:number,message:message,where:where},
+    function(result){
+        if (result == 'success') {
+            alert('Your message was successfully sent! We shall get back to you in the shortest instance possible.');
+            location.reload(true);
+           }
+            else{
+            alert("Something went wrong. Please try again later.");
+           }
+    });        
+});
 

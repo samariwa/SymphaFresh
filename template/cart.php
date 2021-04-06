@@ -53,6 +53,7 @@ $where = $_POST['where'];
 if($where == 'cart_increase' )
 {
     $id = $_POST['id'];
+    $qty = $_POST['qty'];
     $cookie_data = stripslashes($_COOKIE['shopping_cart']);
     $cart_data = json_decode($cookie_data, true);
     foreach($cart_data as $keys => $values)
@@ -69,7 +70,7 @@ if($where == 'cart_increase' )
                 }
                 else
                 {
-                    $cart_data[$keys]['item_quantity'] += 1;
+                    $cart_data[$keys]['item_quantity'] = $qty;
                 }
                 $item_data = json_encode($cart_data);
                 setcookie('shopping_cart', $item_data, $cart_expiry);
@@ -79,6 +80,7 @@ if($where == 'cart_increase' )
 elseif($where == 'cart_decrease' )
 {
     $id = $_POST['id'];
+    $qty = $_POST['qty'];
     $cookie_data = stripslashes($_COOKIE['shopping_cart']);
     $cart_data = json_decode($cookie_data, true);
     foreach($cart_data as $keys => $values)
@@ -91,7 +93,7 @@ elseif($where == 'cart_decrease' )
                 }
                 else
                 {
-                    $cart_data[$keys]['item_quantity'] -= 1;
+                    $cart_data[$keys]['item_quantity'] = $qty;
                 }
                 $item_data = json_encode($cart_data);
                 setcookie('shopping_cart', $item_data, $cart_expiry);

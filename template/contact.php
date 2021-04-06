@@ -31,45 +31,71 @@ include('header.php');
                                     <ul class="contact-details">
                                         <li>
                                             <span class="title">Address</span>
-                                            <span class="desc">795 South Park Avenue, Door 6 Wonderland, CA 94107, Australia</span>
+                                            <span class="desc"><?php echo $physical_address; ?></span>
                                         </li>
                                         <li>
                                             <span class="title">Phone</span>
-                                            <span class="desc">+440 875369208 - Office <br> +440 353363114 - Fax</span>
+                                            <span class="desc"><?php echo $contact_number; ?> - Office <br> <?php echo $contact_number; ?> - Mobile</span>
                                         </li>
                                         <li>
                                             <span class="title">Email</span>
-                                            <span class="desc">support@sitename.com <br> info@sitename.com</span>
+                                            <span class="desc"><?php echo $authenticator_email; ?> <br> <?php echo $authenticator_email; ?></span>
                                         </li>
                                     </ul>
+                                 <p>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-7">
                             <div class="contact-form-area">
                                 <form action="#" class="contact-form">
-                                    <div class="input-item">
-                                        <input type="text" name="name" placeholder="Full Name">
+                                <?php
+                                $details_form =  '
+                                <div class="input-item">
+                                        <input type="text" name="name" id="full_name" placeholder="Full Name">
                                         <i class="fas fa-user"></i>
                                     </div>
 
                                     <div class="input-item">
-                                        <input type="text" name="phone" placeholder="Your Phone Number">
+                                        <input type="text" name="phone" id="mobile_number" placeholder="Your Phone Number">
                                         <i class="fas fa-mobile-alt"></i>
                                     </div>
 
                                     <div class="input-item">
-                                        <input type="email" name="email" placeholder="Email Address">
+                                        <input type="email" name="email" id="email_address" placeholder="Email Address">
                                         <i class="fas fa-envelope"></i>
                                     </div>
 
                                     <div class="input-item">
-                                        <textarea name="message" placeholder="Type Here Message"></textarea>
+                                        <textarea name="message" id="message" placeholder="Type Here Message"></textarea>
                                         <i class="fas fa-paper-plane"></i>
                                     </div>
+                                    
                                     <div>
-                                        <button type="submit" class="submit">Send Message</button>
+                                        <button type="submit" class="submit" id="anonymous_contact" >Send Message</button>
                                     </div>
+                                ';
+                                    if (isset($_SESSION['logged_in'])) {
+                                        if ($_SESSION['logged_in'] == TRUE) {
+                                            ?>
+                                            <input type="hidden" name="hidden_email" id="hidden_email" value="<?php echo $logged_in_email; ?>">
+                                            <div class="input-item">
+                                                <textarea name="message" id="message" placeholder="Type Here Message"></textarea>
+                                                <i class="fas fa-paper-plane"></i>
+                                            </div>
+                                            <div>
+                                                <button type="submit" class="submit" id="user_contact">Send Message</button>
+                                            </div>
+                                            <?php
+                                         }
+                                        else{
+                                    echo $details_form;
+                                            }
+                                        }
+                                        else{
+                                    echo $details_form;
+                                    }
+                                    ?> 
                                 </form>
                             </div>
                         </div>

@@ -1,4 +1,6 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 require('config.php');
 require_once "functions.php";
 $where =$_POST['where'];
@@ -816,5 +818,44 @@ elseif ($where == 'newsletter') {
     }
     mysqli_query($connection,"INSERT INTO `newsletter_subscribers` (`email`, `registered_user`) VALUES ('$email','$registered')") or die(mysqli_error($connection));
    }
+}
+
+elseif ($where == 'site_contact') {
+  $email = $_POST['email'];
+  $full_name = "";
+  $number = "";
+  $registered = "";
+  $message = $_POST['message'];
+  $row = mysqli_query($connection,"SELECT * FROM users WHERE email = '".$email."'")or die($connection->error);
+   $result = mysqli_fetch_array($row);
+   if ( $result == TRUE) {
+     $registered = "1";
+     $full_name = $result['firstname'].' '.$result['lastname'];
+     $number = $result['number'];
+   }
+   else{ 
+    $registered = "0";
+    $full_name = $_POST['name'];
+    $number = $_POST['number'];
+   }
+    require_once "PHPMailer/PHPMailer.php";
+    require_once "PHPMailer/Exception.php";
+    require_once "PHPMailer/SMTP.php";
+    $mail = new PHPMailer(true);
+    $mail -> addAddress($authenticator_email,$organization);
+    $mail -> setFrom($authenticator_email,$organization);
+    $mail->IsSMTP();
+    $mail->Host = $mail_host;
+    // optional
+    // used only when SMTP requires authentication  
+    $mail->SMTPAuth = true;
+    $mail->Username = $authenticator_email;
+    $mail->Password = $authenticator_password;
+    $mail -> Subject = "Customer Request/Query";
+    $mail -> isHTML(true);
+    $mail -> Body = $message.'<br><br>Customer Name: '.$full_name.'<br><br>Customer Number: '.$number.'<br><br>Customer Email: '.$email;
+    $mail -> send();
+   mysqli_query($connection,"INSERT INTO `site_communication` (`name`, `email`, `number`, `message`,`registered_user`) VALUES ('$full_name','$email','$number','$message','$registered')") or die(mysqli_error($connection));
+    echo "success";
 }
  ?>

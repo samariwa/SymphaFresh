@@ -18,6 +18,12 @@ $authenticator_password = 'Kenya.2030';
 //mail host
 $mail_host = "smtp.gmail.com";
 
+//site primary contact number
+$contact_number = "+254 713 932 911";
+
+//business physical address
+$physical_address = "This address";
+
 //Defining organization details
 $organization = 'Sympha Fresh';
 

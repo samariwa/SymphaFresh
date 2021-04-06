@@ -313,9 +313,15 @@
     <script src='../assets/js/fly-cart.js?3759597'></script>
     <script src='../assets/js/multi-countdown.js'></script>
     <script src='../assets/js/theia-sticky-sidebar.js'></script>
-    <script src='../assets/js/functions.js?893456849658364'></script>
+    <script src='../assets/js/functions.js?349372739734'></script>
    <!--Start of Tawk.to Script-->
 <script type="text/javascript">
+$(function() {
+    "use strict";
+    $(function() {
+        $(".preloader").fadeOut();
+    });
+});
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];

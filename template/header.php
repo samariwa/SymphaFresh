@@ -9,8 +9,6 @@
  //valid user has logged-in to the website
  //Check for unauthorized use of user sessions
     
-     $iprecreate = $_SERVER['REMOTE_ADDR'];
-     $useragentrecreate = $_SERVER["HTTP_USER_AGENT"];
      $signaturerecreate = $_SESSION['signature'];
  
  //Extract original salt from authorized signature
@@ -24,7 +22,7 @@
  //Re-create the hash based on the user IP and user agent
  //then check if it is authorized or not
  
-     $hashrecreate = sha1($saltrecreate . $iprecreate . $useragentrecreate);
+     $hashrecreate = sha1($saltrecreate . $iptocheck . $useragent);
      if (!($hashrecreate == $originalhash)) {
  
  //Signature submitted by the user does not matched with the
@@ -66,9 +64,160 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/slick-theme.css">
     <link rel="stylesheet" href="../assets/css/custom-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style type="text/css">
+   /*******************
+Preloader
+********************/
+.preloader {
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  position: fixed;
+  z-index: 99999;
+  background: #fff; }
+  .preloader .cssload-speeding-wheel {
+    position: absolute;
+    top: calc(50% - 3.5px);
+    left: calc(50% - 3.5px); }
+
+.loader,
+.loader__figure {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+
+.loader {
+  overflow: visible;
+  padding-top: 2em;
+  height: 0;
+  width: 2em; }
+
+.loader__figure {
+  height: 0;
+  width: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 0 solid #67BB4C;
+  border-radius: 50%;
+  -webkit-animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+  -moz-animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+  animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1); }
+
+.loader__label {
+  float: left;
+  margin-left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  margin: 0.5em 0 0 50%;
+  font-size: 0.875em;
+  letter-spacing: 0.1em;
+  line-height: 1.5em;
+  color: #67BB4C;
+  white-space: nowrap;
+  -webkit-animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+  -moz-animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+  animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1); }
+
+@-webkit-keyframes loader-figure {
+  0% {
+    height: 0;
+    width: 0;
+    background-color: #1976d2; }
+  29% {
+    background-color: #1976d2; }
+  30% {
+    height: 2em;
+    width: 2em;
+    background-color: transparent;
+    border-width: 1em;
+    opacity: 1; }
+  100% {
+    height: 2em;
+    width: 2em;
+    border-width: 0;
+    opacity: 0;
+    background-color: transparent; } }
+
+@-moz-keyframes loader-figure {
+  0% {
+    height: 0;
+    width: 0;
+    background-color: #1976d2; }
+  29% {
+    background-color: #1976d2; }
+  30% {
+    height: 2em;
+    width: 2em;
+    background-color: transparent;
+    border-width: 1em;
+    opacity: 1; }
+  100% {
+    height: 2em;
+    width: 2em;
+    border-width: 0;
+    opacity: 0;
+    background-color: transparent; } }
+
+@keyframes loader-figure {
+  0% {
+    height: 0;
+    width: 0;
+    background-color: #1976d2; }
+  29% {
+    background-color: #1976d2; }
+  30% {
+    height: 2em;
+    width: 2em;
+    background-color: transparent;
+    border-width: 1em;
+    opacity: 1; }
+  100% {
+    height: 2em;
+    width: 2em;
+    border-width: 0;
+    opacity: 0;
+    background-color: transparent; } }
+
+@-webkit-keyframes loader-label {
+  0% {
+    opacity: 0.25; }
+  30% {
+    opacity: 1; }
+  100% {
+    opacity: 0.25; } }
+
+@-moz-keyframes loader-label {
+  0% {
+    opacity: 0.25; }
+  30% {
+    opacity: 1; }
+  100% {
+    opacity: 0.25; } }
+
+@keyframes loader-label {
+  0% {
+    opacity: 0.25; }
+  30% {
+    opacity: 1; }
+  100% {
+    opacity: 0.25; } }
+ </style>
 </head>
 <body id="top-page">
-
+<div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">Sympha Fresh</p>
+        </div>
+    </div>
     <a class="position-absolute" href="javascript:void(0)" onclick="cartopen()">
     <!-- you can add class 'sitebar-drawar' in the div below-->
         <div id="sitebar-drawar" >
@@ -253,7 +402,7 @@
                                     class="btn quantity-left-minus cart_decrease" id="<?php echo $values['item_id']; ?>" data-type="minus" data-field="">-
                                 </button> 
                             </span>
-                            <input type="text" name="quantity" class="form-controls input-number" value="<?php echo $values["item_quantity"]; ?>">
+                            <input type="text" name="quantity" class="form-controls input-number" id="cart_qty<?php echo $values["item_id"]; ?>" value="<?php echo $values["item_quantity"]; ?>">
                             
                             <span class="increase">
                                 <button type="button"
@@ -400,7 +549,7 @@
                 </div>
                 <div class="col-2 col-md-1 col-lg-5">
                     <ul class="site-action d-none d-lg-flex align-items-center justify-content-between  ml-auto">
-                        <li class="site-phone"><a href="tel:+254 713 932 911"><i class="fas fa-phone"></i> +254 713 932 911</a></li>
+                        <li class="site-phone"><a href="tel:<?php echo $contact_number; ?>"><i class="fas fa-phone"></i><?php echo $contact_number; ?></a></li>
                         <li class="site-help"><a href="#"><i class="fas fa-question-circle"></i> Help & More</a></li>
                         <li class="wish-list"><a href="wishlist.php"><i class="fas fa-heart"></i> <span class="count">04</span></a></li>
                         <?php

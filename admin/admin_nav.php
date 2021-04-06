@@ -8,8 +8,6 @@ if (isset($_SESSION['logged_in'])) {
 //valid user has logged-in to the website
 //Check for unauthorized use of user sessions
    
-    $iprecreate = $_SERVER['REMOTE_ADDR'];
-    $useragentrecreate = $_SERVER["HTTP_USER_AGENT"];
     $signaturerecreate = $_SESSION['signature'];
 
 //Extract original salt from authorized signature
@@ -23,7 +21,7 @@ if (isset($_SESSION['logged_in'])) {
 //Re-create the hash based on the user IP and user agent
 //then check if it is authorized or not
 
-    $hashrecreate = sha1($saltrecreate . $iprecreate . $useragentrecreate);
+    $hashrecreate = sha1($saltrecreate . $iptocheck . $useragent);
     if (!($hashrecreate == $originalhash)) {
 
 //Signature submitted by the user does not matched with the
@@ -384,6 +382,21 @@ Preloader
           <span>Suppliers</span></a>
       </li>
 
+      <br>
+
+      <li class="nav-item">&emsp;
+        <a style="color: black;" href="#">
+           <i class="fa fa-envelope"></i>
+          <span>Site Mailbox</span></a>
+      </li>
+
+      <br>
+
+      <li class="nav-item">&emsp;
+        <a style="color: black;" href="#">
+           <i class="fa fa-users"></i>
+          <span>Site Visitors</span></a>
+      </li>
 
       <br>
 
