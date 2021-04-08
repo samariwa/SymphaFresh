@@ -126,7 +126,7 @@
         $cash = $row['Cash'];
         $fine = $row['Fine'];
         $balance = ($mpesa + $cash) + $debt - $cost + $fine;
-        $delivery_date = $row['Late_Order'];
+        $delivery_date = $row['Delivery_time'];
         $returned = $row['Returned'];
         $banked = $row['Banked'];
         $slip = $row['Slip_Number'];
@@ -260,7 +260,7 @@
         $cash = $row['Cash'];
         $fine = $row['Fine'];
         $balance = ($mpesa + $cash) + $debt - $cost + $fine;
-        $delivery_date = $row['Late_Order'];
+        $delivery_date = $row['Delivery_time'];
         $returned = $row['Returned'];
         $banked = $row['Banked'];
         $slip = $row['Slip_Number'];
@@ -394,7 +394,7 @@
         $cash = $row['Cash'];
         $fine = $row['Fine'];
         $balance = ($mpesa + $cash) + $debt - $cost + $fine;
-        $delivery_date = $row['Late_Order'];
+        $delivery_date = $row['Delivery_time'];
         $returned = $row['Returned'];
         $banked = $row['Banked'];
         $slip = $row['Slip_Number'];
@@ -528,7 +528,7 @@
         $cash = $row['Cash'];
         $fine = $row['Fine'];
         $balance = ($mpesa + $cash) + $debt - $cost + $fine;
-        $delivery_date = $row['Late_Order'];
+        $delivery_date = $row['Delivery_time'];
         $returned = $row['Returned'];
         $banked = $row['Banked'];
         $slip = $row['Slip_Number'];
@@ -662,7 +662,7 @@
         $cash = $row['Cash'];
         $fine = $row['Fine'];
         $balance = ($mpesa + $cash) + $debt - $cost + $fine;
-        $delivery_date = $row['Late_Order'];
+        $delivery_date = $row['Delivery_time'];
         $returned = $row['Returned'];
         $banked = $row['Banked'];
         $slip = $row['Slip_Number'];

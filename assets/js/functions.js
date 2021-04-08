@@ -403,8 +403,9 @@ $("input[type='radio']").click(function(){
 
 $(document).on('click','.userSubscription',function(){
     var email = $('.userSubscription').val();
+    var token = $('.newsletter_token').val();
     var where = 'newsletter'
-    $.post("../add.php",{email:email,where:where},
+    $.post("../add.php",{email:email,token:token,where:where},
     function(result){
         if (result == 'success') {
             alert('Thank you. Your newsletter subsription was successful!');
@@ -412,6 +413,9 @@ $(document).on('click','.userSubscription',function(){
            }
             else if (result == 'exists') {
             alert('You are already subscribed for our newsletter.');
+           }
+           else if (result == 'error') {
+            alert('Something went wrong. Please try again later.');
            }
             else{
             alert("Something went wrong. Please try again later.");
@@ -421,8 +425,9 @@ $(document).on('click','.userSubscription',function(){
 
 $(document).on('click','.anonymousSubscription',function(){
     var email = $('#anonymousEmail').val();
+    var token = $('.newsletter_token').val();
     var where = 'newsletter'
-    $.post("../add.php",{email:email,where:where},
+    $.post("../add.php",{email:email,token:token,where:where},
     function(result){
         if (result == 'success') {
             alert('Thank you. Your newsletter subsription was successful!');
@@ -457,19 +462,46 @@ $(document).on('click','.anonymousSubscription',function(){
     var where = 'cart_decrease'
     $.post("cart.php",{id:id,qty:qty,where:where},
     function(result){
+    }); 
+  });
 
+  $(document).on('click','.checkout_cart_increase',function(){
+    var el = $(this);
+    var id = el.attr("id");
+    var qty = $(`#checkout_cart_qty${id}`).val();
+    var where = 'cart_increase'
+    $.post("cart.php",{id:id,qty:qty,where:where},
+    function(result){
+        if (result == 'max') {
+            alert('Quantity Unavailable');
+           }
+    }); 
+  });
+
+  $(document).on('click','.checkout_cart_decrease',function(){
+    var el = $(this);
+    var id = el.attr("id");
+    var qty = $(`#checkout_cart_qty${id}`).val();
+    var where = 'cart_decrease'
+    $.post("cart.php",{id:id,qty:qty,where:where},
+    function(result){
     }); 
   });
 
   $(document).on('click','#user_contact',function(){
     var email = $('#hidden_email').val();
+    var subject = $('#subject').val();
     var message = $('#message').val();
+    var token = $('.contact_page_token').val();
     var where = 'site_contact'
-    $.post("../add.php",{email:email,message:message,where:where},
+    $.post("../add.php",{email:email,token:token,subject:subject,message:message,where:where},
     function(result){
         if (result == 'success') {
             alert('Your message was successfully sent! We shall get back to you in the shortest instance possible.');
             location.reload(true);
+           }
+           else if(result == 'error'){
+            alert("Something went wrong. Please try again later.");
            }
             else{
             alert("Something went wrong. Please try again later.");
@@ -481,14 +513,19 @@ $(document).on('click','#anonymous_contact',function(){
     var name = $('#full_name').val();
     var email = $('#email_address').val();
     var number = $('#mobile_number').val();
+    var subject = $('#subject').val();
     var message = $('#message').val();
+    var token = $('.contact_page_token').val();
     var where = 'site_contact'
-    $.post("../add.php",{name:name,email:email,number:number,message:message,where:where},
+    $.post("../add.php",{name:name,email:email,token:token,number:number,subject:subject,message:message,where:where},
     function(result){
         if (result == 'success') {
             alert('Your message was successfully sent! We shall get back to you in the shortest instance possible.');
             location.reload(true);
            }
+           else if(result == 'error'){
+            alert("Something went wrong. Please try again later."); 
+          }
             else{
             alert("Something went wrong. Please try again later.");
            }

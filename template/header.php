@@ -4,6 +4,7 @@
  require('../functions.php');
  require('../queries.php');
  include('cart.php');
+ include('wishlist_process.php');
  if (isset($_SESSION['logged_in'])) {
    if ($_SESSION['logged_in'] == TRUE) {
  //valid user has logged-in to the website
@@ -41,7 +42,7 @@
  
      if ((isset($_SESSION['LAST_ACTIVITY'])) && (time() - $_SESSION['LAST_ACTIVITY'] > $sessiontimeout) || (isset($_SESSION['LAST_ACTIVITY'])) && ($active == 2)) {
  //redirect the user back to login page for re-authentication
-          header("Location: ../$logout_url?page_url=<?php echo $redirect_link; ?>");
+          header('Location: ../'.$logout_url.'?page_url='.$redirect_link );
          exit;
      }
      $_SESSION['LAST_ACTIVITY'] = time();
@@ -64,7 +65,15 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/slick-theme.css">
     <link rel="stylesheet" href="../assets/css/custom-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://www.google.com/recaptcha/api.js?render=<?php echo $public_key; ?>"></script>
     <style type="text/css">
+    /*******************
+Removing recaptcha icon
+********************/ 
+.grecaptcha-badge {
+display: none !important;
+}
+
    /*******************
 Preloader
 ********************/
@@ -215,7 +224,7 @@ Preloader
 <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">Sympha Fresh</p>
+            <p class="loader__label"><?php echo $organization ?></p>
         </div>
     </div>
     <a class="position-absolute" href="javascript:void(0)" onclick="cartopen()">
@@ -230,31 +239,31 @@ Preloader
     </a>
 
 
-     <!-- admin Modal 
+     
      <div class="modal fade" id="useradmin1" tabindex="-1" aria-labelledby="useradmin1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="header-top-action-dropdown">
                         <ul>
-                            <li class="signin-option"><a href="login.php"><i class="fas fa-user mr-2"></i>Sign In</a></li>
-                            <li class="site-phone"><a href="tel:+254 713 932 911"><i class="fas fa-phone"></i> +254 713 932 911</a></li>
+                            <li class="signin-option"><a href="<?php echo  '../'.$login_url.'?page_url='.$redirect_link; ?>"><i class="fas fa-user mr-2"></i>Sign In</a></li>
+                            <li class="site-phone"><a href="tel:<?php echo $contact_number; ?>"><i class="fas fa-phone"></i> <?php echo $contact_number; ?></a></li>
                             <li class="site-help"><a href="#"><i class="fas fa-question-circle"></i> Help & More</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div> 
 
-     <!--siteinfo Modal 
+     
      <div class="modal fade" id="siteinfo1" tabindex="-1" aria-labelledby="siteinfo1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="header-top-action-dropdown">
                         <ul>
-                            <li class="site-phone"><a href="tel:+254 713 932 911"><i class="fas fa-phone"></i> +254 713 932 911</a></li>
+                            <li class="site-phone"><a href="tel:<?php echo $contact_number; ?>"><i class="fas fa-phone"></i> <?php echo $contact_number; ?></a></li>
                             <li class="site-help"><a href="#"><i class="fas fa-question-circle"></i> Help & More</a></li>
                         </ul>
                     </div>
@@ -262,8 +271,8 @@ Preloader
             </div>
         </div>
     </div>
-    -->
-     <!--search Modal 
+    
+     
      <div class="modal fade" id="search-select-id" tabindex="-1" aria-labelledby="search-select-id" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -271,17 +280,16 @@ Preloader
                     <div class="select-search-option">
                         <div class="flux-custom-select">
                             <select>
-                              <option value="0">Select Catagory</option>
-                              <option value="1">Vegetables</option>
-                              <option value="2">Fruits</option>
-                              <option value="3">Salads</option>
-                              <option value="4">Fish & Seafood</option>
-                              <option value="5">Fresh Meat</option>
-                              <option value="6">Health Product</option>
-                              <option value="7">Butter & Eggs</option>
-                              <option value="8">Oils & Venegar</option>
-                              <option value="9">Frozen Food</option>
-                              <option value="10">Jam & Honey</option>
+                              <option value="0">Select Category</option>
+                              <?php
+                                foreach($categoriesList as $row){
+                                $id = $row['id'];
+                                $category = $row['Category_Name'];
+                            ?>
+                              <option value="<?php echo $id; ?>"><?php echo $category; ?></option>
+                            <?php
+                                }
+                            ?>  
                             </select>
                         </div>
                         <form action="#" class="search-form">
@@ -292,44 +300,30 @@ Preloader
                 </div>
             </div>
         </div>
-    </div> -->
+    </div> 
 
 
-     <!-- menu modal 
+     
      <div class="modal fade" id="menu-id" tabindex="-1" aria-labelledby="menu-id" aria-hidden="true">
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
                     <ul class="menu d-xl-flex flex-wrap pl-0 list-unstyled">
-                        <li <a href="index.php">Home</a></li>
-                        <li><a href="product-list.php">Our Products</a></li>
-                        <li><a href="about.php">About</a></li>
-                        <li><a href="contact.php">Contact Us</a></li>
-                        <li class="item-has-children"><a data-toggle="collapse" href="#mainmenuid2" role="button" aria-expanded="false" aria-controls="mainmenuid2"><span>Pages</span> <i class="fas fa-angle-down"></i></a>
-                            <ul class="submenu collapse" id="mainmenuid2">
-                                <li><a href="product-leftsidebar.php">Product leftsidebar</a></li>
-                                <li><a href="product-fullwidth.php">Product Fullwidth</a></li>
-                                <li><a href="brand-product.php">Brand Page</a></li>
-                                <li><a href="product-detail.php">Product Details</a></li>
-                                <li><a href="faq.php">FAQ</a></li>
-                                <li><a href="checkout.php">Checkout</a></li>
-                                <li><a href="user-dashboard.php">User Dashboard</a></li>
-                                <li><a href="profile.php">Profile</a></li>
-                                <li><a href="track-order.php">Track Order</a></li>
-                            </ul>
-                        </li>
-                        <li class="item-has-children"><a data-toggle="collapse" href="#mainmenuid3" role="button" aria-expanded="false" aria-controls="mainmenuid3"><span>Blog</span> <i class="fas fa-angle-down"></i></a>
-                            <ul class="submenu collapse" id="mainmenuid3">
-                                <li><a href="blog.php">Blog full width</a></li>
-                                <li><a href="blog-rightsidebar.php">Blog Rightsidebar</a></li>
-                                <li><a href="single.php">Blog Single</a></li>
-                            </ul>
-                        </li>
+                        <li class="nav-item"><a href="index.php"> Home</a></li>
+                        <li class="item-has-children"><a data-toggle="collapse" href="#mainmenuid2" role="button" aria-expanded="false" aria-controls="mainmenuid2"><span>About Us</span> <i class="fas fa-angle-down"></i></a>
+                         <ul class="submenu collapse" id="mainmenuid2">
+                                    <li><a href="about.php">Who We Are</a></li>
+                                    <li><a href="about.php">Mission & Vision</a></li>
+                                    <li><a href="faq.php">FAQs</a></li>
+                        </ul>            
+                        <li class="nav-item"><a href="product-list.php">Our Products</a></li>
+                        <li class="nav-item"><a href="blog.php">Blog</a></li>
+                        <li class="nav-item"><a href="contact.php">Contact Us</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div> 
 
 
 
@@ -351,16 +345,16 @@ Preloader
                    c-9.922,0-17.959-8.044-17.959-17.961c0-7.269,4.341-13.495,10.548-16.325v17.994h14.338v-18.241
                    c6.478,2.714,11.037,9.108,11.037,16.568C328.448,206.586,320.407,214.625,310.484,214.625z"/></svg>
                    <?php
-                        $count=0;
+                        $cart_count=0;
                         if(isset($_COOKIE['shopping_cart'])){
                         $cookie_data = stripslashes($_COOKIE['shopping_cart']);
                         $cart_data = json_decode($cookie_data, true); 
                         foreach($cart_data as $cart){
-                            $count++;
+                            $cart_count++;
                         }
                     }
                     ?>
-                   <span><?php echo $count; ?> Items</span>
+                   <span><?php echo $cart_count; ?> Items</span>
                 </div>
                 <span onclick="cartclose()" class="close-icon"><i class="fas fa-times"></i></span>
         </div>
@@ -385,7 +379,7 @@ Preloader
                         <div class="product-content">
                             <a href="#" class="product-title"><?php echo $values["item_name"]; ?></a>
                             <div class="product-cart-info">
-                            Ksh<?php echo number_format($values["item_price"],2); ?> /unit
+                            Ksh<?php echo number_format($values["item_price"] - $values["item_discount"],2); ?> /unit
                             <br>
                             x<?php echo $values["item_quantity"]; ?> <?php echo $values["item_unit"]; ?>
                             </div>
@@ -414,7 +408,7 @@ Preloader
                     </div>
                     <div class="col-6">
                         <div >
-                            <!--<del>Ksh8.00</del>--><span class="ml-2">Ksh<?php echo number_format($values["item_quantity"] * $values["item_price"],2); ?></span>
+                            <?php if($values['item_discount'] > 0){ ?> <del>Ksh<?php echo number_format($values["item_price"],2); ?></del> <?php }?><span class="ml-2">Ksh<?php echo number_format($values["item_quantity"] * ($values["item_price"] - $values["item_discount"]),2); ?></span>
                         </div>
                     </div>
                 </div>
@@ -428,7 +422,7 @@ Preloader
                 </div>
             </div>   
         <?php 
-          $total = $total + ($values["item_quantity"] * $values["item_price"]); 
+          $total = $total + ($values["item_quantity"] * ($values["item_price"] - $values["item_discount"])); 
             }      
         }
         else{
@@ -457,7 +451,7 @@ Preloader
                     <span>Total</span> 
                     <span>Ksh<?php echo number_format($total,2); ?></span>   
                 </p>
-                <a <?php if(($count == 0)){
+                <a <?php if(($cart_count == 0)){
                 ?> 
                 href="#" 
                 <?php 
@@ -479,7 +473,7 @@ Preloader
                     } 
                   } 
                 ?> class="procced-checkout">Proceed to Checkout</a>
-                <a <?php if($count == 0){?> href="#" <?php } else{ ?>href="<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/product-list.php?action=clear' ?>" <?php } ?> class="clear-cart" style=" background-color: #df4759;color: white;display: block;text-align: center;padding: 10px 30px;border-radius: 5px;margin-top: 10px;">Clear Cart</a>
+                <a <?php if($cart_count == 0){?> href="#" <?php } else{ ?>href="<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/product-list.php?action=clear' ?>" <?php } ?> class="clear-cart" style=" background-color: #df4759;color: white;display: block;text-align: center;padding: 10px 30px;border-radius: 5px;margin-top: 10px;">Clear Cart</a>
             </div>
         </div>
     </div>
@@ -494,18 +488,13 @@ Preloader
         <div class="header-top">
             <div class="mobile-header d-flex justify-content-between align-items-center d-xl-none">
                  <div class="d-flex align-items-center">
-                    <div class="all-catagory-option mobile-device">
+                   <!-- <div class="all-catagory-option mobile-device">
                         <a class="bar-btn"><i class="fas fa-bars"></i>All Categories</a>
                         <a class="close-btn"><i class="fas fa-times"></i>All Categories</a>
-                    </div>
-                    <a href="index.php" class="logo"><img src="../assets/images/logo.png" alt="logo"></a>
+                    </div>-->
+                    <a href="index.php" class="logo"><img src="../assets/images/logo_navbar.png" width="70px" alt="logo"></a>
                 </div> 
 
-                <div class="all-catagory-option mobile-device">
-                    <a class="bar-btn"><i class="fas fa-bars"></i><span class="ml-2 d-none d-md-inline">All Categories</span></a>
-                    <a class="close-btn"><i class="fas fa-times"></i><span class="ml-2 d-none d-md-inline">All Categories</span></a>
-                </div> 
-                <a href="index.php" class="logo"><img src="../assets/images/logo.png" alt="logo"></a>
 
                 <!-- search select -->
                 <div class="text-center mobile-search">
@@ -522,7 +511,7 @@ Preloader
             </div>
             <div class="d-none d-xl-flex row align-items-center">
                 <div class="col-5 col-md-2">
-                    <a href="index.php" class="logo"><img src="../assets/images/logo.png" alt="logo"></a>
+                    <a href="index.php" class="logo"><img src="../assets/images/logo_navbar.png" width="110px"  alt="logo"></a>
                 </div>
                 <div class="col-5 col-md-9 col-lg-5">
                    
@@ -549,7 +538,7 @@ Preloader
                 </div>
                 <div class="col-2 col-md-1 col-lg-5">
                     <ul class="site-action d-none d-lg-flex align-items-center justify-content-between  ml-auto">
-                        <li class="site-phone"><a href="tel:<?php echo $contact_number; ?>"><i class="fas fa-phone"></i><?php echo $contact_number; ?></a></li>
+                        <li class="site-phone"><a href="tel:<?php echo $contact_number; ?>"><i class="fas fa-phone"></i> <?php echo $contact_number; ?></a></li>
                         <li class="site-help"><a href="#"><i class="fas fa-question-circle"></i> Help & More</a></li>
                         <li class="wish-list"><a href="wishlist.php"><i class="fas fa-heart"></i> <span class="count">04</span></a></li>
                         <?php
@@ -559,20 +548,20 @@ Preloader
                         <li class="my-account"><a class="dropdown-toggle" href="#" role="button" id="myaccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user mr-1"></i> Hello, <?php echo $logged_in_user; ?></a>
                             <ul class="submenu dropdown-menu" aria-labelledby="myaccount">
                                 <li><a href="profile.php">Profile</a></li>
-                                <li><a href="../auth/logout.php?page_url=<?php echo $redirect_link; ?>">Sign Out</a></li>
+                                <li><a href="<?php echo '../'.$logout_url.'?page_url='.$redirect_link; ?>">Sign Out</a></li>
                             </ul>
                         </li>
                         <?php
                           }
                             else{
                             ?>
-                              <li class="signin-option"><a href="<?php echo  '../auth/login.php?page_url='.$redirect_link; ?>"><i class="fas fa-user mr-2"></i>Sign In</a></li>    
+                              <li class="signin-option"><a href="<?php echo  '../'.$login_url.'?page_url='.$redirect_link; ?>"><i class="fas fa-user mr-2"></i>Sign In</a></li>    
                             <?php
                           }
                         }
                           else{
                         ?>
-                        <li class="signin-option"><a href="<?php echo  '../auth/login.php?page_url='.$redirect_link; ?>"><i class="fas fa-user mr-2"></i>Sign In</a></li>
+                        <li class="signin-option"><a href="<?php echo  '../'.$login_url.'?page_url='.$redirect_link; ?>"><i class="fas fa-user mr-2"></i>Sign In</a></li>
                         <?php
                           }
                         ?>
@@ -608,7 +597,7 @@ Preloader
                             <li class="nav-item"><a href="contact.php">Contact Us</a></li>
                         </ul>
                         <ul class="menu-action d-none d-lg-block">
-                            <li class="cart-option"><a onclick="cartopen()" href="#"><span class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="count"><?php echo $count; ?></span></span> <span class="cart-amount">Ksh <?php echo number_format($total,2); ?></span></a>
+                            <li class="cart-option"><a onclick="cartopen()" href="#"><span class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="count"><?php echo $cart_count; ?></span></span> <span class="cart-amount">Ksh <?php echo number_format($total,2); ?></span></a>
                             </li>
                         </ul>
                     </div>

@@ -295,7 +295,7 @@ elseif ($where=='order') {
   }
   $newDebt = $balance;
   $newBalance = (int)$newDebt - ((int)$cost*(int)$quantity);
-  $sql = "INSERT INTO `orders`(`Customer_id`,`Category_id`,`Quantity`,`Debt`,`Discount`,`Balance`,`Stock_id`,`Late_Order`) VALUES('$customer','$category','$quantity','$newDebt','$discount','$newBalance','$stockIDx','$lateOrder')";
+  $sql = "INSERT INTO `orders`(`Customer_id`,`Category_id`,`Quantity`,`Debt`,`Discount`,`Balance`,`Stock_id`,`Delivery_time`) VALUES('$customer','$category','$quantity','$newDebt','$discount','$newBalance','$stockIDx','$lateOrder')";
   $product = mysqli_query($connection,"SELECT Name,Category_Name  FROM `stock` inner join category on stock.Category_id = category.id WHERE stock.id = '".$stockIDx."'")or die($connection->error);
    $Product = mysqli_fetch_array($product);
   $Category_Name = $Product['Category_Name'];
@@ -800,6 +800,25 @@ elseif ($where == 'files') {
 
 elseif ($where == 'newsletter') {
   $email = $_POST['email'];
+  $token = $_POST['token'];
+  if (isset($_POST['email'])) {
+  $url = $token_verification_site;
+	$data = [
+		'secret' => $private_key,
+		'response' => $token,
+        'remoteip' => $iptocheck
+	];
+	$options = array(
+		'http' => array(
+		 'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+		     'method' => 'POST',
+		     'content' => http_build_query($data)
+		 )
+	);
+	$context = stream_context_create($options);
+	$response = file_get_contents($url, false, $context);
+	$res = json_decode($response, true);
+	if ($res['success'] == true) {
   $row = mysqli_query($connection,"SELECT * FROM newsletter_subscribers WHERE email = '".$email."'")or die($connection->error);
    $result = mysqli_fetch_array($row);
    if ( $result == TRUE) {
@@ -818,14 +837,39 @@ elseif ($where == 'newsletter') {
     }
     mysqli_query($connection,"INSERT INTO `newsletter_subscribers` (`email`, `registered_user`) VALUES ('$email','$registered')") or die(mysqli_error($connection));
    }
+  }
+}
+else{
+  echo $error;
+} 
 }
 
 elseif ($where == 'site_contact') {
+  $token = $_POST['token'];
   $email = $_POST['email'];
   $full_name = "";
   $number = "";
   $registered = "";
   $message = $_POST['message'];
+  $subject = $_POST['subject'];
+  if (isset($email) && isset($message) && isset($subject)) {
+    $url = $token_verification_site;
+	$data = [
+		'secret' => $private_key,
+		'response' => $token,
+        'remoteip' => $iptocheck
+	];
+	$options = array(
+		'http' => array(
+		 'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+		     'method' => 'POST',
+		     'content' => http_build_query($data)
+		 )
+	);
+	$context = stream_context_create($options);
+	$response = file_get_contents($url, false, $context);
+	$res = json_decode($response, true);
+	if ($res['success'] == true) {
   $row = mysqli_query($connection,"SELECT * FROM users WHERE email = '".$email."'")or die($connection->error);
    $result = mysqli_fetch_array($row);
    if ( $result == TRUE) {
@@ -851,11 +895,16 @@ elseif ($where == 'site_contact') {
     $mail->SMTPAuth = true;
     $mail->Username = $authenticator_email;
     $mail->Password = $authenticator_password;
-    $mail -> Subject = "Customer Request/Query";
+    $mail -> Subject = $subject;
     $mail -> isHTML(true);
     $mail -> Body = $message.'<br><br>Customer Name: '.$full_name.'<br><br>Customer Number: '.$number.'<br><br>Customer Email: '.$email;
     $mail -> send();
-   mysqli_query($connection,"INSERT INTO `site_communication` (`name`, `email`, `number`, `message`,`registered_user`) VALUES ('$full_name','$email','$number','$message','$registered')") or die(mysqli_error($connection));
+   mysqli_query($connection,"INSERT INTO `site_communication` (`name`, `email`, `number`,`subject`, `message`,`registered_user`) VALUES ('$full_name','$email','$number','$subject','$message','$registered')") or die(mysqli_error($connection));
     echo "success";
+  }
+  else{
+    echo $error;
+  } 
+}
 }
  ?>

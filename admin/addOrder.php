@@ -64,8 +64,9 @@
     <tr >
       <th scope="col" width="5%">#</th>
       <th scope="col" width="15%">Category</th>
-      <th scope="col" width="30%">Stock Name</th>
+      <th scope="col" width="18%">Stock Name</th>
       <th scope="col"width="15%">Selling Price</th>
+      <th scope="col"width="10%">Discount</th>
       <th scope="col"width="18%">Quantity Available</th>
        <th scope="col"width="18%"></th>
   </thead>
@@ -78,6 +79,7 @@
         $category = $row['Category_Name'];
         $name = $row['Name'];
         $selling_price = $row['Price'];
+        $discount = $row['Discount'];
         $quantity = $row['Quantity'];
       ?>
     <tr>
@@ -85,6 +87,7 @@
       <td id="category<?php echo $id; ?>"><?php echo $category; ?></td>
       <td id="name<?php echo $id; ?>"><?php echo $name; ?></td>
       <td id="sp<?php echo $id; ?>"><?php echo $selling_price; ?></td>
+      <td id="Discount<?php echo $id; ?>"><?php echo $discount; ?></td>
       <td id="qty<?php echo $id; ?>"><?php echo $quantity; ?></td>
       <?php
        if ($quantity > 0) {

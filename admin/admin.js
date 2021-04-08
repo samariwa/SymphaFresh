@@ -858,7 +858,7 @@ function selectSeller(selection) {
           var productPrice = $(`#sp${id}`).text();
           var available = $(`#qty${id}`).text();
           var quantity = '1';
-          var discount = '0';
+          var discount = $(`#Discount${id}`).text();
           var button = document.getElementById(`add_product${id}`);
           button.disabled = true;
            cartItems.push([productId,productName, productPrice,quantity, discount,available,button]);
@@ -1330,12 +1330,13 @@ function getIndexOfProduct(arr, k) {
   var id = $(`#id${rowx}`).text();
   var category = $(`#category${rowx}`).text();
   var name = $(`#name${rowx}`).text();
-  var bp = $(`#bp${rowx}`).text();
-  var sp = $(`#sp${rowx}`).text();
+  var bp = $(`#bprice${rowx}`).text();
+  var discount = $(`#discount${rowx}`).text();
+  var sp = $(`#sprice${rowx}`).text();
   var qty = $(`#qty${rowx}`).text();
   var restock_Level = $(`#restock_Level${rowx}`).text();
   var where = 'stock';
-  $.post("../save.php",{id:id,name:name,bp:bp,restock_Level:restock_Level,category:category,qty:qty,sp:sp,where:where},
+  $.post("../save.php",{id:id,name:name,bp:bp,discount:discount,restock_Level:restock_Level,category:category,qty:qty,sp:sp,where:where},
   function(result){});
 });
 
@@ -2539,7 +2540,7 @@ $('#officeEditable').editableTableWidget();
                         mywindow.document.close();
                         mywindow.focus();
                         mywindow.print();
-                        mywindow.close();
+                        //mywindow.close();
 
                     }
         });
@@ -2559,8 +2560,7 @@ $('#officeEditable').editableTableWidget();
                         mywindow.document.close();
                         mywindow.focus();
                         mywindow.print();
-                        mywindow.close();
-
+                        //mywindow.close();
                     }
         });
     });
@@ -2579,7 +2579,7 @@ $('#officeEditable').editableTableWidget();
                         mywindow.document.close();
                         mywindow.focus();
                         mywindow.print();
-                        mywindow.close();
+                        //mywindow.close();
 
                     }
         });
@@ -2599,7 +2599,7 @@ $('#officeEditable').editableTableWidget();
                         mywindow.document.close();
                         mywindow.focus();
                         mywindow.print();
-                        mywindow.close();
+                        //mywindow.close();
 
                     }
         });
@@ -2617,7 +2617,7 @@ $('#officeEditable').editableTableWidget();
                         mywindow.document.close();
                         mywindow.focus();
                         mywindow.print();
-                        mywindow.close();
+                        //mywindow.close();
          });
        });
 
@@ -2634,7 +2634,7 @@ $('#officeEditable').editableTableWidget();
                         mywindow.document.close();
                         mywindow.focus();
                         mywindow.print();
-                        mywindow.close();
+                        //mywindow.close();
          });
        });
 
@@ -2651,7 +2651,7 @@ $('#officeEditable').editableTableWidget();
                         mywindow.document.close();
                         mywindow.focus();
                         mywindow.print();
-                        mywindow.close();
+                        //mywindow.close();
          });
        });
 
@@ -2668,7 +2668,7 @@ $('#officeEditable').editableTableWidget();
                         mywindow.document.close();
                         mywindow.focus();
                         mywindow.print();
-                        mywindow.close();
+                        //mywindow.close();
          });
        });
 
@@ -2685,7 +2685,7 @@ $('#officeEditable').editableTableWidget();
                         mywindow.document.close();
                         mywindow.focus();
                         mywindow.print();
-                        mywindow.close();
+                        //mywindow.close();
          });
        });
       

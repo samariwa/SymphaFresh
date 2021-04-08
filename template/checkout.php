@@ -163,7 +163,7 @@ $location = $result['location'];
                                                 <div class="product-content">
                                                     <a onclick="openModal()" class="product-title"><?php echo $values["item_name"]; ?></a>
                                                     <div class="product-cart-info">
-                                                    Ksh<?php echo number_format($values["item_price"],2); ?> /unit
+                                                    Ksh<?php echo number_format(($values["item_price"] -  $values["item_discount"]),2); ?> /unit
                                                     <br>
                                                     x<?php echo $values["item_quantity"]; ?> <?php echo $values["item_unit"]; ?>
                                                     </div>
@@ -175,26 +175,26 @@ $location = $result['location'];
                                                 <div class="price-increase-decrese-group d-flex">
                                                     <span class="decrease-btn">
                                                         <button type="button"
-                                                            class="btn quantity-left-minus cart_decrease" id="<?php echo $values['item_id']; ?>" data-type="minus" data-field="">-
+                                                            class="btn quantity-left-minus checkout_cart_decrease" id="<?php echo $values['item_id']; ?>" data-type="minus" data-field="">-
                                                         </button> 
                                                     </span>
-                                                    <input type="text" name="quantity" class="form-controls input-number" value="<?php echo $values["item_quantity"]; ?>">
+                                                    <input type="text" name="quantity" class="form-controls input-number" id="checkout_cart_qty<?php echo $values["item_id"]; ?>" value="<?php echo $values["item_quantity"]; ?>">
                                                     <span class="increase">
                                                         <button type="button"
-                                                            class="btn quantity-right-plus cart_increase" id="<?php echo $values['item_id']; ?>" data-type="plus" data-field="">+
+                                                            class="btn quantity-right-plus checkout_cart_increase" id="<?php echo $values['item_id']; ?>" data-type="plus" data-field="">+
                                                         </button>
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="col-6">
-                                                <!--<div class="product-price">
-                                                    <del>Ksh8.00</del>--><span class="ml-4">Ksh<?php echo number_format($values["item_quantity"] * $values["item_price"],2); ?></span>
+                                                <!--<div class="product-price">-->
+                                                   <?php if($values["item_discount"] > 0){?><del>Ksh<?php echo number_format($values["item_price"]); ?></del><?php } ?><span class="ml-4">Ksh<?php echo number_format($values["item_quantity"] * ($values["item_price"] - $values["item_discount"]),2); ?></span>
                                                 <!--</div>-->
                                             </div>
                                         </div>
                                     </div>
                                     <?php 
-                                    $total = $total + ($values["item_quantity"] * $values["item_price"]); 
+                                    $total = $total + ($values["item_quantity"] * ($values["item_price"] - $values["item_discount"])); 
                                         }      
                                     }
                                     ?>

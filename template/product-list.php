@@ -107,6 +107,8 @@
                                 $name = $row['Name'];
                                 $image = $row['image'];
                                 $selling_price = $row['Price'];
+                                $discount = $row['Discount'];
+                                $discounted_price = $selling_price - $discount;
                                 $quantity = $row['Quantity'];
                                 $unit_name = $row['unit_name'];
                                 $restock_level = $row['Restock_Level'];
@@ -117,7 +119,7 @@
                                         <div class="product-thumb">
                                             <a onclick="openModal()"><img src="../assets/images/products/<?php echo $image; ?>" alt="product"></a>
                                             <span class="batch sale">Sale</span>
-                                            <a class="wish-link" href="#">
+                                            <a class="wish-link" href="<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/product-list.php?action=add_wishlist&id='.$id ?>">
                                                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
                                             </a>
                                         </div>
@@ -126,13 +128,14 @@
                                             <h6><a href="product-detail.php" class="product-title"><?php echo $name; ?></a></h6>
                                             <p class="quantity"><?php echo $unit_name; ?></p>
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <div class="price">Ksh.<?php echo number_format($selling_price,2); ?> <!--<del>Ksh.600</del>--></div>
+                                                <div class="price">Ksh.<?php echo number_format($discounted_price,2); if($discount > 0){?> <del>Ksh.<?php echo number_format($selling_price,2); ?></del><?php } ?></div>
             
                                                 <div class="cart-btn-toggle">
                                                 <form method="POST">
                                                 <input type="hidden" name="hidden_id" value="<?php echo $id; ?>">
                                                 <input type="hidden" name="hidden_name" value="<?php echo $name; ?>">
                                                 <input type="hidden" name="hidden_unit" value="<?php echo $unit_name; ?>">
+                                                <input type="hidden" name="hidden_discount" value="<?php echo $discount; ?>">
                                                 <input type="hidden" name="hidden_price" value="<?php echo $selling_price; ?>">
                                                 <input type="hidden" name="hidden_image" value="<?php echo $image; ?>">
                                                 <button type="submit" class="cart-btn" name="cart_button">

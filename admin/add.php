@@ -277,7 +277,7 @@ elseif ($where=='order') {
   }
   $newDebt = $balance;
   $newBalance = (int)$newDebt - ((int)$cost*(int)$quantity);
-  $sql = "INSERT INTO `orders`(`Customer_id`,`Category_id`,`Quantity`,`Debt`,`Discount`,`Balance`,`Stock_id`,`Late_Order`) VALUES('$customer','$category','$quantity','$newDebt','$discount','$newBalance','$stockIDx','$lateOrder')";
+  $sql = "INSERT INTO `orders`(`Customer_id`,`Category_id`,`Quantity`,`Debt`,`Discount`,`Balance`,`Stock_id`,`Delivery_time`) VALUES('$customer','$category','$quantity','$newDebt','$discount','$newBalance','$stockIDx','$lateOrder')";
   $product = mysqli_query($connection,"SELECT Name,Category_Name  FROM `stock` inner join category on stock.Category_id = category.id WHERE stock.id = '".$stockIDx."'")or die($connection->error);
    $Product = mysqli_fetch_array($product);
   $Category_Name = $Product['Category_Name'];

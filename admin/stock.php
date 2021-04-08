@@ -168,15 +168,16 @@
       <div class="offset-2"><h6 class="offset-4">Total Number: <?php echo $stockrowcount; ?></h6></div>
       <table id="stockEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
   <thead class="thead-dark">
-    <tr>
+  <tr>
       <th scope="col" width="4%">#</th>
-      <th scope="col" width="17%">Category</th>
-      <th scope="col" width="23%">Stock Name</th>
+      <th scope="col" width="16%">Category</th>
+      <th scope="col" width="16%">Stock Name</th>
        <?php
        if ($view == 'Software' || $view == 'Director' || $view == 'CEO') {
 
         ?>
       <th scope="col" width="9%">Buying Price</th>
+      <th scope="col" width="5%">Discount</th>
        <?php
         }
         ?>
@@ -206,6 +207,7 @@
         $category = $row['Category_Name'];
         $name = $row['Name'];
         $buying_price = $row['Buying_price'];
+        $discount = $row['Discount'];
         $selling_price = $row['Price'];
         $quantity = $row['Quantity'];
         $restock_Level = $row['Restock_Level'];
@@ -218,8 +220,9 @@
       <th scope="row" class="uneditable" id="id<?php echo $count; ?>"><?php echo $id; ?></th>
       <td class="editable" id="category<?php echo $count; ?>"><?php echo $category; ?></td>
       <td class="editable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
-      <td class="editable" id="bp<?php echo $count; ?>"><?php echo $buying_price; ?></td> 
-      <td class="editable" id="sp<?php echo $count; ?>"><?php echo $selling_price; ?></td>
+      <td class="editable" id="bprice<?php echo $count; ?>"><?php echo $buying_price; ?></td> 
+      <td class="editable" id="discount<?php echo $count; ?>"><?php echo $discount; ?></td> 
+      <td class="editable" id="sprice<?php echo $count; ?>"><?php echo $selling_price; ?></td>
       <td class="uneditable" id="qty<?php echo $count; ?>"><?php echo $quantity; ?></td>
       <?php
         }else{
@@ -227,7 +230,7 @@
         <th scope="row" class="uneditable" id="id<?php echo $count; ?>"><?php echo $id; ?></th>
       <td class="uneditable" id="category<?php echo $count; ?>"><?php echo $category; ?></td>
       <td class="uneditable" id="name<?php echo $count; ?>"><?php echo $name; ?></td>
-      <td class="uneditable" id="sp<?php echo $count; ?>"><?php echo $selling_price; ?></td>
+      <td class="uneditable" id="sprice<?php echo $count; ?>"><?php echo $selling_price; ?></td>
       <td class="uneditable" id="qty<?php echo $count; ?>"><?php echo $quantity; ?></td>
       <?php
        }

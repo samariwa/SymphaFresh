@@ -5,10 +5,16 @@ require('../config.php');
 require('../functions.php');
 session_start();
 $botDetect = FALSE;
+$usernamenotempty = TRUE;
+$usernamevalidate = TRUE;
+$usernotduplicate = TRUE;
+$passwordnotempty = TRUE;
+$passwordvalidate = TRUE;
+$passwordmatch  = TRUE;
 if (isset($_REQUEST['submit_button'])) {
-	$url = "https://www.google.com/recaptcha/api/siteverify";
+	$url = $token_verification_site;
 	$data = [
-		'secret' => "6LcD5ggaAAAAAKBfRn4dI-qMbsY0yUEERC-dZ7jy",
+		'secret' => $private_key,
 		'response' => $_POST['token'],
         'remoteip' => $iptocheck
 	];
@@ -23,6 +29,7 @@ if (isset($_REQUEST['submit_button'])) {
 	$response = file_get_contents($url, false, $context);
 	$res = json_decode($response, true);
 	if ($res['success'] == true) {
+
 		//sanitize user inputs
     $first_name = sanitize($_POST["firstname"]);
     $last_name = sanitize($_POST["lastname"]);
@@ -33,6 +40,46 @@ if (isset($_REQUEST['submit_button'])) {
     $desired_password1 = sanitize($_POST["pass2"]);
     $random = generateRandomString();
     $hash = password_hash($desired_password, PASSWORD_DEFAULT);
+    if (!($fetch = mysqli_fetch_array(mysqli_query($connection,"SELECT `number` FROM `users` WHERE `number`='$mobile'")))) {
+//no records for this user in the MySQL database
+        $usernotduplicate = TRUE;
+    } else {
+        $usernotduplicate = FALSE;
+    }
+
+    if (!($fetch = mysqli_fetch_array(mysqli_query($connection,"SELECT `email` FROM `users` WHERE `email`='$email'")))) {
+//no records for this user in the MySQL database
+        $usernotduplicate = TRUE;
+    } else {
+        $usernotduplicate = FALSE;
+    }
+//validate password
+
+    if (empty($desired_password)) {
+        $passwordnotempty = FALSE;
+    } else {
+        $passwordnotempty = TRUE;
+    }
+//php function ctype_alnum for checking the characters used in registration
+    if ( ((strlen($desired_password)) < 8)) {
+        $passwordvalidate = FALSE;
+    } else {
+        $passwordvalidate = TRUE;
+    }
+
+    if ($desired_password == $desired_password1) {
+        $passwordmatch = TRUE;
+    } else {
+        $passwordmatch = FALSE;
+    }
+
+    if (($usernamenotempty == TRUE)
+        && ($usernamevalidate == TRUE)
+        && ($usernotduplicate == TRUE)
+        && ($passwordnotempty == TRUE)
+        && ($passwordmatch == TRUE)
+        && ($passwordvalidate == TRUE)
+        ){
 	//Insert details to database
     mysqli_query($connection,"INSERT INTO `users` (`firstname`,`lastname`,`number`,`email`,`location`,`password`) VALUES ('$first_name','$last_name','$mobile','$email','$location','$hash')") or die(mysqli_error($connection));
 	$customer_fullname = $first_name.' '.$last_name;
@@ -56,6 +103,7 @@ if (isset($_REQUEST['submit_button'])) {
         }
      header("Location: ../$home_url");
      exit;
+	 }
 	}
 	else{
 		$botDetect = TRUE;
@@ -91,7 +139,7 @@ if (isset($_REQUEST['submit_button'])) {
     <!--===============================================================================================-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <!--===============================================================================================--> 
-    <script src="https://www.google.com/recaptcha/api.js?render=6LcD5ggaAAAAAPkNgg9MMdNk7Wn6qr6lbyY9s4fi"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=<?php echo $public_key; ?>"></script>
 </head>
 <body>	
 	<div class="limiter">
@@ -152,7 +200,7 @@ if (isset($_REQUEST['submit_button'])) {
 
 					<div class="flex-sb-m w-full m-b-30" style="margin-top: 30px">
 						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" required name="remember-me">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" required name="T&C">
 							<label class="label-checkbox100" for="ckb1">
 								I agree to the <a href="#" style="color: inherit;text-decoration: underline;">Terms and Conditions</a>
 							</label>
@@ -166,13 +214,23 @@ if (isset($_REQUEST['submit_button'])) {
 					</div>
 					<div>
 						<br>
-						<p>Already have an account?&ensp;<a href="login.php" style="color: inherit;text-decoration: underline;">Login</a></p>
+						
+						<p>Already have an account?&ensp;<a href="<?php echo 'login.php?page_url=../'.$home_url; ?>" style="color: inherit;text-decoration: underline;">Login</a></p>
 					</div>	
 					<div style="margin-top: 20px">
 		                  <!-- Display error -->
 		                  <?php if ($botDetect == TRUE)
 		                        echo '<font color="red"><i class="bx bx-shield-quarter bx-flashing"></i>&ensp;Access Denied!</font>';
 		                   ?>
+						    <?php 
+					         if ($passwordmatch == FALSE)
+					        echo '<br><br>&emsp;&emsp;&emsp;&ensp;<font color="red"><i class="bx bxs-error bx-flashing"></i>&ensp;Your passwords do not match.</font>'; ?>
+					<?php  if ($passwordvalidate == FALSE)
+					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;<font color="red"><i class="bx bx-shield-quarter bx-flashing"></i>&ensp;Your password should be greater than 8 characters.</font>'; ?>
+					   <?php if ($usernamevalidate == FALSE)
+					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;<font color="red"><i class="bx bx-shield-quarter bx-flashing"></i>&ensp;Your username should be less than 11 characters.</font>'; ?>
+					     <?php if ($usernotduplicate == FALSE)
+					        echo '<br><br>&emsp;&emsp;&emsp;&emsp;<font color="red"><i class="bx bxs-data bx-flashing"></i>&ensp;User already exists.</font>'; ?>
                   </div>
 					<input type="hidden" id="token" name="token">       		        
 				</form>
@@ -208,6 +266,7 @@ if (isset($_REQUEST['submit_button'])) {
           
           function check_email(){
           	var email = $(`#email`).val();
+			
           	var where = 'email';
             $.post("verification.php",{email:email,where:where},
               function(result){
@@ -276,11 +335,6 @@ if (isset($_REQUEST['submit_button'])) {
         } 
 
         $(`#registration-form`).submit(function(){
-          emailError = false;
-          mobileError = false;
-          passError = false;
-          pass2Error = false;
-
           check_email();
           check_mobile();
           check_pass(); 
@@ -297,10 +351,9 @@ if (isset($_REQUEST['submit_button'])) {
      grecaptcha.ready(function() {
     // do request for recaptcha token
     // response is promise with passed token
-        grecaptcha.execute('6LcD5ggaAAAAAPkNgg9MMdNk7Wn6qr6lbyY9s4fi', {action:'validate_captcha'})
+        grecaptcha.execute('<?php echo $public_key; ?>', {action:'validate_captcha'})
                   .then(function(token) {
             // add token value to form
-            console.log(token);
             document.getElementById('token').value = token;
         });
     });

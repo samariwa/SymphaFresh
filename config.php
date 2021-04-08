@@ -28,8 +28,9 @@ $physical_address = "This address";
 $organization = 'Sympha Fresh';
 
 //Defining Recaptcha parameters
-$privatekey = "Recaptcha private key";
-$publickey = "Recaptcha public key";
+$token_verification_site = "https://www.google.com/recaptcha/api/siteverify";
+$private_key ='6Ld_DqAaAAAAAC_Xp5g6yDr5XPjC1oIlMGZwX5cS';
+$public_key='6Ld_DqAaAAAAAIVKl_AmFc4qhHItRTT75yqbmhtR';
 
 //Defining length of salt,minimum=10, maximum=35
 $length_salt = 15;
@@ -53,6 +54,8 @@ $iptocheck = $_SERVER['REMOTE_ADDR'];
 $remember_me_expiry = time()+60*60*7*24;
 //cart cookies
 $cart_expiry = time() +60*60*7*24;
+//wishlistcookies
+$wishlist_expiry = time() +60*60*7*24;
 
 ////////////////////////////////////
 //END OF USER CONFIGURATION/////////

@@ -42,7 +42,6 @@ include('header.php');
                                             <span class="desc"><?php echo $authenticator_email; ?> <br> <?php echo $authenticator_email; ?></span>
                                         </li>
                                     </ul>
-                                 <p>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
                                 </div>
                             </div>
                         </div>
@@ -52,33 +51,45 @@ include('header.php');
                                 <?php
                                 $details_form =  '
                                 <div class="input-item">
-                                        <input type="text" name="name" id="full_name" placeholder="Full Name">
+                                        <input type="text" name="name" id="full_name" placeholder="Full Name" required>
                                         <i class="fas fa-user"></i>
                                     </div>
 
                                     <div class="input-item">
-                                        <input type="text" name="phone" id="mobile_number" placeholder="Your Phone Number">
+                                        <input type="text" name="phone" id="mobile_number" placeholder="Your Phone Number" required>
                                         <i class="fas fa-mobile-alt"></i>
                                     </div>
 
                                     <div class="input-item">
-                                        <input type="email" name="email" id="email_address" placeholder="Email Address">
+                                        <input type="email" name="email" id="email_address" placeholder="Email Address" required>
                                         <i class="fas fa-envelope"></i>
                                     </div>
 
                                     <div class="input-item">
-                                        <textarea name="message" id="message" placeholder="Type Here Message"></textarea>
+                                        <input type="text" name="subject" id="subject" placeholder="Subject" required>
+                                        <i class="fas fa-heading"></i>
+                                    </div>
+                                    
+
+                                    <div class="input-item">
+                                        <textarea name="message" id="message" placeholder="Type Here Message" required></textarea>
                                         <i class="fas fa-paper-plane"></i>
                                     </div>
                                     
                                     <div>
+                                        <input type="hidden" class="contact_page_token" id="token" name="token">
                                         <button type="submit" class="submit" id="anonymous_contact" >Send Message</button>
                                     </div>
                                 ';
                                     if (isset($_SESSION['logged_in'])) {
                                         if ($_SESSION['logged_in'] == TRUE) {
                                             ?>
+                                            <input type="hidden" class="contact_page_token" id="token" name="token">
                                             <input type="hidden" name="hidden_email" id="hidden_email" value="<?php echo $logged_in_email; ?>">
+                                            <div class="input-item">
+                                            <input type="text" name="subject" id="subject" placeholder="Subject">
+                                            <i class="fas fa-heading"></i>
+                                        </div>
                                             <div class="input-item">
                                                 <textarea name="message" id="message" placeholder="Type Here Message"></textarea>
                                                 <i class="fas fa-paper-plane"></i>

@@ -16,6 +16,7 @@
                                     if (isset($_SESSION['logged_in'])) {
                                     if ($_SESSION['logged_in'] == TRUE) {
                                 ?>
+                                   <input type="hidden" class="newsletter_token" id="token" name="token">
                                    <button class="btn btn-md active userSubscription" value="<?php echo $logged_in_email; ?>" style="background-color: #59b828; color: white;" role="button" aria-pressed="true" >SUBSCRIBE</button>
                                 <?php
                                     }
@@ -23,6 +24,7 @@
                                 ?>
                                     <div class="newsletter-form">
                                         <input type="email" name="email" id="anonymousEmail" placeholder="E-mail Address">
+                                        <input type="hidden" class="newsletter_token" id="token" name="token">
                                         <button class="submit-btn anonymousSubscription">
                                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path style="fill:#2196F3;" d="M511.189,259.954c1.649-3.989,0.731-8.579-2.325-11.627l-192-192 c-4.237-4.093-10.99-3.975-15.083,0.262c-3.992,4.134-3.992,10.687,0,14.82l173.803,173.803H10.667 C4.776,245.213,0,249.989,0,255.88c0,5.891,4.776,10.667,10.667,10.667h464.917L301.803,440.328 c-4.237,4.093-4.355,10.845-0.262,15.083c4.093,4.237,10.845,4.354,15.083,0.262c0.089-0.086,0.176-0.173,0.262-0.262l192-192 C509.872,262.42,510.655,261.246,511.189,259.954z"/><path d="M309.333,458.546c-5.891,0.011-10.675-4.757-10.686-10.648c-0.005-2.84,1.123-5.565,3.134-7.571L486.251,255.88 L301.781,71.432c-4.093-4.237-3.975-10.99,0.262-15.083c4.134-3.992,10.687-3.992,14.82,0l192,192 c4.164,4.165,4.164,10.917,0,15.083l-192,192C314.865,457.426,312.157,458.546,309.333,458.546z"/><path d="M501.333,266.546H10.667C4.776,266.546,0,261.771,0,255.88c0-5.891,4.776-10.667,10.667-10.667h490.667 c5.891,0,10.667,4.776,10.667,10.667C512,261.771,507.224,266.546,501.333,266.546z"/></svg>
                                         </button>
@@ -34,6 +36,7 @@
                                     ?>
                                         <div class="newsletter-form">
                                             <input type="email" name="email" id="anonymousEmail" placeholder="E-mail Address">
+                                            <input type="hidden" class="newsletter_token" id="token" name="token">
                                             <button class="submit-btn anonymousSubscription">
                                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path style="fill:#2196F3;" d="M511.189,259.954c1.649-3.989,0.731-8.579-2.325-11.627l-192-192 c-4.237-4.093-10.99-3.975-15.083,0.262c-3.992,4.134-3.992,10.687,0,14.82l173.803,173.803H10.667 C4.776,245.213,0,249.989,0,255.88c0,5.891,4.776,10.667,10.667,10.667h464.917L301.803,440.328 c-4.237,4.093-4.355,10.845-0.262,15.083c4.093,4.237,10.845,4.354,15.083,0.262c0.089-0.086,0.176-0.173,0.262-0.262l192-192 C509.872,262.42,510.655,261.246,511.189,259.954z"/><path d="M309.333,458.546c-5.891,0.011-10.675-4.757-10.686-10.648c-0.005-2.84,1.123-5.565,3.134-7.571L486.251,255.88 L301.781,71.432c-4.093-4.237-3.975-10.99,0.262-15.083c4.134-3.992,10.687-3.992,14.82,0l192,192 c4.164,4.165,4.164,10.917,0,15.083l-192,192C314.865,457.426,312.157,458.546,309.333,458.546z"/><path d="M501.333,266.546H10.667C4.776,266.546,0,261.771,0,255.88c0-5.891,4.776-10.667,10.667-10.667h490.667 c5.891,0,10.667,4.776,10.667,10.667C512,261.771,507.224,266.546,501.333,266.546z"/></svg>
                                             </button>
@@ -49,7 +52,7 @@
                         <div class="row">
                             <div class="col-md-6 col-lg-3">
                                 <div class="footer-widget">
-                                    <a href="index.php" class="footer-logo"><img src="../assets/images/logo.png" alt="logo"></a>
+                                    <a href="index.php" class="footer-logo"><img src="../assets/images/logo_footer.png" width="170px" alt="logo"></a>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod teincididunt ut labore et </p>
                                     <ul class="social-media-list d-flex flex-wrap">
                                         <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
@@ -86,6 +89,8 @@
                                             <li><a href="faq.php">FAQ</a></li>
                                             <!--<li><a href="#">Careers</a></li>-->
                                             <li><a href="contact.php">Contact Us</a></li>
+                                            <li><a href="#">Privacy policies</a></li>
+                                           <li><a href="#">Cookies</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -110,23 +115,20 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="footer-bottom">
                         <div class="row">
-                            <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
+                            <div class="col-md-5 text-center text-md-left mb-3 mb-md-0">
                             <?php
                             $currentYear = date("Y");
                             ?>
-                                <p class="copyright">Copyright &copy; <?php echo $currentYear; ?> <a href=""><?php echo $organization ?></a> | All Rights Reserved.</p>
+                                <p class="copyright">Copyright &copy; <?php echo $currentYear; ?> <a href=""><?php echo $organization ?></a>&emsp;|&emsp;All Rights Reserved.</p>
                             </div>
 
-                            <div class="col-md-6 d-flex justify-content-center justify-content-md-end">
-                                <ul class="footer-menu d-flex flex-wrap">
-                                    <li><a href="#">Privacy policies</a></li>
-                                    <li><a href="#">Cookies</a></li>
-                                </ul>
+                            <div class="col-md-7 d-flex justify-content-center justify-content-md-end">
+                            <p>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </footer>
@@ -200,7 +202,7 @@
                             <a class="wish-link" href="#">
                                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
                             </a>
-                            <a href="#" class="cata">Catagory</a>
+                            <a href="#" class="cata">Category</a>
                             <h2>Product Title Here</h2>
                             <p class="quantity">1kg</p>
                             <h3 class="price">Ksh329 <del>Ksh400</del></h3>
@@ -275,7 +277,7 @@
         <button class="info" type="button" data-toggle="modal" data-target="#siteinfo1"><i class="fas fa-info-circle"></i></button>
 
         <div class="footer-cart">
-            <a onclick="cartopen()" href="#" class="d-flex align-items-center"><span class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="count">3</span></span> <span class="cart-amount ml-2">$560.00</span></a>
+            <a onclick="cartopen()" href="#" class="d-flex align-items-center"><span class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="count"><?php echo $cart_count; ?></span></span> <span class="cart-amount ml-2">Ksh <?php echo number_format($total,2); ?></span></a>
         </div>
 
         <div class="footer-admin-area">
@@ -313,7 +315,7 @@
     <script src='../assets/js/fly-cart.js?3759597'></script>
     <script src='../assets/js/multi-countdown.js'></script>
     <script src='../assets/js/theia-sticky-sidebar.js'></script>
-    <script src='../assets/js/functions.js?349372739734'></script>
+    <script src='../assets/js/functions.js?8734783074099'></script>
    <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 $(function() {
@@ -331,6 +333,16 @@ s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
+
+grecaptcha.ready(function() {
+    // do request for recaptcha token
+    // response is promise with passed token
+        grecaptcha.execute('<?php echo $public_key; ?>', {action:'validate_captcha'})
+                  .then(function(token) {
+            // add token value to form
+            document.getElementById('token').value = token;
+        });
+    });
 </script>
 <!--End of Tawk.to Script-->
 </body>

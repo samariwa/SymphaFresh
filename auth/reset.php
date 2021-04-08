@@ -4,6 +4,25 @@ require('../config.php');
 $passwordnotempty = TRUE;
 $passwordvalidate = TRUE;
 $passwordmatch  = TRUE;
+$botDetect = FALSE;
+if (isset($_REQUEST['reset_button'])) {
+	$url = $token_verification_site;
+	$data = [
+		'secret' => $private_key,
+		'response' => $_POST['token'],
+        'remoteip' => $iptocheck
+	];
+	$options = array(
+		'http' => array(
+		 'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+		     'method' => 'POST',
+		     'content' => http_build_query($data)
+		 )
+	);
+	$context = stream_context_create($options);
+	$response = file_get_contents($url, false, $context);
+	$res = json_decode($response, true);
+	if ($res['success'] == true) {
    if (isset($_GET['email']) && isset($_GET['token'])){
       $email = $connection->real_escape_string($_GET['email']);
       $token = $connection->real_escape_string($_GET['token']);
@@ -51,6 +70,11 @@ $passwordmatch  = TRUE;
    }else{
    	redirectToLoginPage();
    }
+  }
+  else{
+    $botDetect = TRUE;
+  }
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,6 +105,7 @@ $passwordmatch  = TRUE;
     <!--===============================================================================================-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <!--===============================================================================================-->
+    <script src="https://www.google.com/recaptcha/api.js?render=<?php echo $public_key; ?>"></script>
     
 </head>
   <div class="limiter">
@@ -92,24 +117,26 @@ $passwordmatch  = TRUE;
           </span>
         </div>
 
-        <form class="login100-form" method="POST">
+        <form class="login100-form" method="POST" id="rest-form">
 
         <div class="wrap-input100 m-b-20">
+        <span style="color: red;" id="pass-error"></span>
             <span class="label-input100">New Password</span>
-            <input class="input100" type="password" name="pass" required placeholder="Enter password">
+            <input class="input100" type="password" name="pass" id="pass" required placeholder="Enter password">
             <span class="focus-input100"></span>
           </div>
 
           <div class="wrap-input100 m-b-20">
+          <span style="color: red;" id="pass2-error"></span>
             <span class="label-input100">Confirm Password</span>
-            <input class="input100" type="password" name="pass2" required placeholder="Re-enter password">
+            <input class="input100" type="password" name="pass2" id="pass2" required placeholder="Re-enter password">
             <span class="focus-input100"></span>
           </div>
            <div class="flex-sb-m w-full m-b-30">
            
           </div>
           <div class="container-login100-form-btn">
-            <button class="login100-form-btn" type="submit">
+            <button class="login100-form-btn" type="submit" name="reset_button">
              Reset
             </button>
           </div>
@@ -118,15 +145,86 @@ $passwordmatch  = TRUE;
           
           <div style="margin-top: 20px">
           <!-- Display validation errors -->
+          <?php if ($botDetect == TRUE)
+              echo '<font color="red"><i class="bx bx-shield-quarter bx-flashing"></i>&ensp;Access Denied!</font>';
+          ?>
           <?php if ($passwordmatch == FALSE)
             echo '<br><font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;<font color="red"><i class="bx bxs-error bx-flashing"></i>&ensp;Your passwords do not match.</font>'; ?>
             <?php if ($passwordvalidate = FALSE)
                 echo '<br><br><font color="red"><i class="bx bx-shield-quarter bx-flashing"></i>&ensp;Your password should be greater than 8 characters.</font>'; ?>
             <br>
-        </div>                 
+        </div>  
+        <input type="hidden" id="token" name="token">                
         </form>
       </div>
     </div>
   </div>
+  <script type="text/javascript">
+		$(function(){
+  $(`#pass-error`).hide();
+	$(`#pass2-error`).hide();
+
+  var passError = false;
+  var pass2Error = false;
+
+  $(`#pass`).focusout(function(){
+      check_pass();
+  });
+  $(`#pass2`).focusout(function(){
+      check_pass2();
+  });
+
+  function check_pass(){
+      var pass = $(`#pass`).val().length;
+      if (pass > 0 && pass < 8) {
+        $(`#pass-error`).show();
+        $(`#pass-error`).html('<i class="bx bx-shield-quarter bx-flashing"></i>&ensp;Password should be greater than 8 characters.');
+        passError = true;
+      }
+      else{
+          $(`#pass-error`).hide();
+          $(`#pass-error`).html('');
+          passError = false;
+      }
+      
+  }
+  function check_pass2(){
+      var pass2 = $(`#pass2`).val();
+      var pass = $(`#pass`).val();
+      if( pass2 !== pass && pass2 != ''){
+        $(`#pass2-error`).show();
+        $(`#pass2-error`).html('<i class="bx bxs-error bx-flashing"></i>&ensp;Your passwords do not match.');
+        pass2Error = true;
+      }
+      else{
+        $(`#pass2-error`).hide();
+          $(`#pass2-error`).html('');
+          pass2Error = false;
+      }
+      
+  } 
+
+  $(`#reset-form`).submit(function(){
+          check_pass(); 
+          check_pass2();          
+
+          if (passError == false && pass2Error == false) {
+          	return true;
+          }else{
+          	return false;
+          }
+        });
+  });
+
+  grecaptcha.ready(function() {
+    // do request for recaptcha token
+    // response is promise with passed token
+        grecaptcha.execute('<?php echo $public_key; ?>', {action:'validate_captcha'})
+                  .then(function(token) {
+            // add token value to form
+            document.getElementById('token').value = token;
+        });
+    });
+	</script>
 </body>
 </html>

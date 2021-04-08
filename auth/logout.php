@@ -12,7 +12,9 @@ if (isset($_SESSION['logged_in'])) {
     $session_access = mysqli_query($connection,"SELECT * FROM `users` WHERE `email`='$email'");
     $row = mysqli_fetch_array($session_access);
     $access = $row['access'];
+    $user_id = $row['id'];
    mysqli_query($connection,"UPDATE `users` SET `online` = '0', `lastActivity` = NOW(), ipAddress = '0' WHERE `email` = '$email'");
+   mysqli_query($connection,"DELETE FROM `logged_devices` WHERE `user` = '$user_id' AND ip_address = '$iptocheck'");
     $_SESSION['logged_in'] = False;
     session_destroy();
     session_unset();
@@ -27,7 +29,7 @@ if (isset($_SESSION['logged_in'])) {
         exit();
         }
       }else{
-        header("Location: ../$admin_url"); 
+        header("Location: ../$home_url"); 
         exit();
       }
 }

@@ -390,15 +390,6 @@ Preloader
           <span>Site Mailbox</span></a>
       </li>
 
-      <br>
-
-      <li class="nav-item">&emsp;
-        <a style="color: black;" href="#">
-           <i class="fa fa-users"></i>
-          <span>Site Visitors</span></a>
-      </li>
-
-      <br>
 
       <?php
        }
@@ -443,9 +434,9 @@ Preloader
                  include('../queries.php');
                     $restockNumber = mysqli_num_rows($restockExists);
                     $notesNumber = mysqli_num_rows($notesExists);
-                    $notificationNumber = $restockNumber + $notesNumber - 1;
+                    $notificationNumber = $restockNumber + $notesNumber;
                 ?>
-                <span class="badge badge-danger badge-counter"><?php echo $notificationNumber ?>+</span>
+                <span class="badge badge-danger badge-counter"><?php echo $notificationNumber ?></span>
               </a>
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">

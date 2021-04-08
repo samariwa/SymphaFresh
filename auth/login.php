@@ -63,37 +63,31 @@ if (isset($_SESSION['logged_in'])) {
 //Pre-define validation
 $validationresults = TRUE;
 $registered = TRUE;
-$recaptchavalidation = TRUE;
-$illegalattempts = FALSE;
-$activate = TRUE;
-$deactivated = FALSE;
-$loggedIn = FALSE;
-//Trapped brute force attackers and give them more hard work by providing a captcha-protected page
-
-/*$iptocheck = mysqli_real_escape_string($iptocheck);
-if ($fetch = mysqli_fetch_array(mysqli_query("SELECT `loggedip` FROM `ipcheck` WHERE `loggedip`='$iptocheck'"))) {
-//Already has some IP address records in the database
-//Get the total failed login attempts associated with this IP address
-    $resultx = mysqli_query("SELECT `failedattempts` FROM `ipcheck` WHERE `loggedip`='$iptocheck'");
-    $rowx = mysqli_fetch_array($resultx);
-    $loginattempts_total = $rowx['failedattempts'];
-    If ($loginattempts_total > $maxfailedattempt) {
-//too many failed attempts allowed, redirect and give 403 forbidden.
-        header(sprintf("Location: %s", $forbidden_url));
-        exit;
-    }
-}*/
-
+$botDetect = FALSE;
 //Check if a user has logged-in
-
 if (!isset($_SESSION['logged_in'])) {
     $_SESSION['logged_in'] = FALSE;
 }
-
+if(isset($_REQUEST['login-button'])){
+  $url = $token_verification_site;
+	$data = [
+		'secret' => $private_key,
+		'response' => $_POST['token'],
+    'remoteip' => $iptocheck
+	];
+  $options = array(
+		'http' => array(
+		 'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+		     'method' => 'POST',
+		     'content' => http_build_query($data)
+		 )
+	);
+  $context = stream_context_create($options);
+	$response = file_get_contents($url, false, $context);
+	$res = json_decode($response, true);
+	if ($res['success'] == true) {
 //Check if the form is submitted
-
 if ((isset($_POST["pass"])) && (isset($_POST["email"])) && ($_SESSION['logged_in'] == FALSE)) {
-
 //Email and password has been submitted by the user
 //Receive and sanitize the submitted information
 
@@ -103,6 +97,7 @@ if ((isset($_POST["pass"])) && (isset($_POST["email"])) && ($_SESSION['logged_in
     $Name = mysqli_query($connection,"SELECT * FROM `users` WHERE `email`='$email'");
         $row = mysqli_fetch_array($Name);
         $identity = $row['firstname'];
+        $user_id = $row['id'];
         $user_email = $row['email'];
         $access = $row['access'];
         $roleSession = mysqli_query($connection,"SELECT jobs.Name as Name FROM `users` inner join jobs on users.Job_id = jobs.id WHERE `email`='$user_email'");
@@ -117,152 +112,14 @@ if ((isset($_POST["pass"])) && (isset($_POST["email"])) && ($_SESSION['logged_in
 //user is not yet registered
         $registered = FALSE;
     }
-
-//Grab login attempts from MySQL database for a corresponding username
-        $result1 = mysqli_query($connection,"SELECT `loginattempt` FROM `users` WHERE `email`='$email'");
-        $row = mysqli_fetch_array($result1);
-        $loginattempts_email = $row['loginattempt'];
-
-    if (($loginattempts_email == $maxfailedattempts) && ($registered == TRUE)) {
-//Require those user with login attempts failed records to
-//send an email to inform admin of unusual login attempt.
-       require_once "PHPMailer/PHPMailer.php";
-        require_once "PHPMailer/Exception.php";
-        require_once "PHPMailer/SMTP.php";
-         $mail = new PHPMailer(true);
-        $mail -> addAddress($authenticator_email,$organization);
-        $mail -> setFrom($authenticator_email,$organization);
-        $mail->IsSMTP();
-        $mail->Host = $mail_host;
-        // optional
-        // used only when SMTP requires authentication  
-        $mail->SMTPAuth = true;
-        $mail->Username = $authenticator_email;
-        $mail->Password = $authenticator_password;
-        $mail -> Subject = "Unusual Login Attempt";
-        $mail -> isHTML(true);
-        $mail -> Body = "
-              Hi,<br><br>
-                An unusual login attempt using $email's account has been detected.<br> Please ensure that it is an authorized attempt. If it isn't kindly notify Mariwa for necessary security measures to be taken.<br> Thank you for your co-operation.<br><br>
-                Kind Regards,
-                ";
-        $mail -> send();
-        
-    }
-    //display warning message
-if (($loginattempts_email == $maxfailedattempts) && ($registered == TRUE)) {
-        $illegalattempts = TRUE; 
-    }
-if (($loginattempts_email > $maxfailedattempts) && ($registered == TRUE)) {
-      mysqli_query($connection,"UPDATE `users` SET `active` = '2' WHERE `email` = '$email'"); 
-      $deactivated = TRUE; 
-    }
-//Get correct hashed password based on given email address stored in MySQL database
-
-  //check if account is activated
-      $result3 = mysqli_query($connection,"SELECT `active` FROM `users` WHERE `email`='$email'");
-        $row3 = mysqli_fetch_array($result3);
-        $active = $row3['active'];
-        if($active == 1){
-          $activate = TRUE;
-        }
-        if($active == 0){
-          $activate = FALSE;
-        }
-        if($active == 2){
-          $deactivated = TRUE; 
-        }
-  //check if the account is logged in using another device
-  $result2 = mysqli_query($connection,"SELECT `ipAddress` FROM `users` WHERE `email`='$email'");
-  $row2 = mysqli_fetch_array($result2);
-  $ipValue = $row2['ipAddress'];
-  if ($ipValue == 0) {
-        $loggedIn = FALSE;
-        }
-    elseif ($ipValue == $iptocheck) {
-           $loggedIn = FALSE;
-          }      
-    else{
-       $loggedIn = TRUE; 
-    }        
+   
 //u is registered in database, now get the hashed password    
     $result = mysqli_query($connection,"SELECT `password` FROM `users` WHERE `email`='$email'");
         $row = mysqli_fetch_array($result);
         $correctpassword = $row['password'];
-    if (!password_verify($pass, $correctpassword) || ($registered == FALSE) || ($activate == FALSE) || ($deactivated == TRUE) || ($loggedIn == TRUE)) {
-    	$result1 = mysqli_query($connection,"SELECT `active` FROM `users` WHERE `email`='$email'");
-        $row = mysqli_fetch_array($result1);
-        $active = $row['active'];
-        if(($active == 0) && ($registered == FALSE) && ($loggedIn = FALSE) || ($active == 0) && !password_verify($pass, $correctpassword) && ($loggedIn = FALSE)){
-          $activate = TRUE;
-          $validationresults = FALSE; 
-          $loggedIn = FALSE;
-        }
-        else if (($active == 2) && ($registered == FALSE) && ($loggedIn = FALSE) || ($active == 2) && !password_verify($pass, $correctpassword) && ($loggedIn = FALSE)) {
-           $deactivated = FALSE;
+    if (!password_verify($pass, $correctpassword) || ($registered == FALSE)) {
+    
            $validationresults = FALSE;
-           $loggedIn = FALSE;
-        }
-        elseif (($active == 2) && ($registered == TRUE) && password_verify($pass, $correctpassword) && ($loggedIn = FALSE)) {
-           $deactivated = TRUE;
-           $validationresults = TRUE;
-           $loggedIn = FALSE;
-        }
-        else if (($active == 2) && ($registered == TRUE) && password_verify($pass, $correctpassword) && ($loggedIn = TRUE)) {
-           $deactivated = TRUE;
-           $validationresults = TRUE;
-           $loggedIn = FALSE;
-        }
-        else if(($active == 0) && ($registered == TRUE) && password_verify($pass, $correctpassword) && ($loggedIn = FALSE)){
-            $activate = FALSE;
-          $validationresults = TRUE;
-          $loggedIn = FALSE;
-        }
-        else if(($active == 0) && ($registered == FALSE) && ($loggedIn = FALSE) || ($active == 0) && !password_verify($pass, $correctpassword) && ($loggedIn = FALSE)){
-            $activate = TRUE;
-          $validationresults = FALSE;
-          $loggedIn = FALSE;
-        }
-        else if(($active == 1) && ($registered == TRUE) && password_verify($pass, $correctpassword) && ($loggedIn = TRUE)){
-            $activate = TRUE;
-          $validationresults = TRUE;
-          $loggedIn = TRUE;
-        }
-        else if (($active == 1) && ($registered == TRUE) && !password_verify($pass, $correctpassword) && ($loggedIn = FALSE)){
-//log login failed attempts to database
-        	//user login validation fails
-        	 $validationresults = FALSE;
-        	 $activate = TRUE;
-             $deactivated = FALSE;
-             $loggedIn = FALSE;
-              $result1 = mysqli_query($connection,"SELECT `loginattempt` FROM `users` WHERE `email`='$email'");
-              $row = mysqli_fetch_array($result1);
-              $loginattempts_email = $row['loginattempt'];
-            $loginattempts_email = $loginattempts_email + 1;
-            $loginattempts_email = intval($loginattempts_email);
-//update login attempt records
-         
-            mysqli_query($connection,"UPDATE `users` SET `loginattempt` = '$loginattempts_email' WHERE `email` = '$email'");
-//Possible brute force attacker is targeting registered emails
-//check if has some IP address records
-
-        /*    if (!($fetch = mysqli_fetch_array(mysqli_query($connection,"SELECT `loggedip` FROM `ipcheck` WHERE `loggedip`='$iptocheck'")))) {
-//no records
-//insert failed attempts
-                $loginattempts_total = 1;
-                $loginattempts_total = intval($loginattempts_total);
-                mysqli_query($connection,"INSERT INTO `ipcheck` (`loggedip`, `failedattempts`) VALUES ('$iptocheck', '$loginattempts_total')");
-            } else {
-//has some records, increment attempts
-                $loginattempts_total = $loginattempts_total + 1;
-                mysqli_query($connection,"UPDATE `ipcheck` SET `failedattempts` = '$loginattempts_total' WHERE `loggedip` = '$iptocheck'");
-            }*/
-        }
-        else{
-           $validationresults = FALSE;
-             $activate = TRUE;
-             $deactivated = FALSE;
-             $loggedIn = FALSE;
               $result1 = mysqli_query($connection,"SELECT `loginattempt` FROM `users` WHERE `email`='$email'");
               $row = mysqli_fetch_array($result1);
               $loginattempts_email = $row['loginattempt'];
@@ -271,22 +128,7 @@ if (($loginattempts_email > $maxfailedattempts) && ($registered == TRUE)) {
 //update login attempt records
          
             mysqli_query($connection,"UPDATE `users` SET `loginattempt` = '$loginattempts_email' WHERE `email` = '$email'"); 
-        }
-//Possible brute force attacker is targeting randomly
-
-      /*  if ($registered == FALSE) {
-            if (!($fetch = mysqli_fetch_array(mysqli_query($connection,"SELECT `loggedip` FROM `ipcheck` WHERE `loggedip`='$iptocheck'")))) {
-//no records
-//insert failed attempts
-                $loginattempts_total = 1;
-                $loginattempts_total = intval($loginattempts_total);
-                mysqli_query($connection,"INSERT INTO `ipcheck` (`loggedip`, `failedattempts`) VALUES ('$iptocheck', '$loginattempts_total')");
-            } else {
-//has some records, increment attempts
-                $loginattempts_total = $loginattempts_total + 1;
-                mysqli_query($connection,"UPDATE `ipcheck` SET `failedattempts` = '$loginattempts_total' WHERE `loggedip` = '$iptocheck'");
-            }
-        }*/
+     
     } 
     else {
     	//remember me functionality
@@ -320,8 +162,6 @@ if (($loginattempts_email > $maxfailedattempts) && ($registered == TRUE)) {
 //This will be used to authenticate the user session
 //To make sure it belongs to an authorized user and not to anyone else.
 //generate random hash
-        
-
         $random = genRandomSaltString();
         $salt_ip = substr($random, 0, $length_salt);
 
@@ -333,23 +173,25 @@ if (($loginattempts_email > $maxfailedattempts) && ($registered == TRUE)) {
 
 //Regenerate session id prior to setting any session variable
 //to mitigate session fixation attacks
-
         session_regenerate_id();
 
        
 //Finally store user unique signature in the session
 //and set logged_in to TRUE as well as start activity time
-
         $_SESSION['signature'] = $signature;
         $_SESSION['logged_in'] = TRUE;
         $_SESSION['LAST_ACTIVITY'] = time();
         if (isset($_SESSION['logged_in'])) {
-            mysqli_query($connection,"UPDATE `users` SET `online` = '1', ipAddress = '$iptocheck' WHERE `email` = '$email'");
+          mysqli_query($connection,"INSERT INTO `logged_devices` (`user`,`ip_address`,`browser/device`) VALUES ('$user_id','$iptocheck','$useragent')");
         }
         
     }
 }
-
+}
+else{
+  $botDetect = TRUE;
+}
+}
 if (!$_SESSION['logged_in']):
     ?>
 <!DOCTYPE html>
@@ -381,6 +223,7 @@ if (!$_SESSION['logged_in']):
     <!--===============================================================================================-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <!--===============================================================================================-->
+    <script src="https://www.google.com/recaptcha/api.js?render=<?php echo $public_key; ?>"></script>
     
 </head>
   <div class="limiter">
@@ -392,17 +235,19 @@ if (!$_SESSION['logged_in']):
           </span>
         </div>
 
-        <form class="login100-form" method="POST">
+        <form class="login100-form" method="POST" id="login-form">
 
           <div class="wrap-input100 m-b-20">
+						<span style="color: red;" id="email-error"></span>
             <span class="label-input100">Email Address</span>
-            <input class="input100" value="<?php if(isset($_COOKIE['email'])){echo $_COOKIE['email'];}?>"  type="email" name="email" required placeholder="Enter email address">
+            <input class="input100" value="<?php if(isset($_COOKIE['email'])){echo $_COOKIE['email'];}?>"  type="email" name="email" id="email" required placeholder="Enter email address">
             <span class="focus-input100"></span>
           </div>
 
           <div class="wrap-input100 m-b-20">
+						<span style="color: red;" id="password-error"></span>
             <span class="label-input100">Password</span>
-            <input class="input100" value="<?php if(isset($_COOKIE['pass'])){echo $_COOKIE['pass'];}?>" type="password" name="pass" required placeholder="Enter password">
+            <input class="input100" value="<?php if(isset($_COOKIE['pass'])){echo $_COOKIE['pass'];}?>" type="password" name="pass" id="pass" required placeholder="Enter password">
             <span class="focus-input100"></span>
           </div>
            <div class="flex-sb-m w-full m-b-30">
@@ -419,7 +264,7 @@ if (!$_SESSION['logged_in']):
             </div>
           </div>
           <div class="container-login100-form-btn">
-            <button class="login100-form-btn">
+            <button class="login100-form-btn" name="login-button">
               Login
             </button>
           </div>
@@ -428,29 +273,102 @@ if (!$_SESSION['logged_in']):
              <p>Don't have an account?&ensp;<a href="registration.php" style="color: inherit;text-decoration: underline;">Register</a></p>
           </div>
           <?php 
-          if (($validationresults == FALSE) || ($registered == FALSE) || ($activate == FALSE) || ($deactivated == TRUE) || ($loggedIn == FALSE) || ($illegalattempts == TRUE)){
+          if (($validationresults == FALSE) || ($registered == FALSE)){
           ?>
           <div style="margin-top: 20px">
           <!-- Display validation errors -->
+                     <?php if ($botDetect == TRUE)
+		                        echo '<font color="red"><i class="bx bx-shield-quarter bx-flashing"></i>&ensp;Access Denied!</font>';
+		                   ?>
                   <?php if ($validationresults == FALSE || $registered == FALSE)
                         echo '<font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;Please enter valid email address, password <br> &ensp;&emsp;(if required).</font>';
-                        if ($activate == FALSE) { $_SESSION['activation'] = $email;
-                        echo '<br><br><font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;Your account is still inactive. Kindly <a href = "activation.php" style="color: inherit;">(click here)</a> to<br> &ensp;&emsp;activate the account and try again.</font>'; }
-                        if ($deactivated == TRUE) 
-                        echo '<br><br><font color="red"><i class="bx bxs-lock bx-flashing"></i>&ensp;Your account has been deactivated. Kindly <br>&ensp;&emsp;contact your administrator to reactivate the <br>&ensp;&emsp;account and try again.</font>';
-                       if ($loggedIn == TRUE) 
-                        echo '<br><br><font color="red"><i class="bx bxs-error-alt bx-flashing"></i>&ensp;Your account is logged in using another device. <br>&ensp;&emsp;Kindly log out first and try again.</font>';
-                        if ($illegalattempts == TRUE)
-                        echo '<br><br><font color="red"><i class="bx bxs-error-alt bx-flashing"></i>&ensp;<b><i>Warning!</i></b> Approaching attempt limit and this <br>&ensp;&emsp;account will be deactivated. Kindly reset your <br>&ensp;&emsp;password using the link below (if required).</font>';
                    ?>
                   </div>
             <?php
                  }
-           ?>                   
+           ?>
+           <input type="hidden" id="token" name="token">                   
         </form>
       </div>
     </div>
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript">
+  $(function(){
+    $(`#email-error`).hide();
+    $(`#password-error`).hide();
+
+    var emailError = false;
+    var passError = false;
+ 
+    $(`#email`).focusout(function(){
+        check_email();
+      });
+    $(`#pass`).focusout(function(){
+        check_pass();
+      });
+
+      function check_email(){
+          	var email = $(`#email`).val();
+          	var where = 'email';
+            $.post("verification.php",{email:email,where:where},
+              function(result){
+              	if (result == 'missing') {
+              		$(`#email-error`).show();
+              		$(`#email-error`).html('<i class="bx bxs-data bx-flashing"></i>&ensp;This email address does not exists.');
+              		emailError = true;
+              	}
+              	else{
+              		$(`#email-error`).hide();
+              		$(`#email-error`).html('');
+              		emailError = false;
+              	}
+            });
+        }
+
+        function check_pass(){
+          var email = $(`#email`).val();
+          	var password = $(`#pass`).val();
+          	var where = 'password';
+              $.post("verification.php",{email:email,password:password,where:where},
+              function(result){
+              	if (result == 'invalid') {
+              		$(`#password-error`).show();
+              		$(`#password-error`).html('<i class="bx bxs-data bx-flashing"></i>&ensp;Invalid Password.');
+              		passError = true;
+              	}
+              	else{
+              		$(`#password-error`).hide();
+              		$(`#password-error`).html('');
+              		passError = false;
+              	}
+          });
+        }
+
+        $(`#login-form`).submit(function(){
+
+          check_email();
+          check_pass();   
+
+          if (emailError == false &&  passError == false) {
+          	return true;
+          }else{
+          	return false;
+          }
+        });
+
+  });
+
+  grecaptcha.ready(function() {
+    // do request for recaptcha token
+    // response is promise with passed token
+        grecaptcha.execute('<?php echo $public_key; ?>', {action:'validate_captcha'})
+                  .then(function(token) {
+            // add token value to form
+            document.getElementById('token').value = token;
+        });
+    });
+  </script>
 </body>
 </html>
 <?php

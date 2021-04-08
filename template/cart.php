@@ -35,6 +35,7 @@ if(isset($_POST['cart_button'])){
             'item_id' => $_POST['hidden_id'],
             'item_name' => $_POST['hidden_name'],
             'item_unit' => $_POST['hidden_unit'],
+            'item_discount' => $_POST['hidden_discount'],
             'item_price' => $_POST['hidden_price'],
             'item_image' => $_POST['hidden_image'],
             'item_quantity' => '1'
