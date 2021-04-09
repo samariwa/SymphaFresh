@@ -23,6 +23,11 @@
 
             return $string;
         }
+    function UniqueRandomNumbersWithinRange($min, $max, $quantity) {
+      $numbers = range($min, $max);
+      shuffle($numbers);
+      return array_slice($numbers, 0, $quantity);
+  }      
   function sanitize($data) {
    require('config.php');
      $data = trim($data);

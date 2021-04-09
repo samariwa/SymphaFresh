@@ -28,7 +28,7 @@ else{
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Sales Invoice</title>
 </head><body>
-<p align="center"><strong><img src="assets/img/Kwanza Tukule.png" height="60" width="155"></strong></p>
+<p align="center"><strong><img src="../assets/images/logo_footer.png" height="100" width="150"></strong></p>
 <p align="center">Sales Invoice</p>
 <?php
 ?>

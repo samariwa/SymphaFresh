@@ -55,7 +55,7 @@ if (isset($_SESSION['logged_in'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
- <link rel = "icon" href ="../assets/img/logo.png" type = "image/x-icon">
+ <link rel = "icon" sizes="196x196" href="../assets/images/sympha_fresh_white.png" type = "image/x-icon">
  <title><?php echo $organization ?> | Admin Dashboard</title>
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -243,7 +243,7 @@ Preloader
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
         <div class="sidebar-brand-icon ">
-        <img src="assets/img/Kwanza Tukule.png" height="60" width="155">
+        <img src="../assets/images/logo_navbar.png" height="50" width="100">
         </div>
       </a>
 

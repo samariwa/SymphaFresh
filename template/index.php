@@ -1,5 +1,6 @@
 <?php
 include('header.php');
+echo $message;
 ?>
              <!-- banner-section start -->
              <section class="slider-banner">
@@ -125,12 +126,10 @@ include('header.php');
                         <div class="catagory-container">
                             <div class="swiper-wrapper">
                             <?php
-                                $count = 0;
                                 foreach($categoriesList as $row){
-                                $count++;
                                 $id = $row['id'];
                                 $category = $row['Category_Name'];
-                                $icon = $row['Icon'];
+                                $icon = $row['Icon'];   
                             ?>
                                   <div class="swiper-slide">
                                     <a href="product-list.php" class="catagory-item">
@@ -179,200 +178,118 @@ include('header.php');
                         <div class="mlr-20">
                             <div class="trending-product-container">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
+                                <?php
+                                foreach($randomStockFeatured as $row){
+                                $id = $row['id'];
+                                $category = $row['Category_Name'];
+                                $name = $row['Name'];
+                                $image = $row['image'];
+                                $selling_price = $row['Price'];
+                                $discount = $row['Discount'];
+                                $discounted_price = $selling_price - $discount;
+                                $quantity = $row['Quantity'];
+                                $unit_name = $row['unit_name'];
+                                $restock_level = $row['Restock_Level'];
+                                if($quantity > $restock_level ){
+                            ?>
+                               <div class="swiper-slide">
                                         <div class="product-item">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="../assets/images/products/full-broiler-chicken.jpeg" alt="product"></a>
-                                                <span class="batch sale">Sale</span>
+                                                <a onclick="openModal()"><img src="../assets/images/products/<?php echo $image; ?>" alt="product"></a>
+                                                <?php if($discount > 0){?><span class="batch sale">Sale</span><?php } ?>
                                                 <a class="wish-link" href="#">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
                                                 </a>
                                             </div>
                                             <div class="product-content">
-                                                <a href="#" class="cata">Chicken Products</a>
-                                                <h6><a href="product-detail.html" class="product-title">Whole Chicken</a></h6>
-                                                <p class="quantity">1.4 kg</p>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="price">Ksh.500 <del>Ksh.600</del></div>
+                                            <a href="#" class="cata"><?php echo $category; ?></a>
+                                            <h6><a href="product-detail.php" class="product-title"><?php echo $name; ?></a></h6>
+                                            <p class="quantity"><?php echo $unit_name; ?></p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                            <div class="price">Ksh.<?php echo number_format($discounted_price,2); if($discount > 0){?> <del>Ksh.<?php echo number_format($selling_price,2); ?></del><?php } ?></div>
 
-                                                    <div class="cart-btn-toggle" onclick="cartopen()">
-                                                        <span class="cart-btn"><i class="fas fa-shopping-cart"></i> Cart</span>
-
-                                                        <div class="price-btn">
-                                                            <div class="price-increase-decrese-group d-flex">
-                                                                <span class="decrease-btn">
-                                                                    <button type="button"
-                                                                        class="btn quantity-left-minus" data-type="minus" data-field="">-
-                                                                    </button> 
-                                                                </span>
-                                                                <input type="text" name="quantity" class="form-controls input-number" value="1">
-                                                                <span class="increase">
-                                                                    <button type="button"
-                                                                        class="btn quantity-right-plus" data-type="plus" data-field="">+
-                                                                    </button>
-                                                                </span>
-                                                            </div>
+                                            <div class="cart-btn-toggle">
+                                                <form method="POST">
+                                                <input type="hidden" name="hidden_id" value="<?php echo $id; ?>">
+                                                <input type="hidden" name="hidden_name" value="<?php echo $name; ?>">
+                                                <input type="hidden" name="hidden_unit" value="<?php echo $unit_name; ?>">
+                                                <input type="hidden" name="hidden_discount" value="<?php echo $discount; ?>">
+                                                <input type="hidden" name="hidden_price" value="<?php echo $selling_price; ?>">
+                                                <input type="hidden" name="hidden_image" value="<?php echo $image; ?>">
+                                                <button type="submit" class="cart-btn" name="cart_button">
+                                                    <span ><i class="fas fa-shopping-cart"></i> Cart</span>
+                                                </button>
+                                                </form>
+                                                  <!--  <div class="price-btn">
+                                                        <div class="price-increase-decrese-group d-flex">
+                                                            <span class="decrease-btn">
+                                                                <button type="button"
+                                                                    class="btn quantity-left-minus" data-type="minus" data-field="">-
+                                                                </button> 
+                                                            </span>
+                                                            <input type="text" name="quantity" class="form-controls input-number" value="1">
+                                                            <span class="increase">
+                                                                <button type="button"
+                                                                    class="btn quantity-right-plus" data-type="plus" data-field="">+
+                                                                </button>
+                                                            </span>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
+                                                
                                             </div>
                                         </div>
+                                        </div>
                                     </div>
-
-                                    <div class="swiper-slide">
+                            <?php
+                                }
+                                else{
+                                    ?>
+                                <div class="swiper-slide">
                                         <div class="product-item stock-out">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="../assets/images/products/chicken-gizzards.jpeg" alt="product"></a>
-                                                <span class="batch">-30%</span>
+                                                <a onclick="openModal()"><img src="../assets/images/products/<?php echo $image; ?>" alt="product"></a>
+                                                <?php if($discount > 0){?><span class="batch sale">Sale</span><?php } ?>
                                                 <a class="wish-link" href="#">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
                                                 </a>
                                             </div>
                                             <div class="product-content">
-                                                <a href="#" class="cata">Chicken Products</a>
-                                                <h6><a href="product-detail.html" class="product-title">Chicken Gizzards</a></h6>
-                                                <p class="quantity">1 kg</p>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="price">Ksh.300 <del>Ksh.350</del></div>
-                                                    <div class="cart-btn-toggle" onclick="cartopen()">
-                                                        <span class="cart-btn"><i class="fas fa-shopping-cart"></i> Cart</span>
+                                            <a href="#" class="cata"><?php echo $category; ?></a>
+                                            <h6><a href="product-detail.php" class="product-title"><?php echo $name; ?></a></h6>
+                                            <p class="quantity"><?php echo $unit_name; ?></p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                            <div class="price">Ksh.<?php echo number_format($discounted_price,2); if($discount > 0){?> <del>Ksh.<?php echo number_format($selling_price,2); ?></del><?php } ?></div>
 
-                                                        <div class="price-btn">
-                                                            <div class="price-increase-decrese-group d-flex">
-                                                                <span class="decrease-btn">
-                                                                    <button type="button"
-                                                                        class="btn quantity-left-minus" data-type="minus" data-field="">-
-                                                                    </button> 
-                                                                </span>
-                                                                <input type="text" name="quantity" class="form-controls input-number" value="1">
-                                                                <span class="increase">
-                                                                    <button type="button"
-                                                                        class="btn quantity-right-plus" data-type="plus" data-field="">+
-                                                                    </button>
-                                                                </span>
-                                                            </div>
+                                                <div class="cart-btn-toggle" onclick="cartopen()">
+                                                    <span class="cart-btn"><i class="fas fa-shopping-cart"></i> Cart</span>
+
+                                                   <!-- <div class="price-btn">
+                                                        <div class="price-increase-decrese-group d-flex">
+                                                            <span class="decrease-btn">
+                                                                <button type="button"
+                                                                    class="btn quantity-left-minus" data-type="minus" data-field="">-
+                                                                </button> 
+                                                            </span>
+                                                            <input type="text" name="quantity" class="form-controls input-number" value="1">
+                                                            <span class="increase">
+                                                                <button type="button"
+                                                                    class="btn quantity-right-plus" data-type="plus" data-field="">+
+                                                                </button>
+                                                            </span>
                                                         </div>
-                                                    </div>
+                                                    </div>-->
                                                 </div>
+                                                
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="swiper-slide">
-                                        <div class="product-item">
-                                            <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="../assets/images/products/fillet.jpeg" alt="product"></a>
-                                                <span class="batch">-10%</span>
-                                                <a class="wish-link" href="#">
-                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
-                                                </a>
-                                            </div>
-                                            <div class="product-content">
-                                                <a href="#" class="cata">Fish</a>
-                                                <h6><a href="product-detail.html" class="product-title">Fillet</a></h6>
-                                                <p class="quantity">1 kg</p>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="price">Ksh.720 <del>Ksh.800</del></div>
-                                                    <div class="cart-btn-toggle" onclick="cartopen()">
-                                                        <span class="cart-btn"><i class="fas fa-shopping-cart"></i> Cart</span>
-
-                                                        <div class="price-btn">
-                                                            <div class="price-increase-decrese-group d-flex">
-                                                                <span class="decrease-btn">
-                                                                    <button type="button"
-                                                                        class="btn quantity-left-minus" data-type="minus" data-field="">-
-                                                                    </button> 
-                                                                </span>
-                                                                <input type="text" name="quantity" class="form-controls input-number" value="1">
-                                                                <span class="increase">
-                                                                    <button type="button"
-                                                                        class="btn quantity-right-plus" data-type="plus" data-field="">+
-                                                                    </button>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
-                                    <div class="swiper-slide">
-                                        <div class="product-item">
-                                            <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="../assets/images/products/pork.jpeg" alt="product"></a>
-                                                <span class="batch sale">Sale</span>
-                                                <a class="wish-link" href="#">
-                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
-                                                </a>
-                                            </div>
-                                            <div class="product-content">
-                                                <a href="#" class="cata">Meat</a>
-                                                <h6><a href="product-detail.html" class="product-title">Pork</a></h6>
-                                                <p class="quantity">1 kg</p>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="price">Ksh.750 <del>Ksh.900</del></div>
-                                                    <div class="cart-btn-toggle" onclick="cartopen()">
-                                                        <span class="cart-btn"><i class="fas fa-shopping-cart"></i> Cart</span>
-
-                                                        <div class="price-btn">
-                                                            <div class="price-increase-decrese-group d-flex">
-                                                                <span class="decrease-btn">
-                                                                    <button type="button"
-                                                                        class="btn quantity-left-minus" data-type="minus" data-field="">-
-                                                                    </button> 
-                                                                </span>
-                                                                <input type="text" name="quantity" class="form-controls input-number" value="1">
-                                                                <span class="increase">
-                                                                    <button type="button"
-                                                                        class="btn quantity-right-plus" data-type="plus" data-field="">+
-                                                                    </button>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="swiper-slide">
-                                        <div class="product-item">
-                                            <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="../assets/images/products/chicken-breasts.png" alt="product"></a>
-                                                <span class="batch sale">Sale</span>
-                                                <a class="wish-link" href="#">
-                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
-                                                </a>
-                                            </div>
-                                            <div class="product-content">
-                                                <a href="#" class="cata">Chicken Products</a>
-                                                <h6><a href="product-detail.html" class="product-title">Chicken Breasts</a></h6>
-                                                <p class="quantity">1 kg</p>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="price">Ksh.650 <del>Ksh.750</del></div>
-                                                    <div class="cart-btn-toggle" onclick="cartopen()">
-                                                        <span class="cart-btn"><i class="fas fa-shopping-cart"></i> Cart</span>
-
-                                                        <div class="price-btn">
-                                                            <div class="price-increase-decrese-group d-flex">
-                                                                <span class="decrease-btn">
-                                                                    <button type="button"
-                                                                        class="btn quantity-left-minus" data-type="minus" data-field="">-
-                                                                    </button> 
-                                                                </span>
-                                                                <input type="text" name="quantity" class="form-controls input-number" value="1">
-                                                                <span class="increase">
-                                                                    <button type="button"
-                                                                        class="btn quantity-right-plus" data-type="plus" data-field="">+
-                                                                    </button>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <?php
+                                }
+                            }  
+                            ?>
+                
                                 </div>
                             </div>
                             <div class="text-center pt-3">
@@ -468,199 +385,126 @@ include('header.php');
                         <div class="mlr-20">
                             <div class="recommend-product-container">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
+                                <?php
+                                foreach($randomStockRecommended as $row){
+                                $id = $row['id'];
+                                $category = $row['Category_Name'];
+                                $name = $row['Name'];
+                                $image = $row['image'];
+                                $selling_price = $row['Price'];
+                                $discount = $row['Discount'];
+                                $discounted_price = $selling_price - $discount;
+                                $quantity = $row['Quantity'];
+                                $unit_name = $row['unit_name'];
+                                $restock_level = $row['Restock_Level'];
+                                if($quantity > $restock_level ){
+                            ?>
+                               <div class="swiper-slide">
                                         <div class="product-item">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="../assets/images/products/chicken-drumsticks.jpeg" alt="product"></a>
-                                                <span class="batch sale">Sale</span>
+                                                <a onclick="openModal()"><img src="../assets/images/products/<?php echo $image; ?>" alt="product"></a>
+                                                <?php if($discount > 0){?><span class="batch sale">Sale</span><?php } ?>
                                                 <a class="wish-link" href="#">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
                                                 </a>
                                             </div>
                                             <div class="product-content">
-                                                <a href="#" class="cata">Chicken Products</a>
-                                                <h6><a href="product-detail.html" class="product-title">Chicken Drumsticks</a></h6>
-                                                <p class="quantity">1 kg</p>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="price">Ksh.600 <del>Ksh.650</del></div>
-                                                    <div class="cart-btn-toggle" onclick="cartopen()">
-                                                        <span class="cart-btn"><i class="fas fa-shopping-cart"></i> Cart</span>
+                                            <a href="#" class="cata"><?php echo $category; ?></a>
+                                            <h6><a href="product-detail.php" class="product-title"><?php echo $name; ?></a></h6>
+                                            <p class="quantity"><?php echo $unit_name; ?></p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                            <div class="price">Ksh.<?php echo number_format($discounted_price,2); if($discount > 0){?> <del>Ksh.<?php echo number_format($selling_price,2); ?></del><?php } ?></div>
 
-                                                        <div class="price-btn">
-                                                            <div class="price-increase-decrese-group d-flex">
-                                                                <span class="decrease-btn">
-                                                                    <button type="button"
-                                                                        class="btn quantity-left-minus" data-type="minus" data-field="">-
-                                                                    </button> 
-                                                                </span>
-                                                                <input type="text" name="quantity" class="form-controls input-number" value="1">
-                                                                <span class="increase">
-                                                                    <button type="button"
-                                                                        class="btn quantity-right-plus" data-type="plus" data-field="">+
-                                                                    </button>
-                                                                </span>
-                                                            </div>
+                                            <div class="cart-btn-toggle">
+                                                <form method="POST">
+                                                <input type="hidden" name="hidden_id" value="<?php echo $id; ?>">
+                                                <input type="hidden" name="hidden_name" value="<?php echo $name; ?>">
+                                                <input type="hidden" name="hidden_unit" value="<?php echo $unit_name; ?>">
+                                                <input type="hidden" name="hidden_discount" value="<?php echo $discount; ?>">
+                                                <input type="hidden" name="hidden_price" value="<?php echo $selling_price; ?>">
+                                                <input type="hidden" name="hidden_image" value="<?php echo $image; ?>">
+                                                <button type="submit" class="cart-btn" name="cart_button">
+                                                    <span ><i class="fas fa-shopping-cart"></i> Cart</span>
+                                                </button>
+                                                </form>
+                                                  <!--  <div class="price-btn">
+                                                        <div class="price-increase-decrese-group d-flex">
+                                                            <span class="decrease-btn">
+                                                                <button type="button"
+                                                                    class="btn quantity-left-minus" data-type="minus" data-field="">-
+                                                                </button> 
+                                                            </span>
+                                                            <input type="text" name="quantity" class="form-controls input-number" value="1">
+                                                            <span class="increase">
+                                                                <button type="button"
+                                                                    class="btn quantity-right-plus" data-type="plus" data-field="">+
+                                                                </button>
+                                                            </span>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
+                                                
                                             </div>
                                         </div>
+                                        </div>
                                     </div>
-
-                                    <div class="swiper-slide">
-                                        <div class="product-item">
+                            <?php
+                                }
+                                else{
+                                    ?>
+                                <div class="swiper-slide">
+                                        <div class="product-item stock-out">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="../assets/images/products/kales.jpeg" alt="product"></a>
-                                                <span class="batch">-30%</span>
+                                                <a onclick="openModal()"><img src="../assets/images/products/<?php echo $image; ?>" alt="product"></a>
+                                                <?php if($discount > 0){?><span class="batch sale">Sale</span><?php } ?>
                                                 <a class="wish-link" href="#">
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
                                                 </a>
                                             </div>
                                             <div class="product-content">
-                                                <a href="#" class="cata">Vegetables</a>
-                                                <h6><a href="product-detail.html" class="product-title">Kales</a></h6>
-                                                <p class="quantity">1 Bunch</p>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="price">Ksh.30 <del>Ksh20</del></div>
-                                                    <div class="cart-btn-toggle" onclick="cartopen()">
-                                                        <span class="cart-btn"><i class="fas fa-shopping-cart"></i> Cart</span>
+                                            <a href="#" class="cata"><?php echo $category; ?></a>
+                                            <h6><a href="product-detail.php" class="product-title"><?php echo $name; ?></a></h6>
+                                            <p class="quantity"><?php echo $unit_name; ?></p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                            <div class="price">Ksh.<?php echo number_format($discounted_price,2); if($discount > 0){?> <del>Ksh.<?php echo number_format($selling_price,2); ?></del><?php } ?></div>
 
-                                                        <div class="price-btn">
-                                                            <div class="price-increase-decrese-group d-flex">
-                                                                <span class="decrease-btn">
-                                                                    <button type="button"
-                                                                        class="btn quantity-left-minus" data-type="minus" data-field="">-
-                                                                    </button> 
-                                                                </span>
-                                                                <input type="text" name="quantity" class="form-controls input-number" value="1">
-                                                                <span class="increase">
-                                                                    <button type="button"
-                                                                        class="btn quantity-right-plus" data-type="plus" data-field="">+
-                                                                    </button>
-                                                                </span>
-                                                            </div>
+                                            <div class="cart-btn-toggle">
+                                                <form method="POST">
+                                                <input type="hidden" name="hidden_id" value="<?php echo $id; ?>">
+                                                <input type="hidden" name="hidden_name" value="<?php echo $name; ?>">
+                                                <input type="hidden" name="hidden_unit" value="<?php echo $unit_name; ?>">
+                                                <input type="hidden" name="hidden_discount" value="<?php echo $discount; ?>">
+                                                <input type="hidden" name="hidden_price" value="<?php echo $selling_price; ?>">
+                                                <input type="hidden" name="hidden_image" value="<?php echo $image; ?>">
+                                                <button type="submit" class="cart-btn" name="cart_button">
+                                                    <span ><i class="fas fa-shopping-cart"></i> Cart</span>
+                                                </button>
+                                                </form>
+                                                  <!--  <div class="price-btn">
+                                                        <div class="price-increase-decrese-group d-flex">
+                                                            <span class="decrease-btn">
+                                                                <button type="button"
+                                                                    class="btn quantity-left-minus" data-type="minus" data-field="">-
+                                                                </button> 
+                                                            </span>
+                                                            <input type="text" name="quantity" class="form-controls input-number" value="1">
+                                                            <span class="increase">
+                                                                <button type="button"
+                                                                    class="btn quantity-right-plus" data-type="plus" data-field="">+
+                                                                </button>
+                                                            </span>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
+                                                
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="swiper-slide">
-                                        <div class="product-item">
-                                            <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="../assets/images/products/chicken-wings.jpeg" alt="product"></a>
-                                                <span class="batch">-30%</span>
-                                                <a class="wish-link" href="#">
-                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
-                                                </a>
-                                            </div>
-                                            <div class="product-content">
-                                                <a href="#" class="cata">Chicken Products</a>
-                                                <h6><a href="product-detail.html" class="product-title">Chicken Wings</a></h6>
-                                                <p class="quantity">1 Kg</p>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="price">Ksh.400 <del>Ksh.600</del></div>
-                                                    <div class="cart-btn-toggle" onclick="cartopen()">
-                                                        <span class="cart-btn"><i class="fas fa-shopping-cart"></i> Cart</span>
-
-                                                        <div class="price-btn">
-                                                            <div class="price-increase-decrese-group d-flex">
-                                                                <span class="decrease-btn">
-                                                                    <button type="button"
-                                                                        class="btn quantity-left-minus" data-type="minus" data-field="">-
-                                                                    </button> 
-                                                                </span>
-                                                                <input type="text" name="quantity" class="form-controls input-number" value="1">
-                                                                <span class="increase">
-                                                                    <button type="button"
-                                                                        class="btn quantity-right-plus" data-type="plus" data-field="">+
-                                                                    </button>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
-                                    <div class="swiper-slide">
-                                        <div class="product-item">
-                                            <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="../assets/images/products/fillet.jpeg" alt="product"></a>
-                                                <span class="batch sale">-10%</span>
-                                                <a class="wish-link" href="#">
-                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
-                                                </a>
-                                            </div>
-                                            <div class="product-content">
-                                                <a href="#" class="cata">Fish</a>
-                                                <h6><a href="product-detail.html" class="product-title">Fillet</a></h6>
-                                                <p class="quantity">1 kg</p>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="price">Ksh.720 <del>Ksh.800</del></div>
-                                                    <div class="cart-btn-toggle" onclick="cartopen()">
-                                                        <span class="cart-btn"><i class="fas fa-shopping-cart"></i> Cart</span>
-
-                                                        <div class="price-btn">
-                                                            <div class="price-increase-decrese-group d-flex">
-                                                                <span class="decrease-btn">
-                                                                    <button type="button"
-                                                                        class="btn quantity-left-minus" data-type="minus" data-field="">-
-                                                                    </button> 
-                                                                </span>
-                                                                <input type="text" name="quantity" class="form-controls input-number" value="1">
-                                                                <span class="increase">
-                                                                    <button type="button"
-                                                                        class="btn quantity-right-plus" data-type="plus" data-field="">+
-                                                                    </button>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="swiper-slide">
-                                        <div class="product-item">
-                                            <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="../assets/images/products/tilapia.jpeg" alt="product"></a>
-                                                <span class="batch sale">Sale</span>
-                                                <a class="wish-link" href="#">
-                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
-                                                </a>
-                                            </div>
-                                            <div class="product-content">
-                                                <a href="#" class="cata">Fish</a>
-                                                <h6><a href="product-detail.html" class="product-title">Tilapia</a></h6>
-                                                <p class="quantity">1 Piece</p>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="price">Ksh.300 <del>Ksh.350</del></div>
-                                                    <div class="cart-btn-toggle" onclick="cartopen()">
-                                                        <span class="cart-btn"><i class="fas fa-shopping-cart"></i> Cart</span>
-
-                                                        <div class="price-btn">
-                                                            <div class="price-increase-decrese-group d-flex">
-                                                                <span class="decrease-btn">
-                                                                    <button type="button"
-                                                                        class="btn quantity-left-minus" data-type="minus" data-field="">-
-                                                                    </button> 
-                                                                </span>
-                                                                <input type="text" name="quantity" class="form-controls input-number" value="1">
-                                                                <span class="increase">
-                                                                    <button type="button"
-                                                                        class="btn quantity-right-plus" data-type="plus" data-field="">+
-                                                                    </button>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <?php
+                                }
+                            }  
+                            ?>
                                 </div>
                             </div>
                             <div class="text-center pt-3">

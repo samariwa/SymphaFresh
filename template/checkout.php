@@ -163,7 +163,8 @@ $location = $result['location'];
                                                 <div class="product-content">
                                                     <a onclick="openModal()" class="product-title"><?php echo $values["item_name"]; ?></a>
                                                     <div class="product-cart-info">
-                                                    Ksh<?php echo number_format(($values["item_price"] -  $values["item_discount"]),2); ?> /unit
+                                                    <?php if($values['item_discount'] > 0){ ?> <del>Ksh<?php echo number_format($values["item_price"],2); ?> /unit</del> <br><?php }?>
+                                                    Ksh<?php echo number_format($values["item_price"] - $values["item_discount"],2); ?> /unit
                                                     <br>
                                                     x<?php echo $values["item_quantity"]; ?> <?php echo $values["item_unit"]; ?>
                                                     </div>
@@ -178,7 +179,7 @@ $location = $result['location'];
                                                             class="btn quantity-left-minus checkout_cart_decrease" id="<?php echo $values['item_id']; ?>" data-type="minus" data-field="">-
                                                         </button> 
                                                     </span>
-                                                    <input type="text" name="quantity" class="form-controls input-number" id="checkout_cart_qty<?php echo $values["item_id"]; ?>" value="<?php echo $values["item_quantity"]; ?>">
+                                                    <input type="text" name="quantity" disabled class="form-controls input-number" id="checkout_cart_qty<?php echo $values["item_id"]; ?>" value="<?php echo $values["item_quantity"]; ?>">
                                                     <span class="increase">
                                                         <button type="button"
                                                             class="btn quantity-right-plus checkout_cart_increase" id="<?php echo $values['item_id']; ?>" data-type="plus" data-field="">+
@@ -188,7 +189,7 @@ $location = $result['location'];
                                             </div>
                                             <div class="col-6">
                                                 <!--<div class="product-price">-->
-                                                   <?php if($values["item_discount"] > 0){?><del>Ksh<?php echo number_format($values["item_price"]); ?></del><?php } ?><span class="ml-4">Ksh<?php echo number_format($values["item_quantity"] * ($values["item_price"] - $values["item_discount"]),2); ?></span>
+                                                   <span class="ml-4">Ksh<span id="checkout_subtotal<?php echo $values['item_id']; ?>"><?php echo number_format($values["item_quantity"] * ($values["item_price"] - $values["item_discount"]),2); ?></span></span>
                                                 <!--</div>-->
                                             </div>
                                         </div>
@@ -215,7 +216,8 @@ $location = $result['location'];
                                         </p>-->
                                         <p class="total-price d-flex justify-content-between">
                                             <span>Total</span> 
-                                            <span>KSh<?php echo number_format($total,2); ?></span>
+                                            <input type="hidden" id="checkout_total" value="<?php echo $total; ?>" >
+                                            <span>KSh<span id="checkout_total_value"><?php echo number_format($total,2); ?></span></span>
                                         </p>
                                     </div>
                                 </div>

@@ -20,7 +20,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Products Distribution</title>
 </head><body>
-<p align="center"><strong><img src="assets/img/Kwanza Tukule.png" height="60" width="155"></strong></p>
+<p align="center"><strong><img src="../assets/images/logo_footer.png" height="100" width="150"></strong></p>
 <p align="center">Products Distribution (For Tomorrow)</p>
 <p align="center">No. of products ordered:'.$varietyNumber1.' </p>
 <p> Serial #: '.$random.'</p>

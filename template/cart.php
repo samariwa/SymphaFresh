@@ -2,14 +2,16 @@
 require('../config.php');
 $message = '';
 $refresh_page = '';
-if($redirect_link != $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/product-list.php')
-    {
-      $refresh_page = $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/product-list.php';
-    }
-elseif($redirect_link != $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/index.php') 
-    {
-        $refresh_page = $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/index.php';
-    }   
+
+$products_page = 'product-list.php';
+  
+if (strpos($redirect_link, $home_url) == TRUE) {
+    $refresh_page = $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/index.php';
+}
+elseif (strpos($redirect_link, $products_page) == TRUE){
+    $refresh_page = $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/product-list.php';
+}
+    
 if(isset($_POST['cart_button'])){
     if(isset($_COOKIE["shopping_cart"]))
     {
@@ -55,6 +57,7 @@ if($where == 'cart_increase' )
 {
     $id = $_POST['id'];
     $qty = $_POST['qty'];
+    $total = $_POST['total'];
     $cookie_data = stripslashes($_COOKIE['shopping_cart']);
     $cart_data = json_decode($cookie_data, true);
     foreach($cart_data as $keys => $values)
@@ -72,6 +75,11 @@ if($where == 'cart_increase' )
                 else
                 {
                     $cart_data[$keys]['item_quantity'] = $qty;
+                    $net_subtotal = ($cart_data[$keys]['item_price'] - $cart_data[$keys]['item_discount']) * $cart_data[$keys]['item_quantity'];
+                    $total += ($cart_data[$keys]['item_price'] - $cart_data[$keys]['item_discount']);
+                    $data = array(number_format($net_subtotal,2),number_format($total,2),$total);
+                    $array = json_encode($data);
+                    echo $array;
                 }
                 $item_data = json_encode($cart_data);
                 setcookie('shopping_cart', $item_data, $cart_expiry);
@@ -82,6 +90,7 @@ elseif($where == 'cart_decrease' )
 {
     $id = $_POST['id'];
     $qty = $_POST['qty'];
+    $total = $_POST['total'];
     $cookie_data = stripslashes($_COOKIE['shopping_cart']);
     $cart_data = json_decode($cookie_data, true);
     foreach($cart_data as $keys => $values)
@@ -95,6 +104,11 @@ elseif($where == 'cart_decrease' )
                 else
                 {
                     $cart_data[$keys]['item_quantity'] = $qty;
+                    $net_subtotal = ($cart_data[$keys]['item_price'] - $cart_data[$keys]['item_discount']) * $cart_data[$keys]['item_quantity'];
+                    $total -= ($cart_data[$keys]['item_price'] - $cart_data[$keys]['item_discount']);
+                    $data = array(number_format($net_subtotal,2),number_format($total,2),$total);
+                    $array = json_encode($data);
+                    echo $array;
                 }
                 $item_data = json_encode($cart_data);
                 setcookie('shopping_cart', $item_data, $cart_expiry);

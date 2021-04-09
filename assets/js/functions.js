@@ -446,12 +446,22 @@ $(document).on('click','.anonymousSubscription',function(){
     var el = $(this);
     var id = el.attr("id");
     var qty = $(`#cart_qty${id}`).val();
+    var total = $('#cart_total').val();
     var where = 'cart_increase'
-    $.post("cart.php",{id:id,qty:qty,where:where},
+    $.post("cart.php",{id:id,total:total,qty:qty,where:where},
     function(result){
         if (result == 'max') {
             alert('Quantity Unavailable');
            }
+        else{
+            var data = $.parseJSON(result);
+            var subtotal = data[0];
+            var total = data[1];
+            var total_hidden = data[2];
+            $(`#cart_subtotal${id}`).html(subtotal);
+            $('#total_value').html(total);
+            $('#cart_total').val(total_hidden);
+        }   
     }); 
   });
 
@@ -459,9 +469,17 @@ $(document).on('click','.anonymousSubscription',function(){
     var el = $(this);
     var id = el.attr("id");
     var qty = $(`#cart_qty${id}`).val();
+    var total = $('#cart_total').val();
     var where = 'cart_decrease'
-    $.post("cart.php",{id:id,qty:qty,where:where},
+    $.post("cart.php",{id:id,total:total,qty:qty,where:where},
     function(result){
+        var data = $.parseJSON(result);
+        var subtotal = data[0];
+        var total = data[1];
+        var total_hidden = data[2];
+        $(`#cart_subtotal${id}`).html(subtotal);
+        $('#total_value').html(total);
+        $('#cart_total').val(total_hidden);
     }); 
   });
 
@@ -469,12 +487,22 @@ $(document).on('click','.anonymousSubscription',function(){
     var el = $(this);
     var id = el.attr("id");
     var qty = $(`#checkout_cart_qty${id}`).val();
+    var total = $('#checkout_total').val();
     var where = 'cart_increase'
-    $.post("cart.php",{id:id,qty:qty,where:where},
+    $.post("cart.php",{id:id,qty:qty,total:total,where:where},
     function(result){
         if (result == 'max') {
             alert('Quantity Unavailable');
            }
+           else{
+            var data = $.parseJSON(result);
+            var subtotal = data[0];
+            var total = data[1];
+            var total_hidden = data[2];
+            $(`#checkout_subtotal${id}`).html(subtotal);
+            $('#checkout_total_value').html(total);
+            $('#checkout_total').val(total_hidden);
+        }  
     }); 
   });
 
@@ -482,9 +510,17 @@ $(document).on('click','.anonymousSubscription',function(){
     var el = $(this);
     var id = el.attr("id");
     var qty = $(`#checkout_cart_qty${id}`).val();
+    var total = $('#checkout_total').val();
     var where = 'cart_decrease'
-    $.post("cart.php",{id:id,qty:qty,where:where},
+    $.post("cart.php",{id:id,qty:qty,total:total,where:where},
     function(result){
+        var data = $.parseJSON(result);
+            var subtotal = data[0];
+            var total = data[1];
+            var total_hidden = data[2];
+            $(`#checkout_subtotal${id}`).html(subtotal);
+            $('#checkout_total_value').html(total);
+            $('#checkout_total').val(total_hidden);
     }); 
   });
 

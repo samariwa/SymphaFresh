@@ -194,7 +194,7 @@ $newSuppliersStatement .= '</table>';
 // writeHTMLCell($w, $h, $x, $y, $html='', $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true)
 
 // create some HTML content
-$html = '<h1 style="text-align:center"><strong><img src="assets/img/Kwanza Tukule.png" height="80" width="200"></strong></h1>
+$html = '<h1 style="text-align:center"><strong><img src="../assets/images/logo_footer.png" height="100" width="150"></strong></h1>
 <b>Date: '.$date.'</b><br>
 <h3>Purpose</h3>
     <p>

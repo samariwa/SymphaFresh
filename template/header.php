@@ -56,7 +56,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo $organization ?> - Fresh and on Time!</title>
-    <link rel="shortcut icon" type="image/png" href="../assets/images/favicon.png" />
+    <link rel="shortcut icon" type="image/png" sizes="196x196" href="../assets/images/sympha_fresh_white.png" />
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/animate.css">
@@ -379,6 +379,7 @@ Preloader
                         <div class="product-content">
                             <a href="#" class="product-title"><?php echo $values["item_name"]; ?></a>
                             <div class="product-cart-info">
+                            <?php if($values['item_discount'] > 0){ ?> <del>Ksh<?php echo number_format($values["item_price"],2); ?> /unit</del> <br><?php }?>
                             Ksh<?php echo number_format($values["item_price"] - $values["item_discount"],2); ?> /unit
                             <br>
                             x<?php echo $values["item_quantity"]; ?> <?php echo $values["item_unit"]; ?>
@@ -396,7 +397,7 @@ Preloader
                                     class="btn quantity-left-minus cart_decrease" id="<?php echo $values['item_id']; ?>" data-type="minus" data-field="">-
                                 </button> 
                             </span>
-                            <input type="text" name="quantity" class="form-controls input-number" id="cart_qty<?php echo $values["item_id"]; ?>" value="<?php echo $values["item_quantity"]; ?>">
+                            <input type="text" name="quantity" disabled class="form-controls input-number" id="cart_qty<?php echo $values["item_id"]; ?>" value="<?php echo $values["item_quantity"]; ?>">
                             
                             <span class="increase">
                                 <button type="button"
@@ -408,7 +409,7 @@ Preloader
                     </div>
                     <div class="col-6">
                         <div >
-                            <?php if($values['item_discount'] > 0){ ?> <del>Ksh<?php echo number_format($values["item_price"],2); ?></del> <?php }?><span class="ml-2">Ksh<?php echo number_format($values["item_quantity"] * ($values["item_price"] - $values["item_discount"]),2); ?></span>
+                            <span class="ml-2">Ksh<span id="cart_subtotal<?php echo $values['item_id']; ?>"><?php echo number_format($values["item_quantity"] * ($values["item_price"] - $values["item_discount"]),2); ?></span></span>
                         </div>
                     </div>
                 </div>
@@ -449,7 +450,8 @@ Preloader
                 </p> -->
                 <p class="total-price d-flex justify-content-between">
                     <span>Total</span> 
-                    <span>Ksh<?php echo number_format($total,2); ?></span>   
+                    <input type="hidden" id="cart_total" value="<?php echo $total; ?>" >
+                    <span>Ksh<span id="total_value"><?php echo number_format($total,2); ?><span></span>   
                 </p>
                 <a <?php if(($cart_count == 0)){
                 ?> 

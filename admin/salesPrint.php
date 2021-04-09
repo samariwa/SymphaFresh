@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sales Made</title>
 </head><body>
-<p align="center"><strong><img src="assets/img/Kwanza Tukule.png" height="60" width="155"></strong></p>
+<p align="center"><strong><img src="../assets/images/logo_footer.png" height="100" width="150"></strong></p>
 <p align="center">Tomorrow's Orders</p>
   <?php
         $newsalesrowcount = mysqli_num_rows($salesPrintList);

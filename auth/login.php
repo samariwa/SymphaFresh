@@ -201,7 +201,7 @@ if (!$_SESSION['logged_in']):
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->  
-  <link rel="shortcut icon" type="image/png" href="../assets/images/favicon.png" />
+  <link rel="shortcut icon" type="image/png" sizes="196x196" href="../assets/images/sympha_fresh_white.png" />
 <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="../assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
