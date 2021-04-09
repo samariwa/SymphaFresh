@@ -277,7 +277,7 @@
         <button class="info" type="button" data-toggle="modal" data-target="#siteinfo1"><i class="fas fa-info-circle"></i></button>
 
         <div class="footer-cart">
-            <a onclick="cartopen()" href="#" class="d-flex align-items-center"><span class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="count"><?php echo $cart_count; ?></span></span> <span class="cart-amount ml-2">Ksh <?php echo number_format($total,2); ?></span></a>
+            <a onclick="cartopen()" href="#" class="d-flex align-items-center"><span class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="count"><?php echo $cart_count; ?></span></span> <span class="cart-amount ml-2">Ksh <span id="mobile_cart_total"><?php echo number_format($total,2); ?></span></span></a>
         </div>
 
         <div class="footer-admin-area">
@@ -315,7 +315,7 @@
     <script src='../assets/js/fly-cart.js?3759597'></script>
     <script src='../assets/js/multi-countdown.js'></script>
     <script src='../assets/js/theia-sticky-sidebar.js'></script>
-    <script src='../assets/js/functions.js?638638680620682838'></script>
+    <script src='../assets/js/functions.js?893467346'></script>
    <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 $(function() {

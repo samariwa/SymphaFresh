@@ -463,6 +463,7 @@ $(document).on('click','.anonymousSubscription',function(){
             $('#total_value').html(total);
             $('#cart_total').val(total_hidden);
             $(`#cart_unit_qty${id}`).html(item_qty);
+            $('#mobile_cart_total').html(total);
         }   
     }); 
   });
@@ -484,6 +485,7 @@ $(document).on('click','.anonymousSubscription',function(){
         $('#total_value').html(total);
         $('#cart_total').val(total_hidden);
         $(`#cart_unit_qty${id}`).html(item_qty);
+        $('#mobile_cart_total').html(total);
     }); 
   });
 
@@ -508,6 +510,7 @@ $(document).on('click','.anonymousSubscription',function(){
             $('#checkout_total_value').html(total);
             $('#checkout_total').val(total_hidden);
             $(`#checkout_unit_qty${id}`).html(item_qty);
+            $('#mobile_cart_total').html(total);  
         }  
     }); 
   });
@@ -529,6 +532,7 @@ $(document).on('click','.anonymousSubscription',function(){
             $('#checkout_total_value').html(total);
             $('#checkout_total').val(total_hidden);
             $(`#checkout_unit_qty${id}`).html(item_qty);
+            $('#mobile_cart_total').html(total);
     }); 
   });
 
