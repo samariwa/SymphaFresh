@@ -390,6 +390,14 @@ Preloader
           <span>Site Mailbox</span></a>
       </li>
 
+      <br>
+
+      <li class="nav-item">&emsp;
+        <a style="color: black;" href="#">
+           <i class="fa fa-heart"></i>
+          <span>Customer Interests</span></a>
+      </li>
+
 
       <?php
        }
