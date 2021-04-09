@@ -382,7 +382,7 @@ Preloader
                             <?php if($values['item_discount'] > 0){ ?> <del>Ksh<?php echo number_format($values["item_price"],2); ?> /unit</del> <br><?php }?>
                             Ksh<?php echo number_format($values["item_price"] - $values["item_discount"],2); ?> /unit
                             <br>
-                            x<?php echo $values["item_quantity"]; ?> <?php echo $values["item_unit"]; ?>
+                            x<span id="cart_unit_qty<?php echo $values['item_id']; ?>"><?php echo $values["item_quantity"]; ?></span> <?php echo $values["item_unit"]; ?>
                             </div>
                         </div>
                     </div>

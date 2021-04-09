@@ -77,7 +77,7 @@ if($where == 'cart_increase' )
                     $cart_data[$keys]['item_quantity'] = $qty;
                     $net_subtotal = ($cart_data[$keys]['item_price'] - $cart_data[$keys]['item_discount']) * $cart_data[$keys]['item_quantity'];
                     $total += ($cart_data[$keys]['item_price'] - $cart_data[$keys]['item_discount']);
-                    $data = array(number_format($net_subtotal,2),number_format($total,2),$total);
+                    $data = array(number_format($net_subtotal,2),number_format($total,2),$total,$cart_data[$keys]['item_quantity']);
                     $array = json_encode($data);
                     echo $array;
                 }
@@ -106,7 +106,7 @@ elseif($where == 'cart_decrease' )
                     $cart_data[$keys]['item_quantity'] = $qty;
                     $net_subtotal = ($cart_data[$keys]['item_price'] - $cart_data[$keys]['item_discount']) * $cart_data[$keys]['item_quantity'];
                     $total -= ($cart_data[$keys]['item_price'] - $cart_data[$keys]['item_discount']);
-                    $data = array(number_format($net_subtotal,2),number_format($total,2),$total);
+                    $data = array(number_format($net_subtotal,2),number_format($total,2),$total,$cart_data[$keys]['item_quantity']);
                     $array = json_encode($data);
                     echo $array;
                 }

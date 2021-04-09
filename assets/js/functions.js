@@ -458,9 +458,11 @@ $(document).on('click','.anonymousSubscription',function(){
             var subtotal = data[0];
             var total = data[1];
             var total_hidden = data[2];
+            var item_qty = data[3];
             $(`#cart_subtotal${id}`).html(subtotal);
             $('#total_value').html(total);
             $('#cart_total').val(total_hidden);
+            $(`#cart_unit_qty${id}`).html(item_qty);
         }   
     }); 
   });
@@ -477,9 +479,11 @@ $(document).on('click','.anonymousSubscription',function(){
         var subtotal = data[0];
         var total = data[1];
         var total_hidden = data[2];
+        var item_qty = data[3];
         $(`#cart_subtotal${id}`).html(subtotal);
         $('#total_value').html(total);
         $('#cart_total').val(total_hidden);
+        $(`#cart_unit_qty${id}`).html(item_qty);
     }); 
   });
 
@@ -499,9 +503,11 @@ $(document).on('click','.anonymousSubscription',function(){
             var subtotal = data[0];
             var total = data[1];
             var total_hidden = data[2];
+            var item_qty = data[3];
             $(`#checkout_subtotal${id}`).html(subtotal);
             $('#checkout_total_value').html(total);
             $('#checkout_total').val(total_hidden);
+            $(`#checkout_unit_qty${id}`).html(item_qty);
         }  
     }); 
   });
@@ -518,9 +524,11 @@ $(document).on('click','.anonymousSubscription',function(){
             var subtotal = data[0];
             var total = data[1];
             var total_hidden = data[2];
+            var item_qty = data[3];
             $(`#checkout_subtotal${id}`).html(subtotal);
             $('#checkout_total_value').html(total);
             $('#checkout_total').val(total_hidden);
+            $(`#checkout_unit_qty${id}`).html(item_qty);
     }); 
   });
 
