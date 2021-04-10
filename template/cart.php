@@ -169,7 +169,7 @@ if(isset($_GET["remove"])){
     $message = '
     <div class="alert alert-dismissible" style="background-color: #59b828;color:white;">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        Item Successfully Removed
+        Item Removed from Cart
     </div>    
     ';
 }
