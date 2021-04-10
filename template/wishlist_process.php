@@ -138,7 +138,7 @@ if(isset($_GET['action']))
 }
 if(isset($_GET["wishlist-success"])){
     $message = '
-    <div class="alert alert-dismissible" style="background-color: #59b828;color="white;">
+    <div class="alert alert-dismissible" style="background-color: #59b828; color:white;">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         Item Added into Wishlist
     </div>    
@@ -146,7 +146,7 @@ if(isset($_GET["wishlist-success"])){
 }
 if(isset($_GET["wishlist-remove"])){
     $message = '
-    <div class="alert alert-dismissible" style="background-color: #59b828;color="white;">
+    <div class="alert alert-dismissible" style="background-color: #59b828; color:white;">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         Item Removed from Wishlist
     </div>    
@@ -154,7 +154,7 @@ if(isset($_GET["wishlist-remove"])){
 }
 if(isset($_GET["wishlist-clear"])){
     $message = '
-    <div class="alert alert-dismissible" style="background-color: #59b828;color="white;">
+    <div class="alert alert-dismissible" style="background-color: #59b828; color:white;">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
        Your Wishlist was Successfully Cleared
     </div>    
@@ -162,7 +162,7 @@ if(isset($_GET["wishlist-clear"])){
 }
 if(isset($_GET["wishlist-to-cart"])){
     $message = '
-    <div class="alert alert-dismissible" style="background-color: #59b828;color="white;">
+    <div class="alert alert-dismissible" style="background-color: #59b828;color:white;">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
        Your Wishlist was Successfully transferred to your Cart
     </div>    

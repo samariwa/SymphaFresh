@@ -159,7 +159,7 @@ if(isset($_GET['action']))
 }
 if(isset($_GET["success"])){
     $message = '
-    <div class="alert alert-dismissible" style="background-color: #59b828;color="white;">
+    <div class="alert alert-dismissible" style="background-color: #59b828;color:white;">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         Item Added into Cart
     </div>    
@@ -167,7 +167,7 @@ if(isset($_GET["success"])){
 }
 if(isset($_GET["remove"])){
     $message = '
-    <div class="alert alert-dismissible" style="background-color: #59b828;color="white;">
+    <div class="alert alert-dismissible" style="background-color: #59b828;color:white;">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         Item Successfully Removed
     </div>    
@@ -175,7 +175,7 @@ if(isset($_GET["remove"])){
 }
 if(isset($_GET["clear"])){
     $message = '
-    <div class="alert alert-dismissible" style="background-color: #59b828;color="white;">
+    <div class="alert alert-dismissible" style="background-color: #59b828;color:white;">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         Your Cart was Successfully Cleared
     </div>    
