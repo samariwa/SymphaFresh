@@ -190,15 +190,35 @@ echo $message;
                                 $quantity = $row['Quantity'];
                                 $unit_name = $row['unit_name'];
                                 $restock_level = $row['Restock_Level'];
-                                if($quantity > $restock_level ){
                             ?>
                                <div class="swiper-slide">
-                                        <div class="product-item">
+                                        <div class="product-item <?php if($quantity < $restock_level ){ ?>stock-out<?php }?>">
                                             <div class="product-thumb">
                                                 <a onclick="openModal()"><img src="../assets/images/products/<?php echo $image; ?>" alt="product"></a>
                                                 <?php if($discount > 0){?><span class="batch sale">Sale</span><?php } ?>
-                                                <a class="wish-link" href="#">
-                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
+                                                <a class="wish-link" href="<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/index.php?action=add_wishlist&id='.$id ?>">
+                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  
+                                                <?php
+                                            if(isset($_COOKIE["shopping_wishlist"]))
+                                            {
+                                                $wishlist_data = stripslashes($_COOKIE['shopping_wishlist']);
+                                                $wishlist_data = json_decode($wishlist_data, true);
+                                            }
+                                            $item_id_wishlist = array_column($wishlist_data, 'item_id');
+                                            if(in_array( $id, $item_id_wishlist))
+                                            {
+                                                foreach($wishlist_data as $keys => $values)
+                                                {
+                                                    if($wishlist_data[$keys]["item_id"] == $id)
+                                                    {
+                                                    ?>
+                                                    style="fill:red;"
+                                                     <?php   
+                                                    }
+                                                }
+                                            }
+                                             ?>
+                                                d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
                                                 </a>
                                             </div>
                                             <div class="product-content">
@@ -242,51 +262,6 @@ echo $message;
                                         </div>
                                     </div>
                             <?php
-                                }
-                                else{
-                                    ?>
-                                <div class="swiper-slide">
-                                        <div class="product-item stock-out">
-                                            <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="../assets/images/products/<?php echo $image; ?>" alt="product"></a>
-                                                <?php if($discount > 0){?><span class="batch sale">Sale</span><?php } ?>
-                                                <a class="wish-link" href="#">
-                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
-                                                </a>
-                                            </div>
-                                            <div class="product-content">
-                                            <a href="#" class="cata"><?php echo $category; ?></a>
-                                            <h6><a href="product-detail.php" class="product-title"><?php echo $name; ?></a></h6>
-                                            <p class="quantity"><?php echo $unit_name; ?></p>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                            <div class="price">Ksh.<?php echo number_format($discounted_price,2); if($discount > 0){?> <del>Ksh.<?php echo number_format($selling_price,2); ?></del><?php } ?></div>
-
-                                                <div class="cart-btn-toggle" onclick="cartopen()">
-                                                    <span class="cart-btn"><i class="fas fa-shopping-cart"></i> Cart</span>
-
-                                                   <!-- <div class="price-btn">
-                                                        <div class="price-increase-decrese-group d-flex">
-                                                            <span class="decrease-btn">
-                                                                <button type="button"
-                                                                    class="btn quantity-left-minus" data-type="minus" data-field="">-
-                                                                </button> 
-                                                            </span>
-                                                            <input type="text" name="quantity" class="form-controls input-number" value="1">
-                                                            <span class="increase">
-                                                                <button type="button"
-                                                                    class="btn quantity-right-plus" data-type="plus" data-field="">+
-                                                                </button>
-                                                            </span>
-                                                        </div>
-                                                    </div>-->
-                                                </div>
-                                                
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                            <?php
-                                }
                             }  
                             ?>
                 
@@ -397,15 +372,35 @@ echo $message;
                                 $quantity = $row['Quantity'];
                                 $unit_name = $row['unit_name'];
                                 $restock_level = $row['Restock_Level'];
-                                if($quantity > $restock_level ){
                             ?>
                                <div class="swiper-slide">
-                                        <div class="product-item">
+                                        <div class="product-item <?php if($quantity < $restock_level ){ ?>stock-out<?php }?>">
                                             <div class="product-thumb">
                                                 <a onclick="openModal()"><img src="../assets/images/products/<?php echo $image; ?>" alt="product"></a>
                                                 <?php if($discount > 0){?><span class="batch sale">Sale</span><?php } ?>
-                                                <a class="wish-link" href="#">
-                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
+                                                <a class="wish-link" href="<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/index.php?action=add_wishlist&id='.$id ?>">
+                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  
+                                                <?php
+                                            if(isset($_COOKIE["shopping_wishlist"]))
+                                            {
+                                                $wishlist_data = stripslashes($_COOKIE['shopping_wishlist']);
+                                                $wishlist_data = json_decode($wishlist_data, true);
+                                            }
+                                            $item_id_wishlist = array_column($wishlist_data, 'item_id');
+                                            if(in_array( $id, $item_id_wishlist))
+                                            {
+                                                foreach($wishlist_data as $keys => $values)
+                                                {
+                                                    if($wishlist_data[$keys]["item_id"] == $id)
+                                                    {
+                                                    ?>
+                                                    style="fill:red;"
+                                                     <?php   
+                                                    }
+                                                }
+                                            }
+                                             ?>
+                                                d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
                                                 </a>
                                             </div>
                                             <div class="product-content">
@@ -449,60 +444,6 @@ echo $message;
                                         </div>
                                     </div>
                             <?php
-                                }
-                                else{
-                                    ?>
-                                <div class="swiper-slide">
-                                        <div class="product-item stock-out">
-                                            <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="../assets/images/products/<?php echo $image; ?>" alt="product"></a>
-                                                <?php if($discount > 0){?><span class="batch sale">Sale</span><?php } ?>
-                                                <a class="wish-link" href="#">
-                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
-                                                </a>
-                                            </div>
-                                            <div class="product-content">
-                                            <a href="#" class="cata"><?php echo $category; ?></a>
-                                            <h6><a href="product-detail.php" class="product-title"><?php echo $name; ?></a></h6>
-                                            <p class="quantity"><?php echo $unit_name; ?></p>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                            <div class="price">Ksh.<?php echo number_format($discounted_price,2); if($discount > 0){?> <del>Ksh.<?php echo number_format($selling_price,2); ?></del><?php } ?></div>
-
-                                            <div class="cart-btn-toggle">
-                                                <form method="POST">
-                                                <input type="hidden" name="hidden_id" value="<?php echo $id; ?>">
-                                                <input type="hidden" name="hidden_name" value="<?php echo $name; ?>">
-                                                <input type="hidden" name="hidden_unit" value="<?php echo $unit_name; ?>">
-                                                <input type="hidden" name="hidden_discount" value="<?php echo $discount; ?>">
-                                                <input type="hidden" name="hidden_price" value="<?php echo $selling_price; ?>">
-                                                <input type="hidden" name="hidden_image" value="<?php echo $image; ?>">
-                                                <button type="submit" class="cart-btn" name="cart_button">
-                                                    <span ><i class="fas fa-shopping-cart"></i> Cart</span>
-                                                </button>
-                                                </form>
-                                                  <!--  <div class="price-btn">
-                                                        <div class="price-increase-decrese-group d-flex">
-                                                            <span class="decrease-btn">
-                                                                <button type="button"
-                                                                    class="btn quantity-left-minus" data-type="minus" data-field="">-
-                                                                </button> 
-                                                            </span>
-                                                            <input type="text" name="quantity" class="form-controls input-number" value="1">
-                                                            <span class="increase">
-                                                                <button type="button"
-                                                                    class="btn quantity-right-plus" data-type="plus" data-field="">+
-                                                                </button>
-                                                            </span>
-                                                        </div>
-                                                    </div> -->
-                                                </div>
-                                                
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                            <?php
-                                }
                             }  
                             ?>
                                 </div>

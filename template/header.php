@@ -490,7 +490,7 @@ Preloader
         <div class="header-top">
             <div class="mobile-header d-flex justify-content-between align-items-center d-xl-none">
                  <div class="d-flex align-items-center">
-                   <!-- <div class="all-catagory-option mobile-device">
+                   <!-- <div class="all-category-option mobile-device">
                         <a class="bar-btn"><i class="fas fa-bars"></i>All Categories</a>
                         <a class="close-btn"><i class="fas fa-times"></i>All Categories</a>
                     </div>-->
@@ -542,7 +542,35 @@ Preloader
                     <ul class="site-action d-none d-lg-flex align-items-center justify-content-between  ml-auto">
                         <li class="site-phone"><a href="tel:<?php echo $contact_number; ?>"><i class="fas fa-phone"></i> <?php echo $contact_number; ?></a></li>
                         <li class="site-help"><a href="#"><i class="fas fa-question-circle"></i> Help & More</a></li>
-                        <li class="wish-list"><a href="wishlist.php"><i class="fas fa-heart"></i> <span class="count">04</span></a></li>
+                        <li class="wish-list"><a 
+                        <?php
+                        $wishlist_count=0;
+                        if(isset($_COOKIE['shopping_wishlist'])){
+                        $wishlist_data = stripslashes($_COOKIE['shopping_wishlist']);
+                        $wishlist_data = json_decode($wishlist_data, true); 
+                        foreach($wishlist_data as $cart){
+                            $wishlist_count++;
+                        }
+                    }
+                        if (isset($_SESSION['logged_in'])) {
+                            if ($_SESSION['logged_in'] == TRUE) {
+                        ?>    
+                        href="wishlist.php"
+                        <?php
+                            }
+                        else{
+                        ?>
+                         href="../auth/login.php?page_url=<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/wishlist.php' ?>"
+                        <?php    
+                        }   
+                       } 
+                       else{
+                       ?>
+                        href="../auth/login.php?page_url=<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/wishlist.php' ?>"
+                       <?php
+                       }
+                        ?>
+                        ><i class="fas fa-heart"></i> <span class="count"><?php echo $wishlist_count; ?></span></a></li>
                         <?php
                         if (isset($_SESSION['logged_in'])) {
                           if ($_SESSION['logged_in'] == TRUE) {
@@ -577,7 +605,7 @@ Preloader
             <div class="row m-0 align-items-center">
             <!--
                 <div class="col-md-2 p-0 d-none d-xl-block">
-                    <div class="all-catagory-option">
+                    <div class="all-category-option">
                         <a class="bar-btn"><i class="fas fa-bars"></i>All Categories</a>
                         <a class="close-btn"><i class="fas fa-times"></i>All Categories</a>
                     </div>

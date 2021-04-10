@@ -46,6 +46,24 @@ if(isset($_POST['cart_button'])){
     } 
     $item_data = json_encode($cart_data);
     setcookie('shopping_cart', $item_data, $cart_expiry);
+    if(isset($_COOKIE["shopping_wishlist"]))
+    {
+        $wishlist_data = stripslashes($_COOKIE['shopping_wishlist']);
+        $wishlist_data = json_decode($wishlist_data, true);
+    }
+    $item_id_wishlist = array_column($wishlist_data, 'item_id');
+    if(in_array($_POST['hidden_id'], $item_id_wishlist))
+    {
+        foreach($wishlist_data as $keys => $values)
+        {
+            if($wishlist_data[$keys]["item_id"] == $_POST['hidden_id'])
+            {
+                unset($wishlist_data[$keys]);
+                $wishlist_item_data = json_encode($wishlist_data);
+                setcookie('shopping_wishlist', $wishlist_item_data, $wishlist_expiry);
+            }
+        }
+    }
     header('location:'.$refresh_page.'?success=1');
 }
 

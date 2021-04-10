@@ -229,7 +229,7 @@
     }
 
     $(".wish-link").on("click",function(e){
-        e.preventDefault();
+     //   e.preventDefault();
         $(this).toggleClass("focus");
         // $("p").toggleClass("main");
     });

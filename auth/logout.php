@@ -20,7 +20,32 @@ if (isset($_SESSION['logged_in'])) {
     session_unset();
     if($access == 'customer'){
         $redirect_page = $_REQUEST['page_url'];
-        if(($redirect_link == '') || ($redirect_link == $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/auth/login.php')){
+        $profile_link = FALSE;
+        if (strpos($redirect_link, 'profile.php') == TRUE) {
+          $profile_link = TRUE;
+      }
+      elseif (strpos($redirect_link, 'checkout.php') == TRUE){
+        $profile_link = TRUE;
+      }
+      elseif (strpos($redirect_link, 'order-details.php') == TRUE){
+        $profile_link = TRUE;
+      }
+      elseif (strpos($redirect_link, 'track-order-single.php') == TRUE){
+        $profile_link = TRUE;
+      }
+      elseif (strpos($redirect_link, 'track-order.php') == TRUE){
+        $profile_link = TRUE;
+      }
+      elseif (strpos($redirect_link, 'user-dashboard.php') == TRUE){
+        $profile_link = TRUE;
+      }
+      elseif (strpos($redirect_link, 'wishlist.php') == TRUE){
+        $profile_link = TRUE;
+      }
+      elseif (strpos($redirect_link, 'login.php') == TRUE){
+        $profile_link = TRUE;
+      }
+        if(($redirect_link == '') || ($profile_link == TRUE)){
           header("Location: ../$home_url"); 
           exit();
         }
