@@ -246,9 +246,46 @@ Preloader
                 <div class="modal-body">
                     <div class="header-top-action-dropdown">
                         <ul>
-                            <li class="signin-option"><a href="<?php echo  '../'.$login_url.'?page_url='.$redirect_link; ?>"><i class="fas fa-user mr-2"></i>Sign In</a></li>
-                            <li class="site-phone"><a href="tel:<?php echo $contact_number; ?>"><i class="fas fa-phone"></i> <?php echo $contact_number; ?></a></li>
-                            <li class="site-help"><a href="#"><i class="fas fa-question-circle"></i> Help & More</a></li>
+                        <?php
+                             if (isset($_SESSION['logged_in'])) {
+                                if ($_SESSION['logged_in'] == TRUE) {
+                            ?> 
+                             <li><a href="<?php echo '../'.$logout_url.'?page_url='.$redirect_link; ?>"><i class="fas fa-sign-out-alt mr-2"></i> Sign Out</a></li>
+                             <li><a href="profile.php"><i class="fas fa-user mr-2"></i> Profile</a></li>
+                            <?php
+                                }
+                                else{
+                                ?>
+                              <li class="signin-option"><a href="<?php echo  '../'.$login_url.'?page_url='.$redirect_link; ?>"><i class="fas fa-key mr-2"></i>Sign In</a></li>
+                                <?php
+                                }
+                            }
+                            else{
+                                ?>
+                                <li class="signin-option"><a href="<?php echo  '../'.$login_url.'?page_url='.$redirect_link; ?>"><i class="fas fa-key mr-2"></i>Sign In</a></li>
+                                <?php
+                            }
+                            ?>
+                            <li><a
+                            <?php if (isset($_SESSION['logged_in'])) {
+                                 if ($_SESSION['logged_in'] == TRUE) {
+                                ?>    
+                                href="wishlist.php"
+                                <?php
+                                    }
+                                else{
+                                ?>
+                                href="../auth/login.php?page_url=<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/wishlist.php' ?>"
+                                <?php    
+                                }   
+                            } 
+                            else{
+                            ?>
+                                href="../auth/login.php?page_url=<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/wishlist.php' ?>"
+                            <?php
+                            }
+                                ?>
+                            ><i class="fas fa-heart mr-2"></i> Wishlist</a></li>
                         </ul>
                     </div>
                 </div>
