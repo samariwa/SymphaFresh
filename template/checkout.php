@@ -22,9 +22,9 @@ $location = $result['location'];
                 </div>
             </div>
             <!-- page-header-section end -->
-
-
-
+<?php
+echo $message;
+?>
             <!-- dashboard-section start -->
             <section class="dashboard-section">
                 <div class="container">
@@ -95,10 +95,14 @@ $location = $result['location'];
                             </div>
 
                             <div class="form-item time-schedule bg-color-white box-shadow p-3 p-lg-5 border-radius5">
-                                <h6>Delivery Schedule</h6>
-
-                                <div class="time-schedule-container">
-                                    <p class="title">Express-Delivery</p>
+                                <h6>Delivery</h6>
+                                <div class="col-lg-12">
+                                    <div class="input-item">
+                                        <input type="radio" name="delivery_location" id="delivery_address" checked value="<?php echo $location; ?>">
+                                        <label><b>Deliver to your address</b></label>  
+                                    </div>
+                                    <div class="time-schedule-container">
+                                    <p class="title">Delivery Schedule</p>
                                     <div class="time-schedule-box">
                                         <ul>
                                             <li>Monday</li>
@@ -107,6 +111,15 @@ $location = $result['location'];
                                         </ul>
                                     </div>
                                 </div>
+                                </div>
+                                
+                                <br>
+                                <div class="col-lg-12">
+                                            <div class="input-item">
+                                                <input type="radio" name="delivery_location" id="delivery_outlet_pickup" value="outlet_pickup">
+                                                <label><b>Pick up from our outlet</b></label>
+                                            </div>
+                                        </div>
                             </div>
 
                             <div class="form-item payment-item bg-color-white box-shadow p-3 p-lg-5 border-radius5">
@@ -145,59 +158,65 @@ $location = $result['location'];
                                 <div class="cart-product-container">
                                 <?php
                                 $total = 0;
-                                if(isset($_COOKIE['shopping_cart']))
-                                {     
-                                    $cookie_data = stripslashes($_COOKIE['shopping_cart']);
-                                    $cart_data = json_decode($cookie_data, true);
-                                    foreach($cart_data as $keys => $values)
-                                    {
+                                $cart_checker = mysqli_query($connection,"SELECT s.id AS id,s.Name as Name,cart.quantity as cartQty,image,i_u.Name as unit_name,s.Discount as Discount,sf.Selling_price as Price,c.Category_Name as Category_Name,s.Restock_Level as Restock_Level,s.Quantity as Quantity FROM `cart` inner join stock s on cart.product_id = s.id INNER JOIN stock_flow sf ON s.id = sf.Stock_id JOIN inventory_units i_u ON s.Unit_id = i_u.id JOIN category c ON s.Category_id=c.id INNER JOIN (SELECT s.id AS max_id, MAX(sf.Created_at) AS max_created_at FROM stock s INNER JOIN stock_flow sf ON s.id = sf.Stock_id GROUP BY s.id) subQuery ON subQuery.max_id = s.id AND subQuery.max_created_at = sf.Created_at WHERE cart.customer_id='$customer_id';");
+                                $cart_count = mysqli_num_rows($cart_checker);
+                                foreach($cart_checker as $row)
+                               {
                                 ?>
-                                    <div class="cart-product-item">
+                                    <div class="cart-product-item <?php if($row['Quantity'] < $row['Restock_Level'] ){ ?>stock-out<?php }?>">
+                                        <div class="row align-items-center">
+                                            <div class="col-6">
+                                            
+                                            </div>
+                                            <div class="col-6">
+                                                <span class="close-item mr-3"><a href="<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/checkout.php?action=delete&id='.$row["id"]; ?>" class="ml-5 text-danger">Remove <i class="fas fa-times"></i></a></span>
+                                            </div>
+                                        </div>
                                         <div class="row align-items-center">
                                             <div class="col-6 p-0">
                                                 <div class="thumb">
-                                                    <a onclick="openModal()"><img src="../assets/images/products/<?php echo $values["item_image"]; ?>" alt="products"></a>
+                                                    <a onclick="openModal()"><img src="../assets/images/products/<?php echo $row["image"]; ?>" alt="products"></a>
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <div class="product-content">
-                                                    <a onclick="openModal()" class="product-title"><?php echo $values["item_name"]; ?></a>
+                                                    <a onclick="openModal()" class="product-title"><?php echo $row["Name"]; ?></a>
                                                     <div class="product-cart-info">
-                                                    <?php if($values['item_discount'] > 0){ ?> <del>Ksh<?php echo number_format($values["item_price"],2); ?> /unit</del> <br><?php }?>
-                                                    Ksh<?php echo number_format($values["item_price"] - $values["item_discount"],2); ?> /unit
+                                                    <?php if($row["Discount"] > 0){ ?> <del>Ksh<?php echo number_format($row["Price"],2); ?> /unit</del> <br><?php }?>
+                                                    Ksh<?php echo number_format($row["Price"] - $row["Discount"],2); ?> /unit
                                                     <br>
-                                                    x<span id="checkout_unit_qty<?php echo $values['item_id']; ?>"><?php echo $values["item_quantity"]; ?></span> <?php echo $values["item_unit"]; ?>
+                                                    x<span id="checkout_unit_qty<?php echo $row['id']; ?>"><?php echo $row["cartQty"]; ?></span> <?php echo $row["unit_name"]; ?>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row align-items-center">
+                                        <div class="row align-items-center mt-2">
                                             <div class="col-6">
-                                                <div class="price-increase-decrese-group d-flex">
+                                                <div class="price-increase-decrese-group d-flex ml-4">
                                                     <span class="decrease-btn">
                                                         <button type="button"
-                                                            class="btn quantity-left-minus checkout_cart_decrease" id="<?php echo $values['item_id']; ?>" data-type="minus" data-field="">-
+                                                            class="btn quantity-left-minus checkout_cart_decrease" id="<?php echo $row['id']; ?>" data-type="minus" data-field="">-
                                                         </button> 
                                                     </span>
-                                                    <input type="text" name="quantity" disabled class="form-controls input-number" id="checkout_cart_qty<?php echo $values["item_id"]; ?>" value="<?php echo $values["item_quantity"]; ?>">
+                                                    <input type="text" name="quantity" disabled class="form-controls input-number" id="checkout_cart_qty<?php echo $row["id"]; ?>" value="<?php echo $row["cartQty"]; ?>">
                                                     <span class="increase">
                                                         <button type="button"
-                                                            class="btn quantity-right-plus checkout_cart_increase" id="<?php echo $values['item_id']; ?>" data-type="plus" data-field="">+
+                                                            class="btn quantity-right-plus checkout_cart_increase" id="<?php echo $row['id']; ?>" data-type="plus" data-field="">+
                                                         </button>
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <!--<div class="product-price">-->
-                                                   <span class="ml-4">Ksh<span id="checkout_subtotal<?php echo $values['item_id']; ?>"><?php echo number_format($values["item_quantity"] * ($values["item_price"] - $values["item_discount"]),2); ?></span></span>
+                                                   <span class="ml-4">Ksh<span id="checkout_subtotal<?php echo $row['id']; ?>"><?php echo number_format($row["cartQty"] * ($row["Price"] - $row["Discount"]),2); ?></span></span>
                                                 <!--</div>-->
                                             </div>
                                         </div>
+                                        
                                     </div>
                                     <?php 
-                                    $total = $total + ($values["item_quantity"] * ($values["item_price"] - $values["item_discount"])); 
+                                    $total = $total + ($row["cartQty"] * ($row["Price"] - $row["Discount"]));  
                                         }      
-                                    }
                                     ?>
                                 </div>
                                 <div class="cart-footer">

@@ -9,20 +9,16 @@
    if ($_SESSION['logged_in'] == TRUE) {
  //valid user has logged-in to the website
  //Check for unauthorized use of user sessions
-    
      $signaturerecreate = $_SESSION['signature'];
  
  //Extract original salt from authorized signature
- 
      $saltrecreate = substr($signaturerecreate, 0, $length_salt);
  
  //Extract original hash from authorized signature
- 
      $originalhash = substr($signaturerecreate, $length_salt, 40);
  
  //Re-create the hash based on the user IP and user agent
  //then check if it is authorized or not
- 
      $hashrecreate = sha1($saltrecreate . $iptocheck . $useragent);
      if (!($hashrecreate == $originalhash)) {
  
@@ -38,8 +34,45 @@
         $result1 = mysqli_query($connection,"SELECT `active` FROM `users` WHERE `email`='$logged_in_email'");
          $row = mysqli_fetch_array($result1);
          $active = $row['active'];
+
+        $customer = mysqli_query($connection,"SELECT customers.id as id FROM `customers` inner join users on customers.User_id = users.id WHERE users.email='$logged_in_email'");
+        $customer_row = mysqli_fetch_array($customer);
+        $customer_id = $customer_row['id'];  
+        //transfer cart cookie to database 
+        if(isset($_COOKIE['shopping_cart']))
+        {
+            $cookie_data = stripslashes($_COOKIE['shopping_cart']);
+            $cart_data = json_decode($cookie_data, true);
+            foreach($cart_data as $keys => $values)
+            {  
+                $product_id = $values["item_id"];
+                $cart_duplicate = mysqli_query($connection,"SELECT * FROM `cart` WHERE customer_id ='$customer_id' AND product_id = '$product_id'");
+                $cart_duplicate_result = mysqli_fetch_array($cart_duplicate);
+                if ( $cart_duplicate_result == FALSE) {
+                    $quantity = $values["item_quantity"];
+                    mysqli_query($connection,"INSERT INTO `cart` (`customer_id`,`product_id`,`quantity`) VALUES ('$customer_id','$product_id','$quantity')");
+                }     
+            }
+            setcookie('shopping_cart', '', $cart_expiry);
+        }
+        //transfer wishlist cookie to database
+        if(isset($_COOKIE["shopping_wishlist"]))
+        {
+            $wishlist_data = stripslashes($_COOKIE['shopping_wishlist']);
+            $wishlist_data = json_decode($wishlist_data, true);
+            foreach($wishlist_data as $keys => $values)
+            {
+                $product_id = $values["item_id"];
+                $wishlist_duplicate = mysqli_query($connection,"SELECT * FROM `wishlist` WHERE customer_id ='$customer_id' AND product_id = '$product_id'");
+                $wishlist_duplicate_result = mysqli_fetch_array($wishlist_duplicate);
+                if ( $wishlist_duplicate_result == FALSE) {
+                    mysqli_query($connection,"INSERT INTO `wishlist` (`customer_id`,`product_id`) VALUES ('$customer_id','$product_id')");
+                }
+            }
+            setcookie('shopping_wishlist', '', $cart_expiry);
+        }
+
  //Session Lifetime control for inactivity
- 
      if ((isset($_SESSION['LAST_ACTIVITY'])) && (time() - $_SESSION['LAST_ACTIVITY'] > $sessiontimeout) || (isset($_SESSION['LAST_ACTIVITY'])) && ($active == 2)) {
  //redirect the user back to login page for re-authentication
           header('Location: ../'.$logout_url.'?page_url='.$redirect_link );
@@ -55,7 +88,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo $organization ?> - Fresh and on Time!</title>
+    <title><?php echo $organization ?> - Fresh at your doorstep!</title>
     <link rel="shortcut icon" type="image/png" sizes="196x196" href="../assets/images/sympha_fresh_white.png" />
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/all.min.css">
@@ -383,13 +416,30 @@ Preloader
                    c6.478,2.714,11.037,9.108,11.037,16.568C328.448,206.586,320.407,214.625,310.484,214.625z"/></svg>
                    <?php
                         $cart_count=0;
-                        if(isset($_COOKIE['shopping_cart'])){
-                        $cookie_data = stripslashes($_COOKIE['shopping_cart']);
-                        $cart_data = json_decode($cookie_data, true); 
-                        foreach($cart_data as $cart){
-                            $cart_count++;
+                        if (isset($_SESSION['logged_in'])) {
+                            if ($_SESSION['logged_in'] == TRUE) {
+                              $cart_checker = mysqli_query($connection,"SELECT s.id AS id,s.Name as Name,cart.quantity as cartQty,image,i_u.Name as unit_name,s.Discount as Discount,sf.Selling_price as Price,c.Category_Name as Category_Name,s.Restock_Level as Restock_Level,s.Quantity as Quantity FROM `cart` inner join stock s on cart.product_id = s.id INNER JOIN stock_flow sf ON s.id = sf.Stock_id JOIN inventory_units i_u ON s.Unit_id = i_u.id JOIN category c ON s.Category_id=c.id INNER JOIN (SELECT s.id AS max_id, MAX(sf.Created_at) AS max_created_at FROM stock s INNER JOIN stock_flow sf ON s.id = sf.Stock_id GROUP BY s.id) subQuery ON subQuery.max_id = s.id AND subQuery.max_created_at = sf.Created_at WHERE cart.customer_id='$customer_id';");
+                              $cart_count = mysqli_num_rows($cart_checker);
+                            }
+                            else{
+                                if(isset($_COOKIE['shopping_cart'])){
+                                    $cookie_data = stripslashes($_COOKIE['shopping_cart']);
+                                    $cart_data = json_decode($cookie_data, true); 
+                                    foreach($cart_data as $cart){
+                                        $cart_count++;
+                                    }
+                                }
+                            }
+                        }else{
+                            if(isset($_COOKIE['shopping_cart'])){
+                                $cookie_data = stripslashes($_COOKIE['shopping_cart']);
+                                $cart_data = json_decode($cookie_data, true); 
+                                foreach($cart_data as $cart){
+                                    $cart_count++;
+                                }
+                            }
                         }
-                    }
+                        
                     ?>
                    <span><?php echo $cart_count; ?> Items</span>
                 </div>
@@ -398,12 +448,86 @@ Preloader
     <div class="cart-product-container">
         <?php
         $total = 0;
-        if(isset($_COOKIE['shopping_cart']))
+        if (isset($_SESSION['logged_in'])) {
+            if ($_SESSION['logged_in'] == TRUE) {
+              $cart_checker = mysqli_query($connection,"SELECT s.id AS id,s.Name as Name,cart.quantity as cartQty,image,i_u.Name as unit_name,s.Discount as Discount,sf.Selling_price as Price,c.Category_Name as Category_Name,s.Restock_Level as Restock_Level,s.Quantity as Quantity FROM `cart` inner join stock s on cart.product_id = s.id INNER JOIN stock_flow sf ON s.id = sf.Stock_id JOIN inventory_units i_u ON s.Unit_id = i_u.id JOIN category c ON s.Category_id=c.id INNER JOIN (SELECT s.id AS max_id, MAX(sf.Created_at) AS max_created_at FROM stock s INNER JOIN stock_flow sf ON s.id = sf.Stock_id GROUP BY s.id) subQuery ON subQuery.max_id = s.id AND subQuery.max_created_at = sf.Created_at WHERE cart.customer_id='$customer_id';");
+              $cart_count = mysqli_num_rows($cart_checker);
+              if($cart_count > 0){
+              foreach($cart_checker as $row)
+             {
+                 ?>
+                    <div class="cart-product-item">
+                <div class="row align-items-center">
+                    <div class="col-6 p-0">
+                        <div class="thumb">
+                            <a href="#"><img src="../assets/images/products/<?php echo $row["image"]; ?>" alt="products"></a>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="product-content">
+                            <a href="#" class="product-title"><?php echo $row["Name"]; ?></a>
+                            <div class="product-cart-info">
+                            <?php if($row['Discount'] > 0){ ?> <del>Ksh<?php echo number_format($row["Price"],2); ?> /unit</del> <br><?php }?>
+                            Ksh<?php echo number_format($row["Price"] - $row["Discount"],2); ?> /unit
+                            <br>
+                            x<span id="cart_unit_qty<?php echo $row['id']; ?>"><?php echo $row["cartQty"]; ?></span> <?php echo $row["unit_name"]; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+  
+                <div class="row align-items-center mt-1">
+                    <div class="col-6">
+                        <div class="price-increase-decrese-group d-flex">
+                        
+                            <span class="decrease-btn">
+                                <button type="button"
+                                    class="btn quantity-left-minus cart_decrease" id="<?php echo $row['id']; ?>" data-type="minus" data-field="">-
+                                </button> 
+                            </span>
+                            <input type="text" name="quantity" disabled class="form-controls input-number" id="cart_qty<?php echo $row["id"]; ?>" value="<?php echo $row["cartQty"]; ?>">
+                            
+                            <span class="increase">
+                                <button type="button"
+                                    class="btn quantity-right-plus cart_increase" id="<?php echo $row['id']; ?>" data-type="plus" data-field="" >+
+                                </button>
+                            </span>
+                          
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div >
+                            <span class="ml-2">Ksh<span id="cart_subtotal<?php echo $row['id']; ?>"><?php echo number_format($row["cartQty"] * ($row["Price"] - $row["Discount"]),2); ?></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center mt-1">
+                <div class="col-6">
+
+                </div>
+                  <div class="col-6">
+                    <a href="<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/product-list.php?action=delete&id='.$row["id"] ?>" class="ml-5 text-danger"><i class="fas fa-times"></i> Remove</a>
+                  </div>
+                </div>
+            </div>   
+        <?php 
+          $total = $total + ($row["cartQty"] * ($row["Price"] - $row["Discount"])); 
+             }
+            }
+            else{
+                echo'
+            <h4 style="text-align:center;" class="mt-5">No Item in Cart</h4>
+            ';
+            }
+            }
+            else{
+                if(isset($_COOKIE['shopping_cart']))
         {     
             $cookie_data = stripslashes($_COOKIE['shopping_cart']);
             $cart_data = json_decode($cookie_data, true);
             foreach($cart_data as $keys => $values)
             {
+                
         ?>
             <div class="cart-product-item">
                 <div class="row align-items-center">
@@ -468,6 +592,81 @@ Preloader
             <h4 style="text-align:center;" class="mt-5">No Item in Cart</h4>
             ';
         }
+            }   
+        }
+        else{
+            if(isset($_COOKIE['shopping_cart']))
+            {     
+                $cookie_data = stripslashes($_COOKIE['shopping_cart']);
+                $cart_data = json_decode($cookie_data, true);
+                foreach($cart_data as $keys => $values)
+                {
+            ?>
+                <div class="cart-product-item">
+                    <div class="row align-items-center">
+                        <div class="col-6 p-0">
+                            <div class="thumb">
+                                <a href="#"><img src="../assets/images/products/<?php echo $values["item_image"]; ?>" alt="products"></a>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="product-content">
+                                <a href="#" class="product-title"><?php echo $values["item_name"]; ?></a>
+                                <div class="product-cart-info">
+                                <?php if($values['item_discount'] > 0){ ?> <del>Ksh<?php echo number_format($values["item_price"],2); ?> /unit</del> <br><?php }?>
+                                Ksh<?php echo number_format($values["item_price"] - $values["item_discount"],2); ?> /unit
+                                <br>
+                                x<span id="cart_unit_qty<?php echo $values['item_id']; ?>"><?php echo $values["item_quantity"]; ?></span> <?php echo $values["item_unit"]; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+      
+                    <div class="row align-items-center mt-1">
+                        <div class="col-6">
+                            <div class="price-increase-decrese-group d-flex">
+                            
+                                <span class="decrease-btn">
+                                    <button type="button"
+                                        class="btn quantity-left-minus cart_decrease" id="<?php echo $values['item_id']; ?>" data-type="minus" data-field="">-
+                                    </button> 
+                                </span>
+                                <input type="text" name="quantity" disabled class="form-controls input-number" id="cart_qty<?php echo $values["item_id"]; ?>" value="<?php echo $values["item_quantity"]; ?>">
+                                
+                                <span class="increase">
+                                    <button type="button"
+                                        class="btn quantity-right-plus cart_increase" id="<?php echo $values['item_id']; ?>" data-type="plus" data-field="" >+
+                                    </button>
+                                </span>
+                              
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div >
+                                <span class="ml-2">Ksh<span id="cart_subtotal<?php echo $values['item_id']; ?>"><?php echo number_format($values["item_quantity"] * ($values["item_price"] - $values["item_discount"]),2); ?></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center mt-1">
+                    <div class="col-6">
+    
+                    </div>
+                      <div class="col-6">
+                        <a href="<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/product-list.php?action=delete&id='.$values["item_id"] ?>" class="ml-5 text-danger"><i class="fas fa-times"></i> Remove</a>
+                      </div>
+                    </div>
+                </div>   
+            <?php 
+              $total = $total + ($values["item_quantity"] * ($values["item_price"] - $values["item_discount"])); 
+                }      
+            }
+            else{
+                echo'
+                <h4 style="text-align:center;" class="mt-5">No Item in Cart</h4>
+                ';
+            }
+        }
+        
         ?>
         <br><br><br>
         </div> 
@@ -582,13 +781,31 @@ Preloader
                         <li class="wish-list"><a 
                         <?php
                         $wishlist_count=0;
-                        if(isset($_COOKIE['shopping_wishlist'])){
-                        $wishlist_data = stripslashes($_COOKIE['shopping_wishlist']);
-                        $wishlist_data = json_decode($wishlist_data, true); 
-                        foreach($wishlist_data as $cart){
-                            $wishlist_count++;
+                        if (isset($_SESSION['logged_in'])) {
+                            if ($_SESSION['logged_in'] == TRUE) {
+                              $wishlist_checker = mysqli_query($connection,"SELECT * FROM `wishlist` WHERE wishlist.customer_id='$customer_id';");
+                              $wishlist_count = mysqli_num_rows($wishlist_checker);
+                            }
+                            else{
+                                if(isset($_COOKIE['shopping_wishlist'])){
+                                    $wishlist_data = stripslashes($_COOKIE['shopping_wishlist']);
+                                    $wishlist_data = json_decode($wishlist_data, true); 
+                                    foreach($wishlist_data as $cart){
+                                        $wishlist_count++;
+                                    }
+                                }
+                            }
                         }
-                    }
+                        else{
+                            if(isset($_COOKIE['shopping_wishlist'])){
+                                $wishlist_data = stripslashes($_COOKIE['shopping_wishlist']);
+                                $wishlist_data = json_decode($wishlist_data, true); 
+                                foreach($wishlist_data as $cart){
+                                    $wishlist_count++;
+                                }
+                            }
+                        }
+                        
                         if (isset($_SESSION['logged_in'])) {
                             if ($_SESSION['logged_in'] == TRUE) {
                         ?>    
@@ -664,7 +881,8 @@ Preloader
                             <li class="nav-item"><a href="contact.php">Contact Us</a></li>
                         </ul>
                         <ul class="menu-action d-none d-lg-block">
-                            <li class="cart-option"><a onclick="cartopen()" href="#"><span class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="count"><?php echo $cart_count; ?></span></span> <span class="cart-amount">Ksh <?php echo number_format($total,2); ?></span></a>
+                             <input type="hidden" id="navbar_cart_hidden" value="<?php echo $total; ?>" >
+                            <li class="cart-option"><a onclick="cartopen()" href="#"><span class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="count" ><?php echo $cart_count; ?></span></span> <span class="cart-amount">Ksh <span id="navbar_cart_total"><?php echo number_format($total,2); ?></span></span></a>
                             </li>
                         </ul>
                     </div>

@@ -147,6 +147,7 @@ if ((isset($_POST["pass"])) && (isset($_POST["email"])) && ($_SESSION['logged_in
         		setcookie('pass','');
         	}
         }
+
 //user successfully authenticates with the provided email address and password
 //Reset login attempts for a specific email address to 0 as well as the ip address
 

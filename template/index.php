@@ -229,32 +229,70 @@ echo $message;
                                             <div class="price">Ksh.<?php echo number_format($discounted_price,2); if($discount > 0){?> <del>Ksh.<?php echo number_format($selling_price,2); ?></del><?php } ?></div>
 
                                             <div class="cart-btn-toggle">
-                                                <form method="POST">
-                                                <input type="hidden" name="hidden_id" value="<?php echo $id; ?>">
-                                                <input type="hidden" name="hidden_name" value="<?php echo $name; ?>">
-                                                <input type="hidden" name="hidden_unit" value="<?php echo $unit_name; ?>">
-                                                <input type="hidden" name="hidden_discount" value="<?php echo $discount; ?>">
-                                                <input type="hidden" name="hidden_price" value="<?php echo $selling_price; ?>">
-                                                <input type="hidden" name="hidden_image" value="<?php echo $image; ?>">
-                                                <button type="submit" class="cart-btn" name="cart_button">
-                                                    <span ><i class="fas fa-shopping-cart"></i> Cart</span>
-                                                </button>
-                                                </form>
-                                                  <!--  <div class="price-btn">
-                                                        <div class="price-increase-decrese-group d-flex">
-                                                            <span class="decrease-btn">
-                                                                <button type="button"
-                                                                    class="btn quantity-left-minus" data-type="minus" data-field="">-
-                                                                </button> 
-                                                            </span>
-                                                            <input type="text" name="quantity" class="form-controls input-number" value="1">
-                                                            <span class="increase">
-                                                                <button type="button"
-                                                                    class="btn quantity-right-plus" data-type="plus" data-field="">+
-                                                                </button>
-                                                            </span>
-                                                        </div>
-                                                    </div> -->
+                                                    <?php
+                                                        if(isset($_COOKIE["shopping_cart"]))
+                                                        {
+                                                            $cart_data = stripslashes($_COOKIE['shopping_cart']);
+                                                            $cart_data = json_decode($cart_data, true);
+                                                            $item_id = array_column($cart_data, 'item_id');
+                                                        if(in_array( $id, $item_id))
+                                                        {
+                                                            foreach($cart_data as $keys => $values)
+                                                            {
+                                                                if($cart_data[$keys]["item_id"] == $id)
+                                                                {
+                                                    ?>
+                                                            <div class="price-button">
+                                                                <div class="price-increase-decrese-group d-flex">
+                                                                    <span class="decrease-btn">
+                                                                        <button type="button"
+                                                                            class="btn quantity-left-minus featured_decrease" data-type="minus" id="<?php echo $values['item_id']; ?>" data-field="">-
+                                                                        </button> 
+                                                                    </span>
+                                                                    <input type="text" name="quantity" id="featured_qty<?php echo $values["item_id"]; ?>" disabled class="form-controls input-number" value="<?php echo $values["item_quantity"]; ?>">
+                                                                    <span class="increase">
+                                                                        <button type="button"
+                                                                            class="btn quantity-right-plus featured_increase" data-type="plus" id="<?php echo $values['item_id']; ?>" data-field="">+
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                            </div> 
+                                                        <?php   
+                                                                }
+                                                            }
+                                                        }
+                                                        else{
+                                                    ?>
+                                                    <form method="POST">
+                                                        <input type="hidden" name="hidden_id" value="<?php echo $id; ?>">
+                                                        <input type="hidden" name="hidden_name" value="<?php echo $name; ?>">
+                                                        <input type="hidden" name="hidden_unit" value="<?php echo $unit_name; ?>">
+                                                        <input type="hidden" name="hidden_discount" value="<?php echo $discount; ?>">
+                                                        <input type="hidden" name="hidden_price" value="<?php echo $selling_price; ?>">
+                                                        <input type="hidden" name="hidden_image" value="<?php echo $image; ?>">
+                                                        <button type="submit" class="cart-btn" name="cart_button">
+                                                            <span ><i class="fas fa-shopping-cart"></i> Cart</span>
+                                                        </button>
+                                                        </form>
+                                                    <?php
+                                                        }
+                                                        }
+                                                        else{
+                                                    ?>
+                                                    <form method="POST">
+                                                        <input type="hidden" name="hidden_id" value="<?php echo $id; ?>">
+                                                        <input type="hidden" name="hidden_name" value="<?php echo $name; ?>">
+                                                        <input type="hidden" name="hidden_unit" value="<?php echo $unit_name; ?>">
+                                                        <input type="hidden" name="hidden_discount" value="<?php echo $discount; ?>">
+                                                        <input type="hidden" name="hidden_price" value="<?php echo $selling_price; ?>">
+                                                        <input type="hidden" name="hidden_image" value="<?php echo $image; ?>">
+                                                        <button type="submit" class="cart-btn" name="cart_button">
+                                                            <span ><i class="fas fa-shopping-cart"></i> Cart</span>
+                                                        </button>
+                                                        </form>
+                                                    <?php
+                                                        }
+                                                    ?>               
                                                 </div>
                                                 
                                             </div>
@@ -411,32 +449,70 @@ echo $message;
                                             <div class="price">Ksh.<?php echo number_format($discounted_price,2); if($discount > 0){?> <del>Ksh.<?php echo number_format($selling_price,2); ?></del><?php } ?></div>
 
                                             <div class="cart-btn-toggle">
-                                                <form method="POST">
-                                                <input type="hidden" name="hidden_id" value="<?php echo $id; ?>">
-                                                <input type="hidden" name="hidden_name" value="<?php echo $name; ?>">
-                                                <input type="hidden" name="hidden_unit" value="<?php echo $unit_name; ?>">
-                                                <input type="hidden" name="hidden_discount" value="<?php echo $discount; ?>">
-                                                <input type="hidden" name="hidden_price" value="<?php echo $selling_price; ?>">
-                                                <input type="hidden" name="hidden_image" value="<?php echo $image; ?>">
-                                                <button type="submit" class="cart-btn" name="cart_button">
-                                                    <span ><i class="fas fa-shopping-cart"></i> Cart</span>
-                                                </button>
-                                                </form>
-                                                  <!--  <div class="price-btn">
-                                                        <div class="price-increase-decrese-group d-flex">
-                                                            <span class="decrease-btn">
-                                                                <button type="button"
-                                                                    class="btn quantity-left-minus" data-type="minus" data-field="">-
-                                                                </button> 
-                                                            </span>
-                                                            <input type="text" name="quantity" class="form-controls input-number" value="1">
-                                                            <span class="increase">
-                                                                <button type="button"
-                                                                    class="btn quantity-right-plus" data-type="plus" data-field="">+
-                                                                </button>
-                                                            </span>
-                                                        </div>
-                                                    </div> -->
+                                                    <?php
+                                                        if(isset($_COOKIE["shopping_cart"]))
+                                                        {
+                                                            $cart_data = stripslashes($_COOKIE['shopping_cart']);
+                                                            $cart_data = json_decode($cart_data, true);
+                                                            $item_id = array_column($cart_data, 'item_id');
+                                                        if(in_array( $id, $item_id))
+                                                        {
+                                                            foreach($cart_data as $keys => $values)
+                                                            {
+                                                                if($cart_data[$keys]["item_id"] == $id)
+                                                                {
+                                                    ?>
+                                                            <div class="price-button">
+                                                                <div class="price-increase-decrese-group d-flex">
+                                                                    <span class="decrease-btn">
+                                                                        <button type="button"
+                                                                            class="btn quantity-left-minus recommended_decrease" data-type="minus" id="<?php echo $values['item_id']; ?>" data-field="">-
+                                                                        </button> 
+                                                                    </span>
+                                                                    <input type="text" name="quantity" id="recommended_qty<?php echo $values["item_id"]; ?>" disabled class="form-controls input-number" value="<?php echo $values["item_quantity"]; ?>">
+                                                                    <span class="increase">
+                                                                        <button type="button"
+                                                                            class="btn quantity-right-plus recommended_increase" data-type="plus" id="<?php echo $values['item_id']; ?>" data-field="">+
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                            </div> 
+                                                        <?php   
+                                                                }
+                                                            }
+                                                        }
+                                                        else{
+                                                    ?>
+                                                    <form method="POST">
+                                                        <input type="hidden" name="hidden_id" value="<?php echo $id; ?>">
+                                                        <input type="hidden" name="hidden_name" value="<?php echo $name; ?>">
+                                                        <input type="hidden" name="hidden_unit" value="<?php echo $unit_name; ?>">
+                                                        <input type="hidden" name="hidden_discount" value="<?php echo $discount; ?>">
+                                                        <input type="hidden" name="hidden_price" value="<?php echo $selling_price; ?>">
+                                                        <input type="hidden" name="hidden_image" value="<?php echo $image; ?>">
+                                                        <button type="submit" class="cart-btn" name="cart_button">
+                                                            <span ><i class="fas fa-shopping-cart"></i> Cart</span>
+                                                        </button>
+                                                        </form>
+                                                    <?php
+                                                        }
+                                                        }
+                                                        else{
+                                                    ?>
+                                                    <form method="POST">
+                                                        <input type="hidden" name="hidden_id" value="<?php echo $id; ?>">
+                                                        <input type="hidden" name="hidden_name" value="<?php echo $name; ?>">
+                                                        <input type="hidden" name="hidden_unit" value="<?php echo $unit_name; ?>">
+                                                        <input type="hidden" name="hidden_discount" value="<?php echo $discount; ?>">
+                                                        <input type="hidden" name="hidden_price" value="<?php echo $selling_price; ?>">
+                                                        <input type="hidden" name="hidden_image" value="<?php echo $image; ?>">
+                                                        <button type="submit" class="cart-btn" name="cart_button">
+                                                            <span ><i class="fas fa-shopping-cart"></i> Cart</span>
+                                                        </button>
+                                                        </form>
+                                                    <?php
+                                                        }
+                                                    ?>               
                                                 </div>
                                                 
                                             </div>

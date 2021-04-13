@@ -66,36 +66,34 @@ $location = $result['location'];
                         <div class="wish-list-container">
                         <?php
                         $total = 0;
-                        if(isset($_COOKIE['shopping_wishlist']))
-                        {     
-                            $wishlist_data = stripslashes($_COOKIE['shopping_wishlist']);
-                            $wishlist_data = json_decode($wishlist_data, true);
-                            foreach($wishlist_data as $keys => $values)
-                            {
+                        $wishlist_checker = mysqli_query($connection,"SELECT s.id AS id,s.Name as Name,image,i_u.Name as unit_name,s.Discount as Discount,sf.Selling_price as Price,c.Category_Name as Category_Name,s.Restock_Level as Restock_Level,s.Quantity as Quantity FROM `wishlist` inner join stock s on wishlist.product_id = s.id INNER JOIN stock_flow sf ON s.id = sf.Stock_id JOIN inventory_units i_u ON s.Unit_id = i_u.id JOIN category c ON s.Category_id=c.id INNER JOIN (SELECT s.id AS max_id, MAX(sf.Created_at) AS max_created_at FROM stock s INNER JOIN stock_flow sf ON s.id = sf.Stock_id GROUP BY s.id) subQuery ON subQuery.max_id = s.id AND subQuery.max_created_at = sf.Created_at WHERE wishlist.customer_id='$customer_id';");
+                        $wishlist_count = mysqli_num_rows($wishlist_checker);
+                        foreach($wishlist_checker as $row)
+                       {
                         ?>
-                            <div class="wishlist-item product-item d-flex align-items-center <?php if($quantity > $restock_level ){ ?>stock-out<?php }?>">
-                                <span class="close-item"><a href="<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/wishlist.php?action=wishlist_delete&id='.$values["item_id"] ?>" class="ml-5 text-danger">Remove <i class="fas fa-times"></i></a></span>
+                            <div class="wishlist-item product-item d-flex align-items-center <?php if($row['Quantity'] < $row['Restock_Level'] ){ ?>stock-out<?php }?>">
+                                <span class="close-item"><a href="<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/wishlist.php?action=wishlist_delete&id='.$row["id"] ?>" class="ml-5 text-danger">Remove <i class="fas fa-times"></i></a></span>
                                 <div class="thumb">
-                                <?php if($values["item_discount"] > 0){?><span class="batch sale">Sale</span><?php } ?>
-                                    <a onclick="openModal()"><img src="../assets/images/products/<?php echo $values["item_image"]; ?>" width="200px" height="170px" alt="products"></a>
+                                <?php if($row["Discount"] > 0){?><span class="batch sale">Sale</span><?php } ?>
+                                    <a onclick="openModal()"><img src="../assets/images/products/<?php echo $row["image"]; ?>" width="200px" height="170px" alt="products"></a>
                                 </div>
                                 <div class="product-content">
-                                    <a href="product-detail.php" class="product-title"><?php echo $values["item_name"]; ?></a>
+                                    <a href="product-detail.php" class="product-title"><?php echo $row["Name"]; ?></a>
                                     <div class="product-cart-info">
-                                    <?php echo $values["item_category"]; ?>
+                                    <?php echo $row["Category_Name"]; ?>
                                     </div>
                                     <div class="product-price">
-                                    <?php if($values['item_discount'] > 0){ ?> <del>Ksh<?php echo number_format($values["item_price"],2); ?> /unit</del> <br><?php }?>
-                                       Ksh<?php echo number_format($values["item_price"] - $values["item_discount"],2); ?> /unit
+                                    <?php if($row['Discount'] > 0){ ?> <del>Ksh<?php echo number_format($row["Price"],2); ?> /unit</del> <br><?php }?>
+                                       Ksh<?php echo number_format($row["Price"] - $row["Discount"],2); ?> /unit
                                     </div>
                                     <div class="cart-btn-toggle">
                                     <form method="POST">
-                                    <input type="hidden" name="hidden_id" value="<?php echo $values["item_id"] ?>">
-                                    <input type="hidden" name="hidden_name" value="<?php echo $values["item_name"]; ?>">
-                                    <input type="hidden" name="hidden_unit" value="<?php echo $values["item_unit"]; ?>">
-                                    <input type="hidden" name="hidden_discount" value="<?php echo $values["item_discount"]; ?>">
-                                    <input type="hidden" name="hidden_price" value="<?php echo $values["item_price"]; ?>">
-                                    <input type="hidden" name="hidden_image" value="<?php echo $values["item_image"]; ?>">
+                                    <input type="hidden" name="hidden_id" value="<?php echo $row["id"] ?>">
+                                    <input type="hidden" name="hidden_name" value="<?php echo $row["Name"]; ?>">
+                                    <input type="hidden" name="hidden_unit" value="<?php echo $row["unit_name"]; ?>">
+                                    <input type="hidden" name="hidden_discount" value="<?php echo $row["Discount"]; ?>">
+                                    <input type="hidden" name="hidden_price" value="<?php echo $row["Price"]; ?>">
+                                    <input type="hidden" name="hidden_image" value="<?php echo $row["image"]; ?>">
                                     <button type="submit" class="cart-btn" name="cart_button">
                                         <span ><i class="fas fa-shopping-cart"></i> Cart</span>
                                     </button>
@@ -119,8 +117,7 @@ $location = $result['location'];
                                     </div>           
                                 </div>
                             </div>
-                    <?php
-                       }      
+                    <?php     
                     }
                     ?>
                         </div>

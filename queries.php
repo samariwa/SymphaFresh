@@ -2,7 +2,7 @@
 require('config.php');
 //MySQL and MariaDB queries.
 //All queries are hybrid unless specified.
-$customersList = mysqli_query($connection,"SELECT id,Name,Location,Number,Deliverer,Status,Note FROM customers WHERE Status != 'blacklisted'ORDER BY id DESC")or die($connection->error);
+$customersList = mysqli_query($connection,"SELECT customers.id as id, Name,customers.Location as Location,customers.Number as Number,Deliverer,Status,Note FROM customers inner join users on users.id = customers.User_id WHERE Status != 'blacklisted'ORDER BY id DESC")or die($connection->error);
 $subscribersList = mysqli_query($connection,"SELECT * FROM newsletter_subscribers ORDER BY id DESC")or die($connection->error);
 $customersPrintList = mysqli_query($connection,"SELECT customers.id as id,Name,Location,Number,Deliverer,Status,Note FROM customers inner join orders on customers.id=orders.Customer_id WHERE Status != 'blacklisted' and DATE(orders.Delivery_time) >= DATE_ADD(CURRENT_DATE(), INTERVAL -10 DAY) group by customers.id")or die($connection->error);
 $blacklistedList =  mysqli_query($connection,"SELECT customers.id as id,customers.Name, MAX(orders.created_at),customers.Location,customers.Number,customers.Deliverer,orders.Balance FROM orders INNER JOIN customers ON orders.Customer_id=customers.id where customers.Status='blacklisted' GROUP BY customers.id;")or die($connection->error);
