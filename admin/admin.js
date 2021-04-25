@@ -1902,23 +1902,19 @@ function saveOrderToday(idx){
           contentType : false,
           processData : false,
           cache : false,
-       // $.post("../add.php",{name:name,category:category,unit:unit,form:form,contains:contains,subunit:subunit,replenish:replenish,supplier:supplier,restock:restock,received:received,expiry:expiry,bp:bp,sp:sp,qty:qty,where:where},
        success : function(data) {
-        console.log(data);
-        alert(data);
-       } 
-       /*function(result){
-          alert(result)
-         if (result == 'success') {
+        alert(result)
+         if (data == 'success') {
           alert('Product added Successfully');
          }
-          else if (result == 'exists') {
+          else if (data == 'exists') {
           alert('Stock Already Exists');
          }
          else{
           alert("Something went wrong");
          }
-         }*/
+       } 
+
         }); 
       });
 
