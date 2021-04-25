@@ -4,7 +4,6 @@
  require('../functions.php');
  require('../queries.php');
  include('cart.php');
- include('wishlist_process.php');
  if (isset($_SESSION['logged_in'])) {
    if ($_SESSION['logged_in'] == TRUE) {
  //valid user has logged-in to the website
@@ -362,11 +361,17 @@ Preloader
                             ?>  
                             </select>
                         </div>
-                        <form action="#" class="search-form">
-                            <input type="text" name="search" placeholder="Search for Products">
-                            <button class="submit-btn"><i class="fas fa-search"></i></button>
+
+                        <form action="../search" method="POST" class="search-form">
+                            <input type="text" name="search" id="productSearch" placeholder="Search for Products">
+                            <button type="submit" class="submit-btn" name="searchSubmit"><i class="fas fa-search"></i></button>
                         </form>
+                        <div class="col-12" style="position: relative;z-index: 4;">
+                            <div class="list-group" id="show-list" >
+                            </div>
+                        </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -768,10 +773,14 @@ Preloader
                             ?>  
                             </select>
                         </div>
-                        <form action="#" class="search-form">
-                            <input type="text" name="search" placeholder="Search for Products">
-                            <button class="submit-btn"><i class="fas fa-search"></i></button>
+                        <form action="../search" method="POST" class="search-form">
+                            <input type="text" name="search" id="productSearch" placeholder="Search for Products">
+                            <button type="submit" class="submit-btn" name="searchSubmit"><i class="fas fa-search"></i></button>
                         </form>
+                    </div>
+                    <div class="col-7 offset-4" style="position: absolute;z-index: 4;">
+                        <div class="list-group" id="show-list" >
+                        </div>
                     </div>
                 </div>
                 <div class="col-2 col-md-1 col-lg-5">

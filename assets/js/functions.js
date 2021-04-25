@@ -757,3 +757,27 @@ $(document).on('click','#anonymous_contact',function(){
     });        
 });
 
+$('#productSearch').keyup(function(){
+    var txt = $('#productSearch').val();
+    if(txt != '')
+    {
+      $.ajax({
+        url: '../search.php',
+        type:"post",
+        data:{search:txt},
+        dataType:"text",
+        success:function(data)
+        {
+          $('#show-list').html(data);
+        }
+      });
+    }
+    else
+    {
+      $('#show-list').html('');
+    }
+    $(document).on('click','a',function(){
+        $("#productSearch").val($(this).text());
+        $("#show-list").html(''); 
+    });
+ });

@@ -1547,7 +1547,7 @@ $('#officeEditable').editableTableWidget();
   function(result){});
 });
 
-  $('#salesEditableLastMonth').editableTableWidget();
+  /*$('#salesEditableLastMonth').editableTableWidget();
   $('#salesEditableLastMonth td.uneditable').on('change', function(evt, newValue) {
   return false;
 });
@@ -1673,7 +1673,132 @@ $('#officeEditable').editableTableWidget();
     //location.reload(true);
   }
   });
-});
+});*/
+
+function saveOrderToday(idx){
+  var id = idx;
+  var qty = $(`#qty_Today${id}`).val();
+  var mpesa = $(`#mpesa_Today${id}`).val();
+  var cash = $(`#cash_Today${id}`).val();
+  var date = $(`#date_Today${id}`).val();
+  var returned = $(`#returned_Today${id}`).val();
+  var banked = $(`#banked_Today${id}`).val();
+  var slip = $(`#slip_Today${id}`).val();
+  var banker = $(`#banked_By_Today${id}`).val();
+  var where = 'orders';
+  $.post("../save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
+  function(result){
+    if (result == 'Unavailable') {
+      alert("Quantity Entered Unavailable");
+    }
+    else if (result == 'excess returned') {
+      alert("Error: Returned greater than quantity requested");
+    }
+    else{
+    location.reload(true);
+  }
+  });
+ }
+
+ function saveOrderTomorrow(idx){
+  var id = idx;
+  var qty = $(`#qty_Tomorrow${id}`).val();
+  var mpesa = $(`#mpesa_Tomorrow${id}`).val();
+  var cash = $(`#cash_Tomorrow${id}`).val();
+  var date = $(`#date_Tomorrow${id}`).val();
+  var returned = $(`#returned_Tomorrow${id}`).val();
+  var banked = $(`#banked_Tomorrow${id}`).val();
+  var slip = $(`#slip_Tomorrow${id}`).val();
+  var banker = $(`#banked_By_Tomorrow${id}`).val();
+  var where = 'orders';
+  $.post("../save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
+  function(result){
+    if (result == 'Unavailable') {
+      alert("Quantity Entered Unavailable");
+    }
+    else if (result == 'excess returned') {
+      alert("Error: Returned greater than quantity requested");
+    }
+    else{
+    location.reload(true);
+  }
+  });
+ }
+
+ function saveOrderLastMonth(idx){
+  var id = idx;
+  var qty = $(`#qty_LastMonth${id}`).val();
+  var mpesa = $(`#mpesa_LastMonth${id}`).val();
+  var cash = $(`#cash_LastMonth${id}`).val();
+  var date = $(`#date_LastMonth${id}`).val();
+  var returned = $(`#returned_LastMonth${id}`).val();
+  var banked = $(`#banked_LastMonth${id}`).val();
+  var slip = $(`#slip_LastMonth${id}`).val();
+  var banker = $(`#banked_By_LastMonth${id}`).val();
+  var where = 'orders';
+  $.post("../save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
+  function(result){
+    if (result == 'Unavailable') {
+      alert("Quantity Entered Unavailable");
+    }
+    else if (result == 'excess returned') {
+      alert("Error: Returned greater than quantity requested");
+    }
+    else{
+    location.reload(true);
+  }
+  });
+ }
+
+ function saveOrderNextMonth(idx){
+  var id = idx;
+  var qty = $(`#qty_NextMonth${id}`).val();
+  var mpesa = $(`#mpesa_NextMonth${id}`).val();
+  var cash = $(`#cash_NextMonth${id}`).val();
+  var date = $(`#date_NextMonth${id}`).val();
+  var returned = $(`#returned_NextMonth${id}`).val();
+  var banked = $(`#banked_NextMonth${id}`).val();
+  var slip = $(`#slip_NextMonth${id}`).val();
+  var banker = $(`#banked_By_NextMonth${id}`).val();
+  var where = 'orders';
+  $.post("../save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
+  function(result){
+    if (result == 'Unavailable') {
+      alert("Quantity Entered Unavailable");
+    }
+    else if (result == 'excess returned') {
+      alert("Error: Returned greater than quantity requested");
+    }
+    else{
+    location.reload(true);
+  }
+  });
+ }
+
+ function saveOrderYesterday(idx){
+  var id = idx;
+  var qty = $(`#qty_Yesterday${id}`).val();
+  var mpesa = $(`#mpesa_Yesterday${id}`).val();
+  var cash = $(`#cash_Yesterday${id}`).val();
+  var date = $(`#date_Yesterday${id}`).val();
+  var returned = $(`#returned_Yesterday${id}`).val();
+  var banked = $(`#banked_Yesterday${id}`).val();
+  var slip = $(`#slip_Yesterday${id}`).val();
+  var banker = $(`#banked_By_Yesterday${id}`).val();
+  var where = 'orders';
+  $.post("../save.php",{id:id,qty:qty,mpesa:mpesa,cash:cash,date:date,banked:banked,returned:returned,slip:slip,banker:banker,where:where},
+  function(result){
+    if (result == 'Unavailable') {
+      alert("Quantity Entered Unavailable");
+    }
+    else if (result == 'excess returned') {
+      alert("Error: Returned greater than quantity requested");
+    }
+    else{
+    location.reload(true);
+  }
+  });
+ }
 
   function readsales() {
             $.ajax({
@@ -1687,7 +1812,7 @@ $('#officeEditable').editableTableWidget();
         }
 
 
-  $('#salesEditableTomorrow').editableTableWidget();
+  /*$('#salesEditableTomorrow').editableTableWidget();
   $('#salesEditableTomorrow td.uneditable').on('change', function(evt, newValue) {
   return false;
 });
@@ -1712,7 +1837,7 @@ $('#officeEditable').editableTableWidget();
     //location.reload(true);
   }
   });
-});
+});*/
 
    $('#expenseHeadingEditable').editableTableWidget();
   $('#expenseHeadingEditable td.uneditable').on('change', function(evt, newValue) {
@@ -1767,28 +1892,25 @@ $('#officeEditable').editableTableWidget();
          });
        });
 
-  $(document).on('click','#addStock',function(){
-        var name = $('#name').val();
-        var category = $('#category').val();
-        var supplier = $('#supplier').val();
-        var received = $('#received').val();
-        var expiry = $('#expiry').val();
-        var bp = $('#bp').val();
-        var sp = $('#sp').val();
-        var qty = $('#qty').val();
-        var unit = $('#unit').val();
-        var upload = $('#upload').val();
-        var contains = $('#contains').val();
-        var subunit = $('#subunit').val();
-        var replenish = $('#replenish').val();
-        var restock = $('#restock').val();
-        var where = 'stock';
-        $.post("../add.php",{name:name,category:category,unit:unit,contains:contains,upload:upload,subunit:subunit,replenish:replenish,supplier:supplier,restock:restock,received:received,expiry:expiry,bp:bp,sp:sp,qty:qty,where:where},
-        function(result){
-          alert(result);
+   $(document).on('click','#addStock',function(){
+        var form = $('form')[0];
+        var form_data = new FormData(form);
+        $.ajax({
+          url: '../add.php',
+          type: 'post',
+          data: form_data,
+          contentType : false,
+          processData : false,
+          cache : false,
+       // $.post("../add.php",{name:name,category:category,unit:unit,form:form,contains:contains,subunit:subunit,replenish:replenish,supplier:supplier,restock:restock,received:received,expiry:expiry,bp:bp,sp:sp,qty:qty,where:where},
+       success : function(data) {
+        console.log(data);
+        alert(data);
+       } 
+       /*function(result){
+          alert(result)
          if (result == 'success') {
-          alert('Stock Added Successfully');
-          location.reload(true);
+          alert('Product added Successfully');
          }
           else if (result == 'exists') {
           alert('Stock Already Exists');
@@ -1796,8 +1918,9 @@ $('#officeEditable').editableTableWidget();
          else{
           alert("Something went wrong");
          }
-         });
-       });
+         }*/
+        }); 
+      });
 
   $(document).on('click','#uploadFile',function(){
         var name = $('#name').val();
@@ -2479,7 +2602,7 @@ $('#officeEditable').editableTableWidget();
         var el = $(this);
         var id = el.attr("id");
         var received = $(`#received${id}`).val();
-        var qty = $(`#qty${id}`).val();
+        var qty = $(`#quantity${id}`).val();
          var bp = $(`#bp${id}`).val();
         var sp = $(`#sp${id}`).val();
         var expiry = $(`#expiry${id}`).val();

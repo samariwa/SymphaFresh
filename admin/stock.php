@@ -32,7 +32,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form method="POST" id="stock_form">
+              <form method="POST" name="stock-form">
                 <div class="row">
                  <select type="text" name="category" id="category" class="form-control col-md-9" style="padding-right:15px;padding-left:15px;margin-left: 60px" required onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
                   <option value="" selected="selected" disabled>Category...</option>
@@ -128,9 +128,10 @@
                   <div class="row">
                  <input type="number" name="restock" id="restock" class="form-control col-md-9" required style="padding:15px;margin-left: 60px" placeholder="Restock Level...">
                   </div>
+                  <input type="hidden" name="where" id="where"  value="stock">
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" style="margin-right: 50px" id="addStock">Add Stock</button>
+              <button type="submit" class="btn btn-primary" name="addStock" style="margin-right: 50px" id="addStock">Add Stock</button>
             </form>
             </div>
           </div>
@@ -247,7 +248,7 @@
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalScrollableTitle">Restock</h5>
+              <h5 class="modal-title" id="exampleModalScrollableTitle"><?php echo $name; ?> restock</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -259,7 +260,7 @@
                  <input type="date" name="received" id="received<?php echo $id; ?>" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Date Received..." required>
                   </div><br>
                   <div class="row">
-                 <input type="number" name="qty" id="qty<?php echo $id; ?>" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Quantity Purchased..." required min="1" oninput="validity.valid||(value='');">
+                 <input type="number" name="qty" id="quantity<?php echo $id; ?>" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Quantity Purchased..." required min="1" oninput="validity.valid||(value='');">
                   </div><br>
                   <div class="row">
                  <input type="number" name="bp" id="bp<?php echo $id; ?>" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Buying Price..." required min="0.01" step="0.01" oninput="validity.valid||(value='');">

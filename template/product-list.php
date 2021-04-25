@@ -114,7 +114,7 @@
                                 $restock_level = $row['Restock_Level'];
                             ?>
                                 <div class="col-sm-6 col-xl-4" id="<?php echo $name; ?>">
-                                    <div class="product-item <?php if($quantity < $restock_level ){ ?>stock-out<?php }?>">
+                                    <div class="product-item" id="<?php echo $name; ?>" <?php if($quantity < $restock_level ){ ?>stock-out<?php }?>">
                                         <div class="product-thumb">
                                             <a onclick="openModal()"><img src="../assets/images/products/<?php echo $image; ?>" alt="product"></a>
                                             <?php if($discount > 0){?><span class="batch sale">Sale</span><?php } ?>  

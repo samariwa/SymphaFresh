@@ -21,7 +21,7 @@ if($where == 'customer' )
     mysqli_query($connection,"INSERT INTO `customers` (`Name`,`Location`,`Number`) VALUES ('$name','$location','$number')") or die(mysqli_error($connection));
    }
 }
-else if ($where == 'stock') {
+elseif($where == 'stock'){
        $unit = $_POST['unit'];
        $result2 = mysqli_query($connection,"SELECT Name FROM inventory_units WHERE id = '".$unit."';")or die($connection->error);
        $row2 = mysqli_fetch_array($result2);
@@ -35,28 +35,23 @@ else if ($where == 'stock') {
        $supplier = $_POST['supplier'];
        $received = $_POST['received'];
        $expiry = $_POST['expiry'];
-       echo "Hi";
-       $image = $_POST['image'];
-       $image2 = $_FILES['image']['tmp_name'];
-       $imageName = time() . '.png';
-       echo $image;
-       echo $image2;
-       //file_put_contents($imageName, $image);
-       //$image_file = addslashes(file_get_contents($imageName));
-       //echo $image_file;
-       //$upload = addslashes(file_get_contents($_FILES['upload']['tmp_name']));
-       //echo "good";
+       $fileName = $_FILES['upload']['name'];
+       $path = time().'.png';
+       move_uploaded_file($_FILES['upload']['tmp_name'], 'assets/images/products/'.$path);
        $bp = $_POST['bp'];
        $sp = $_POST['sp'];
        $qty = $_POST['qty'];
        $contains = $_POST['contains'];
        $subunit = $_POST['subunit'];
+       $replenish = '';
+       if(isset($_POST['replenish']))
+       {
        $replenish = $_POST['replenish'];
+       }
+       else{
+         $replenish = '0';
+       }
        $restock = $_POST['restock'];
-       //$target_location = "assets/images/products".basename($_FILES['upload']['name']);
-       //echo "still good";
-       //move_uploaded_file($_FILES['upload']['new_name'], $target_location .$imageName);
-       //echo "superb";
        $row = mysqli_query($connection,"SELECT `Name` FROM stock WHERE Name = '".$name."'")or die($connection->error);
        $result = mysqli_fetch_array($row);
        if ( $result == TRUE) {
@@ -64,8 +59,7 @@ else if ($where == 'stock') {
        }
        else{
          echo "success";
-        mysqli_query($connection,"INSERT INTO `stock` (`Category_id`,`Supplier_id`,`Name`,`Unit_id`,`Subunit_id`,`Contains`,`subunit_replenish_qty`,`Restock_Level`,`Buying_price`,`Price`,`Quantity`,`Opening_stock`,`image`) VALUES ('$category','$supplier','$name','$unit','$subunit','$contains','$replenish','$restock','$bp','$sp','$qty','$qty','$image_file');") or die(mysqli_error($connection));
-        echo "uploaded successfully";
+          mysqli_query($connection,"INSERT INTO `stock` (`Category_id`,`Supplier_id`,`Name`,`Unit_id`,`Subunit_id`,`Contains`,`subunit_replenish_qty`,`Restock_Level`,`Buying_price`,`Price`,`Quantity`,`Opening_stock`,`image`) VALUES ('$category','$supplier','$name','$unit','$subunit','$contains','$replenish','$restock','$bp','$sp','$qty','$qty','$path');") or die(mysqli_error($connection));
         $result1 = mysqli_query($connection,"SELECT * FROM stock WHERE Name = '".$name."';")or die($connection->error);
        $row1 = mysqli_fetch_array($result1);
        $Stock_id = $row1['id'];

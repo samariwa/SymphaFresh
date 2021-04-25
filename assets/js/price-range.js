@@ -2392,7 +2392,7 @@ $(function() {
         max: max,
         from: 0,
         to: 3000,
-        prefix: '$',
+        prefix: 'Ksh.',
         onStart: updateInputs,
         onChange: updateInputs,
         step: 100,
