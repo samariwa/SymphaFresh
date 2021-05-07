@@ -43,7 +43,7 @@
                  <div class="row">
                  <input type="text" name="heading" id="heading" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder=" Expense Heading..." required>
                   </div><br>
-                 
+                  <input type="hidden" name="where" id= "where"  value="expenseHeading">
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary" style="margin-right: 50px" id="addExpenseHeading">Add Expense Heading</button>

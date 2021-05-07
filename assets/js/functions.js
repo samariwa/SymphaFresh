@@ -343,10 +343,25 @@ function cartclose() {
     document.getElementById("sitebar-cart").classList.remove('open-cart');
     document.getElementById("sitebar-drawar").classList.remove('hide-drawer');
 }
+
 // open modal
 function openModal() {
     document.getElementById("product-details-popup").classList.add('open-side');
 }
+
+$(document).on('click','.modalOpen',function(){
+    var el = $(this);
+    var id = el.attr("id");
+    
+   // $('#hidden_id').text()
+    
+  //  $('#hidden_unit').text()
+   // $('#hidden_discount').text()
+    $('#modal-product-name').text($(`#hidden_name${id}`).val());
+    $('#modal-product-category').text($(`#itemCategory${id}`).text());
+    $('#modal-product-price').text($(`#hidden_price${id}`).val());
+    $('#modal-product-image').append('<img src="../images/products/'+$(`#hidden_image${id}`).val()+' alt="product"></img>');
+});
 
 function closeModal() {
     document.getElementById("product-details-popup").classList.remove('open-side');
@@ -757,6 +772,136 @@ $(document).on('click','#anonymous_contact',function(){
     });        
 });
 
+$(document).on('click','#user_comment',function(){
+    var email = $('#hidden_email').val();
+    var id = $('#blog_id').val();
+    var comment = $('#comment').val();
+    var token = $('.comment_token').val();
+    var where = 'site_comment'
+    $.post("../add.php",{id:id,email:email,token:token,comment:comment,where:where},
+    function(result){
+        if (result == 'success') {
+            alert('Your comment was successfully posted! ');
+            location.reload(true);
+           }
+           else if(result == 'error'){
+            alert("Something went wrong. Please try again later.");
+           }
+            else{
+            alert("Something went wrong. Please try again later.");
+           }
+    });        
+});
+
+$(document).on('click','#anonymous_comment',function(){
+    var name = $('#name').val();
+    var email = $('#email').val();
+    var id = $('#blog_id').val();
+    var comment = $('#comment').val();
+    var token = $('.comment_token').val();
+    var where = 'site_comment'
+    $.post("../add.php",{id:id,name:name,email:email,token:token,comment:comment,where:where},
+    function(result){
+        if (result == 'success') {
+            alert('Your comment was successfully posted! ');
+            location.reload(true);
+           }
+           else if(result == 'error'){
+            alert("Something went wrong. Please try again later."); 
+          }
+            else{
+            alert("Something went wrong. Please try again later.");
+           }
+    });        
+});
+
+$(document).on('click','.reply-btn',function(){
+    var el = $(this);
+    var id = el.attr("id");
+    var email = $('#hidden_email').val();
+    var extraForm = "";
+    extraForm += "<form action='#' class='respons-contact-form'>";
+    extraForm += '<div class="form-item col-lg-7 p-0">';
+    extraForm += '<input type="text" name="subcomment_name" id="subcomment_name" placeholder="Full Name" required>';
+    extraForm += '<i class="fas fa-user"></i>';
+    extraForm += '</div>';
+    extraForm += '<div class="form-item col-lg-7 p-0">';
+    extraForm += '<input type="text" name="subcomment_email" id="subcomment_email" placeholder="Email Address" required>';
+    extraForm += '<i class="fas fa-envelope"></i>';
+    extraForm += '</div>';
+    extraForm += '<div class="form-item col-lg-12 p-0">';
+    extraForm += '<textarea name="subcomment" id="subcomment" placeholder="Type your reply" required></textarea>';
+    extraForm += '<i class="fab fa-telegram-plane"></i>';
+    extraForm += '</div>';
+    extraForm += '<div>';
+    extraForm += '<input type="hidden" class="subcomment_token" id="token" name="token">';
+    extraForm += `<input type="hidden" class="comment_id" id="comment_id" name="comment_id" value="`+id+`">`;
+    extraForm += '<button type="submit" class="submit anonymous_subcomment" id="'+id+'" >Reply to Comment</button>';
+    extraForm += '</div>';
+    extraForm += "</form>";
+    extraForm += "<br>";
+    
+    var form = "";
+    form += "<form action='#' class='respons-contact-form'>";
+    form += "<input type='hidden' class='subcomment_token' id='token' name='token'>";
+    form += "<input type='hidden' class='comment_id' id='comment_id' name='comment_id' value='"+id+"'>";
+    form += "<input type='hidden' name='subcomment_hidden_email' id='subcomment_hidden_email' value='"+email+"'>";
+    form += "<div class='form-item col-lg-12 p-0'>";
+    form += "<textarea name='subcomment' id='subcomment' placeholder='Type your reply' required></textarea>";
+    form += "<i class='fab fa-telegram-plane'></i>";
+    form += "</div>";
+    form += "<button type='submit' class='submit user_subcomment' id='"+id+"'>Reply to Comment</button>";
+    form += "</form>";
+    form += "<br>";
+    $(`.subcomment-response-user${id}`).html(form); 
+    $(`.subcomment-response-anonymous${id}`).html(extraForm); 
+});
+
+$(document).on('click','.user_subcomment',function(){
+    var email = $('#subcomment_hidden_email').val();
+    var id = $('#comment_id').val();
+    var subcomment = $('#subcomment').val();
+    var token = $('.subcomment_token').val();
+    var where = 'site_subcomment';
+    $.post("../add.php",{id:id,email:email,token:token,subcomment:subcomment,where:where},
+    function(result){
+        alert(result)
+        if (result == 'success') {
+            alert('Your reply was successfully posted! ');
+            location.reload(true);
+           }
+           else if(result == 'error'){
+            alert("Something went wrong. Please try again later.");
+           }
+            else{
+            alert("Something went wrong. Please try again later.");
+           }
+    });        
+});
+
+$(document).on('click','.anonymous_subcomment',function(){
+    var name = $('#subcomment_name').val();
+    var email = $('#subcomment_email').val();
+    var id = $('#comment_id').val();
+    var subcomment = $('#subcomment').val();
+    var token = $('.subcomment_token').val();
+    var where = 'site_subcomment';
+    $.post("../add.php",{id:id,name:name,email:email,token:token,subcomment:subcomment,where:where},
+    function(result){
+        alert(result)
+        if (result == 'success') {
+            alert('Your reply was successfully posted! ');
+            location.reload(true);
+           }
+           else if(result == 'error'){
+            alert("Something went wrong. Please try again later."); 
+          }
+            else{
+            alert("Something went wrong. Please try again later.");
+           }
+    });        
+});
+
 $('#productSearch').keyup(function(){
     var txt = $('#productSearch').val();
     if(txt != '')
@@ -781,3 +926,5 @@ $('#productSearch').keyup(function(){
         $("#show-list").html(''); 
     });
  });
+
+

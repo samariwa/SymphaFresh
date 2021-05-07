@@ -1872,50 +1872,36 @@ function saveOrderToday(idx){
   });
 });
 
-  $(document).on('click','#addCustomer',function(){
-        var name = $('#name').val();
-        var number = $('#number').val();
-        var location = $('#location').val();
-        var where = 'customer';
-        $.post("../add.php",{name:name,number:number,location:location,where:where},
-        function(result){
-         if (result == 'success') {
-          alert('Customer Added Successfully');
+ function formAjax(module){
+    var form_data = new FormData($('form')[0]);
+    $.ajax({
+      url: '../add.php',
+      type: 'post',
+      data: form_data,
+      contentType : false,
+      processData : false,
+      cache : false,
+        success : function(data){
+         if (data == 'success') {
+          alert(module+' Added Successfully');
           location.reload(true);
          }
-          else if (result == 'exists') {
-          alert('Customer Already Exists');
+          else if (data == 'exists') {
+          alert(module+' Already Exists');
          }
            else{
           alert("Something went wrong");
          }
-         });
-       });
+         }
+        });
+ }
+
+  $(document).on('click','#addCustomer',function(){
+      formAjax('Customer');
+  });
 
    $(document).on('click','#addStock',function(){
-        var form = $('form')[0];
-        var form_data = new FormData(form);
-        $.ajax({
-          url: '../add.php',
-          type: 'post',
-          data: form_data,
-          contentType : false,
-          processData : false,
-          cache : false,
-       success : function(data) {
-        alert(result)
-         if (data == 'success') {
-          alert('Product added Successfully');
-         }
-          else if (data == 'exists') {
-          alert('Stock Already Exists');
-         }
-         else{
-          alert("Something went wrong");
-         }
-       } 
-
-        }); 
+     formAjax('Product');
       });
 
   $(document).on('click','#uploadFile',function(){
@@ -1927,7 +1913,7 @@ function saveOrderToday(idx){
         var upload = new FormData(form);
         var location = $('#location').val();
         var where = 'files';
-        alert("Hi")
+        //alert("Hi")
         $.post("../add.php",{name:name,description:description,location:location,upload:upload,where:where},
         function(result){
          if (result == 'success') {
@@ -1944,39 +1930,35 @@ function saveOrderToday(idx){
        });
 
   $(document).on('click','#addCategory',function(){
-        var category = $('#category').val();
-        var where = 'categories';
-        $.post("../add.php",{category:category,where:where},
-        function(result){
-         if (result == 'success') {
-          alert('Category Added Successfully');
-          location.reload(true);
-         }
-          else if (result == 'exists') {
-          alert('Category Already Exists');
-         }
-         else{
-          alert("Something went wrong");
-         }
-         });
-       });
+    formAjax('Category');
+    });
+
+    $(document).on('click','#addFAQ',function(){
+      formAjax('Question');
+      });
+      
+      $(document).on('click','#addBlog',function(){
+        var form_data = new FormData($('form')[0]);
+        $.ajax({
+          url: '../add.php',
+          type: 'post',
+          data: form_data,
+          contentType : false,
+          processData : false,
+          cache : false,
+            success : function(data){
+               if (data == 'exists') {
+              alert('Blog Already Exists');
+            }
+              else{
+              alert("Blog Added Successfully");
+            }
+            }
+            });
+        }); 
 
   $(document).on('click','#addUnit',function(){
-        var unit = $('#unit').val();
-        var where = 'units';
-        $.post("../add.php",{unit:unit,where:where},
-        function(result){
-         if (result == 'success') {
-          alert('Unit Added Successfully');
-          location.reload(true);
-         }
-          else if (result == 'exists') {
-          alert('Unit Already Exists');
-         }
-         else{
-          alert("Something went wrong");
-         }
-         });
+    formAjax('Unit');
        });
 
   $(document).on('click','.editAutomation',function(){
@@ -2002,22 +1984,7 @@ function saveOrderToday(idx){
        });
 
   $(document).on('click','#addSupplier',function(){
-        var name = $('#name').val();
-         var contact = $('#contact').val();
-        var where = 'supplier';
-        $.post("../add.php",{name:name,contact:contact,where:where},
-        function(result){
-         if (result == 'success') {
-          alert('Supplier Added Successfully');
-          location.reload(true);
-         }
-          else if (result == 'exists') {
-          alert('Supplier Already Exists');
-         }
-           else{
-          alert("Something went wrong");
-         }
-         });
+    formAjax('Supplier');
        });
 
   $(document).on('click','#addNote',function(){
@@ -2043,45 +2010,11 @@ function saveOrderToday(idx){
        });
 
   $(document).on('click','#addVehicle',function(){
-        var type = $('#type').val();
-         var driver = $('#driver').val();
-         var reg = $('#reg').val();
-         var route = $('#route').val();
-        var where = 'vehicles';
-        $.post("../add.php",{type:type,driver:driver,reg:reg,route:route,where:where},
-        function(result){
-         if (result == 'success') {
-          alert('Vehicle Added Successfully');
-          location.reload(true);
-         }
-          else if (result == 'exists') {
-          alert('Vehicle Already Exists');
-         }
-          else{
-          alert("Something went wrong");
-         }
-         });
+    formAjax('Vehicle');
        });
 
   $(document).on('click','#addExpense',function(){
-        var heading = $('#heading').val();
-        var particular = $('#particular').val();
-         var party = $('#party').val();
-         var total = $('#total').val();
-         var paid = $('#paid').val();
-         var due = total - paid;
-         var date = $('#date').val();
-        var where = 'expense';
-        $.post("../add.php",{heading:heading,particular:particular,party:party,total:total,paid:paid,due:due,date:date,where:where},
-        function(result){
-         if (result == 'success') {
-          alert('Expense Added Successfully');
-          location.reload(true);
-         }
-          else{
-          alert("Something went wrong");
-         }
-         });
+    formAjax('Expense');
        });
 
   $(document).on('click','#addSickoffApplication',function(){
@@ -2093,7 +2026,7 @@ function saveOrderToday(idx){
         $.post("../add.php",{employee:employee,reason:reason,start:start,number:number,where:where},
         function(result){
          if (result == 'success') {
-          alert('Sick leave application successfull');
+          alert('Sick leave application successful');
           location.reload(true);
          }
           else{
@@ -2128,403 +2061,104 @@ function saveOrderToday(idx){
        });
 
   $(document).on('click','#addExpenseHeading',function(){
-        var heading = $('#heading').val();
-        var where = 'expenseHeading';
-        $.post("../add.php",{heading:heading,where:where},
-        function(result){
-          alert(result);
-         if (result == 'success') {
-          alert('Expense Heading Added Successfully');
-          location.reload(true);
-         }
-          else{
-          alert("Something went wrong");
-         }
-         });
+    formAjax('Expense Heading');
        });
 
   $(document).on('click','#addDeliverer',function(){
-        var fname = $('#fname').val();
-         var lname = $('#lname').val();
-         var contact = $('#contact').val();
-         var staffId = $('#staffId').val();
-         var nationalId = $('#nationalId').val();
-         var yob = $('#yob').val();
-         var gender = $('#gender').val();
-         var salary = $('#salary').val();
-        var where = 'deliverer';
-        $.post("../add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,gender:gender,salary:salary,where:where},
-        function(result){
-         if (result == 'success') {
-          alert('Deliverer Added Successfully');
-          location.reload(true);
-         }
-          else if (result == 'exists') {
-          alert('Deliverer Already Exists');
-         }
-          else{
-          alert("Something went wrong");
-         }
-         });
+    formAjax('Deliverer');
        });
 
   $(document).on('click','#addCook',function(){
-        var fname = $('#fname').val();
-         var lname = $('#lname').val();
-         var contact = $('#contact').val();
-         var staffId = $('#staffId').val();
-         var nationalId = $('#nationalId').val();
-         var yob = $('#yob').val();
-         var gender = $('#gender').val();
-         var salary = $('#salary').val();
-        var where = 'cook';
-        $.post("../add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,gender:gender,salary:salary,where:where},
-        function(result){
-         if (result == 'success') {
-          alert('Cook Added Successfully');
-          location.reload(true);
-         }
-          else if (result == 'exists') {
-          alert('Cook Already Exists');
-         }
-          else{
-          alert("Something went wrong");
-         }
-         });
+    formAjax('Cook');
        });
 
   $(document).on('click','#addCleaner',function(){
-        var fname = $('#fname').val();
-         var lname = $('#lname').val();
-         var contact = $('#contact').val();
-         var staffId = $('#staffId').val();
-         var nationalId = $('#nationalId').val();
-         var yob = $('#yob').val();
-         var gender = $('#gender').val();
-         var salary = $('#salary').val();
-        var where = 'cook';
-        $.post("../add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,gender:gender,salary:salary,where:where},
-        function(result){
-         if (result == 'success') {
-          alert('Cleaner Added Successfully');
-          location.reload(true);
-         }
-          else if (result == 'exists') {
-          alert('Cleaner Already Exists');
-         }
-          else{
-          alert("Something went wrong");
-         }
-         });
+    formAjax('Cleaner');
        });
 
    $(document).on('click','#addOfficeStaff',function(){
-        var fname = $('#fname').val();
-         var lname = $('#lname').val();
-         var contact = $('#contact').val();
-         var staffId = $('#staffId').val();
-         var nationalId = $('#nationalId').val();
-         var yob = $('#yob').val();
-         var gender = $('#gender').val();
-         var role = $('#role').val();
-         var salary = $('#salary').val();
-        var where = 'office';
-        $.post("../add.php",{fname:fname,lname:lname,contact:contact,staffId:staffId,nationalId:nationalId,yob:yob,role:role,gender:gender,salary:salary,where:where},
-        function(result){
-         if (result == 'success') {
-          alert('Office Staff Added Successfully');
-          location.reload(true);
-         }
-          else if (result == 'exists') {
-          alert('Office Staff Already Exists');
-         }
-          else{
-          alert("Something went wrong");
-         }
-         });
+    formAjax('Office Staff');
        });
 
-  $(document).ready(function(){
+    function deleteAjax(id, el, module, where){
+      bootbox.confirm('Do you really want to delete the selected '+module+'?',function(result)
+        {if(result){
+          $.post("../delete.php",{id:id,where:where},
+        function(result){
+            if(result == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+               el.remove();
+              });
+            }
+        });
+      }});
+    }
+
     $('.deleteCustomer').click(function(){
-      var el = $(this);
-      var where = 'customer';
-      var id = el.attr("id");
-      bootbox.confirm('Do you really want to delete the selected customer?',function(result)
-        {if(result){
-          $.post("../delete.php",{id:id,where:where},
-        function(result){
-            if(result == 1){
-              $(el).closest('tr').css('background','tomato');
-              $(el).closest('tr').fadeOut(800,function(){
-                $(this).remove();
-              });
-            }
-        });
-      }});
+       deleteAjax($(this).attr("id"),$(this),'customer', 'customer');
     });
-  });
 
-  $(document).ready(function(){
     $('.deleteStock').click(function(){
-      var el = $(this);
-      var where = 'stock';
-      var id = el.attr("id");
-      bootbox.confirm('Do you really want to delete the selected stock?',function(result)
-        {if(result){
-          $.post("../delete.php",{id:id,where:where},
-        function(result){
-            if(result == 1){
-              $(el).closest('tr').css('background','tomato');
-              $(el).closest('tr').fadeOut(800,function(){
-                $(this).remove();
-              });
-            }
-        });
-      }});
+      deleteAjax($(this).attr("id"),$(this),'stock', 'stock');
     });
-  });
 
-  $(document).ready(function(){
     $('.deleteBlacklist').click(function(){
-      var el = $(this);
-      var where = 'blacklist';
-      var id = el.attr("id");
-      bootbox.confirm('Do you really want to delete the selected blacklisted customer?',function(result)
-        {if(result){
-          $.post("../delete.php",{id:id,where:where},
-        function(result){
-            if(result == 1){
-              $(el).closest('tr').css('background','tomato');
-              $(el).closest('tr').fadeOut(800,function(){
-                $(this).remove();
-              });
-            }
-        });
-      }});
+      deleteAjax($(this).attr("id"),$(this),'blacklisted customer', 'blacklist');
     });
-  });
 
-  $(document).ready(function(){
     $('.deleteExpenseHeading').click(function(){
-      var el = $(this);
-      var where = 'expenseHeading';
-      var id = el.attr("id");
-      bootbox.confirm('Do you really want to delete the selected expense heading?',function(result)
-        {if(result){
-          $.post("../delete.php",{id:id,where:where},
-        function(result){
-            if(result == 1){
-              $(el).closest('tr').css('background','tomato');
-              $(el).closest('tr').fadeOut(800,function(){
-                $(this).remove();
-              });
-            }
-        });
-      }});
+      deleteAjax($(this).attr("id"),$(this),'expense heading', 'expenseHeading');
     });
-  });
 
-  $(document).ready(function(){
     $('.deleteExpense').click(function(){
-      var el = $(this);
-      var where = 'expense';
-      var id = el.attr("id");
-      bootbox.confirm('Do you really want to delete the selected expense?',function(result)
-        {if(result){
-          $.post("../delete.php",{id:id,where:where},
-        function(result){
-            if(result == 1){
-              $(el).closest('tr').css('background','tomato');
-              $(el).closest('tr').fadeOut(800,function(){
-                $(this).remove();
-              });
-            }
-        });
-      }});
+      deleteAjax($(this).attr("id"),$(this),'expense', 'expense');
     });
-  });
 
 
-  $(document).ready(function(){
     $('.deleteCategory').click(function(){
-      var el = $(this);
-      var where = 'category';
-      var id = el.attr("id");
-      bootbox.confirm('Do you really want to delete the selected category?',function(result)
-        {if(result){
-          $.post("../delete.php",{id:id,where:where},
-        function(result){
-            if(result == 1){
-              $(el).closest('tr').css('background','tomato');
-              $(el).closest('tr').fadeOut(800,function(){
-                $(this).remove();
-              });
-            }
-        });
-      }});
+      deleteAjax($(this).attr("id"),$(this),'category', 'category');
     });
-  });
 
-  $(document).ready(function(){
     $('.deleteUnit').click(function(){
-      var el = $(this);
-      var where = 'unit';
-      var id = el.attr("id");
-      bootbox.confirm('Do you really want to delete the selected inventory unit?',function(result)
-        {if(result){
-          $.post("../delete.php",{id:id,where:where},
-        function(result){
-            if(result == 1){
-              $(el).closest('tr').css('background','tomato');
-              $(el).closest('tr').fadeOut(800,function(){
-                $(this).remove();
-              });
-            }
-        });
-      }});
+      deleteAjax($(this).attr("id"),$(this),'unit', 'unit');
     });
-  });
 
-  $(document).ready(function(){
     $('.deleteSupplier').click(function(){
-      var el = $(this);
-      var where = 'supplier';
-      var id = el.attr("id");
-      bootbox.confirm('Do you really want to delete the selected supplier?',function(result)
-        {if(result){
-          $.post("../delete.php",{id:id,where:where},
-        function(result){
-            if(result == 1){
-              $(el).closest('tr').css('background','tomato');
-              $(el).closest('tr').fadeOut(800,function(){
-                $(this).remove();
-              });
-            }
-        });
-      }});
+      deleteAjax($(this).attr("id"),$(this),'supplier', 'supplier');
     });
-  });
 
-   $(document).ready(function(){
     $('.deleteVehicle').click(function(){
-      var el = $(this);
-      var where = 'vehicle';
-      var id = el.attr("id");
-      bootbox.confirm('Do you really want to delete the selected vehicle?',function(result)
-        {if(result){
-          $.post("../delete.php",{id:id,where:where},
-        function(result){
-            if(result == 1){
-              $(el).closest('tr').css('background','tomato');
-              $(el).closest('tr').fadeOut(800,function(){
-                $(this).remove();
-              });
-            }
-        });
-      }});
+      deleteAjax($(this).attr("id"),$(this),'vehicle', 'vehicle');
     });
-  });
 
-   $(document).ready(function(){
     $('.deleteDeliverer').click(function(){
-      var el = $(this);
-      var where = 'deliverer';
-      var id = el.attr("id");
-      bootbox.confirm('Do you really want to delete the selected deliverer?',function(result)
-        {if(result){
-          $.post("../delete.php",{id:id,where:where},
-        function(result){
-            if(result == 1){
-              $(el).closest('tr').css('background','tomato');
-              $(el).closest('tr').fadeOut(800,function(){
-                $(this).remove();
-              });
-            }
-        });
-      }});
+      deleteAjax($(this).attr("id"),$(this),'deliverer', 'deliverer');
     });
-  });
 
-   $(document).ready(function(){
     $('.deleteCook').click(function(){
-      var el = $(this);
-      var where = 'cook';
-      var id = el.attr("id");
-      bootbox.confirm('Do you really want to delete the selected cook?',function(result)
-        {if(result){
-          $.post("../delete.php",{id:id,where:where},
-        function(result){
-            if(result == 1){
-              $(el).closest('tr').css('background','tomato');
-              $(el).closest('tr').fadeOut(800,function(){
-                $(this).remove();
-              });
-            }
-        });
-      }});
+      deleteAjax($(this).attr("id"),$(this),'cook', 'cook');
     });
-  });
 
-   $(document).ready(function(){
     $('.deleteOffice').click(function(){
-      var el = $(this);
-      var where = 'office';
-      var id = el.attr("id");
-      bootbox.confirm('Do you really want to delete the selected office staff?',function(result)
-        {if(result){
-          $.post("../delete.php",{id:id,where:where},
-        function(result){
-            if(result == 1){
-              $(el).closest('tr').css('background','tomato');
-              $(el).closest('tr').fadeOut(800,function(){
-                $(this).remove();
-              });
-            }
-        });
-      }});
+      deleteAjax($(this).attr("id"),$(this),'office staff', 'office');
     });
-  });
 
-   $(document).ready(function(){
     $('.deletePublicNote').click(function(){
-      var el = $(this);
-      var where = 'publicNote';
-      var id = el.attr("id");
-      bootbox.confirm('Do you really want to delete the selected note?',function(result)
-        {if(result){
-          $.post("../delete.php",{id:id,where:where},
-        function(result){
-            if(result == 1){
-              $(el).closest(`#card${id}`).css('background','silver');
-              $(el).closest(`#card${id}`).fadeOut(800,function(){
-                $(this).remove();
-              });
-            }
-        });
-      }});
+      deleteAjax($(this).attr("id"),$(this),'note', 'publicNote');
     });
-  });
 
-   $(document).ready(function(){
     $('.deletePrivateNote').click(function(){
-      var el = $(this);
-      var where = 'privateNote';
-      var id = el.attr("id");
-      bootbox.confirm('Do you really want to delete the selected note?',function(result)
-        {if(result){
-          $.post("../delete.php",{id:id,where:where},
-        function(result){
-          alert(result);
-            if(result == 1){
-              $(el).closest(`#card${id}`).css('background','silver');
-              $(el).closest(`#card${id}`).fadeOut(800,function(){
-                $(this).remove();
-              });
-            }
-        });
-      }});
+      deleteAjax($(this).attr("id"),$(this),'note', 'privateNote');
     });
-  });
+
+    $('.deleteFAQ').click(function(){
+      deleteAjax($(this).attr("id"),$(this),'FAQ', 'faq');
+    });
+
+    $('.deleteBlog').click(function(){
+      deleteAjax($(this).attr("id"),$(this),'Blog', 'blog');
+    });
 
   $(document).ready(function(){
     $('.blacklistCustomer').click(function(){
@@ -2588,6 +2222,30 @@ function saveOrderToday(idx){
         var title = $(`#title${id}`).val();
         var body = $(`#body${id}`).val();
         $.post("../save.php",{id:id,title:title,body:body,where:where},
+        function(result){
+          location.reload(true);
+         });
+       });
+
+       $(document).on('click','.editFAQ',function(){
+        var where = 'faq';
+        var el = $(this);
+        var id = el.attr("id");
+        var question = $(`#question${id}`).val();
+        var answer = $(`#answer${id}`).val();
+        $.post("../save.php",{id:id,question:question,answer:answer,where:where},
+        function(result){
+          location.reload(true);
+         });
+       });
+       
+       $(document).on('click','.editBlog',function(){
+        var where = 'blog';
+        var el = $(this);
+        var id = el.attr("id");
+        var title = $(`#title${id}`).val();
+        var blog = $(`#blog${id}`).val();
+        $.post("../save.php",{id:id,title:title,blog:blog,where:where},
         function(result){
           location.reload(true);
          });

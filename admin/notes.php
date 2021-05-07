@@ -162,7 +162,7 @@
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary editPrivateNote" style="margin-right: 50px" id="<?php echo $id; ?>">Done</button>
-            </form>
+              </form>
             </div>
           </div>
         </div>

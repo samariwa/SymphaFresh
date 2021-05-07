@@ -28,7 +28,7 @@
                                         <button class="submit-btn anonymousSubscription">
                                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path style="fill:#2196F3;" d="M511.189,259.954c1.649-3.989,0.731-8.579-2.325-11.627l-192-192 c-4.237-4.093-10.99-3.975-15.083,0.262c-3.992,4.134-3.992,10.687,0,14.82l173.803,173.803H10.667 C4.776,245.213,0,249.989,0,255.88c0,5.891,4.776,10.667,10.667,10.667h464.917L301.803,440.328 c-4.237,4.093-4.355,10.845-0.262,15.083c4.093,4.237,10.845,4.354,15.083,0.262c0.089-0.086,0.176-0.173,0.262-0.262l192-192 C509.872,262.42,510.655,261.246,511.189,259.954z"/><path d="M309.333,458.546c-5.891,0.011-10.675-4.757-10.686-10.648c-0.005-2.84,1.123-5.565,3.134-7.571L486.251,255.88 L301.781,71.432c-4.093-4.237-3.975-10.99,0.262-15.083c4.134-3.992,10.687-3.992,14.82,0l192,192 c4.164,4.165,4.164,10.917,0,15.083l-192,192C314.865,457.426,312.157,458.546,309.333,458.546z"/><path d="M501.333,266.546H10.667C4.776,266.546,0,261.771,0,255.88c0-5.891,4.776-10.667,10.667-10.667h490.667 c5.891,0,10.667,4.776,10.667,10.667C512,261.771,507.224,266.546,501.333,266.546z"/></svg>
                                         </button>
-                                    </div>
+                                    </div>  
                                     <?php
                                          }
                                     }
@@ -40,7 +40,7 @@
                                             <button class="submit-btn anonymousSubscription">
                                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path style="fill:#2196F3;" d="M511.189,259.954c1.649-3.989,0.731-8.579-2.325-11.627l-192-192 c-4.237-4.093-10.99-3.975-15.083,0.262c-3.992,4.134-3.992,10.687,0,14.82l173.803,173.803H10.667 C4.776,245.213,0,249.989,0,255.88c0,5.891,4.776,10.667,10.667,10.667h464.917L301.803,440.328 c-4.237,4.093-4.355,10.845-0.262,15.083c4.093,4.237,10.845,4.354,15.083,0.262c0.089-0.086,0.176-0.173,0.262-0.262l192-192 C509.872,262.42,510.655,261.246,511.189,259.954z"/><path d="M309.333,458.546c-5.891,0.011-10.675-4.757-10.686-10.648c-0.005-2.84,1.123-5.565,3.134-7.571L486.251,255.88 L301.781,71.432c-4.093-4.237-3.975-10.99,0.262-15.083c4.134-3.992,10.687-3.992,14.82,0l192,192 c4.164,4.165,4.164,10.917,0,15.083l-192,192C314.865,457.426,312.157,458.546,309.333,458.546z"/><path d="M501.333,266.546H10.667C4.776,266.546,0,261.771,0,255.88c0-5.891,4.776-10.667,10.667-10.667h490.667 c5.891,0,10.667,4.776,10.667,10.667C512,261.771,507.224,266.546,501.333,266.546z"/></svg>
                                             </button>
-                                         </div>
+                                         </div>      
                                     <?php
                                         }
                                     ?>
@@ -69,10 +69,15 @@
                                     <h5 class="footer-title">Product Categories</h5>
                                     <div class="widget-wrapper">
                                         <ul>
-                                            <li><a href="#">Chicken Products</a></li>
-                                            <li><a href="#">Fish</a></li>
-                                            <li><a href="#">Vegetables</a></li>
-                                            <li><a href="#">Meat</a></li>
+                                        <?php
+                                            foreach($categoriesList as $row){
+                                            $id = $row['id'];
+                                            $category = $row['Category_Name'];
+                                        ?>
+                                        <li><a href="#"><?php echo $category; ?></a></li>
+                                        <?php
+                                            }
+                                        ?>  
                                         </ul>
                                     </div>
                                 </div>
@@ -167,17 +172,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="product-slick">
-                                <div><img src="../assets/images/product-detail/01.jpg" alt=""
-                                        class="img-fluid blur-up lazyload image_zoom_cls-0"></div>
-                                <div><img src="../assets/images/product-detail/02.jpg" alt=""
+                            <div class="product-slick" >
+                            <div id="modal-product-image"></div>
+                                <div><img src="../assets/images/product-detail/02.jpg" alt="image"
                                         class="img-fluid blur-up lazyload image_zoom_cls-1"></div>
-                                <div><img src="../assets/images/product-detail/03.jpg" alt=""
-                                        class="img-fluid blur-up lazyload image_zoom_cls-2"></div>
-                                <div><img src="../assets/images/product-detail/01.jpg" alt=""
-                                        class="img-fluid blur-up lazyload image_zoom_cls-3"></div>
-                                <!-- <div><img src="../assets/images/product-detail/02.jpg" alt=""
-                                        class="img-fluid blur-up lazyload image_zoom_cls-4"></div> -->
                             </div>
                             <div class="row">
                                 <div class="col-12">
@@ -202,10 +200,10 @@
                             <a class="wish-link" href="#">
                                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="svg-inline--fa fa-heart fa-w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg>
                             </a>
-                            <a href="#" class="cata">Category</a>
-                            <h2>Product Title Here</h2>
-                            <p class="quantity">1kg</p>
-                            <h3 class="price">Ksh329 <del>Ksh400</del></h3>
+                            <a href="#" class="cata" id="modal-product-category"></a>
+                            <h2 id="modal-product-name"></h2>
+                            <p class="quantity" id="modal-product-unit"></p>
+                            <h3 class="price" id="modal-product-price">Ksh329 <del>Ksh400</del></h3>
                             <div class="price-increase-decrese-group d-flex">
                                 <span class="decrease-btn">
                                     <button type="button"
@@ -315,7 +313,7 @@
     <script src='../assets/js/fly-cart.js?3759597'></script>
     <script src='../assets/js/multi-countdown.js'></script>
     <script src='../assets/js/theia-sticky-sidebar.js'></script>
-    <script src='../assets/js/functions.js?3495754373475'></script>
+    <script src='../assets/js/functions.js?3473475'></script>
    <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 $(function() {

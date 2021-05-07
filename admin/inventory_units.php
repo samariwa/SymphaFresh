@@ -45,6 +45,7 @@
                  <div class="row">
                  <input type="text" name="unit" id="unit" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Unit Name..." required>
                   </div>
+                  <input type="hidden" name="where" id= "where"  value="units">
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary" style="margin-right: 50px" id="addUnit">Add Unit</button>

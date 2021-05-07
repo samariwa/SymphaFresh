@@ -5,201 +5,41 @@
             <section class="blog-section section-ptb">
                 <div class="container">
                     <div class="row align-items-center">
+                        <?php
+                        foreach($blogsList as $row){
+                        $id = $row['id'];
+                        $title = $row['title'];
+                        $blog = $row['blog'];
+                        $image = $row['image'];
+                        $Date = $row['Created_at'];
+                        $date = date( 'F d, Y', strtotime($Date) );
+                        ?>
                         <div class="col-md-6 col-lg-4 mb--30">
                             <div class="post-item">
                                 <div class="post-thumb">
-                                    <a href="blog-single.php"><img src="../assets/images/blog/01.jpg" alt="thumb"></a>
+                                    <a href="blog-single.php?id=<?php echo $id; ?>"><img src="../assets/images/blog/<?php echo $image; ?>" alt="thumb"></a>
                                 </div>
                                 <div class="post-content border-effect">
                                     <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
                                         <li>
                                             <span class="icon"><i class="far fa-clock"></i></span>
-                                            <span class="meta-content">04 February 2020</span>
+                                            <span class="meta-content"><?php echo $date; ?></span>
                                         </li>
                                         <li>
                                             <span class="icon"><i class="far fa-comment-alt"></i></span>
                                             <a href="#" class="meta-link">26 Comments</a>
                                         </li>
                                     </ul>
-                                    <h5 class="title mb-3"><a href="blog-single.php">Lorem ipsum dolor sit amet, con sectetuer adipiscing elit......</a></h5>
+                                    <h4 class="title mb-3"><?php echo $title; ?></h4>
+                                    <h5 class="title mb-3"><a href="blog-single.php"><?php echo text_limit($blog, 100); ?></a></h5>
                                     <a href="blog-single.php" class="blog-btn">Read More</a>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-6 col-lg-4 mb--30">
-                            <div class="post-item">
-                                <div class="post-thumb">
-                                    <a href="blog-single.php"><img src="../assets/images/blog/02.jpg" alt="thumb"></a>
-                                </div>
-                                <div class="post-content border-effect">
-                                    <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
-                                        <li>
-                                            <span class="icon"><i class="far fa-clock"></i></span>
-                                            <span class="meta-content">04 February 2020</span>
-                                        </li>
-                                        <li>
-                                            <span class="icon"><i class="far fa-comment-alt"></i></span>
-                                            <a href="#" class="meta-link">26 Comments</a>
-                                        </li>
-                                    </ul>
-                                    <h5 class="title mb-3"><a href="blog-single.php">Lorem ipsum dolor sit amet, con sectetuer adipiscing elit......</a></h5>
-                                    <a href="blog-single.php" class="blog-btn">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 col-lg-4 mb--30">
-                            <div class="post-item">
-                                <div class="post-thumb">
-                                    <a href="blog-single.php"><img src="../assets/images/blog/03.jpg" alt="thumb"></a>
-                                </div>
-                                <div class="post-content border-effect">
-                                    <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
-                                        <li>
-                                            <span class="icon"><i class="far fa-clock"></i></span>
-                                            <span class="meta-content">04 February 2020</span>
-                                        </li>
-                                        <li>
-                                            <span class="icon"><i class="far fa-comment-alt"></i></span>
-                                            <a href="#" class="meta-link">26 Comments</a>
-                                        </li>
-                                    </ul>
-                                    <h5 class="title mb-3"><a href="blog-single.php">Lorem ipsum dolor sit amet, co nsectetuer adipiscing elit......</a></h5>
-                                    <a href="blog-single.php" class="blog-btn">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 mb--30">
-                            <div class="post-item">
-                                <div class="post-thumb">
-                                    <a href="blog-single.php"><img src="../assets/images/blog/04.jpg" alt="thumb"></a>
-                                </div>
-                                <div class="post-content border-effect">
-                                    <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
-                                        <li>
-                                            <span class="icon"><i class="far fa-clock"></i></span>
-                                            <span class="meta-content">04 February 2020</span>
-                                        </li>
-                                        <li>
-                                            <span class="icon"><i class="far fa-comment-alt"></i></span>
-                                            <a href="#" class="meta-link">26 Comments</a>
-                                        </li>
-                                    </ul>
-                                    <h5 class="title mb-3"><a href="blog-single.php">Lorem ipsum dolor sit amet, con sectetuer adipiscing elit......</a></h5>
-                                    <a href="blog-single.php" class="blog-btn">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 col-lg-4 mb--30">
-                            <div class="post-item">
-                                <div class="post-thumb">
-                                    <a href="blog-single.php"><img src="../assets/images/blog/05.jpg" alt="thumb"></a>
-                                </div>
-                                <div class="post-content border-effect">
-                                    <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
-                                        <li>
-                                            <span class="icon"><i class="far fa-clock"></i></span>
-                                            <span class="meta-content">04 February 2020</span>
-                                        </li>
-                                        <li>
-                                            <span class="icon"><i class="far fa-comment-alt"></i></span>
-                                            <a href="#" class="meta-link">26 Comments</a>
-                                        </li>
-                                    </ul>
-                                    <h5 class="title mb-3"><a href="blog-single.php">Lorem ipsum dolor sit amet, con sectetuer adipiscing elit......</a></h5>
-                                    <a href="blog-single.php" class="blog-btn">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 col-lg-4 mb--30">
-                            <div class="post-item">
-                                <div class="post-thumb">
-                                    <a href="blog-single.php"><img src="../assets/images/blog/06.jpg" alt="thumb"></a>
-                                </div>
-                                <div class="post-content border-effect">
-                                    <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
-                                        <li>
-                                            <span class="icon"><i class="far fa-clock"></i></span>
-                                            <span class="meta-content">04 February 2020</span>
-                                        </li>
-                                        <li>
-                                            <span class="icon"><i class="far fa-comment-alt"></i></span>
-                                            <a href="#" class="meta-link">26 Comments</a>
-                                        </li>
-                                    </ul>
-                                    <h5 class="title mb-3"><a href="blog-single.php">Lorem ipsum dolor sit amet, co nsectetuer adipiscing elit......</a></h5>
-                                    <a href="blog-single.php" class="blog-btn">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 mb--30">
-                            <div class="post-item">
-                                <div class="post-thumb">
-                                    <a href="blog-single.php"><img src="../assets/images/blog/07.jpg" alt="thumb"></a>
-                                </div>
-                                <div class="post-content border-effect">
-                                    <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
-                                        <li>
-                                            <span class="icon"><i class="far fa-clock"></i></span>
-                                            <span class="meta-content">04 February 2020</span>
-                                        </li>
-                                        <li>
-                                            <span class="icon"><i class="far fa-comment-alt"></i></span>
-                                            <a href="#" class="meta-link">26 Comments</a>
-                                        </li>
-                                    </ul>
-                                    <h5 class="title mb-3"><a href="blog-single.php">Lorem ipsum dolor sit amet, con sectetuer adipiscing elit......</a></h5>
-                                    <a href="blog-single.php" class="blog-btn">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 col-lg-4 mb--30">
-                            <div class="post-item">
-                                <div class="post-thumb">
-                                    <a href="blog-single.php"><img src="../assets/images/blog/08.jpg" alt="thumb"></a>
-                                </div>
-                                <div class="post-content border-effect">
-                                    <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
-                                        <li>
-                                            <span class="icon"><i class="far fa-clock"></i></span>
-                                            <span class="meta-content">04 February 2020</span>
-                                        </li>
-                                        <li>
-                                            <span class="icon"><i class="far fa-comment-alt"></i></span>
-                                            <a href="#" class="meta-link">26 Comments</a>
-                                        </li>
-                                    </ul>
-                                    <h5 class="title mb-3"><a href="blog-single.php">Lorem ipsum dolor sit amet, con sectetuer adipiscing elit......</a></h5>
-                                    <a href="blog-single.php" class="blog-btn">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 col-lg-4 mb--30">
-                            <div class="post-item">
-                                <div class="post-thumb">
-                                    <a href="blog-single.php"><img src="../assets/images/blog/03.jpg" alt="thumb"></a>
-                                </div>
-                                <div class="post-content border-effect">
-                                    <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">
-                                        <li>
-                                            <span class="icon"><i class="far fa-clock"></i></span>
-                                            <span class="meta-content">04 February 2020</span>
-                                        </li>
-                                        <li>
-                                            <span class="icon"><i class="far fa-comment-alt"></i></span>
-                                            <a href="#" class="meta-link">26 Comments</a>
-                                        </li>
-                                    </ul>
-                                    <h5 class="title mb-3"><a href="blog-single.php">Lorem ipsum dolor sit amet, co nsectetuer adipiscing elit......</a></h5>
-                                    <a href="blog-blog-single.php" class="blog-btn">Read More</a>
-                                </div>
-                            </div>
-                        </div>
+                         <?php
+                            }
+                         ?>
+                        
                         <div class="col-12 pt--30">
                             <ul class="pagination justify-content-center justify-content-lg-start">
                                 <li><a class="d-flex" href="#"><i class="icon fas fa-angle-left"></i><span class="text">Prev</span></a></li>

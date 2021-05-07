@@ -45,6 +45,7 @@
                  <div class="row">
                  <input type="text" name="category" id="category" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Category Name..." required>
                   </div>
+                  <input type="hidden" name="where" id= "where"  value="categories">
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary" style="margin-right: 50px" id="addCategory">Add Category</button>

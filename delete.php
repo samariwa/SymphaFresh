@@ -11,7 +11,11 @@ mysqli_query($connection,"Delete from `customers` where id='".$id."'")or die($co
 else if($where == 'stock' )
 {  
 	$id =$_POST['id'];
-mysqli_query($connection,"Delete from `stock` where id='".$id."'")or die($connection->error);
+    $row = mysqli_query($connection,"SELECT image FROM stock WHERE id = '".$id."'")or die($connection->error);
+     $result = mysqli_fetch_array($row);
+     $path = $result['image'];
+     mysqli_query($connection,"Delete from `stock` where id='".$id."'")or die($connection->error);
+     unlink('assets/images/products/'.$path);
     echo 1;
     exit();
 }
@@ -131,6 +135,24 @@ mysqli_query($connection,"Delete from `users` where id='".$id."'")or die($connec
     echo 1;
     exit();
  }
+ else if($where == 'faq' )
+{  
+    $id =$_POST['id'];
+   mysqli_query($connection,"Delete from `faqs` where id='".$id."'")or die($connection->error);
+    echo 1;
+    exit();
+ }
+ else if($where == 'blog' )
+ {  
+     $id =$_POST['id'];
+     $row = mysqli_query($connection,"SELECT image FROM blogs WHERE id = '".$id."'")or die($connection->error);
+     $result = mysqli_fetch_array($row);
+     $path = $result['image'];
+    mysqli_query($connection,"Delete from `blogs` where id='".$id."'")or die($connection->error);
+    unlink('assets/images/blog/'.$path);
+     echo 1;
+     exit();
+  }
  else if($where == 'expenseHeading' )
 {  
     $id =$_POST['id'];

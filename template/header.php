@@ -250,6 +250,18 @@ Preloader
     opacity: 1; }
   100% {
     opacity: 0.25; } }
+    .comment-item .comment-author .author-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+
+  background: grey;
+  font-size: 25px;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+  margin-top: 20px;
+}
  </style>
 </head>
 <body id="top-page">

@@ -308,6 +308,7 @@ Preloader
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">&emsp;
         <a style="color: black;" href="expenses.php">
+        <i class="fa fa-calculator"></i>
           <span>Expenses</span></a>
       </li>
       <br>
@@ -315,6 +316,7 @@ Preloader
          
        <li class="nav-item">&emsp;
         <a style="color: black;" href="liabilities.php">
+        <i class="bx bxs-coin"></i>
           <span>Liabilities</span></a>
       </li>
       <br>
@@ -398,6 +400,21 @@ Preloader
           <span>Customer Interests</span></a>
       </li>
 
+      <br>
+
+      <li class="nav-item">&emsp;
+        <a style="color: black;" href="blog.php">
+        <i class="fa fa-quote-left"></i>
+          <span>Blogs</span></a>
+      </li>
+
+      <br>
+
+      <li class="nav-item">&emsp;
+        <a style="color: black;" href="faqs.php">
+        <i class="fa fa-question"></i>
+          <span>FAQs</span></a>
+      </li>
 
       <?php
        }

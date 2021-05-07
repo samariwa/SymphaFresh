@@ -901,6 +901,18 @@ elseif ($where == 'office') {
     $figure = str_replace("Ksh. ","",$salary);
 mysqli_query($connection,"UPDATE `users` SET `number` = '".$contact."',`staffID` = '".$staffId."',`nationalID` = '".$nationalId."',`KRA` = '".$kra."',`NSSF` = '".$nssf."',`NHIF` = '".$nhif."',`salary` = '".$figure."' ,`Job_id` = '".$position."' WHERE `id` = '".$id."'")or die($connection->error);
 }
+elseif ($where == 'faq') {
+  $id = $_POST['id'];
+    $question = $_POST['question'];
+     $answer = $_POST['answer'];
+mysqli_query($connection,"UPDATE `faqs` SET `question` = '".$question."',`answer` = '".$answer."' WHERE `id` = '".$id."'")or die($connection->error);
+}
+elseif ($where == 'blog') {
+  $id = $_POST['id'];
+    $title = $_POST['title'];
+     $blog = $_POST['blog'];
+mysqli_query($connection,"UPDATE `blogs` SET `title` = '".$title."',`blog` = '".$blog."' WHERE `id` = '".$id."'")or die($connection->error);
+}
 elseif ($where == 'publicNote') {
   $id = $_POST['id'];
     $title = $_POST['title'];

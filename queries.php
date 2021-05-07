@@ -2,7 +2,7 @@
 require('config.php');
 //MySQL and MariaDB queries.
 //All queries are hybrid unless specified.
-$customersList = mysqli_query($connection,"SELECT customers.id as id, Name,customers.Location as Location,customers.Number as Number,Deliverer,Status,Note FROM customers inner join users on users.id = customers.User_id WHERE Status != 'blacklisted'ORDER BY id DESC")or die($connection->error);
+$customersList = mysqli_query($connection,"SELECT id, Name,Location,Number,Deliverer,Status,Note FROM customers WHERE Status != 'blacklisted'ORDER BY id DESC")or die($connection->error);
 $subscribersList = mysqli_query($connection,"SELECT * FROM newsletter_subscribers ORDER BY id DESC")or die($connection->error);
 $customersPrintList = mysqli_query($connection,"SELECT customers.id as id,Name,Location,Number,Deliverer,Status,Note FROM customers inner join orders on customers.id=orders.Customer_id WHERE Status != 'blacklisted' and DATE(orders.Delivery_time) >= DATE_ADD(CURRENT_DATE(), INTERVAL -10 DAY) group by customers.id")or die($connection->error);
 $blacklistedList =  mysqli_query($connection,"SELECT customers.id as id,customers.Name, MAX(orders.created_at),customers.Location,customers.Number,customers.Deliverer,orders.Balance FROM orders INNER JOIN customers ON orders.Customer_id=customers.id where customers.Status='blacklisted' GROUP BY customers.id;")or die($connection->error);
@@ -26,6 +26,8 @@ $salesListLastMonth = mysqli_query($connection,"SELECT orders.id AS id,customers
 $salesListNextMonth = mysqli_query($connection,"SELECT orders.id AS id,customers.Name AS Name, Number,stock.Name AS name, orders.Quantity AS Quantity,orders.Discount as Discount,Debt,MPesa,Cash,Fine,Balance,Delivery_time,Returned,Banked,Slip_Number,Banked_By FROM orders INNER JOIN customers ON orders.Customer_id=customers.id INNER JOIN stock ON orders.Stock_id=stock.id WHERE DATE(Delivery_time) < DATE_ADD( CURDATE(), INTERVAL 1 MONTH ) AND DATE(Delivery_time) > DATE_SUB( CURDATE(), INTERVAL 0 DAY ) ORDER BY orders.id ASC;")or die($connection->error);
 $requisitionSellersList = mysqli_query($connection,"SELECT * FROM users  inner join vehicles on users.id = vehicles.Driver_id where Job_id = '5' OR Job_id = '8'")or die($connection->error);
 $employeesList = mysqli_query($connection,"SELECT * FROM users ")or die($connection->error);
+$faqsList = mysqli_query($connection,"SELECT * FROM faqs ")or die($connection->error);
+$blogsList = mysqli_query($connection,"SELECT * FROM blogs ")or die($connection->error);
 $usersList = mysqli_query($connection,"SELECT * FROM users join jobs on users.Job_id = jobs.id where Department_id = '4' AND Job_id != '7'")or die($connection->error);
 $suppliersList = mysqli_query($connection,"SELECT * FROM suppliers ORDER BY id ASC")or die($connection->error);
 $vehicleList = mysqli_query($connection,"SELECT * FROM vehicles ORDER BY id ASC")or die($connection->error);

@@ -101,7 +101,7 @@ echo $message;
 
 
 
-            <!-- catagory section start -->
+            <!-- category section start -->
             <section class="catagory-section">
                 <div class="container p-lg-0">
                     <div class="section-heading">
@@ -148,7 +148,7 @@ echo $message;
                     </div>
                 </div>
             </section>
-            <!-- catagory section end -->
+            <!-- category section end -->
 
 
 

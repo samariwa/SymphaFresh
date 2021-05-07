@@ -79,7 +79,72 @@ else if ($where == 'categories') {
     mysqli_query($connection,"INSERT INTO `category` (`Category_Name`) VALUES ('$category')") or die(mysqli_error($connection));
    }
 }
+else if ($where == 'faq') {
+  $question = $_POST['question'];
+  $answer = $_POST['answer'];
+  $row = mysqli_query($connection,"SELECT * FROM faqs WHERE question = '".$question."'")or die($connection->error);
+  $result = mysqli_fetch_array($row);
+  if ( $result == TRUE) {
+    echo "exists";
+  }
+  else{
+   echo "success";
+   mysqli_query($connection,"INSERT INTO `faqs` (`question`,`answer`) VALUES ('$question','$answer')") or die(mysqli_error($connection));
+  }
+}
+else if ($where == 'blog') {
+  $title = $_POST['title'];
+  $blog = $_POST['blog'];
+  $fileName = $_FILES['upload']['tmp_name'];
+  $sourceProperties = getimagesize($fileName);
+  $resizeFileName = time();
+  $uploadPath = 'assets/images/blog/'; 
+  $fileExt = pathinfo($_FILES['upload']['name'], PATHINFO_EXTENSION);
+  $path = $resizeFileName.'.'.$fileExt;
+  $fullPath = $uploadPath.$path;
+  $imageProcess = '';
+  $uploadImageType = $sourceProperties[2];
+  $sourceImageWidth = $sourceProperties[0];
+  $sourceImageHeight = $sourceProperties[1];
+  switch ($uploadImageType){
+    case IMAGETYPE_JPEG:
+      $resourceType = imagecreatefromjpeg($fileName);
+      $imageLayer = resizeImage($resourceType,$sourceImageWidth,$sourceImageHeight);
+      imagejpeg($imageLayer,$fullPath);
+      $imageProcess = 1;
+      break;
+    case IMAGETYPE_GIF:
+      $resourceType = imagecreatefromgif($fileName);
+      $imageLayer =  resizeImage($resourceType, $sourceImageWidth, $sourceImageHeight);
+      imagegif($imageLayer,$fullPath);
+      $imageProcess = 1;
+      break;
+    case IMAGETYPE_PNG:
+      $resourceType = imagecreatefrompng($fileName);
+      $imageLayer =  resizeImage($resourceType, $sourceImageWidth, $sourceImageHeight);
+      imagepng($imageLayer,$fullPath);
+      $imageProcess = 1;
+      break;
 
+    default:
+    $imageProcess = 0;
+    break;  
+  }
+  
+  if($imageProcess == 1)
+  {
+    move_uploaded_file($file, $fullPath);
+  $row = mysqli_query($connection,"SELECT * FROM blogs WHERE blog = '".$blog."'")or die($connection->error);
+  $result = mysqli_fetch_array($row);
+  if ( $result == TRUE) {
+    echo "exists";
+  }
+  else{
+   echo "success";
+   mysqli_query($connection,"INSERT INTO `blogs` (`title`,`blog`,`image`) VALUES ('$title','$blog','$path')") or die(mysqli_error($connection));
+  }
+  } 
+}
 else if ($where == 'units') {
    $unit = $_POST['unit'];
    $row = mysqli_query($connection,"SELECT * FROM inventory_units WHERE Name = '".$unit."'")or die($connection->error);
@@ -247,7 +312,7 @@ elseif ($where == 'expense') {
     $particular = $_POST['particular'];
      $total = $_POST['total'];
      $paid = $_POST['paid'];
-     $due = $_POST['due'];
+     $due = $total - $paid;
      $date = $_POST['date'];
      $expenseId = mysqli_query($connection,"SELECT id  FROM `expenses` WHERE Name = '$name'")or die($connection->error);
    $value = mysqli_fetch_array($expenseId);
@@ -834,7 +899,7 @@ elseif ($where == 'newsletter') {
   }
 }
 else{
-  echo $error;
+  echo "error";
 } 
 }
 
@@ -897,7 +962,96 @@ elseif ($where == 'site_contact') {
     echo "success";
   }
   else{
-    echo $error;
+    echo "error";
+  } 
+}
+}
+elseif ($where == 'site_comment') {
+  $token = $_POST['token'];
+  $email = $_POST['email'];
+  $id = $_POST['id'];
+  $name = "";
+  $registered = "";
+  $comment = $_POST['comment'];
+  $belongs = 'blog';
+  if (isset($email) && isset($comment)) {
+    $url = $token_verification_site;
+	$data = [
+		'secret' => $private_key,
+		'response' => $token,
+        'remoteip' => $iptocheck
+	];
+	$options = array(
+		'http' => array(
+		 'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+		     'method' => 'POST',
+		     'content' => http_build_query($data)
+		 )
+	);
+	$context = stream_context_create($options);
+	$response = file_get_contents($url, false, $context);
+	$res = json_decode($response, true);
+	if ($res['success'] == true) {
+  $row = mysqli_query($connection,"SELECT * FROM users WHERE email = '".$email."'")or die($connection->error);
+   $result = mysqli_fetch_array($row);
+   if ( $result == TRUE) {
+     $registered = "1";
+     $name = $result['firstname'].' '.$result['lastname'];
+   }
+   else{ 
+    $registered = "0";
+    $full_name = $_POST['name'];
+   }
+   mysqli_query($connection,"INSERT INTO `comments` (`blog_id`,`commenter`, `registered`, `belongs_to`,`comment`) VALUES ('$id','$name','$registered','$belongs','$comment')") or die(mysqli_error($connection));
+    echo "success";
+  }
+  else{
+    echo "error";
+  } 
+}
+}
+elseif ($where == 'site_subcomment') {
+  $token = $_POST['token'];
+  $email = $_POST['email'];
+  $id = $_POST['id'];
+  $name = "";
+  $registered = "";
+  $subcomment = $_POST['subcomment'];
+  $belongs = 'comment';
+  if (isset($email) && isset($subcomment)) {
+    $url = $token_verification_site;
+	$data = [
+		'secret' => $private_key,
+		'response' => $token,
+        'remoteip' => $iptocheck
+	];
+	$options = array(
+		'http' => array(
+		 'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+		     'method' => 'POST',
+		     'content' => http_build_query($data)
+		 )
+	);
+	$context = stream_context_create($options);
+	$response = file_get_contents($url, false, $context);
+	$res = json_decode($response, true);
+  print_r($res);
+	if ($res['success'] == true) {
+  $row = mysqli_query($connection,"SELECT * FROM users WHERE email = '".$email."'")or die($connection->error);
+   $result = mysqli_fetch_array($row);
+   if ( $result == TRUE) {
+     $registered = "1";
+     $name = $result['firstname'].' '.$result['lastname'];
+   }
+   else{ 
+    $registered = "0";
+    $full_name = $_POST['name'];
+   }
+   mysqli_query($connection,"INSERT INTO `comments` (`comment_id`,`commenter`, `registered`, `belongs_to`,`comment`) VALUES ('$id','$name','$registered','$belongs','$subcomment')") or die(mysqli_error($connection));
+    echo "success";
+  }
+  else{
+    echo "error";
   } 
 }
 }

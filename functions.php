@@ -131,4 +131,37 @@ function page_views($page_id){
    $total_page_views = total_views($connection, $page_id); 
    return $total_page_views;
 }
+
+function text_limit($x, $length)
+{
+  if(strlen($x)<=$length)
+  {
+    echo $x;
+  }
+  else
+  {
+    $y=substr($x,0,$length) . '...';
+    echo $y;
+  }
+}
+
+function resizeImage($resourceType,$image_width,$image_height){
+
+  /*$max_resolution = 500;
+  $ratio = $max_resolution / $image_width;
+  $resizeWidth = $max_resolution;
+  $resizeHeight = $image_height * $ratio;
+  if($resizeHeight > $max_resolution){
+    $ratio = $max_resolution / $image_height;
+    $resizeHeight = $max_resolution;
+    $resizeWidth = $image_width * $ratio;
+  } */
+
+  $resizeWidth = 350;
+  $resizeHeight = 350;
+
+  $imageLayer = imagecreatetruecolor($resizeWidth,$resizeHeight);
+  imagecopyresampled($imageLayer,$resourceType,0,0,0,0,$resizeWidth,$resizeHeight,$image_width,$image_height);
+  return $imageLayer;
+}
  ?>

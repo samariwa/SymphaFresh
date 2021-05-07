@@ -114,9 +114,9 @@
                                 $restock_level = $row['Restock_Level'];
                             ?>
                                 <div class="col-sm-6 col-xl-4" id="<?php echo $name; ?>">
-                                    <div class="product-item" id="<?php echo $name; ?>" <?php if($quantity < $restock_level ){ ?>stock-out<?php }?>">
+                                    <div class="product-item <?php if($quantity < $restock_level ){ ?> stock-out <?php }?>" id="<?php echo $name; ?>">
                                         <div class="product-thumb">
-                                            <a onclick="openModal()"><img src="../assets/images/products/<?php echo $image; ?>" alt="product"></a>
+                                            <a onclick="openModal()" class="modalOpen" id="<?php echo $id; ?>"><img src="../assets/images/products/<?php echo $image; ?>" alt="product"></a>
                                             <?php if($discount > 0){?><span class="batch sale">Sale</span><?php } ?>  
                                                 <?php
                                                 $item_in_wishlist = '';
@@ -207,7 +207,7 @@
                                             </a>
                                         </div>
                                         <div class="product-content">
-                                            <a href="#" class="cata"><?php echo $category; ?></a>
+                                            <a href="#" class="cata" id="itemCategory<?php echo $id; ?>"><?php echo $category; ?></a>
                                             <h6><a href="product-detail.php" class="product-title"><?php echo $name; ?></a></h6>
                                             <p class="quantity"><?php echo $unit_name; ?></p>
                                             <div class="d-flex justify-content-between align-items-center">
@@ -296,6 +296,12 @@
                                                         {        
                                                     ?>
                                                             <div class="price-button">
+                                                            <input type="hidden" name="hidden_id" id="hidden_id<?php echo $id; ?>" value="<?php echo $id; ?>">
+                                                        <input type="hidden" name="hidden_name" id="hidden_name<?php echo $id; ?>" value="<?php echo $name; ?>">
+                                                        <input type="hidden" name="hidden_unit" id="hidden_unit<?php echo $id; ?>" value="<?php echo $unit_name; ?>">
+                                                        <input type="hidden" name="hidden_discount" id="hidden_discount<?php echo $id; ?>" value="<?php echo $discount; ?>">
+                                                        <input type="hidden" name="hidden_price" id="hidden_price<?php echo $id; ?>" value="<?php echo $selling_price; ?>">
+                                                        <input type="hidden" name="hidden_image" id="hidden_image<?php echo $id; ?>" value="<?php echo $image; ?>">
                                                                 <div class="price-increase-decrese-group d-flex">
                                                                     <span class="decrease-btn">
                                                                         <button type="button"
@@ -315,12 +321,12 @@
                                                         else{
                                                     ?>
                                                     <form method="POST">
-                                                        <input type="hidden" name="hidden_id" value="<?php echo $id; ?>">
-                                                        <input type="hidden" name="hidden_name" value="<?php echo $name; ?>">
-                                                        <input type="hidden" name="hidden_unit" value="<?php echo $unit_name; ?>">
-                                                        <input type="hidden" name="hidden_discount" value="<?php echo $discount; ?>">
-                                                        <input type="hidden" name="hidden_price" value="<?php echo $selling_price; ?>">
-                                                        <input type="hidden" name="hidden_image" value="<?php echo $image; ?>">
+                                                        <input type="hidden" name="hidden_id" id="hidden_id<?php echo $id; ?>" value="<?php echo $id; ?>">
+                                                        <input type="hidden" name="hidden_name" id="hidden_name<?php echo $id; ?>" value="<?php echo $name; ?>">
+                                                        <input type="hidden" name="hidden_unit" id="hidden_unit<?php echo $id; ?>" value="<?php echo $unit_name; ?>">
+                                                        <input type="hidden" name="hidden_discount" id="hidden_discount<?php echo $id; ?>" value="<?php echo $discount; ?>">
+                                                        <input type="hidden" name="hidden_price" id="hidden_price<?php echo $id; ?>" value="<?php echo $selling_price; ?>">
+                                                        <input type="hidden" name="hidden_image" id="hidden_image<?php echo $id; ?>" value="<?php echo $image; ?>">
                                                         <button type="submit" class="cart-btn" name="cart_button">
                                                             <span ><i class="fas fa-shopping-cart"></i> Cart</span>
                                                         </button>

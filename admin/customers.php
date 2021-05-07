@@ -54,6 +54,7 @@
                   ?>
                  </select>
                   </div>-->
+                  <input type="hidden" name="where" id= "where"  value="customer">
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary" style="margin-right: 50px" id="addCustomer">Add Customer</button>

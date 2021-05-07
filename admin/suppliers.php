@@ -38,6 +38,7 @@
                   <div class="row">
                  <input type="text" name="contact" id="contact" class="form-control col-md-9" style="padding:15px;margin-left: 60px" placeholder="Supplier Contact..."required>
                   </div>
+                  <input type="hidden" name="where" id="where"  value="supplier">
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary float-left ml-3" id="addSupplier">Add Supplier</button>
