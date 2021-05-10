@@ -24,7 +24,7 @@ if (isset($_REQUEST['forgot-button'])) {
 	$context = stream_context_create($options);
 	$response = file_get_contents($url, false, $context);
 	$res = json_decode($response, true);
-	if ($res['success'] == true) {
+	if ($res['success'] == true && $res['score'] >= 0.5) {
    if (isset($_POST['email'])){
       $email = $connection->real_escape_string($_POST['email']);
       $sql= "SELECT firstname FROM users WHERE email='$email'";

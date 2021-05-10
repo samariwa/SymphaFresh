@@ -28,7 +28,7 @@ if (isset($_REQUEST['submit_button'])) {
 	$context = stream_context_create($options);
 	$response = file_get_contents($url, false, $context);
 	$res = json_decode($response, true);
-	if ($res['success'] == true) {
+	if ($res['success'] == true && $res['score'] >= 0.5) {
 
 		//sanitize user inputs
     $first_name = sanitize($_POST["firstname"]);

@@ -756,7 +756,7 @@ $(document).on('click','#anonymous_contact',function(){
     var subject = $('#subject').val();
     var message = $('#message').val();
     var token = $('.contact_page_token').val();
-    var where = 'site_contact'
+    var where = 'site_contact';
     $.post("../add.php",{name:name,email:email,token:token,number:number,subject:subject,message:message,where:where},
     function(result){
         if (result == 'success') {
@@ -777,18 +777,20 @@ $(document).on('click','#user_comment',function(){
     var id = $('#blog_id').val();
     var comment = $('#comment').val();
     var token = $('.comment_token').val();
-    var where = 'site_comment'
+    var where = 'site_comment';
     $.post("../add.php",{id:id,email:email,token:token,comment:comment,where:where},
-    function(result){
+    function(result){ 
         if (result == 'success') {
             alert('Your comment was successfully posted! ');
             location.reload(true);
            }
            else if(result == 'error'){
             alert("Something went wrong. Please try again later.");
+            location.reload(true);
            }
             else{
             alert("Something went wrong. Please try again later.");
+            location.reload(true);
            }
     });        
 });
@@ -799,7 +801,7 @@ $(document).on('click','#anonymous_comment',function(){
     var id = $('#blog_id').val();
     var comment = $('#comment').val();
     var token = $('.comment_token').val();
-    var where = 'site_comment'
+    var where = 'site_comment';
     $.post("../add.php",{id:id,name:name,email:email,token:token,comment:comment,where:where},
     function(result){
         if (result == 'success') {
@@ -808,9 +810,11 @@ $(document).on('click','#anonymous_comment',function(){
            }
            else if(result == 'error'){
             alert("Something went wrong. Please try again later."); 
+            location.reload(true);
           }
             else{
             alert("Something went wrong. Please try again later.");
+            location.reload(true);
            }
     });        
 });
@@ -865,16 +869,17 @@ $(document).on('click','.user_subcomment',function(){
     var where = 'site_subcomment';
     $.post("../add.php",{id:id,email:email,token:token,subcomment:subcomment,where:where},
     function(result){
-        alert(result)
         if (result == 'success') {
             alert('Your reply was successfully posted! ');
             location.reload(true);
            }
            else if(result == 'error'){
             alert("Something went wrong. Please try again later.");
+            location.reload(true);
            }
             else{
             alert("Something went wrong. Please try again later.");
+            location.reload(true);
            }
     });        
 });
@@ -888,16 +893,17 @@ $(document).on('click','.anonymous_subcomment',function(){
     var where = 'site_subcomment';
     $.post("../add.php",{id:id,name:name,email:email,token:token,subcomment:subcomment,where:where},
     function(result){
-        alert(result)
         if (result == 'success') {
             alert('Your reply was successfully posted! ');
             location.reload(true);
            }
            else if(result == 'error'){
             alert("Something went wrong. Please try again later."); 
+            location.reload(true);
           }
             else{
             alert("Something went wrong. Please try again later.");
+            location.reload(true);
            }
     });        
 });

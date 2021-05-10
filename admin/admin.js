@@ -1938,7 +1938,9 @@ function saveOrderToday(idx){
       });
       
       $(document).on('click','#addBlog',function(){
+        var blog_text = tinyMCE.get('blog').getContent();
         var form_data = new FormData($('form')[0]);
+        form_data.append('blog_text', blog_text);
         $.ajax({
           url: '../add.php',
           type: 'post',
@@ -1949,9 +1951,11 @@ function saveOrderToday(idx){
             success : function(data){
                if (data == 'exists') {
               alert('Blog Already Exists');
+              location.reload(true);
             }
               else{
               alert("Blog Added Successfully");
+              location.reload(true);
             }
             }
             });
@@ -2244,7 +2248,7 @@ function saveOrderToday(idx){
         var el = $(this);
         var id = el.attr("id");
         var title = $(`#title${id}`).val();
-        var blog = $(`#blog${id}`).val();
+        var blog = tinyMCE.get('blog'+id).getContent();
         $.post("../save.php",{id:id,title:title,blog:blog,where:where},
         function(result){
           location.reload(true);

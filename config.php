@@ -29,11 +29,11 @@ $organization = 'Sympha Fresh';
 
 //Defining Recaptcha parameters
 $token_verification_site = "https://www.google.com/recaptcha/api/siteverify";
-//$private_key ='6Ld_DqAaAAAAAC_Xp5g6yDr5XPjC1oIlMGZwX5cS';
-//$public_key='6Ld_DqAaAAAAAIVKl_AmFc4qhHItRTT75yqbmhtR';
+$private_key ='6Ld_DqAaAAAAAC_Xp5g6yDr5XPjC1oIlMGZwX5cS';
+$public_key='6Ld_DqAaAAAAAIVKl_AmFc4qhHItRTT75yqbmhtR';
 //server test
-$private_key ='6LcNe8oaAAAAAAAxymwmkEdBCEYiMt4w5yRwqTOT';
-$public_key='6LcNe8oaAAAAAGuQTSOKBYNhjRf60UEs5YjCNUw5';
+//$private_key ='6LcNe8oaAAAAAAAxymwmkEdBCEYiMt4w5yRwqTOT';
+//$public_key='6LcNe8oaAAAAAGuQTSOKBYNhjRf60UEs5YjCNUw5';
 
 //Defining length of salt,minimum=10, maximum=35
 $length_salt = 15;

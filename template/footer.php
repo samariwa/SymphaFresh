@@ -94,8 +94,8 @@
                                             <li><a href="faq.php">FAQ</a></li>
                                             <!--<li><a href="#">Careers</a></li>-->
                                             <li><a href="contact.php">Contact Us</a></li>
-                                            <li><a href="#">Privacy policies</a></li>
-                                           <li><a href="#">Cookies</a></li>
+                                            <li><a href="privacy-policy.php">Privacy policies</a></li>
+                                           <li><a href="cookie-policy.php">Cookies</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -313,7 +313,7 @@
     <script src='../assets/js/fly-cart.js?3759597'></script>
     <script src='../assets/js/multi-countdown.js'></script>
     <script src='../assets/js/theia-sticky-sidebar.js'></script>
-    <script src='../assets/js/functions.js?3473475'></script>
+    <script src='../assets/js/functions.js?3267633475'></script>
    <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 $(function() {

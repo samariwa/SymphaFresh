@@ -85,7 +85,7 @@ if(isset($_REQUEST['login-button'])){
   $context = stream_context_create($options);
 	$response = file_get_contents($url, false, $context);
 	$res = json_decode($response, true);
-	if ($res['success'] == true) {
+	if ($res['success'] == true && $res['score'] >= 0.5) {
 //Check if the form is submitted
 if ((isset($_POST["pass"])) && (isset($_POST["email"])) && ($_SESSION['logged_in'] == FALSE)) {
 //Email and password has been submitted by the user

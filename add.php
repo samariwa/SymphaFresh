@@ -94,7 +94,7 @@ else if ($where == 'faq') {
 }
 else if ($where == 'blog') {
   $title = $_POST['title'];
-  $blog = $_POST['blog'];
+  $blog = $_POST['blog_text'];
   $fileName = $_FILES['upload']['tmp_name'];
   $sourceProperties = getimagesize($fileName);
   $resizeFileName = time();
@@ -877,7 +877,7 @@ elseif ($where == 'newsletter') {
 	$context = stream_context_create($options);
 	$response = file_get_contents($url, false, $context);
 	$res = json_decode($response, true);
-	if ($res['success'] == true) {
+	if ($res['success'] == 'true' && $res['score'] >= 0.5) {
   $row = mysqli_query($connection,"SELECT * FROM newsletter_subscribers WHERE email = '".$email."'")or die($connection->error);
    $result = mysqli_fetch_array($row);
    if ( $result == TRUE) {
@@ -928,7 +928,7 @@ elseif ($where == 'site_contact') {
 	$context = stream_context_create($options);
 	$response = file_get_contents($url, false, $context);
 	$res = json_decode($response, true);
-	if ($res['success'] == true) {
+	if ($res['success'] == 'true' && $res['score'] >= 0.5) {
   $row = mysqli_query($connection,"SELECT * FROM users WHERE email = '".$email."'")or die($connection->error);
    $result = mysqli_fetch_array($row);
    if ( $result == TRUE) {
@@ -991,7 +991,7 @@ elseif ($where == 'site_comment') {
 	$context = stream_context_create($options);
 	$response = file_get_contents($url, false, $context);
 	$res = json_decode($response, true);
-	if ($res['success'] == true) {
+	if ($res['success'] == 'true' && $res['score'] >= 0.5) {
   $row = mysqli_query($connection,"SELECT * FROM users WHERE email = '".$email."'")or die($connection->error);
    $result = mysqli_fetch_array($row);
    if ( $result == TRUE) {
@@ -1000,7 +1000,7 @@ elseif ($where == 'site_comment') {
    }
    else{ 
     $registered = "0";
-    $full_name = $_POST['name'];
+    $name = $_POST['name'];
    }
    mysqli_query($connection,"INSERT INTO `comments` (`blog_id`,`commenter`, `registered`, `belongs_to`,`comment`) VALUES ('$id','$name','$registered','$belongs','$comment')") or die(mysqli_error($connection));
     echo "success";
@@ -1035,8 +1035,7 @@ elseif ($where == 'site_subcomment') {
 	$context = stream_context_create($options);
 	$response = file_get_contents($url, false, $context);
 	$res = json_decode($response, true);
-  print_r($res);
-	if ($res['success'] == true) {
+	if ($res['success'] == true && $res['score'] >= 0.5) {
   $row = mysqli_query($connection,"SELECT * FROM users WHERE email = '".$email."'")or die($connection->error);
    $result = mysqli_fetch_array($row);
    if ( $result == TRUE) {

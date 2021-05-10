@@ -27,11 +27,11 @@
                                         </li>
                                         <li>
                                             <span class="icon"><i class="far fa-comment-alt"></i></span>
-                                            <a href="#" class="meta-link">26 Comments</a>
+                                            <a href="blog-single.php?id=<?php echo $id; ?>#comments-section" class="meta-link">26 Comments</a>
                                         </li>
                                     </ul>
                                     <h4 class="title mb-3"><?php echo $title; ?></h4>
-                                    <h5 class="title mb-3"><a href="blog-single.php"><?php echo text_limit($blog, 100); ?></a></h5>
+                                    <h5 class="title mb-3"><a href="blog-single.php?id=<?php echo $id; ?>"><?php echo text_limit($blog, 100); ?></a></h5>
                                     <a href="blog-single.php" class="blog-btn">Read More</a>
                                 </div>
                             </div>

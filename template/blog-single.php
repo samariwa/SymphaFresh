@@ -53,22 +53,22 @@
                                                 <span class="icon"><i class="far fa-comment-alt"></i></span>
                                                 <a href="#" class="meta-link"><?php echo $comments_count; ?> Comment<?php if($comments_count != 1){ ?>s<?php } ?></a>
                                             </li>
-                                            <li>
+                                            <!--<li>
                                                 <span class="icon"><i class="far fa-heart"></i></span>
                                                 <span class="meta-content">8 Likes</span>
-                                            </li>
+                                            </li>-->
                                         </ul>
                                         <h2 class="title mb-3"><?php echo $title; ?></h2>
                                         <p><?php echo $blog; ?></p>
-                                        <p>Claritas est etiam <span>processus dynamicus</span>, qui sequitur mutationem consuetudium lectorum. Mirum est notare </p>
+                                       <!-- <p>Claritas est etiam <span>processus dynamicus</span>, qui sequitur mutationem consuetudium lectorum. Mirum est notare </p>
                                         <blockquote>
                                             <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.</p>
                                             <span>John Dow <span>Company Name</span></span>
                                         </blockquote>
                                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum.</p>
-                                        <p>Qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum.</p>
+                                        <p>Qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum.</p>-->
                                     </div>
-                                    <ul class="tag-list list-unstyled d-flex">
+                                  <!--  <ul class="tag-list list-unstyled d-flex">
                                         <li class="mr-4">Tags</li>
                                         <li><a href="#">Mockups</a></li>
                                         <li><a href="#">Art</a></li>
@@ -85,21 +85,21 @@
                                         <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                                         <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
                                         <li><a href="#"><i class="fas fa-rss"></i></a></li>
-                                    </ul>
+                                    </ul>-->
                                 </div>
 
-                                <div class="comment-section pt--70 pb--40">
+                                <div class="comment-section pt--70 pb--40" id="comments-section">
                                     <h5 class="comment-title mb--30"><i class="far fa-comment-alt"></i> <?php echo $comments_count; ?> Comment<?php if($comments_count != 1){ ?>s<?php } ?></h5>
 
                                     <div class="comment-list">
                                     <?php
                                         foreach($comments as $row){
-                                        $id = $row['id'];
+                                        $comment_id = $row['id'];
                                         $commenter = $row['commenter'];
                                         $comment = $row['comment'];
                                         $comment_Date = $row['Created_at'];
                                         $comment_date = date( 'l, F d, Y h:i A', strtotime($comment_Date) );
-                                        $subcomments = mysqli_query($connection,"SELECT * FROM comments WHERE comment_id = '$id' AND belongs_to = 'comment'")or die($connection->error);
+                                        $subcomments = mysqli_query($connection,"SELECT * FROM comments WHERE comment_id = '$comment_id' AND belongs_to = 'comment'")or die($connection->error);
                                         $words = explode(" ", $commenter);
                                         $acronym = "";
                                         foreach ($words as $w) {
@@ -114,25 +114,25 @@
                                                 <div class="author-name-info">
                                                     <h6 class="name" id="commenter"><?php echo $commenter; ?></h6>
                                                     <p class="publish-date">Posted on <?php echo $comment_date; ?></p>
-                                                    <button id="<?php echo $id; ?>" class="reply-btn btn">Reply</button>
+                                                    <button id="<?php echo $comment_id; ?>" class="reply-btn reply-button btn">Reply</button>
                                                 </div>
                                             </div>
                                             <div class="comment-content">
                                                <?php echo $comment; ?>
                                             </div>
-                                            <div class="subcomment-response-section<?php echo $id; ?>">
+                                            <div class="subcomment-response-section<?php echo $comment_id; ?>">
                                             <?php
                                             if (isset($_SESSION['logged_in'])) {
                                                 if ($_SESSION['logged_in'] == TRUE) {
                                                     ?>
-                                            <div class="subcomment-response-user<?php echo $id; ?>">
+                                            <div class="subcomment-response-user<?php echo $comment_id; ?>">
 
                                             </div>
                                             <?php
                                                 }
                                                 else{
                                             ?>
-                                            <div class="subcomment-response-anonymous<?php echo $id; ?>">
+                                            <div class="subcomment-response-anonymous<?php echo $comment_id; ?>">
 
                                             </div>
                                                     <?php
@@ -140,7 +140,7 @@
                                                 }
                                                 else{
                                             ?>
-                                            <div class="subcomment-response-anonymous<?php echo $id; ?>">
+                                            <div class="subcomment-response-anonymous<?php echo $comment_id; ?>">
 
                                             </div>
                                             <?php
@@ -224,7 +224,7 @@
                                             <i class="fab fa-telegram-plane"></i>
                                         </div>
                                             <div>
-                                            <button type="submit" class="submit" id="user_comment">Post Comment</button>
+                                            <button  class="submit" id="user_comment">Post Comment</button>
                                             </div>
                                             <?php
                                          }
