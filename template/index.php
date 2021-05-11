@@ -7,12 +7,12 @@ echo $message;
                 <div class="banner-slider-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <div class="banner-content-area" style="background-image:url('../assets/images/banner/banner-image1')">
-                                <div class="slider-image slider-image2"></div>
+                            <div class="banner-content-area" >
+                                <div class="slider-image slider-image2" style="background-image:url('../assets/images/banner/bg5.jpeg');background-size: 100%;"></div>
                                 <div class="container">
                                     <div class="banner-content text-center text-lg-left">
-                                        <h6>Organic and fresh food</h6>
-                                        <h2>Get freshness delivered<br>on your doorstep.</h2>
+                                        <h6 style="color: rgb(77, 72, 72);">Organic and fresh food</h6>
+                                        <h2>Get freshness delivered<br>at your doorstep.</h2>
                                         <a href="about.php" class="banner-btn">Read More</a>
                                     </div>
                                 </div>
@@ -20,12 +20,12 @@ echo $message;
                         </div>
 
                         <div class="swiper-slide">
-                            <div class="banner-content-area" style="background-image:url('../assets/images/banner/banner-image3')">
-                                <div class="slider-image slider-image1"></div>
+                            <div class="banner-content-area" >
+                                <div class="slider-image slider-image1" style="background-image:url('../assets/images/banner/bg2.jpeg');background-size: 120%;"></div>
                                 <div class="container">
                                     <div class="banner-content text-center">
-                                        <h6>Organic and fresh food</h6>
-                                        <h2>Get freshness delivered<br>on your doorstep.</h2>
+                                        <h6 style="color: rgb(77, 72, 72);">Organic and fresh food</h6>
+                                        <h2>Get freshness delivered<br>at your doorstep.</h2>
                                         <a href="about.php" class="banner-btn">Read More</a>
                                     </div>
                                 </div>
@@ -34,11 +34,11 @@ echo $message;
 
                         <div class="swiper-slide">
                             <div class="banner-content-area">
-                                <div class="slider-image slider-image3"></div>
+                                <div class="slider-image slider-image3" style="background-image:url('../assets/images/banner/bg4.jpeg');background-size: 100%;"></div>
                                 <div class="container">
                                     <div class="banner-content text-center text-lg-left">
-                                        <h6>Organic and fresh food</h6>
-                                        <h2>Get freshness delivered<br>on your doorstep.</h2>
+                                        <h6 style="color: rgb(77, 72, 72);">Organic and fresh food</h6>
+                                        <h2>Get freshness delivered<br>at your doorstep.</h2>
                                         <a href="about.php" class="banner-btn">Read More</a>
                                     </div>
                                 </div>

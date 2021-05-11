@@ -32,7 +32,7 @@ include('header.php');
                         </div>
                         <div class="col-lg-5 order-lg-first">
                             <div class="about-image">
-                                <img src="../assets/images/about/01.jpg" alt="about image">
+                                <img src="../assets/images/about/bg3.jpeg" alt="about image">
                             </div>
                         </div>
                     </div>

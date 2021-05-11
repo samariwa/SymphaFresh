@@ -1963,7 +1963,7 @@ ul {
 
 .banner-section {
   height: 520px;
-  background-image: url(../images/banner/banner-bg.jpg);
+  /*background-image: url(../images/banner/bg2.jpeg);*/
 }
 .banner-section .banner-content-area {
   width: 100%;
@@ -1971,7 +1971,7 @@ ul {
 @media only screen and (max-width: 1200px) {
   .banner-section {
     height: 350px;
-    background-image: url(../images/banner/banner-image3.jpg);
+    /*background-image: url(../images/banner/bg2.jpeg);*/
   }
 }
 @media only screen and (max-width: 479px) {
@@ -1981,17 +1981,17 @@ ul {
   }
 }
 .banner-section .bg-img2 {
-  background-image: url(../images/banner/banner-bg3.jpg);
+  /*background-image: url(../images/banner/bg2.jpeg);*/
   background-position: top center;
 }
 .banner-section .bg-img3 {
-  background-image: url(../images/banner-slider/3-3.jpg);
+ /* background-image: url(../images/banner-slider/bg2.jpeg);*/
   background-position: top center;
 }
 
 .banner-content h6 {
   font-weight: normal;
-  color: rgb(212, 212, 212);
+  color: rgb(77, 72, 72);
   font-size: 18px;
 }
 .banner-content h2 {
@@ -2122,22 +2122,22 @@ ul {
   top: 0;
   width: 100%;
   height: 100%;
-  background-image: url(../images/banner-slider/banner-image3.jpg);
+  /*background-image: url(../images/banner-slider/bg2.jpeg);*/
 }
 .banner-slider-container .swiper-slide .banner-content-area .slider-image .slider-image2 {
-  background-image: url(../images/banner-slider/banner-image3.jpg);
+  /*background-image: url(../images/banner-slider/bg2.jpeg);*/
   background-size: 100%;
   background-position: 100% 36%;
 }
 .banner-slider-container .swiper-slide .banner-content-area .slider-image .slider-image3 {
-  background-image: url(../images/banner-slider/banner-image3.jpg);
+  /*background-image: url(../images/banner-slider/bg2.jpeg);*/
   background-size: 130%;
   background-position: 4% 62%;
 }
 @media only screen and (max-width: 991px) {
-  .banner-slider-container .swiper-slide .banner-content-area .slider-image .slider-image1 {
-    background-image: url(../images/banner-slider/banner-image1.jpg);
-  }
+  /*.banner-slider-container .swiper-slide .banner-content-area .slider-image .slider-image1 {
+    background-image: url(../images/banner-slider/bg2.jpeg);
+  }*/
 }
 @media only screen and (max-width: 479px) {
   .banner-slider-container .swiper-slide .banner-content-area .slider-image .slider-image1 {
