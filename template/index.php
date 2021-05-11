@@ -8,7 +8,7 @@ echo $message;
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="banner-content-area" >
-                                <div class="slider-image slider-image2" style="background-image:url('../assets/images/banner/bg5.jpeg');background-size: 100%;"></div>
+                                <div class="slider-image slider-image2" style="background-image:url('../assets/images/banner/bg5.jpeg');background-size: 140%;"></div>
                                 <div class="container">
                                     <div class="banner-content text-center text-lg-left">
                                         <h6 style="color: rgb(77, 72, 72);">Organic and fresh food</h6>
@@ -21,7 +21,7 @@ echo $message;
 
                         <div class="swiper-slide">
                             <div class="banner-content-area" >
-                                <div class="slider-image slider-image1" style="background-image:url('../assets/images/banner/bg2.jpeg');background-size: 120%;"></div>
+                                <div class="slider-image slider-image1" style="background-image:url('../assets/images/banner/bg2.jpeg');background-size: 140%;"></div>
                                 <div class="container">
                                     <div class="banner-content text-center">
                                         <h6 style="color: rgb(77, 72, 72);">Organic and fresh food</h6>
@@ -34,7 +34,7 @@ echo $message;
 
                         <div class="swiper-slide">
                             <div class="banner-content-area">
-                                <div class="slider-image slider-image3" style="background-image:url('../assets/images/banner/bg4.jpeg');background-size: 100%;"></div>
+                                <div class="slider-image slider-image3" style="background-image:url('../assets/images/banner/bg4.jpeg');background-size: 140%;"></div>
                                 <div class="container">
                                     <div class="banner-content text-center text-lg-left">
                                         <h6 style="color: rgb(77, 72, 72);">Organic and fresh food</h6>
