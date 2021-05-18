@@ -20,7 +20,7 @@ include('header.php');
 
 
             <!-- about section start -->
-            <section class="about-section section-ptb">
+            <section class="about-section section-ptb" id="who_we_are">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-7 order-lg-last pr-xl-5">
@@ -96,6 +96,26 @@ include('header.php');
                 </div>
             </section>
             <!-- about-coroussel-section end -->
+            <br><br>
+            <div class="container" style="text-align:center" id="mission&vision">
+            <div class="row align-items-center">
+                <div class="col-lg-12 order-lg-last pr-xl-5">
+                    <div class="about-content mb-4 ml-5 mb-lg-0 pr-lg-5">
+                        <h4>Mission</h4>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur quibusdam enim expedita sed nesciunt incidunt accusamus adipisci officia libero laboriosam! Proin gravida nibh vel velit auctor aliquet. nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Duis sed odio sit amet nibh vultate cursus a sit amet mauris.</p>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="row align-items-center">
+                <div class="col-lg-12 order-lg-last pr-xl-5">
+                    <div class="about-content mb-4 ml-5 mb-lg-0 pr-lg-5">
+                        <h4>Vision</h4>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur quibusdam enim expedita sed nesciunt incidunt accusamus adipisci officia libero laboriosam! Proin gravida nibh vel velit auctor aliquet. nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Duis sed odio sit amet nibh vultate cursus a sit amet mauris.</p>
+                    </div>
+                </div>
+            </div>
+            </div>
             <section class="about-section section-ptb">
                 <div class="container">
                     <div class="row align-items-center">

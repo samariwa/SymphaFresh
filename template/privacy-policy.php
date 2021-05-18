@@ -94,7 +94,12 @@ include('header.php');
                                  not so that we can provide a better experience for you.</p>
                                  <p>If you want to disable cookies, you can do it by accessing the settings of 
                                  your internet browser.</p>
-                                <p>(Provide links for cookie settings for major internet browsers).</p>
+                                 <p>Chrome Browser - Settings > Cookies and other site data > See all cookies and site data</p>
+                                 <p>Firefox Browser:</p>
+                                 <p>Windows - Menu > Options > Privacy & Security > (Enhanced Tracking Protection) Cookies and Site Data</p>
+                                 <p>Mac - Firefox > Preferences > Privacy & Security > (Enhanced Tracking Protection) Cookies and Site Data</p>
+                                 <p>Linux - Menu > Preferences > Privacy & Security > (Enhanced Tracking Protection) Cookies and Site Data</p>
+                                <p>Safari Browser - Preferences > Privacy > Manage Website Data</p> 
                             </div>
                         </div>
                     </div>

@@ -63,7 +63,7 @@ $location = $result['location'];
                 <div class="container">
                     <div class="dashboard-body">
                         <div class="profile">
-                            <h5 class="title">Your Profile <span title="Edit Profile" id="edit" class="edit" data-toggle="modal" data-target="#edit-form1"><i class="fas fa-edit"></i></span></h5>
+                            <h5 class="title">Your Profile <span title="Edit Profile" id="edit" class="edit" data-toggle="modal" data-target="#edit-form1"><i class="fas fa-edit" onclick="OpenSignUpForm()"></i></span></h5>
 
                             <ul class="list-profile-info list-unstyled">
                                 <li>
@@ -148,6 +148,33 @@ $location = $result['location'];
                     </div>
                 </div>
             </section>
+            <section id="login-area" class="login-area">
+        <div onclick="CloseSignUpForm()" class="overlay"></div>
+        <div class="login-body-wrapper">
+            <div class="login-body">
+                <div class="close-icon" onclick="CloseSignUpForm()">
+                    <i class="fas fa-times"></i>
+                </div>
+                <div class="login-header">
+                    <h4>Edit Profile</h4>
+                </div>
+                <div class="login-content">
+                    <form method="POST" class="login-form">
+                        <input type="text" name="firstname" id="firstname" placeholder="First Name" value="<?php echo $firstname; ?>">
+                        <input type="text" name="lastname" id="lastname" placeholder="Last Name" value="<?php echo $lastname; ?>">
+                        <input type="email" name="email" id="email" placeholder="Email Address" value="<?php echo $email; ?>">
+                        <input type="text" name="mobile" id="mobile" placeholder="Mobile Number" value="<?php echo $mobile; ?>">
+                        <input type="text" name="location" id="location" placeholder="Physical Address" value="<?php echo $location; ?>">
+                        <input type="hidden" id="old_email" name="old_email" value="<?php echo $email; ?>">
+                        <input type="hidden" name="where" id= "where"  value="customerProfile">
+                        <input type="hidden" class="profile_token" id="token" name="token">
+                        <button type="submit" class="submit editProfile">Save Changes</button>
+                    </form>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+    </section>
             <!-- dashboard-section end -->
 <?php
     include('footer.php');

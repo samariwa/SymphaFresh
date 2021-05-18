@@ -858,13 +858,10 @@ elseif ($where == 'files') {
 }
 
 elseif ($where == 'newsletter') {
-  $email = $_POST['email'];
-  $token = $_POST['token'];
   if (isset($_POST['email'])) {
-  $url = $token_verification_site;
 	$data = [
 		'secret' => $private_key,
-		'response' => $token,
+		'response' => $_POST['token'],
         'remoteip' => $iptocheck
 	];
 	$options = array(
@@ -875,10 +872,10 @@ elseif ($where == 'newsletter') {
 		 )
 	);
 	$context = stream_context_create($options);
-	$response = file_get_contents($url, false, $context);
+	$response = file_get_contents($token_verification_site, false, $context);
 	$res = json_decode($response, true);
 	if ($res['success'] == 'true' && $res['score'] >= 0.5) {
-  $row = mysqli_query($connection,"SELECT * FROM newsletter_subscribers WHERE email = '".$email."'")or die($connection->error);
+  $row = mysqli_query($connection,"SELECT * FROM newsletter_subscribers WHERE email = '".$_POST['email']."'")or die($connection->error);
    $result = mysqli_fetch_array($row);
    if ( $result == TRUE) {
      echo "exists";
@@ -886,7 +883,7 @@ elseif ($where == 'newsletter') {
    else{
     echo "success";
     $registered = "";
-    $row = mysqli_query($connection,"SELECT * FROM users WHERE email = '".$email."'")or die($connection->error);
+    $row = mysqli_query($connection,"SELECT * FROM users WHERE email = '".$_POST['email']."'")or die($connection->error);
     $result = mysqli_fetch_array($row);
     if ( $result == TRUE) {
       $registered = "1";
@@ -894,7 +891,7 @@ elseif ($where == 'newsletter') {
     else{
       $registered = "0";
     }
-    mysqli_query($connection,"INSERT INTO `newsletter_subscribers` (`email`, `registered_user`) VALUES ('$email','$registered')") or die(mysqli_error($connection));
+    mysqli_query($connection,"INSERT INTO `newsletter_subscribers` (`email`, `registered_user`) VALUES ('".$_POST['email']."','$registered')") or die(mysqli_error($connection));
    }
   }
 }
@@ -902,20 +899,14 @@ else{
   echo "error";
 } 
 }
-
 elseif ($where == 'site_contact') {
-  $token = $_POST['token'];
-  $email = $_POST['email'];
   $full_name = "";
   $number = "";
   $registered = "";
-  $message = $_POST['message'];
-  $subject = $_POST['subject'];
-  if (isset($email) && isset($message) && isset($subject)) {
-    $url = $token_verification_site;
+  if (isset($_POST['email']) && isset($_POST['message']) && isset($_POST['subject'])) {
 	$data = [
 		'secret' => $private_key,
-		'response' => $token,
+		'response' => $_POST['token'],
         'remoteip' => $iptocheck
 	];
 	$options = array(
@@ -926,10 +917,10 @@ elseif ($where == 'site_contact') {
 		 )
 	);
 	$context = stream_context_create($options);
-	$response = file_get_contents($url, false, $context);
+	$response = file_get_contents($token_verification_site, false, $context);
 	$res = json_decode($response, true);
 	if ($res['success'] == 'true' && $res['score'] >= 0.5) {
-  $row = mysqli_query($connection,"SELECT * FROM users WHERE email = '".$email."'")or die($connection->error);
+  $row = mysqli_query($connection,"SELECT * FROM users WHERE email = '".$_POST['email']."'")or die($connection->error);
    $result = mysqli_fetch_array($row);
    if ( $result == TRUE) {
      $registered = "1";
@@ -954,11 +945,11 @@ elseif ($where == 'site_contact') {
     $mail->SMTPAuth = true;
     $mail->Username = $authenticator_email;
     $mail->Password = $authenticator_password;
-    $mail -> Subject = $subject;
+    $mail -> Subject = $_POST['subject'];
     $mail -> isHTML(true);
-    $mail -> Body = $message.'<br><br>Customer Name: '.$full_name.'<br><br>Customer Number: '.$number.'<br><br>Customer Email: '.$email;
+    $mail -> Body = $_POST['message'].'<br><br>Customer Name: '.$full_name.'<br><br>Customer Number: '.$number.'<br><br>Customer Email: '.$_POST['email'];
     $mail -> send();
-   mysqli_query($connection,"INSERT INTO `site_communication` (`name`, `email`, `number`,`subject`, `message`,`registered_user`) VALUES ('$full_name','$email','$number','$subject','$message','$registered')") or die(mysqli_error($connection));
+   mysqli_query($connection,"INSERT INTO `site_communication` (`name`, `email`, `number`,`subject`, `message`,`registered_user`) VALUES ('$full_name','".$_POST['email']."','$number','".$_POST["subject"]."','".$_POST["message"]."','$registered')") or die(mysqli_error($connection));
     echo "success";
   }
   else{
@@ -967,18 +958,12 @@ elseif ($where == 'site_contact') {
 }
 }
 elseif ($where == 'site_comment') {
-  $token = $_POST['token'];
-  $email = $_POST['email'];
-  $id = $_POST['id'];
   $name = "";
   $registered = "";
-  $comment = $_POST['comment'];
-  $belongs = 'blog';
-  if (isset($email) && isset($comment)) {
-    $url = $token_verification_site;
+  if (isset($_POST['email']) && isset($_POST['comment'])) {
 	$data = [
 		'secret' => $private_key,
-		'response' => $token,
+		'response' => $_POST['token'],
         'remoteip' => $iptocheck
 	];
 	$options = array(
@@ -989,10 +974,10 @@ elseif ($where == 'site_comment') {
 		 )
 	);
 	$context = stream_context_create($options);
-	$response = file_get_contents($url, false, $context);
+	$response = file_get_contents($token_verification_site, false, $context);
 	$res = json_decode($response, true);
 	if ($res['success'] == 'true' && $res['score'] >= 0.5) {
-  $row = mysqli_query($connection,"SELECT * FROM users WHERE email = '".$email."'")or die($connection->error);
+  $row = mysqli_query($connection,"SELECT * FROM users WHERE email = '".$_POST['email']."'")or die($connection->error);
    $result = mysqli_fetch_array($row);
    if ( $result == TRUE) {
      $registered = "1";
@@ -1002,7 +987,7 @@ elseif ($where == 'site_comment') {
     $registered = "0";
     $name = $_POST['name'];
    }
-   mysqli_query($connection,"INSERT INTO `comments` (`blog_id`,`commenter`, `registered`, `belongs_to`,`comment`) VALUES ('$id','$name','$registered','$belongs','$comment')") or die(mysqli_error($connection));
+   mysqli_query($connection,"INSERT INTO `comments` (`blog_id`,`commenter`, `registered`, `belongs_to`,`comment`) VALUES ('".$_POST['id']."','$name','$registered','blog','".$_POST['comment']."')") or die(mysqli_error($connection));
     echo "success";
   }
   else{
@@ -1011,18 +996,12 @@ elseif ($where == 'site_comment') {
 }
 }
 elseif ($where == 'site_subcomment') {
-  $token = $_POST['token'];
-  $email = $_POST['email'];
-  $id = $_POST['id'];
   $name = "";
   $registered = "";
-  $subcomment = $_POST['subcomment'];
-  $belongs = 'comment';
-  if (isset($email) && isset($subcomment)) {
-    $url = $token_verification_site;
+  if (isset($_POST['email']) && isset($_POST['subcomment'])) {
 	$data = [
 		'secret' => $private_key,
-		'response' => $token,
+		'response' => $_POST['token'],
         'remoteip' => $iptocheck
 	];
 	$options = array(
@@ -1033,10 +1012,10 @@ elseif ($where == 'site_subcomment') {
 		 )
 	);
 	$context = stream_context_create($options);
-	$response = file_get_contents($url, false, $context);
+	$response = file_get_contents($token_verification_site, false, $context);
 	$res = json_decode($response, true);
 	if ($res['success'] == true && $res['score'] >= 0.5) {
-  $row = mysqli_query($connection,"SELECT * FROM users WHERE email = '".$email."'")or die($connection->error);
+  $row = mysqli_query($connection,"SELECT * FROM users WHERE email = '".$_POST['email']."'")or die($connection->error);
    $result = mysqli_fetch_array($row);
    if ( $result == TRUE) {
      $registered = "1";
@@ -1044,9 +1023,9 @@ elseif ($where == 'site_subcomment') {
    }
    else{ 
     $registered = "0";
-    $full_name = $_POST['name'];
+    $name = $_POST['name'];
    }
-   mysqli_query($connection,"INSERT INTO `comments` (`comment_id`,`commenter`, `registered`, `belongs_to`,`comment`) VALUES ('$id','$name','$registered','$belongs','$subcomment')") or die(mysqli_error($connection));
+   mysqli_query($connection,"INSERT INTO `comments` (`comment_id`,`commenter`, `registered`, `belongs_to`,`comment`) VALUES ('".$_POST['id']."','$name','$registered','comment','".$_POST['subcomment']."')") or die(mysqli_error($connection));
     echo "success";
   }
   else{

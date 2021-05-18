@@ -2382,7 +2382,7 @@ $(function() {
         $inputTo = $(".js-input-to"),
         instance,
         min = 0,
-        max = 1500,
+        max = 2000,
         from = 0,
         to = 0;
 

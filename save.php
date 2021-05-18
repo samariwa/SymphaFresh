@@ -1065,4 +1065,45 @@ elseif ($where == 'inventory_units') {
      }
 mysqli_query($connection,"UPDATE `inventory_units` SET `Name` = '".$unit."' WHERE `id` = '".$id."'")or die($connection->error);
 }
+elseif ($where == 'customerProfile') {
+  if (isset($_POST['email']) && isset($_POST['mobile']) && isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['location'])) {
+    $data = [
+      'secret' => $private_key,
+      'response' => $_POST['token'],
+          'remoteip' => $iptocheck
+    ];
+    $options = array(
+      'http' => array(
+       'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+           'method' => 'POST',
+           'content' => http_build_query($data)
+       )
+    );
+    $context = stream_context_create($options);
+    $response = file_get_contents($token_verification_site, false, $context);
+    $res = json_decode($response, true);
+    if ($res['success'] == true && $res['score'] >= 0.5) {
+  $fullname = $_POST['firstname'].' '.$_POST['lastname'];
+$result2 = mysqli_query($connection,"SELECT email,number FROM users where email = '".$_POST['old_email']."'")or die($connection->error);
+$row2 = mysqli_fetch_array($result2);
+$result3 = mysqli_query($connection,"SELECT EXISTS(SELECT email,number from users  WHERE email = '".$_POST['email']."' OR number = '".$_POST['mobile']."')")or die($connection->error);
+$row3 = mysqli_fetch_array($result3);
+if ($row3[0] == 1 && $_POST['mobile'] !== $row2['number'] && $_POST['email'] !== $row2['email']) {
+    echo "exists";
+}
+else{
+mysqli_query($connection,"UPDATE `customers`  SET `Name` = '".$fullname."',`Number` = '".$_POST['mobile']."', `Location` = '".$_POST['location']."' WHERE `Number` = '".$row2['number']."'") or die(mysqli_error($connection));
+mysqli_query($connection,"UPDATE `users`  SET `firstname` = '".$_POST['firstname']."',`lastname` = '".$_POST['lastname']."', `email` = '".$_POST['email']."',`number` = '".$_POST['mobile']."' WHERE `number` = '".$row2['number']."'") or die(mysqli_error($connection));
+echo "success";
+unset($_SESSION['user']);
+unset($_SESSION['email']);
+$_SESSION['user'] = $_POST['firstname'];
+$_SESSION['email'] = $_POST['email'];
+}
+}
+else{
+  echo "error";
+} 
+}
+}
  ?>

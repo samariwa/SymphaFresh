@@ -2,7 +2,11 @@
 require('config.php');
 if(isset($_POST['search'])){
   $result_output = '';
-  $result = mysqli_query($connection,"SELECT Name FROM stock WHERE Name LIKE '%".$_POST["search"]."%'");
+  $query = "SELECT Name FROM stock WHERE Name LIKE '%".$_POST["search"]."%'";
+  if($_POST['category'] !== '0'){
+    $query .= " AND Category_id = '".$_POST['category']."'";
+  }
+  $result = mysqli_query($connection,$query);
        if (mysqli_num_rows($result) > 0) { 
         while($row = mysqli_fetch_array($result))
         {

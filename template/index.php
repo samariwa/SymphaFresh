@@ -194,7 +194,9 @@ echo $message;
                                <div class="swiper-slide">
                                         <div class="product-item <?php if($quantity < $restock_level ){ ?>stock-out<?php }?>">
                                             <div class="product-thumb">
-                                                <a onclick="openModal()"><img src="../assets/images/products/<?php echo $image; ?>" alt="product"></a>
+                                                <!--you can add this onclick to anchor tag below when necessary-->
+                                                <!--onclick="openModal()"-->
+                                                <a ><img src="../assets/images/products/<?php echo $image; ?>" alt="product"></a>
                                                 <?php if($discount > 0){?><span class="batch sale">Sale</span><?php } ?>
                                                 <?php
                                                 $item_in_wishlist = '';
@@ -527,7 +529,9 @@ echo $message;
                                <div class="swiper-slide">
                                         <div class="product-item <?php if($quantity < $restock_level ){ ?>stock-out<?php }?>">
                                             <div class="product-thumb">
-                                            <a onclick="openModal()"><img src="../assets/images/products/<?php echo $image; ?>" alt="product"></a>
+                                                <!--you can add this onclick to anchor tag below when necessary-->
+                                                <!--onclick="openModal()"-->
+                                            <a><img src="../assets/images/products/<?php echo $image; ?>" alt="product"></a>
                                                 <?php if($discount > 0){?><span class="batch sale">Sale</span><?php } ?>
                                                 <?php
                                                 $item_in_wishlist = '';

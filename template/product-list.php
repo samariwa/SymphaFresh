@@ -25,11 +25,11 @@
                             <div class="widget widget-head">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h6>Filter</h6>
-                                    <a href="product-list.php">Clear All</a>
+                                    <a href="product-list.php" id="clear_filter">Clear All</a>
                                 </div>
                             </div>
                             <div class="widget">
-                                <h4 class="widget-title d-none d-lg-block">Categories</h4>
+                                <h4 class="widget-title d-none d-lg-block">Filter by name</h4>
                                 <a class="widget-title d-lg-none" data-toggle="collapse" href="#scatagory-widget01" role="button" aria-expanded="false" aria-controls="scatagory-widget01">Catagories<i class="fas fa-angle-down"></i></a>
 
                                 <div class="widget-wrapper" id="scatagory-widget01">
@@ -50,8 +50,8 @@
                                                 $name = $row['Name'];
                                             ?>
                                                 <li class="checkbox-item">
-                                                    <input type="checkbox">
-                                                    <span class="checkbox"></span>
+                                                    <input type="checkbox" class="category_selector" id="<?php echo $stock_id; ?>" value="<?php echo $name; ?>">
+                                                    <span class="checkbox" value="<?php echo $name; ?>"></span>
                                                     <span class="label"><?php echo $name; ?></span>
                                                 </li>
                                                 <?php
@@ -67,18 +67,20 @@
                             </div>
 
                             <div class="widget">
-                                <h4 class="widget-title d-none d-lg-block">Filter by Price</h4>
+                                <h4 class="widget-title d-none d-lg-block">Filter by price</h4>
                                 <a class="widget-title d-lg-none" data-toggle="collapse" href="#scatagory-widget02" role="button" aria-expanded="false" aria-controls="scatagory-widget02">Filter by Price<i class="fas fa-angle-down"></i></a>
 
                                 <div class="widget-wrapper" id="scatagory-widget02">
                                     <div class="range-slider">
                                         <input type="text" class="js-range-slider" value="" />
-                                        <input type="submit" class="submit" value="filter">
+                                        <input type="hidden" id="hidden_minimum_price" value="0"/>
+                                        <input type="hidden" id="hidden_maximum_price" value="2000"/>
+                                        <input type="hidden" class="organization_name" value="<?php echo $organization; ?>">
                                     </div>
                                 </div>
                             </div>
 
-                           <!-- <div class="widget">
+                            <!--<div class="widget">
                                 <h4 class="widget-title d-none d-lg-block">Filter by Brand Name</h4>
                                 <a class="widget-title d-lg-none" data-toggle="collapse" href="#scatagory-widget03" role="button" aria-expanded="false" aria-controls="scatagory-widget03">Filte by Brand Name<i class="fas fa-angle-down"></i></a>
 
@@ -116,7 +118,9 @@
                                 <div class="col-sm-6 col-xl-4" id="<?php echo $name; ?>">
                                     <div class="product-item <?php if($quantity < $restock_level ){ ?> stock-out <?php }?>" id="<?php echo $name; ?>">
                                         <div class="product-thumb">
-                                            <a onclick="openModal()" class="modalOpen" id="<?php echo $id; ?>"><img src="../assets/images/products/<?php echo $image; ?>" alt="product"></a>
+                                            <!--you can add this onclick to anchor tag below when necessary-->
+                                                <!--onclick="openModal()"-->
+                                            <a  class="modalOpen" id="<?php echo $id; ?>"><img src="../assets/images/products/<?php echo $image; ?>" alt="product"></a>
                                             <?php if($discount > 0){?><span class="batch sale">Sale</span><?php } ?>  
                                                 <?php
                                                 $item_in_wishlist = '';
@@ -343,7 +347,6 @@
                                         <?php
                                 }  
                                 ?>
-                                
                                 <!--<div class="col-12 text-center mt-4">
                                     <button class="loadMore">Load More</button>
                                 </div>-->

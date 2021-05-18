@@ -4,6 +4,7 @@
  require('../functions.php');
  require('../queries.php');
  include('cart.php');
+ include('wishlist_process.php');
  if (isset($_SESSION['logged_in'])) {
    if ($_SESSION['logged_in'] == TRUE) {
  //valid user has logged-in to the website
@@ -265,7 +266,7 @@ Preloader
  </style>
 </head>
 <body id="top-page">
-<div class="preloader">
+    <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
             <p class="loader__label"><?php echo $organization ?></p>
@@ -399,8 +400,8 @@ Preloader
                         <li class="nav-item"><a href="index.php"> Home</a></li>
                         <li class="item-has-children"><a data-toggle="collapse" href="#mainmenuid2" role="button" aria-expanded="false" aria-controls="mainmenuid2"><span>About Us</span> <i class="fas fa-angle-down"></i></a>
                          <ul class="submenu collapse" id="mainmenuid2">
-                                    <li><a href="about.php">Who We Are</a></li>
-                                    <li><a href="about.php">Mission & Vision</a></li>
+                                    <li><a href="about.php#who_we_are">Who We Are</a></li>
+                                    <li><a href="about.php#mission&vision">Mission & Vision</a></li>
                                     <li><a href="faq.php">FAQs</a></li>
                         </ul>            
                         <li class="nav-item"><a href="product-list.php">Our Products</a></li>
@@ -772,26 +773,26 @@ Preloader
                    
                     <div class="select-search-option d-none d-md-flex">
                         <div class="flux-custom-select">
-                            <select>
-                              <option value="0">Select Category</option>
+                            <select id="CatSelect">
+                              <option id="cat0" value="0">Select Category</option>
                               <?php
                                 foreach($categoriesList as $row){
                                 $id = $row['id'];
                                 $category = $row['Category_Name'];
                             ?>
-                              <option value="<?php echo $id; ?>"><?php echo $category; ?></option>
+                              <option id="cat<?php echo $id; ?>" value="<?php echo $id; ?>"><?php echo $category; ?></option>
                             <?php
                                 }
                             ?>  
                             </select>
                         </div>
                         <form action="../search" method="POST" class="search-form">
-                            <input type="text" name="search" id="productSearch" placeholder="Search for Products">
+                            <input type="text" name="search" id="product_Search" placeholder="Search for Products">
                             <button type="submit" class="submit-btn" name="searchSubmit"><i class="fas fa-search"></i></button>
                         </form>
                     </div>
                     <div class="col-7 offset-4" style="position: absolute;z-index: 4;">
-                        <div class="list-group" id="show-list" >
+                        <div class="list-group" id="show_list" >
                         </div>
                     </div>
                 </div>
@@ -892,8 +893,8 @@ Preloader
                             <li class="nav-item"><a href="index.php"> Home</a></li>
                             <li class="item-has-children" ><a href="#">About Us <i class="fas fa-angle-down"></i></a>
                             <ul class="submenu">
-                                    <li><a href="about.php">Who We Are</a></li>
-                                    <li><a href="about.php">Mission & Vision</a></li>
+                                    <li><a href="about.php#who_we_are">Who We Are</a></li>
+                                    <li><a href="about.php#mission&vision">Mission & Vision</a></li>
                                     <li><a href="faq.php">FAQs</a></li>
                             </ul>  
                             </li>      

@@ -53,11 +53,11 @@
                             <div class="col-md-6 col-lg-3">
                                 <div class="footer-widget">
                                     <a href="index.php" class="footer-logo"><img src="../assets/images/logo_footer.png" width="170px" alt="logo"></a>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod teincididunt ut labore et </p>
+                                    
                                     <ul class="social-media-list d-flex flex-wrap">
                                         <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                         <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                                         <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
                                     </ul>
                                     <img src="../assets/images/halal.png" class="ml-4" width="120px" height="120px" alt="halal">
@@ -66,18 +66,14 @@
 
                             <div class="col-md-6 col-lg-3">
                                 <div class="footer-widget">
-                                    <h5 class="footer-title">Product Categories</h5>
+                                    <h5 class="footer-title">Get to know us</h5>
                                     <div class="widget-wrapper">
                                         <ul>
-                                        <?php
-                                            foreach($categoriesList as $row){
-                                            $id = $row['id'];
-                                            $category = $row['Category_Name'];
-                                        ?>
-                                        <li><a href="#"><?php echo $category; ?></a></li>
-                                        <?php
-                                            }
-                                        ?>  
+                                        <li><a href="about.php#who_we_are">Who We Are</a></li>
+                                        <li><a href="about.php#mission&vision">Mission and Vision</a></li>
+                                        <li><a href="faq.php">FAQs</a></li>
+                                        <li><a href="privacy-policy.php">Privacy policies</a></li>
+                                        <li><a href="cookie-policy.php">Cookies</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -88,14 +84,10 @@
                                     <h5 class="footer-title">Useful Links</h5>
                                     <div class="widget-wrapper">
                                         <ul>
-                                            <li><a href="about.php">About Us</a></li>
                                             <li><a href="product-list.php">Our Products</a></li>
-                                            <!--<li><a href="blog-rightsidebar.php">Blog</a></li>-->
-                                            <li><a href="faq.php">FAQ</a></li>
+                                            <li><a href="blog.php">Blog</a></li>
                                             <!--<li><a href="#">Careers</a></li>-->
                                             <li><a href="contact.php">Contact Us</a></li>
-                                            <li><a href="privacy-policy.php">Privacy policies</a></li>
-                                           <li><a href="cookie-policy.php">Cookies</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -173,7 +165,7 @@
                                 </div>
                             </div>
                             <div class="product-slick" >
-                            <div id="modal-product-image"></div>
+                            <!--<div id="modal-product-image"></div>-->
                                 <div><img src="../assets/images/product-detail/02.jpg" alt="image"
                                         class="img-fluid blur-up lazyload image_zoom_cls-1"></div>
                             </div>
@@ -231,7 +223,7 @@
 
 
 
-    <!-- login-area 
+     <!--login-area 
     <section id="login-area" class="login-area">
         <div onclick="CloseSignUpForm()" class="overlay"></div>
         <div class="login-body-wrapper">
@@ -308,18 +300,18 @@
     <script src='../assets/js/jquery-easeing.min.js'></script>
     <script src='../assets/js/scroll-nav.js'></script>
     <script src="../assets/js/jquery.elevatezoom.js"></script>
-    <script src='../assets/js/price-range.js?29082'></script>
+    <script src='../assets/js/price-range.js?293454082'></script>
     <script src='../assets/js/custom-select.js'></script>
     <script src='../assets/js/fly-cart.js?3759597'></script>
     <script src='../assets/js/multi-countdown.js'></script>
     <script src='../assets/js/theia-sticky-sidebar.js'></script>
-    <script src='../assets/js/functions.js?3267633475'></script>
+    <script src='../assets/js/functions.js?893867253756375'></script>
    <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 $(function() {
     "use strict";
     $(function() {
-        $(".preloader").fadeOut();
+        $(".preloader").fadeOut(); 
     });
 });
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -341,6 +333,7 @@ grecaptcha.ready(function() {
             document.getElementById('token').value = token;
         });
     });
+
 </script>
 <!--End of Tawk.to Script-->
 </body>
