@@ -331,7 +331,15 @@ elseif ($where=='order') {
   $price = $_POST['price'];
   $discount = $_POST['discount'];
   $quantity = $_POST['quantity'];
-  $customer = $_POST['customer'];
+  $customer = '1';
+  $customerType = 'walk_in';
+  $newCustomer = $_POST['newCustomer'];
+  if($_POST['customer'] != 'N/A')
+  {
+    $customer = $_POST['customer'];
+    $newCustomer = 'N/A';
+    $customerType = 'online';
+  }
   $stockIDx = $_POST['stockid'];
   $lateOrder = $_POST['lateOrder'];
   $cost = $price - $discount;
@@ -354,7 +362,8 @@ elseif ($where=='order') {
   }
   $newDebt = $balance;
   $newBalance = (int)$newDebt - ((int)$cost*(int)$quantity);
-  $sql = "INSERT INTO `orders`(`Customer_id`,`Category_id`,`Quantity`,`Debt`,`Discount`,`Balance`,`Stock_id`,`Delivery_time`) VALUES('$customer','$category','$quantity','$newDebt','$discount','$newBalance','$stockIDx','$lateOrder')";
+  $sql = "INSERT INTO `orders`(`Customer_id`,`Category_id`,`Quantity`,`Debt`,`Discount`,`Balance`,`Stock_id`,`Delivery_time`,`Walk_in_name`,`Customer_type`) VALUES('$customer','$category','$quantity','$newDebt','$discount','$newBalance','$stockIDx','$lateOrder','$newCustomer','$customerType')";
+  echo "success";
   $product = mysqli_query($connection,"SELECT Name,Category_Name  FROM `stock` inner join category on stock.Category_id = category.id WHERE stock.id = '".$stockIDx."'")or die($connection->error);
    $Product = mysqli_fetch_array($product);
   $Category_Name = $Product['Category_Name'];

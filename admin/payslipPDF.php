@@ -22,7 +22,7 @@ $start_date = date("l, F d, Y", strtotime($today." -1 month"));
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PAY SLIP</title>
 </head><body>
-<p align="center"><strong><img src="assets/img/Kwanza Tukule.png" height="60" width="155"></strong></p>
+<p align="center"><strong><img src="../assets/images/logo-footer.png" height="100" width="150"></strong></p>
 <p align="center">PAY SLIP</p>
 <p align="center">Employee Name:'.$name.' </p>
 <p align="center">Department:'.$role.' </p>

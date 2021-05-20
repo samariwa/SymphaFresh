@@ -42,11 +42,27 @@ else if($where == 'biggestPayers' )
        $payerList = array(['Customer', 'Amount Paid']);
         foreach($biggestPayers as $row){
         $name = $row['name'];
+        if($name == 'Unregistered Customer')
+        {
+          $name = $row['new_name'];
+        }
         $total = $row['sum'];
         $resultArray = array($name, $total);
         array_push($payerList, $resultArray);
         }
        $array = json_encode($payerList);
+        echo $array;
+}
+else if($where == 'customerType' )
+{   
+       $typeList = array(['Customer Type', 'Number']);
+        foreach($customerTypeNumbers as $row){
+        $type = $row['type'];
+        $count = $row['count'];
+        $resultArray = array($type, $count);
+        array_push($typeList, $resultArray);
+        }
+       $array = json_encode($typeList);
         echo $array;
 }
 else if($where == 'salesTotal')
@@ -78,16 +94,12 @@ else if($where == 'profit/loss')
         $sales = $row1['sum'];
         $row2 = mysqli_fetch_array($monthIncomeValue);
         $income = $row2['sum'];
-        $row5 = mysqli_fetch_array($monthExtraSalesValue);
-        $extraSales = $row5['sum'];
-        $row6 = mysqli_fetch_array($monthExtraIncomeValue);
-        $extraIncome = $row6['sum'];
         $row3 = mysqli_fetch_array($monthExpenseValue);
         $expenses = $row3['sum'];
         $row4 = mysqli_fetch_array($salariesTotal);
         $salaries = $row4['salaries'];
         $expenses = $expenses + $salaries;
-        $gross = ($income + $extraIncome) - ($sales + $extraSales);
+        $gross = $income  - $sales;
         $net = $gross - $expenses ;
         array_push($values, $gross);
         array_push($values, $expenses);

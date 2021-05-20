@@ -2,6 +2,7 @@
 session_start();
 require_once('../tcpdf/tcpdf.php');
  include('../queries.php');
+ require '../config.php';
 // create new PDF document
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
@@ -132,6 +133,13 @@ elseif ($last_net < 0) {
   $resultArray = array($name, $total);
   array_push($payerList, $resultArray);
   }
+  $customerType = array();
+  foreach($customerTypeNumbers as $row){
+  $type = $row['type'];
+  $count = $row['count'];
+  $resultArray = array($type, $count);
+  array_push($customerType, $resultArray);
+  }
   $result8 = mysqli_fetch_array($customersTotalMonth);
   $customersTotal = $result8['count'];
   $result9 = mysqli_fetch_array($customersTotalLastMonth);
@@ -194,40 +202,21 @@ $newSuppliersStatement .= '</table>';
 // writeHTMLCell($w, $h, $x, $y, $html='', $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true)
 
 // create some HTML content
-$html = '<h1 style="text-align:center"><strong><img src="../assets/images/logo_footer.png" height="100" width="150"></strong></h1>
+$html = '<h1 style="text-align:center"><strong><img src="../assets/images/logo-footer.png" height="100" width="150"></strong></h1>
 <b>Date: '.$date.'</b><br>
 <h3>Purpose</h3>
     <p>
-      We exist to make a positive difference in the livelihoods of our people socially and economically by providing them food supply services prepared under the utmost standards of hygiene and sanitation, using sustainable sources of renewable energy, allowing them to maximize their potential.
+      '.$purpose.'
     </p>
     <h3>Vision</h3>
     <p>
-      To Make Nutritious food affordable for the many.
+      '.$vision.'
     </p>
     <h3>Mission Statement</h3>
     <p>
-      We reliably offer better food supply chain in Africa that feeds the community with affordable, healthy, nutritious foods, prepared under the utmost standards of hygiene that allow our clients to overcome food insecurity, post-harvest losses and energy consumption/ that allow our clients to enjoy a delicious meal while saving time and conserving energy.
+      '.$mission.'
     </p>
     <h2>Performance Analysis</h2>
-    <p>Below is the report for the number items sold for each brand with the corresponding value for <u><b>sales done yesterday.</b></u></p>
-    <table border="1" cellspacing="1" cellpadding="4" align="center">
-    <tr>
-        <th><b>Product</b></th>
-        <th><b>Quantity</b></th>
-        <th><b>Value</b></th>  
-    </tr>';
-  foreach($salesValueYesterday as $row){
-  $name = $row['name'];
-  $qty = $row['sum'];
-  $price = $row['price'];
-  $value = $qty * $price;
-   $html .= ' <tr>
-        <td>'.$name.'</td>
-        <td>'.number_format($qty).'</td>
-        <td>Ksh. '.number_format($value).'</td>
-    </tr>';
-  }  
-$html .= '</table>
 <p>Below is the report that examines the company performance for the last one month.</p>
 <p>This month we managed to <b>sale products worth Ksh. '.$total_sales.'</b>. This income for sale of different products whose demands depended on the customers preferences. The <b>5 most demanded products</b> this month  that were <b>ordered from the company</b> with the corresponding sales quantities(units) were as follows:</p>
 <ol>
@@ -237,14 +226,6 @@ $html .= '</table>
     <li>'.$fastmovingproducts[3][0].' - '.number_format($fastmovingproducts[3][1]).'</li>
     <li>'.$fastmovingproducts[4][0].' - '.number_format($fastmovingproducts[4][1]).'</li></b>
 </ol>
-The <b>5 most demanded products</b> this month <b>based on sales made</b> with the corresponding sales quantities(units) were as follows:</p>
-<ol>
-    <b><li>'.$fastsellingproducts[0][0].' - '.number_format($fastsellingproducts[0][1]).'</li>
-    <li>'.$fastsellingproducts[1][0].' - '.number_format($fastsellingproducts[1][1]).'</li>
-    <li>'.$fastsellingproducts[2][0].' - '.number_format($fastsellingproducts[2][1]).'</li>
-    <li>'.$fastsellingproducts[3][0].' - '.number_format($fastsellingproducts[3][1]).'</li>
-    <li>'.$fastsellingproducts[4][0].' - '.number_format($fastsellingproducts[4][1]).'</li></b>
-</ol>
 <p>On the other hand the <b>5 least  demanded</b> products of the month that were <b>ordered from the company</b> with their corresponding sales quantities(units) were as follows:</p>
 <ol>
     <b><li>'.$slowmovingproducts[0][0].' - '.number_format($slowmovingproducts[0][1]).'</li>
@@ -252,14 +233,6 @@ The <b>5 most demanded products</b> this month <b>based on sales made</b> with t
     <li>'.$slowmovingproducts[2][0].' - '.number_format($slowmovingproducts[2][1]).'</li>
     <li>'.$slowmovingproducts[3][0].' - '.number_format($slowmovingproducts[3][1]).'</li>
     <li>'.$slowmovingproducts[4][0].' - '.number_format($slowmovingproducts[4][1]).'</li></b>
-</ol>
-<p>The <b>5 least  demanded</b> products of the month <b>based on sales made</b> with their corresponding sales quantities(units) were as follows:</p>
-<ol>
-    <b><li>'.$slowsellingproducts[0][0].' - '.number_format($slowsellingproducts[0][1]).'</li>
-    <li>'.$slowsellingproducts[1][0].' - '.number_format($slowsellingproducts[1][1]).'</li>
-    <li>'.$slowsellingproducts[2][0].' - '.number_format($slowsellingproducts[2][1]).'</li>
-    <li>'.$slowsellingproducts[3][0].' - '.number_format($slowsellingproducts[3][1]).'</li>
-    <li>'.$slowsellingproducts[4][0].' - '.number_format($slowsellingproducts[4][1]).'</li></b>
 </ol>
 <p>All products combined generated a <b>revenue of Ksh. '.number_format($total_income).'</b>.</p>
 <p>With that the <b>gross '.$gross_profit_loss.' was Ksh. '.number_format($gross).'</b>.This is '.$gross_up_down.' gross projection by '.intval($gross_pc).'%.Last month there was a '.$last_gross_up_down.' of Ksh. '.number_format($last_gross).'.</p>
@@ -301,6 +274,11 @@ $html .= '</table>
     <li>'.$payerList[4][0].' - Ksh.'.number_format($payerList[4][1]).'</li></b>
 </ol>
 <p>The above customers are the new key customers for the coming month given that they made the biggest orders and made timely payments.</p>
+<p>We had different types of customers based on their purchasing method(online or physical). The <b>numbers of each type of customer</b> during the period were as follows:</p>
+<ol>
+    <b><li>'.$customerType[0][0].' - '.$customerType[0][1].'</li>
+    <li>'.$customerType[1][0].' - '.$customerType[1][1].'</li></b>
+</ol>
 <p>During the month, we had deliverers who made deliveries to the various customers. Each deliverer had their own sub-set of customers that they made deliveries to. The <b>deliverers <u>this month</u> with their corresponding value of worth of orders delivered to customers and amount of money collected</b> durig the period are as follows:</p>
 <table border="1" cellspacing="1" cellpadding="4" align="center">
     <tr>
@@ -332,44 +310,6 @@ $deliverer = $row['deliverer'];
   $worth = $row['worth'];
    $html .= ' <tr>
         <td>'.$deliverer.'</td>
-        <td>Ksh. '.number_format($worth).'</td>
-        <td>Ksh. '.number_format($collected).'</td>
-    </tr>';
-  }  
-$html .= '</table>
-<p>During the month, we had sales people who did sales to the various food vendors. The <b>sales people <u>this month</u> with their corresponding value of worth of sales done and amount of money collected</b> durig the period are as follows:</p>
-<table border="1" cellspacing="1" cellpadding="4" align="center">
-    <tr>
-        <th><b>Sales Person</b></th>
-        <th><b>Worth of Sales</b></th>
-        <th><b>Amount Collected</b></th> 
-    </tr>';
-  foreach($delivererExtraSalesMonth as $row){
-$firstname = $row['firstname'];
-$lastname = $row['lastname'];
-  $collected = $row['sum'];
-  $worth = $row['worth'];
-   $html .= ' <tr>
-        <td>'.$firstname.' '.$lastname.'</td>
-        <td>Ksh. '.number_format($worth).'</td>
-        <td>Ksh. '.number_format($collected).'</td>
-    </tr>';
-  }  
-$html .= '</table>
-<p>The <b>sales people <u>this past week</u> with their corresponding value of worth of sales done and amount of money collected</b> durig the period are as follows:</p>
-<table border="1" cellspacing="1" cellpadding="4" align="center">
-    <tr>
-        <th><b>Sales Person</b></th>
-        <th><b>Worth of Sales</b></th>
-        <th><b>Amount Collected</b></th> 
-    </tr>';
-  foreach($delivererExtraSalesWeek as $row){
-$firstname = $row['firstname'];
-$lastname = $row['lastname'];
-  $collected = $row['sum'];
-  $worth = $row['worth'];
-   $html .= ' <tr>
-        <td>'.$firstname.' '.$lastname.'</td>
         <td>Ksh. '.number_format($worth).'</td>
         <td>Ksh. '.number_format($collected).'</td>
     </tr>';

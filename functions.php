@@ -132,6 +132,12 @@ function page_views($page_id){
    return $total_page_views;
 }
 
+function getStringBetween($str,$from,$to)
+{
+    $sub = substr($str, strpos($str,$from)+strlen($from),strlen($str));
+    return substr($sub,0,strpos($sub,$to));
+}
+
 function text_limit($x, $length)
 {
   if(strlen($x)<=$length)
@@ -141,6 +147,13 @@ function text_limit($x, $length)
   else
   {
     $y=substr($x,0,$length) . '...';
+    $tag = '';
+    if (strpos($y, '<') !== false) {
+      $tag = getStringBetween($y,'<','>');
+      if (strpos($y, '<'.$tag.'>') !== false && strpos($y, '</'.$tag.'>') == false) {
+        $y .= '</'.$tag.'>';
+      }
+    }
     echo $y;
   }
 }

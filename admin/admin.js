@@ -405,9 +405,37 @@ setTime();
         });
       }
 
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawKeyCustomersChart);
+      function drawKeyCustomersChart() {
+        var where = 'customerType';
+       $.post("../charts.php",{where:where},
+        function(result){
+          var data = $.parseJSON(result);
+          var data0 = data[0][0];
+          var data1 = data[0][1];
+          var data2 = data[1][0];
+          var data3 = data[1][1];
+          var data4 = data[2][0];
+          var data5 = data[2][1];
+        var data = google.visualization.arrayToDataTable([
+          [data0, data1],
+         [data2, parseInt(data3)],
+          [data4, parseInt(data5)]
+        ]);
+
+        var options = {
+          title: 'Customer types in the past month',
+          width:1030,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('customerTypeChart'));
+        chart.draw(data, options);
+        });
+      }
+
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawRevenueExpenseChart);
-
       function drawRevenueExpenseChart() {
         var where = 'salesExpenses';
        $.post("../charts.php",{where:where},
@@ -791,7 +819,7 @@ function selectEmployee(selection) {
         var net = $(`#net${id}`).text();
         $.post("payslipPDF.php",{id:id,name:name,gross:gross,kra:kra,nssf:nssf,nhif:nhif,net:net},
          function(result){
-          var mywindow = window.open('', 'Kwanza Tukule', 'height=400,width=600');
+          var mywindow = window.open('', 'Sympha Fresh', 'height=400,width=600');
                         mywindow.document.write('<html><head><title></title>');
                         mywindow.document.write('</head><body>');
                         mywindow.document.write(result);
@@ -802,17 +830,77 @@ function selectEmployee(selection) {
                         mywindow.close();
           }); 
 }
+ 
+$('input:radio[name="selectedCustomer"]').change(function(){
+  $("#newCustomer").attr('disabled','disabled');
+});
 
+$('input:radio[id="selectedUnregisteredCustomer"]').change(function(){
+$("#newCustomer").removeAttr("disabled");
+$("#newCustomer").val('');
+var name = $("#newCustomer").val();
+  customerDetails = "";
+        customerDetails += "<h5>Confirm Customer Details</h5>&emsp;&emsp;-";
+            customerDetails += "&emsp;&emsp;Name: ";
+            customerDetails += name;
+             customerDetails += "<br>&emsp;&emsp;&emsp;&emsp;&ensp;Location: ";
+            customerDetails += 'N/A';
+            customerDetails += "<br>&emsp;&emsp;&emsp;&emsp;&ensp;Contact: ";
+            customerDetails += 'N/A';
+             customerDetails += "<br>&emsp;&emsp;&emsp;&emsp;&ensp;Deliverer: ";
+            customerDetails += 'N/A';
+            if ($('#customerDetails').html('')){
+            $("#customerDetails").append(customerDetails);
+          }
+          newCustomer = $(`#newCustomer`).val();
+});
+
+var newCustomer = '';
+$("#newCustomer").on("keyup", function() {
+  var name = $("#newCustomer").val();
+  customerDetails = "";
+        customerDetails += "<h5>Confirm Customer Details</h5>&emsp;&emsp;-";
+            customerDetails += "&emsp;&emsp;Name: ";
+            customerDetails += name;
+             customerDetails += "<br>&emsp;&emsp;&emsp;&emsp;&ensp;Location: ";
+            customerDetails += 'N/A';
+            customerDetails += "<br>&emsp;&emsp;&emsp;&emsp;&ensp;Contact: ";
+            customerDetails += 'N/A';
+             customerDetails += "<br>&emsp;&emsp;&emsp;&emsp;&ensp;Deliverer: ";
+            customerDetails += 'N/A';
+            if ($('#customerDetails').html('')){
+            $("#customerDetails").append(customerDetails);
+          }
+          newCustomer = $(`#newCustomer`).val();
+})
 
 var customerArr = new Array();
 function selectCustomer(selection) {
         var id = selection.value;
+        var name = '';
+        var location = '';
+        var number = '';
+        var deliverer = '';
+        while(customerArr.length > 0) {
+          customerArr.pop();
+        }
         customerArr.push(id);
-        var name = $(`#customerName${id}`).text();
-        var location = $(`#customerLocation${id}`).text();
-        var number = $(`#customerNumber${id}`).text();
-        var deliverer = $(`#customerDeliverer${id}`).text();
-        var customerDetails = "";
+        if(id == 'N/A')
+        {
+          name = $(`#newCustomer${id}`).val();
+          location = 'N/A';
+          number = 'N/A';
+          deliverer = 'N/A';
+          newCustomer = $(`#newCustomer`).val();
+        }
+        else{
+          newCustomer = 'N/A';
+          name = $(`#customerName${id}`).text();
+         location = $(`#customerLocation${id}`).text();
+         number = $(`#customerNumber${id}`).text();
+         deliverer = $(`#customerDeliverer${id}`).text();
+        }
+        customerDetails = "";
         customerDetails += "<h5>Confirm Customer Details</h5>&emsp;&emsp;-";
             customerDetails += "&emsp;&emsp;Name: ";
             customerDetails += name;
@@ -1027,23 +1115,19 @@ function getIndexOfProduct(arr, k) {
   }
 }
 
-
-         $(document).ready(function(){
         $('.completeOrder').click(function(){
-            completeOrderBalance(customerArr[0],cartItems);
+            completeOrderBalance(customerArr[0],cartItems,newCustomer);
         });
-      });
 
-
-      function completeOrderBalance(custID,cartArr){
+      function completeOrderBalance(custID,cartArr,newCust){
         for (var i = 0; i < cartArr.length; i++) {
           var stockID = cartArr[i][0];
-          $.post("../add.php",{where:'order',price:cartArr[i][2],quantity:cartArr[i][3], discount:cartArr[i][4] ,customer:custID, stockid:cartArr[i][0], lateOrder:$(`#deliveryDate`).val()},
+          $.post("../add.php",{where:'order',price:cartArr[i][2],quantity:cartArr[i][3], discount:cartArr[i][4] ,customer:custID, stockid:cartArr[i][0], lateOrder:$(`#deliveryDate`).val(),newCustomer:newCust},
           function(result){
             if (result=='success') {
                 cartArr.shift();
                 customerArr.shift();
-                // alert("Order Successfully Added");
+                //alert("Order Successfully Added"); 
             }
             else if(result=='unavailable'){
                 alert("Quantity for stock id "+ stockID +" reduced below ordered quantity in ordering process. Order for the prodcust could not be completed.");
@@ -1053,11 +1137,9 @@ function getIndexOfProduct(arr, k) {
         alert("Order Successfully Added");
       }
 
-      $(document).ready(function(){
         $('.completeRequisition').click(function(){
             completeSalesBalance(sellerArr[0],cartItems);
         });
-      });
 
       function completeSalesBalance(sellerID,cartArr){
         for (var i = 0; i < cartArr.length; i++) {
@@ -1913,7 +1995,6 @@ function saveOrderToday(idx){
         var upload = new FormData(form);
         var location = $('#location').val();
         var where = 'files';
-        //alert("Hi")
         $.post("../add.php",{name:name,description:description,location:location,upload:upload,where:where},
         function(result){
          if (result == 'success') {
@@ -2306,6 +2387,51 @@ function saveOrderToday(idx){
            alert("Vehicle driver Successfully changed");
          });
        });
+
+       $("#receiptCustomer").on("keyup", function() {
+        var txt = $('#receiptCustomer').val();
+        if(txt != '')
+        {
+          $.ajax({
+            url: '../search.php',
+            type:"post",
+            data:{receiptSearch:txt},
+            dataType:"text",
+            success:function(data)
+            {
+    
+              $('#customerReceiptResult').html(data);
+            }
+          });
+        }
+        else
+        {
+          $('#customerReceiptResult').html('');
+        }
+        $(document).on('click','a',function(){
+            $("#receiptCustomer").val($(this).text());
+            var id =$(this).attr("id");
+            $('#customerId').val(id);
+            $("#customerReceiptResult").html(''); 
+        });
+      })
+
+      $(document).on('click','.printReceipt',function(){
+        var name = $(`#receiptCustomer`).val();
+       var date = $(`#receiptDate`).val();
+       var time = $(`#receiptTime`).val();
+       $.post("receiptPDF.php",{name:name,date:date,time:time},
+       function(result){ var mywindow = window.open('', 'Sympha Fresh', 'height=400,width=600');
+                       mywindow.document.write('<html><head><title></title>');
+                       mywindow.document.write('</head><body>');
+                       mywindow.document.write(result);
+                       mywindow.document.write('</body></html>');
+                       mywindow.document.close();
+                       mywindow.focus();
+                       mywindow.print();
+                       //mywindow.close();
+        });
+      });   
 
  $(document).on('click','.printCustomers',function(){
                 $.ajax({

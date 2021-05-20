@@ -49,6 +49,10 @@
          $count++;
           $id = $row['id'];
          $customer = $row['customer'];
+         if($customer == 'Unregistered Customer')
+         {
+          $customer = $row['new_name'];
+         }
         $number = $row['number'];
         $deliverer = $row['deliverer'];
         $category = $row['category'];

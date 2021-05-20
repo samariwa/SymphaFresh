@@ -29,7 +29,7 @@ else{
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Payment Status</title>
 </head><body>
-<p align="center"><strong><img src="../assets/images/logo_footer.png" height="100" width="150"></strong></p>
+<p align="center"><strong><img src="../assets/images/logo-footer.png" height="100" width="150"></strong></p>
 <p align="center">Payment Status</p>
 <p align="center">Products:'.$creditNumber1.' </p>
 <p> Serial #: '.$random.'</p>

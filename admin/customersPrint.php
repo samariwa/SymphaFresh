@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Customers Print</title>
 </head><body>
-<p align="center"><strong><img src="../assets/images/logo_footer.png" height="100" width="150"></strong></p>
+<p align="center"><strong><img src="../assets/images/logo-footer.png" height="100" width="150"></strong></p>
 <p align="center">Active Customers</p>
   <?php
         $activecustomersrowcount = mysqli_num_rows($customersPrintList);

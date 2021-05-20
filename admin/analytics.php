@@ -129,6 +129,13 @@
 <br>
 <div class="row">
   <div class="col-md-6">
+    <h4>Customer Type Comparison</h4>
+  </div>
+ <div id="customerTypeChart" style="width: 1100px; height: 500px"></div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-6">
     <h4>Sales Performance</h4>
   </div>
  <div id="curve_chart" style="width: 1100px; height: 500px"></div>

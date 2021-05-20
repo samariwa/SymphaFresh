@@ -20,7 +20,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Products Distribution</title>
 </head><body>
-<p align="center"><strong><img src="../assets/images/logo_footer.png" height="100" width="150"></strong></p>
+<p align="center"><strong><img src="../assets/images/logo-footer.png" height="100" width="150"></strong></p>
 <p align="center">Products Distribution (For Tomorrow)</p>
 <p align="center">No. of products ordered:'.$varietyNumber1.' </p>
 <p> Serial #: '.$random.'</p>
@@ -43,6 +43,10 @@
         foreach($distributionFull as $row){
          $count++;
          $name = $row['name'];
+         if($name == 'Unregistered Customer')
+         {
+           $name = $row['new_name'];
+         }
          $number = $row['number'];
          $location = $row['location'];
          $stock = $row['stock'];
@@ -97,6 +101,10 @@ echo $pdf;
         foreach($distributionPartial as $row){
          $count++;
          $name = $row['name'];
+         if($name == 'Unregistered Customer')
+         {
+           $name = $row['new_name'];
+         }
     $number = $row['number'];
     $location = $row['location'];
     $stock = $row['stock'];

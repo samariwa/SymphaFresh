@@ -32,6 +32,15 @@
     </tr>
   </thead>
   <tbody >
+  <tr>
+      <td ><input type="radio" id='selectedUnregisteredCustomer' onclick="selectCustomer(this);" name="selectedCustomer" value="N/A"></td>
+      <th scope="row" id="id">--</th>
+      <td id="customerName">Unregistered Customer</td>
+      <td id="customerLocation">--</td>
+      <td id="customerNumber">--</td>
+      <td id="customerDeliverer">--</td>
+      <td id="customerNote">--</td>
+    </tr>
     <?php
         $count = 0;
         foreach($customersList as $row){
@@ -57,7 +66,15 @@
     ?>
   </tbody>
 </table><br>
-
+<p style="text-align:center">If non-registered customer field name below</p>
+<div class="row">
+      <div class="input-group-prepend" style="margin-left: 335px;" >
+           <span class="input-group-text" id="inputGroup-sizing-default">Customer Name:</span>
+           </div>
+       <div class="col-md-5">
+       <input type="text"  class="form-control col-md-6" name="newCustomer" id="newCustomer" aria-describedby="inputGroup-sizing-default" autofocus style="font-family: FontAwesome, Arial; font-style: normal;">
+        </div>
+        </div><br><br>
 
        <table id="productOrderSearch" class="table table-striped table-hover" style="display:block;overflow-y:scroll;text-align: center;">
   <thead class="thead-dark">
@@ -135,7 +152,7 @@
   
 </div><br>
     <div class="row">
-      <div class="input-group-prepend" style="margin-left: 310px;" >
+      <div class="input-group-prepend" style="margin-left: 335px;" >
            <span class="input-group-text" id="inputGroup-sizing-default">Date of Delivery:</span>
            </div>
        <div class="col-md-5">
@@ -144,7 +161,7 @@
         </div><br><br>
 
           <div class="row">
-          <button type="button" class="btn btn-success col-md-4 completeOrder" style="margin-left: 320px"><i class="fa fa-check"></i>&emsp;Complete Order</button>
+          <button type="submit" class="btn btn-success col-md-4 completeOrder" style="margin-left: 340px"><i class="fa fa-check"></i>&emsp;Complete Order</button>
         </div><br>
 <!--
              <div class="row">

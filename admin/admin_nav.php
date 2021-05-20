@@ -243,7 +243,7 @@ Preloader
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
         <div class="sidebar-brand-icon ">
-        <img src="../assets/images/logo_navbar.png" height="50" width="100">
+        <img src="../assets/images/logo-navbar.png" height="50" width="100">
         </div>
       </a>
 
@@ -395,9 +395,9 @@ Preloader
       <br>
 
       <li class="nav-item">&emsp;
-        <a style="color: black;" href="#">
+        <a style="color: black;" href="customer_preferences.php">
            <i class="fa fa-heart"></i>
-          <span>Customer Interests</span></a>
+          <span>Customer Preferences</span></a>
       </li>
 
       <br>

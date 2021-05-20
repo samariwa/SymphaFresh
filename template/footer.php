@@ -52,7 +52,7 @@
                         <div class="row">
                             <div class="col-md-6 col-lg-3">
                                 <div class="footer-widget">
-                                    <a href="index.php" class="footer-logo"><img src="../assets/images/logo_footer.png" width="170px" alt="logo"></a>
+                                    <a href="index.php" class="footer-logo"><img src="../assets/images/logo-footer.png" width="170px" alt="logo"></a>
                                     
                                     <ul class="social-media-list d-flex flex-wrap">
                                         <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>

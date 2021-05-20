@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sales Made</title>
 </head><body>
-<p align="center"><strong><img src="../assets/images/logo_footer.png" height="100" width="150"></strong></p>
+<p align="center"><strong><img src="../assets/images/logo-footer.png" height="100" width="150"></strong></p>
 <p align="center">Tomorrow's Orders</p>
   <?php
         $newsalesrowcount = mysqli_num_rows($salesPrintList);
@@ -44,7 +44,11 @@ $today = date('l, F d, Y h:i A', time());
         foreach($salesPrintList as $row){
          $count++;
          $id = $row['id'];
-        $name = $row['Name'];
+         $name = $row['Name'];
+         if($name == 'Unregistered Customer')
+         {
+           $name = $row['new_name'];
+         }
         $contact = $row['Number'];
         $product = $row['name'];
         $qty = $row['Quantity'];

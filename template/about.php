@@ -102,7 +102,7 @@ include('header.php');
                 <div class="col-lg-12 order-lg-last pr-xl-5">
                     <div class="about-content mb-4 ml-5 mb-lg-0 pr-lg-5">
                         <h4>Mission</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur quibusdam enim expedita sed nesciunt incidunt accusamus adipisci officia libero laboriosam! Proin gravida nibh vel velit auctor aliquet. nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Duis sed odio sit amet nibh vultate cursus a sit amet mauris.</p>
+                        <p><?php echo $mission; ?></p>
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@ include('header.php');
                 <div class="col-lg-12 order-lg-last pr-xl-5">
                     <div class="about-content mb-4 ml-5 mb-lg-0 pr-lg-5">
                         <h4>Vision</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. consequuntur quibusdam enim expedita sed nesciunt incidunt accusamus adipisci officia libero laboriosam! Proin gravida nibh vel velit auctor aliquet. nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vultate cursus a sit amet mauris. Duis sed odio sit amet nibh vultate cursus a sit amet mauris.</p>
+                        <p><?php echo $vision; ?></p>
                     </div>
                 </div>
             </div>

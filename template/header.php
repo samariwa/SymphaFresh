@@ -748,7 +748,7 @@ Preloader
                         <a class="bar-btn"><i class="fas fa-bars"></i>All Categories</a>
                         <a class="close-btn"><i class="fas fa-times"></i>All Categories</a>
                     </div>-->
-                    <a href="index.php" class="logo"><img src="../assets/images/logo_navbar.png" width="70px" alt="logo"></a>
+                    <a href="index.php" class="logo"><img src="../assets/images/logo-navbar.png" width="70px" alt="logo"></a>
                 </div> 
 
 
@@ -767,7 +767,7 @@ Preloader
             </div>
             <div class="d-none d-xl-flex row align-items-center">
                 <div class="col-5 col-md-2">
-                    <a href="index.php" class="logo"><img src="../assets/images/logo_navbar.png" width="110px"  alt="logo"></a>
+                    <a href="index.php" class="logo"><img src="../assets/images/logo-navbar.png" width="110px"  alt="logo"></a>
                 </div>
                 <div class="col-5 col-md-9 col-lg-5">
                    

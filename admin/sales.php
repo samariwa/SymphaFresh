@@ -30,17 +30,20 @@
        if ($view == 'Software' || $view == 'Director' || $view == 'CEO' || $view == 'Stores Manager') {
         ?>
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
       <a href="addOrder.php" class="btn btn-success btn-md active" role="button" aria-pressed="true"><i class="fa fa-plus-circle"></i>&ensp;New Order</a>
       </div>
       <div class="col-md-3">
-      <a href="distribution.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true" >Goods Distribution</a>
+      <a href="distribution.php" class="btn btn-warning btn-md active offset-2" role="button" aria-pressed="true" >Goods Distribution</a>
+    </div>
+    <div class="col-md-2">
+      <a href="receipt.php" class="btn btn-secondary btn-md active offset-1" role="button" aria-pressed="true" >Print Recipt</a>
+    </div>
+    <div class="col-md-2">
+      <a href="gatePass.php" class="btn btn-dark btn-md active offset-4" role="button" aria-pressed="true" >Gate Pass</a>
     </div>
     <div class="col-md-3">
-      <a href="gatePass.php" class="btn btn-dark btn-md active offset-6" role="button" aria-pressed="true" >Gate Pass</a>
-    </div>
-    <div class="col-md-3">
-      <a href="returned.php" class="btn btn-info btn-md active offset-6" role="button" aria-pressed="true">Returned Goods</a>
+      <a href="returned.php" class="btn btn-info btn-md active offset-4" role="button" aria-pressed="true">Returned Goods</a>
     </div>
     </div><br>
      <?php
@@ -94,7 +97,12 @@
         foreach($salesListLastMonth as $row){
          $count++;
          $id = $row['id'];
-        $name = $row['Name'];
+         $name = $row['Name'];
+         if($name == 'Unregistered Customer')
+         {
+           $name = $row['new_name'];
+         }
+         $cust_type = $row['type'];
         $contact = $row['Number'];
         $product = $row['name'];
         $qty = $row['Quantity'];
@@ -145,7 +153,7 @@
             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
               <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalScrollableTitle"><?php echo $name; ?> - #ORD<?php echo $id; ?></h5>
+                    <h5 class="modal-title" id="exampleModalScrollableTitle"><?php echo $name; ?> - #ORD<?php echo $id; ?> - <?php echo $cust_type; ?> customer</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -286,7 +294,12 @@
         foreach($salesListYesterday as $row){
          $count++;
          $id = $row['id'];
-        $name = $row['Name'];
+         $name = $row['Name'];
+         if($name == 'Unregistered Customer')
+         {
+           $name = $row['new_name'];
+         }
+         $cust_type = $row['type'];
         $contact = $row['Number'];
         $product = $row['name'];
         //MariaDB Only
@@ -337,7 +350,7 @@
             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
               <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalScrollableTitle"><?php echo $name; ?> - #ORD<?php echo $id; ?></h5>
+                    <h5 class="modal-title" id="exampleModalScrollableTitle"><?php echo $name; ?> - #ORD<?php echo $id; ?> - <?php echo $cust_type; ?> customer</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -463,7 +476,7 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col" width="3%">#</th>
-      <th scope="col" width="18%">Name</th>
+      <th scope="col" width="15%">Name</th>
       <th scope="col" width="19%">Product</th>
       <th scope="col"width="3%">Quantity</th>
       <th scope="col"width="13%">Unit Price</th>
@@ -479,6 +492,11 @@
          $count++;
          $id = $row['id'];
         $name = $row['Name'];
+        if($name == 'Unregistered Customer')
+        {
+          $name = $row['new_name'];
+        }
+        $cust_type = $row['type'];
         $contact = $row['Number'];
         $product = $row['name'];
         $qty = $row['Quantity'];
@@ -529,7 +547,7 @@
             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
               <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalScrollableTitle"><?php echo $name; ?> - #ORD<?php echo $id; ?></h5>
+                    <h5 class="modal-title" id="exampleModalScrollableTitle"><?php echo $name; ?> - #ORD<?php echo $id; ?> - <?php echo $cust_type; ?> customer</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -670,7 +688,12 @@
         foreach($salesListTomorrow as $row){
          $count++;
          $id = $row['id'];
-        $name = $row['Name'];
+         $name = $row['Name'];
+         if($name == 'Unregistered Customer')
+         {
+           $name = $row['new_name'];
+         }
+         $cust_type = $row['type'];
         $contact = $row['Number'];
         $product = $row['name'];
         $qty = $row['Quantity'];
@@ -721,7 +744,7 @@
             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
               <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalScrollableTitle"><?php echo $name; ?> - #ORD<?php echo $id; ?></h5>
+                    <h5 class="modal-title" id="exampleModalScrollableTitle"><?php echo $name; ?> - #ORD<?php echo $id; ?> - <?php echo $cust_type; ?> customer</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -862,7 +885,12 @@
         foreach($salesListNextMonth as $row){
          $count++;
          $id = $row['id'];
-        $name = $row['Name'];
+         $name = $row['Name'];
+         if($name == 'Unregistered Customer')
+         {
+           $name = $row['new_name'];
+         }
+         $cust_type = $row['type'];
         $contact = $row['Number'];
         $product = $row['name'];
         $qty = $row['Quantity'];
@@ -912,7 +940,7 @@
             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
               <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalScrollableTitle"><?php echo $name; ?> - #ORD<?php echo $id; ?></h5>
+                    <h5 class="modal-title" id="exampleModalScrollableTitle"><?php echo $name; ?> - #ORD<?php echo $id; ?> - <?php echo $cust_type; ?> customer</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
