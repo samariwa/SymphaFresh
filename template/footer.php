@@ -295,7 +295,7 @@
                     <button class="btn cookie-btn">Accept</button>
                     </div>
                     <div class="col-6">
-                    <button class="btn btn-danger cookie-exit offset-9">Exit</button> 
+                    <button class="btn btn-danger cookie-exit offset-6">Exit</button> 
                     </div>
                     </div>
             </div>
