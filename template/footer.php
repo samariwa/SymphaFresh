@@ -72,7 +72,7 @@
                                         <li><a href="about.php#who_we_are">Who We Are</a></li>
                                         <li><a href="about.php#mission&vision">Mission and Vision</a></li>
                                         <li><a href="faq.php">FAQs</a></li>
-                                        <li><a href="privacy-policy.php">Privacy policies</a></li>
+                                        <li><a href="privacy-policy.php">Privacy policy</a></li>
                                         <li><a href="cookie-policy.php">Cookies</a></li>
                                         </ul>
                                     </div>
@@ -281,16 +281,28 @@
 
 
 
-   <!--ad popup 
+   <!--ad popup--> 
        <div id="popup" class="popup" style="display: none">
         <div class="popup-overlay"></div>
         <div class="popup-wrapper">
             <div class="popupbox">
-                <a href="https://www.google.com/"><img src="../assets/images/popup.png" alt="popup"></a>
-                <button class="popup-close"><img src="../assets/images/popup-close.png" alt="popup-close"></button>
+               <div class="container cookieContainer">
+                   <p>This site uses cookies to give you the best experience on our site and show you personalised ads.
+                     By accepting you agree to our <a href="privacy-policy.php" style="color: #59b828;">privacy</a> and <a href="cookie-policy.php" style="color: #59b828;">cookie</a> policies.</p>
+                     <hr>
+                     <div class='row'>
+                      <div class="col-4">   
+                    <button class="btn cookie-btn offset-2">Accept Cookies</button>
+                    </div>
+                    <div class="col-8">
+                    <button class="btn btn-danger cookie-exit">Exit</button> 
+                    </div>
+                    </div>
+            </div>
+                <!--<button class="popup-close"><img src="../assets/images/popup-close.png" alt="popup-close"></button>-->
             </div>
         </div>
-    </div>-->
+    </div>
 
     <a href="#top-page" class="to-top js-scroll-trigger"><span><i class="fas fa-arrow-up"></i></span></a>
     <script src='../assets/js/jquery.min.js'></script>
@@ -305,7 +317,7 @@
     <script src='../assets/js/fly-cart.js?3759597'></script>
     <script src='../assets/js/multi-countdown.js'></script>
     <script src='../assets/js/theia-sticky-sidebar.js'></script>
-    <script src='../assets/js/functions.js?893867253756375'></script>
+    <script src='../assets/js/functions.js?893867536375'></script>
    <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 $(function() {

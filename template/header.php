@@ -263,6 +263,16 @@ Preloader
   line-height: 50px;
   margin-top: 20px;
 }
+.cookieContainer{
+    padding:32px;
+    background-color:white;
+    box-shadow:0 -2px 16px rgba(47, 54, 64. 0.151);
+}
+
+.cookieContainer .cookie-btn{
+    background-color: #59b828;
+    color:white;
+}
  </style>
 </head>
 <body id="top-page">

@@ -285,12 +285,15 @@
     });
 
 
-    //popup
+  /*  //popup
     $('.popup-close,.popup-overlay').on("click", function(){
         $('#popup').hide();
-    });
+    });*/
     $(document).ready(function()  {
+        if(!localStorage.getItem("cookieBannerDisplayed"))
+        {
         $("#popup").delay(2000).fadeIn();
+        }
     });
 
     if($(window).width() > 990) {
@@ -302,8 +305,14 @@
         });
     }
 
+    $(document).on('click',".cookie-btn ",function(){
+        $('#popup').hide();
+        localStorage.setItem("cookieBannerDisplayed","true");
+    });
 
-
+    $(document).on('click',".cookie-exit ",function(){
+        $('#popup').hide();
+    });
 
     $(function () {
         setNavigation();
