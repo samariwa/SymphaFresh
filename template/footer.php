@@ -287,12 +287,14 @@
         <div class="popup-wrapper">
             <div class="popupbox">
                <div class="container cookieContainer">
+                   <h4>Cookies</h4>
+                   <hr>
                    <p>This site uses cookies to give you the best experience on our site and show you personalised ads.
                      By accepting you agree to our <a href="privacy-policy.php" style="color: #59b828;">privacy</a> and <a href="cookie-policy.php" style="color: #59b828;">cookie</a> policies.</p>
                      <hr>
                      <div class='row'>  
-                    <button class="btn cookie-btn offset-1">Accept</button>
-                    <button class="btn btn-danger cookie-exit offset-1">Exit</button> 
+                    <button class="btn cookie-btn offset-2 rounded-pill">Accept</button>
+                    <button class="btn btn-danger cookie-exit offset-1 rounded-pill">Exit</button> 
                     </div>
             </div>
                 <!--<button class="popup-close"><img src="../assets/images/popup-close.png" alt="popup-close"></button>-->
