@@ -291,11 +291,11 @@
                      By accepting you agree to our <a href="privacy-policy.php" style="color: #59b828;">privacy</a> and <a href="cookie-policy.php" style="color: #59b828;">cookie</a> policies.</p>
                      <hr>
                      <div class='row'>
-                      <div class="col-4">   
-                    <button class="btn cookie-btn offset-2">Accept Cookies</button>
+                      <div class="col-6">   
+                    <button class="btn cookie-btn">Accept</button>
                     </div>
-                    <div class="col-8">
-                    <button class="btn btn-danger cookie-exit">Exit</button> 
+                    <div class="col-6">
+                    <button class="btn btn-danger cookie-exit offset-9">Exit</button> 
                     </div>
                     </div>
             </div>
