@@ -294,7 +294,7 @@
                      <hr>
                      <div class='row'>  
                     <button class="btn cookie-btn offset-2 rounded-pill">Accept</button>
-                    <button class="btn btn-danger cookie-exit offset-1 rounded-pill">Exit</button> 
+                    <button class="btn btn-danger cookie-exit offset-1 rounded-pill">Decline</button> 
                     </div>
             </div>
                 <!--<button class="popup-close"><img src="../assets/images/popup-close.png" alt="popup-close"></button>-->
