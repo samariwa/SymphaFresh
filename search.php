@@ -16,7 +16,7 @@ if(isset($_POST['search'])){
         }                      
        }else{
         $result_output = '
-        <a href="#" class="list-group-item border-1">Product not found</a>
+        <a href="#" class="list-group-item border-1" style="text-decoration:none;color:inherit;">Product not found</a>
         ';
        }
        echo $result_output;

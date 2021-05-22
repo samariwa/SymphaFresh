@@ -315,7 +315,7 @@
     <script src='../assets/js/fly-cart.js?3759597'></script>
     <script src='../assets/js/multi-countdown.js'></script>
     <script src='../assets/js/theia-sticky-sidebar.js'></script>
-    <script src='../assets/js/functions.js?893867536375'></script>
+    <script src='../assets/js/functions.js?89385363'></script>
    <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 $(function() {

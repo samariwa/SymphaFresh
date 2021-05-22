@@ -363,7 +363,6 @@ Preloader
             </div>
         </div>
     </div>
-    
      
      <div class="modal fade" id="search-select-id" tabindex="-1" aria-labelledby="search-select-id" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -371,14 +370,14 @@ Preloader
                 <div class="modal-body">
                     <div class="select-search-option">
                         <div class="flux-custom-select">
-                            <select>
-                              <option value="0">Select Category</option>
+                            <select id="Cat_Select">
+                              <option id="cat0" value="0">Select Category</option>
                               <?php
                                 foreach($categoriesList as $row){
                                 $id = $row['id'];
                                 $category = $row['Category_Name'];
                             ?>
-                              <option value="<?php echo $id; ?>"><?php echo $category; ?></option>
+                              <option id="Cat<?php echo $id; ?>" value="<?php echo $id; ?>"><?php echo $category; ?></option>
                             <?php
                                 }
                             ?>  
@@ -386,11 +385,11 @@ Preloader
                         </div>
 
                         <form action="../search" method="POST" class="search-form">
-                            <input type="text" name="search" id="productSearch" placeholder="Search for Products">
+                            <input type="text" name="search" id="Product_Search" placeholder="Search for Products">
                             <button type="submit" class="submit-btn" name="searchSubmit"><i class="fas fa-search"></i></button>
                         </form>
                         <div class="col-12" style="position: relative;z-index: 4;">
-                            <div class="list-group" id="show-list" >
+                            <div class="list-group" id="Show_List" >
                             </div>
                         </div>
                     </div>
@@ -783,7 +782,7 @@ Preloader
                    
                     <div class="select-search-option d-none d-md-flex">
                         <div class="flux-custom-select">
-                            <select id="CatSelect">
+                            <select id="Cat_select">
                               <option id="cat0" value="0">Select Category</option>
                               <?php
                                 foreach($categoriesList as $row){

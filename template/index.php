@@ -105,7 +105,7 @@ echo $message;
             <section class="catagory-section">
                 <div class="container p-lg-0">
                     <div class="section-heading">
-                        <h4 class="heading-title"><span class="heading-circle green"></span> Products Catagories</h4>
+                        <h4 class="heading-title"><span class="heading-circle green"></span> Products Categories</h4>
                     </div>
 
                     <div class="section-wrapper">
