@@ -293,7 +293,7 @@
                      By accepting you agree to our <a href="privacy-policy.php" style="color: #59b828;">privacy</a> and <a href="cookie-policy.php" style="color: #59b828;">cookie</a> policies.</p>
                      <hr>
                      <div class='row'>  
-                    <button class="btn cookie-btn offset-2 rounded-pill">Accept</button>
+                    <button class="btn cookie-btn offset-1 rounded-pill">Accept</button>
                     <button class="btn btn-danger cookie-exit offset-1 rounded-pill">Decline</button> 
                     </div>
             </div>
