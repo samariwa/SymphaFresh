@@ -3,7 +3,7 @@ require('../config.php');
 $message = '';
 $refresh_page = '';
 $products_page = 'product-list.php';
-  
+
 if (strpos($redirect_link, $home_url) == TRUE) {
     $refresh_page = $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/index.php';
 }
@@ -12,6 +12,7 @@ elseif (strpos($redirect_link, $products_page) == TRUE){
 }
     
 if(isset($_POST['cart_button'])){
+    session_start();
     if (isset($_SESSION['logged_in'])) {
         if ($_SESSION['logged_in'] == TRUE) {
             $customer = mysqli_query($connection,"SELECT customers.id as id FROM `customers` inner join users on customers.User_id = users.id WHERE users.email='".$_SESSION['email']."'");
@@ -143,6 +144,7 @@ if(isset($_POST['cart_button'])){
 
 
 if(isset($_POST['where'])){
+    session_start();
     if (isset($_SESSION['logged_in'])) {
         if ($_SESSION['logged_in'] == TRUE) {
             $customer = mysqli_query($connection,"SELECT customers.id as id FROM `customers` inner join users on customers.User_id = users.id WHERE users.email='".$_SESSION['email']."'");
@@ -154,16 +156,23 @@ if(isset($_POST['where'])){
                 $row = mysqli_fetch_array($result);
                 $Discount = $row['Discount'];
                 $Price = $row['Price'];
-                    if($_POST['qty'] == $row['Quantity'])
+                    if($_POST['qty'] > $row['Quantity'])
                     {
                         mysqli_query($connection,"UPDATE `cart` SET `Quantity` = '".$row['Quantity']."' WHERE customer_id ='".$customer_row['id']."' AND product_id = '".$_POST['id']."'")or die($connection->error);
                         echo "max";
                     }
                     else
                     {
+                        $result2 = mysqli_query($connection,"SELECT quantity FROM cart WHERE customer_id ='".$customer_row['id']."' AND product_id = '".$_POST['id']."'")or die($connection->error);
+                        $row2 = mysqli_fetch_array($result2);
+                        if($row2['quantity'] > $_POST['qty']){
+                            $total -= ($Price - $Discount) * ($row2['quantity'] - $_POST['qty']);
+                        }
+                        else{
+                            $total += ($Price - $Discount);
+                        }
                         mysqli_query($connection,"UPDATE `cart` SET `Quantity` = '".$_POST['qty']."' WHERE customer_id ='".$customer_row['id']."' AND product_id = '".$_POST['id']."'")or die($connection->error);
                         $net_subtotal = ($Price - $Discount) * $_POST['qty'];
-                        $total += ($Price - $Discount);
                         $data = array(number_format($net_subtotal,2),number_format($total,2),$total,$_POST['qty']);
                         $array = json_encode($data);
                         echo $array;
@@ -172,16 +181,24 @@ if(isset($_POST['where'])){
             elseif($_POST['where'] == 'cart_decrease' )
             {
                 $total = $_POST['total'];
-                $result = mysqli_query($connection,"SELECT s.Discount as Discount,sf.Selling_price as Price FROM stock s INNER JOIN stock_flow sf ON s.id = sf.Stock_id INNER JOIN (SELECT s.id AS max_id, MAX(sf.Created_at) AS max_created_at FROM stock s INNER JOIN stock_flow sf ON s.id = sf.Stock_id GROUP BY s.id) subQuery ON subQuery.max_id = s.id AND subQuery.max_created_at = sf.Created_at WHERE s.id = '".$_POST['id']."';")or die($connection->error);
+                $result = mysqli_query($connection,"SELECT s.Discount as Discount,sf.Selling_price as Price,s.Quantity as Quantity FROM stock s INNER JOIN stock_flow sf ON s.id = sf.Stock_id INNER JOIN (SELECT s.id AS max_id, MAX(sf.Created_at) AS max_created_at FROM stock s INNER JOIN stock_flow sf ON s.id = sf.Stock_id GROUP BY s.id) subQuery ON subQuery.max_id = s.id AND subQuery.max_created_at = sf.Created_at WHERE s.id = '".$_POST['id']."';")or die($connection->error);
                 $row = mysqli_fetch_array($result);
                 $Discount = $row['Discount'];
                 $Price = $row['Price'];
-                    if($row['qty'] == 1)
+                    if($_POST['qty'] == 1)
                     {
                         mysqli_query($connection,"UPDATE `cart` SET `Quantity` = '1' WHERE customer_id ='".$customer_row['id']."' AND product_id = '".$_POST['id']."'")or die($connection->error);
                     }
                     else
                     {
+                        $result2 = mysqli_query($connection,"SELECT quantity FROM cart WHERE customer_id ='".$customer_row['id']."' AND product_id = '".$_POST['id']."'")or die($connection->error);
+                        $row2 = mysqli_fetch_array($result2);
+                        if($row2['quantity'] > $_POST['qty']){
+                            $total -= ($Price - $Discount) * ($row2['quantity'] - $_POST['qty']);
+                        }
+                        else{
+                            $total += ($Price - $Discount);
+                        }
                         mysqli_query($connection,"UPDATE `cart` SET `Quantity` = '".$_POST['qty']."' WHERE customer_id ='".$customer_row['id']."' AND product_id = '".$_POST['id']."'")or die($connection->error);
                         $net_subtotal = ($Price - $Discount) * $_POST['qty'];
                         $total -= ($Price - $Discount);
@@ -320,6 +337,7 @@ if(isset($_POST['where'])){
 
 if(isset($_GET['action']))
 {
+    session_start();
     if (isset($_SESSION['logged_in'])) {
         if ($_SESSION['logged_in'] == TRUE) {
             $customer = mysqli_query($connection,"SELECT customers.id as id FROM `customers` inner join users on customers.User_id = users.id WHERE users.email='".$_SESSION['email']."'");

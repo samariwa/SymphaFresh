@@ -7,6 +7,7 @@ $lastname = $result['lastname'];
 $mobile = $result['number'];
 $email = $result['email'];
 $location = $result['location'];
+$my_orders = mysqli_query($connection,"SELECT order_status.id as status_id,order_status.status as status,DATE(order_status.Created_at) as order_date FROM order_status INNER JOIN orders ON orders.Status_id = order_status.id INNER JOIN customers ON orders.Customer_id = customers.id where orders.Customer_id = '$customer_id' GROUP BY order_status.id ORDER BY order_status.Created_at DESC")or die($connection->error);
 ?>
              <!-- page-header-section start -->
             <div class="page-header-section">
@@ -65,11 +66,23 @@ $location = $result['location'];
                         <div class="row">
                             <div class="col-12">
                                 <div class="order-head mb-3">
-                                    <h5>My Orders</h5>
+                                    <h5 class="offset-2">My Orders</h5>
                                 </div>
                             </div>
-                            <div class="col-lg-7">
-                                <div class="orders-container">
+                            <div class="col-lg-10">
+                                <div class="orders-container offset-2">
+                                <?php
+                                    if (mysqli_num_rows($my_orders) ==0) {
+                                ?>
+                                        <p style="text-align:center"><i><b>You have not made any orders yet.</b></i></p>
+                                <?php
+                                    }
+                                ?>
+                                    <?php
+                                    foreach($my_orders as $row){
+                                        $order_details = mysqli_query($connection,"SELECT SUM(orders.Quantity * (stock.Price - stock.Discount))as sum,COUNT(orders.Status_id) as count FROM orders INNER JOIN stock on orders.Stock_id = stock.id where orders.Status_id = '".$row ['status_id']."' ")or die($connection->error);
+                                        $value = mysqli_fetch_array($order_details);
+                                    ?>
                                     <div class="order-item">
                                         <table class="table table-responsive1">
                                             <thead>
@@ -83,130 +96,43 @@ $location = $result['location'];
                                                 <tr>
                                                     <td class="px-3 py-4">
                                                         <div>
-                                                            <h6 class="order-number">Order#48376837</h6>
-                                                            <p class="date">09/21/2020</p>
-                                                            <p class="price">USD 2342</p>
+                                                            <h6 class="order-number">Order#<?php echo $row ['status_id']?></h6>
+                                                            <p class="date"><?php echo date('d.m.Y',strtotime($row ['order_date'])); ?></p>
+                                                            <p class="price">Ksh. <?php echo number_format($value['sum'],2); ?></p>
                                                         </div>
                                                     </td>
                                                     <td class="text-center">
                                                         <div>
-                                                            02items
+                                                            <?php echo $value['count']; ?> item<?php if($value['count'] > 1){ ?>s<?php } ?>
                                                         </div>
                                                     </td>
                                                     <td class="text-right pr-5">
-                                                        <div class="pending">
-                                                            pending
+                                                        <div class=" <?php if($row ['status'] == 'Pending') {?>pending<?php } else{ ?>done<?php } ?>">
+                                                           <?php echo $row ['status']?>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="px-3">
                                                         <div>
-                                                            <a href="track-order-single.php">Track Order</a>
+                                                            <a href="track-order-single.php?id=<?php echo $row ['status_id']?>">Track Order</a>
                                                         </div>
                                                     </td>
                                                     <td class="text-right px-4" colspan="2">
                                                         <div>
-                                                            <a class="view-details" href="order-details.php">View Details</a>
+                                                            <a class="view-details" href="order-details.php?id=<?php echo $row ['status_id']?>">View Details</a>
                                                         </div>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
-
-                                    <div class="order-item">
-                                        <table class="table table-responsive1">
-                                            <thead>
-                                                <tr>
-                                                    <th class="px-3">My Orders</th>
-                                                    <th class="text-center">Items</th>
-                                                    <th class="text-right pr-5">Status</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="px-3 py-4">
-                                                        <div>
-                                                            <h6 class="order-number">Order#48376837</h6>
-                                                            <p class="date">09/21/2020</p>
-                                                            <p class="price">USD 2342</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <div>
-                                                            02items
-                                                        </div>
-                                                    </td>
-                                                    <td class="text-right pr-5">
-                                                        <div class="done">
-                                                            Done
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="px-3">
-                                                        <div>
-                                                            <a href="track-order-single.php">Track Order</a>
-                                                        </div>
-                                                    </td>
-                                                    <td class="text-right px-4" colspan="2">
-                                                        <div>
-                                                            <a class="view-details" href="order-details.php">View Details</a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    <div class="order-item">
-                                        <table class="table table-responsive1">
-                                            <thead>
-                                                <tr>
-                                                    <th class="px-3">My Orders</th>
-                                                    <th class="text-center">Items</th>
-                                                    <th class="text-right pr-5">Status</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="px-3 py-4">
-                                                        <div>
-                                                            <h6 class="order-number">Order#48376837</h6>
-                                                            <p class="date">09/21/2020</p>
-                                                            <p class="price">USD 2342</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <div>
-                                                            02items
-                                                        </div>
-                                                    </td>
-                                                    <td class="text-right pr-5">
-                                                        <div class="done">
-                                                            Done
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="px-3">
-                                                        <div>
-                                                            <a href="track-order-single.php">Track Order</a>
-                                                        </div>
-                                                    </td>
-                                                    <td class="text-right px-4" colspan="2">
-                                                        <div>
-                                                            <a class="view-details" href="order-details.php">View Details</a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
-                            <div class="col-lg-5">
+                           <!-- <div class="col-lg-5">
                                 <div class="wallet-item">
                                     <div class="order-item">
                                         <table class="table table-responsive1">
@@ -271,15 +197,15 @@ $location = $result['location'];
                                                         <a href="#" class="offre-item">
                                                             <div class="icon">
                                                                 <svg version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-            viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path d="M407,301c-8.276,0-15,6.724-15,15s6.724,15,15,15s15-6.724,15-15S415.276,301,407,301z"/><path d="M497,91H151.245v45c0,8.291-6.709,15-15,15s-15-6.709-15-15V91H15c-8.291,0-15,6.709-15,15v90c0,8.291,6.709,15,15,15
-                    c24.814,0,45,20.186,45,45c0,24.814-20.186,45-45,45c-8.291,0-15,6.709-15,15v90c0,8.291,6.709,15,15,15h105v-45
-                    c0-8.291,6.709-15,15-15s15,6.709,15,15v45h347c8.291,0,15-6.709,15-15V106C512,97.709,505.291,91,497,91z M150,316
-                    c0,8.291-6.709,15-15,15s-15-6.709-15-15v-30c0-8.291,6.709-15,15-15s15,6.709,15,15V316z M150,226c0,8.291-6.709,15-15,15
-                    s-15-6.709-15-15v-30c0-8.291,6.709-15,15-15s15,6.709,15,15V226z M242,196c0-24.814,20.186-45,45-45c24.814,0,45,20.186,45,45
-                    c0,24.814-20.186,45-45,45C262.186,241,242,220.814,242,196z M278.68,358.48c-6.899-4.6-8.76-13.901-4.16-20.801l120-180
-                    c4.585-6.899,13.887-8.745,20.801-4.16c6.899,4.6,8.76,13.901,4.16,20.801l-120,180
-                    C294.956,361.117,285.689,363.126,278.68,358.48z M407,361c-24.814,0-45-20.186-45-45c0-24.814,20.186-45,45-45
-                    c24.814,0,45,20.186,45,45C452,340.814,431.814,361,407,361z"/><path d="M287,181c-8.276,0-15,6.724-15,15s6.724,15,15,15s15-6.724,15-15S295.276,181,287,181z"/></svg>
+                                                                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path d="M407,301c-8.276,0-15,6.724-15,15s6.724,15,15,15s15-6.724,15-15S415.276,301,407,301z"/><path d="M497,91H151.245v45c0,8.291-6.709,15-15,15s-15-6.709-15-15V91H15c-8.291,0-15,6.709-15,15v90c0,8.291,6.709,15,15,15
+                                                                        c24.814,0,45,20.186,45,45c0,24.814-20.186,45-45,45c-8.291,0-15,6.709-15,15v90c0,8.291,6.709,15,15,15h105v-45
+                                                                        c0-8.291,6.709-15,15-15s15,6.709,15,15v45h347c8.291,0,15-6.709,15-15V106C512,97.709,505.291,91,497,91z M150,316
+                                                                        c0,8.291-6.709,15-15,15s-15-6.709-15-15v-30c0-8.291,6.709-15,15-15s15,6.709,15,15V316z M150,226c0,8.291-6.709,15-15,15
+                                                                        s-15-6.709-15-15v-30c0-8.291,6.709-15,15-15s15,6.709,15,15V226z M242,196c0-24.814,20.186-45,45-45c24.814,0,45,20.186,45,45
+                                                                        c0,24.814-20.186,45-45,45C262.186,241,242,220.814,242,196z M278.68,358.48c-6.899-4.6-8.76-13.901-4.16-20.801l120-180
+                                                                        c4.585-6.899,13.887-8.745,20.801-4.16c6.899,4.6,8.76,13.901,4.16,20.801l-120,180
+                                                                        C294.956,361.117,285.689,363.126,278.68,358.48z M407,361c-24.814,0-45-20.186-45-45c0-24.814,20.186-45,45-45
+                                                                        c24.814,0,45,20.186,45,45C452,340.814,431.814,361,407,361z"/><path d="M287,181c-8.276,0-15,6.724-15,15s6.724,15,15,15s15-6.724,15-15S295.276,181,287,181z"/></svg>
                                                             </div>
                                                             <p class="offer-name">Cash-Back</p>
                                                         </a>
@@ -290,7 +216,7 @@ $location = $result['location'];
                                         </table>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>

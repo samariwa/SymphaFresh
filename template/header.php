@@ -251,6 +251,34 @@ Preloader
     opacity: 1; }
   100% {
     opacity: 0.25; } }
+
+    .cart-product-item.stock-out {
+  position: relative;
+}
+.cart-product-item.stock-out:after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.cart-product-item.stock-out:before {
+  content: "Quantity unavailable";
+  color:white;
+  background-color:red;  
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  border: 1px solid red;
+  padding: 6px 118px;
+  transform: translate(-50%, -50%);
+  border-radius: 3px;
+}
+.cart-product-item:hover.stock-out {
+  transform: scale(1);
+}
+
     .comment-item .comment-author .author-image {
   width: 50px;
   height: 50px;
@@ -306,7 +334,7 @@ Preloader
                                 if ($_SESSION['logged_in'] == TRUE) {
                             ?> 
                              <li><a href="<?php echo '../'.$logout_url.'?page_url='.$redirect_link; ?>"><i class="fas fa-sign-out-alt mr-2"></i> Sign Out</a></li>
-                             <li><a href="profile.php"><i class="fas fa-user mr-2"></i> Profile</a></li>
+                             <li><a href="profile.php#dashboard-nav"><i class="fas fa-user mr-2"></i> Profile</a></li>
                             <?php
                                 }
                                 else{
@@ -325,18 +353,18 @@ Preloader
                             <?php if (isset($_SESSION['logged_in'])) {
                                  if ($_SESSION['logged_in'] == TRUE) {
                                 ?>    
-                                href="wishlist.php"
+                                href="wishlist.php#dashboard-nav"
                                 <?php
                                     }
                                 else{
                                 ?>
-                                href="../auth/login.php?page_url=<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/wishlist.php' ?>"
+                                href="../auth/login.php?page_url=<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/wishlist.php#dashboard-nav' ?>"
                                 <?php    
                                 }   
                             } 
                             else{
                             ?>
-                                href="../auth/login.php?page_url=<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/wishlist.php' ?>"
+                                href="../auth/login.php?page_url=<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/wishlist.php#dashboard-nav' ?>"
                             <?php
                             }
                                 ?>
@@ -840,18 +868,18 @@ Preloader
                         if (isset($_SESSION['logged_in'])) {
                             if ($_SESSION['logged_in'] == TRUE) {
                         ?>    
-                        href="wishlist.php"
+                        href="wishlist.php#dashboard-nav"
                         <?php
                             }
                         else{
                         ?>
-                         href="../auth/login.php?page_url=<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/wishlist.php' ?>"
+                         href="../auth/login.php?page_url=<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/wishlist.php#dashboard-nav' ?>"
                         <?php    
                         }   
                        } 
                        else{
                        ?>
-                        href="../auth/login.php?page_url=<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/wishlist.php' ?>"
+                        href="../auth/login.php?page_url=<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/wishlist.php#dashboard-nav' ?>"
                        <?php
                        }
                         ?>
@@ -862,7 +890,7 @@ Preloader
                         ?>
                         <li class="my-account"><a class="dropdown-toggle" href="#" role="button" id="myaccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user mr-1"></i> Hello, <?php echo $logged_in_user; ?></a>
                             <ul class="submenu dropdown-menu" aria-labelledby="myaccount">
-                                <li><a href="profile.php">Profile</a></li>
+                                <li><a href="profile.php#dashboard-nav">Profile</a></li>
                                 <li><a href="<?php echo '../'.$logout_url.'?page_url='.$redirect_link; ?>">Sign Out</a></li>
                             </ul>
                         </li>

@@ -1042,4 +1042,92 @@ elseif ($where == 'site_subcomment') {
   } 
 }
 }
+elseif ($where == 'onlineOrder') {
+  $location = $_POST['mode'];
+  $payment = $_POST['payment'];
+  $date = $_POST['date'];
+  $customerType = 'online';
+  $newCustomer = 'N/A';
+  $status_id = generateRandomString();
+  mysqli_query($connection,"INSERT INTO `order_status` (`id`,`status`) VALUES ('$status_id','Pending')")or die($connection->error);
+  $cust_id = mysqli_query($connection,"SELECT id FROM customers WHERE User_id = '".$_POST['id']."'")or die($connection->error);
+  $result = mysqli_fetch_array($cust_id);
+  $customer_id = $result['id'];
+  $cart_items = mysqli_query($connection,"SELECT * FROM cart WHERE Customer_id = '".$customer_id."'")or die($connection->error);
+  foreach($cart_items as $row)
+  {
+    $product_id = $row['product_id'];
+    $Quantity = $row['quantity'];
+    $stockDetails = mysqli_query($connection,"SELECT s.Discount as Discount, sf.Selling_price as Price,c.id as Category,c.Category_Name as category_name,s.Name as stock_name,s.Quantity as Quantity FROM stock s INNER JOIN stock_flow sf ON s.id = sf.Stock_id JOIN inventory_units i_u ON s.Unit_id = i_u.id JOIN category c ON s.Category_id=c.id INNER JOIN (SELECT s.id AS max_id, MAX(sf.Created_at) AS max_created_at FROM stock s INNER JOIN stock_flow sf ON s.id = sf.Stock_id GROUP BY s.id) subQuery ON subQuery.max_id = s.id AND subQuery.max_created_at = sf.Created_at WHERE s.id = '$product_id' ;")or die($connection->error);
+    $result2 = mysqli_fetch_array($stockDetails);
+    $discount = $result2['Discount'];
+    $price = $result2['Price'];
+    $discount = $result2['Discount'];
+    $category = $result2['Category'];
+    $stock_name = $result2['stock_name'];
+    $category_name = $result2['category_name'];
+    $quantity = $result2['Quantity'];
+    $cost = $price - $discount;
+    if($quantity < $Quantity){
+      echo 'unavailable';
+   }
+   else{
+   $result  = mysqli_query($connection, "SELECT Balance FROM `orders` WHERE Customer_id='$customer_id' ORDER BY id DESC");
+   $count = 0;
+   while($row = mysqli_fetch_array($result)) {
+     if ($count==0) {
+       $balance = $row['Balance'];
+     }
+       $count++;
+   }
+   $newDebt = $balance;
+   $newBalance = (int)$newDebt - ((int)$cost*(int)$Quantity);
+   $sql = "INSERT INTO `orders`(`Customer_id`,`Location`,`Category_id`,`Quantity`,`Debt`,`Discount`,`Balance`,`Stock_id`,`Delivery_time`,`Walk_in_name`,`Customer_type`,`Status_id`) VALUES('$customer_id','$location','$category','$Quantity','$newDebt','$discount','$newBalance','$product_id','$date','$newCustomer','$customerType','$status_id')";
+   mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity - '".$Quantity."' WHERE `id` = '".$product_id."'")or die($connection->error);
+   $Category = mysqli_query($connection,"SELECT Quantity,Unit_id,subunit_replenish_qty,Restock_Level,inventory_units.Name as Unit_name  FROM `stock` inner join inventory_units on stock.Unit_id = inventory_units.id WHERE stock.id = '".$product_id."'")or die($connection->error);
+   $Name = mysqli_fetch_array($Category);
+   $Restock_Level = $Name['Restock_Level'];
+   $Qty = $Name['Quantity'];
+   if ($Qty < $Restock_Level) {
+    $Unit_id = $Name['Unit_id'];
+    $Unit_name = $Name['Unit_name'];
+    $trunctated_name = str_replace($Unit_name,'',$Stock_Name);
+    $parent_exists = mysqli_query($connection,"SELECT Name,Contains,Quantity FROM stock WHERE Name LIKE '".$trunctated_name."%' AND Subunit_id = '".$Unit_id."'")or die($connection->error);
+   $result_existence = mysqli_fetch_array($parent_exists);
+   if ( $result_existence == TRUE) {
+    $parent_name = $result_existence['Name'];
+    $parent_contains = $result_existence['Contains'];
+    $parent_quantity = $result_existence['Quantity'];
+    $subunit_replenish_qty = $Name['subunit_replenish_qty'];
+    $parent_reduction = $subunit_replenish_qty / $parent_contains;
+    if ($parent_quantity <= $parent_reduction) {
+      $new_parent_quantity = 0;
+      $subunit_replenish_qty = $parent_quantity * $parent_contains;
+      }
+      else{
+        $new_parent_quantity = $parent_quantity - $parent_reduction;
+      }
+      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = '$new_parent_quantity' WHERE `Name` = '".$parent_name."'")or die($connection->error);
+      mysqli_query($connection,"UPDATE `stock`  SET `Quantity` = Quantity + '".$subunit_replenish_qty."' WHERE `id` = '".$product_id."'")or die($connection->error);
+   }
+ }
+ mysqli_query($connection,"Delete from `cart` where customer_id='".$customer_id."' AND product_id = '".$product_id."'")or die($connection->error);
+ if ($newBalance == 0 ) {
+  mysqli_query($connection,"UPDATE `customers`  SET `Status` = 'clean' WHERE `id` = '".$customer_id."'")or die($connection->error);
+}
+else if ($newBalance < -100) {
+  mysqli_query($connection,"UPDATE `customers`  SET `Status` = 'no delivery' WHERE `id` = '".$customer_id."'")or die($connection->error);
+}
+else if ($newBalance >= -100 && $newBalance < 0) {
+  mysqli_query($connection,"UPDATE `customers`  SET `Status` = 'fined' WHERE `id` = '".$customer_id."'")or die($connection->error);
+}
+else if ($newBalance > 0) {
+  mysqli_query($connection,"UPDATE `customers`  SET `Status` = 'credit' WHERE `id` = '".$customer_id."'")or die($connection->error);
+}
+if (mysqli_query($connection, $sql) === TRUE) {
+ echo 'success';
+}
+  }
+  }
+}
  ?>

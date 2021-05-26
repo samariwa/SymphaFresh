@@ -461,7 +461,7 @@ echo $message;
                         </div>
                     </div>
                     <div class="text-center mt-5">
-                        <a href="product-leftsidebar.html" class="shop-btn">Show Now</a>
+                        <a href="product-leftsidebar.php" class="shop-btn">Show Now</a>
                     </div>
                 </div>
             </section>

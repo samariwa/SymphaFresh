@@ -1,11 +1,11 @@
 <?php
 include('header.php');
-$profile_details = mysqli_query($connection,"SELECT firstname,lastname,email,location,number FROM users where email = '$logged_in_email' ")or die($connection->error);
+$profile_details = mysqli_query($connection,"SELECT id,firstname,lastname,location,number FROM users where email = '$logged_in_email' ")or die($connection->error);
 $result = mysqli_fetch_array($profile_details);
 $firstname = $result['firstname'];
 $lastname = $result['lastname'];
 $mobile = $result['number'];
-$email = $result['email'];
+$id = $result['id'];
 $location = $result['location'];
 ?>             <!-- page-header-section start -->
             <div class="page-header-section">
@@ -30,6 +30,7 @@ echo $message;
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-7">
+                        <form method="post" id="confirmDetails">
                             <!--<div class="form-item contact-number-item bg-color-white box-shadow p-3 p-lg-5 border-radius5">
                                 <h6>Contact Number</h6>
                                 <p>We need your phone number so we can inform you about any delay or problem.<br>5 digits code send your phone <strong>+111223366548</strong></p>
@@ -58,46 +59,41 @@ echo $message;
 
                             <div class="form-item billing-item bg-color-white box-shadow p-3 p-lg-5 border-radius5">
                                 <h6>Kindly Confirm your Details</h6>
-                                <form action="#" class="billing-form">
+                                <div class="billing-form">
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="input-item">
                                                 <label>First Name*</label>
-                                                <input type="text" name="name" value="<?php echo $firstname; ?>">
+                                                <input type="text" name="name" id="confirmFirstname" value="<?php echo $firstname; ?>" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="input-item">
                                                 <label>Last Name*</label>
-                                                <input type="text" name="name" value="<?php echo $lastname; ?>">
+                                                <input type="text" name="name" id="confirmLastname" value="<?php echo $lastname; ?>" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="input-item">
                                                 <label>Physical Address*</label>
-                                                <input type="text" name="address" value="<?php echo $location; ?>">
+                                                <input type="text" name="address" id="confirmLocation" value="<?php echo $location; ?>" required>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12">
-                                            <div class="input-item">
-                                                <label>Email*</label>
-                                                <input type="text" name="email" value="<?php echo $email; ?>">
-                                            </div>
-                                        </div>
+                                                <input type="hidden" name="id" id="customerId" value="<?php echo $id; ?>" required>
                                         <div class="col-lg-12">
                                             <div class="input-item">
                                                 <label>Mobile*</label>
-                                                <input type="text" name="mobile" value="<?php echo $mobile; ?>">
+                                                <input type="text" name="mobile" id="confirmMobile" value="<?php echo $mobile; ?>" required>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
                             </div>
 
                             <div class="form-item time-schedule bg-color-white box-shadow p-3 p-lg-5 border-radius5">
                                 <h6>Delivery</h6>
                                 <div class="col-lg-12">
-                                    <div class="input-item">
+                                    <div class="input-item radio">
                                         <input type="radio" name="delivery_location" id="delivery_address" checked value="<?php echo $location; ?>">
                                         <label><b>Deliver to your address</b></label>  
                                     </div>
@@ -115,33 +111,38 @@ echo $message;
                                 
                                 <br>
                                 <div class="col-lg-12">
-                                            <div class="input-item">
+                                            <div class="input-item radio">
                                                 <input type="radio" name="delivery_location" id="delivery_outlet_pickup" value="outlet_pickup">
                                                 <label><b>Pick up from our outlet</b></label>
                                             </div>
                                         </div>
-                            </div>
+                                        <div class="row">
+                                    <label for="expiry" class="ml-3">Pick a delivery/pick up date:</label>
+                                    <input type="date" name="order_date" id="order_date" class="form-control ml-3" required style="padding:15px" min="<?php $currentTime = time() + 3600; if (((int) date('H', $currentTime)) <= 17) { echo date('Y-m-d'); }else{ echo date('Y-m-d', strtotime('tomorrow'));} ?>" value="<?php $currentTime = time() + 3600; if (((int) date('H', $currentTime)) <= 17) { echo date('Y-m-d'); }else{ echo date('Y-m-d', strtotime('tomorrow'));} ?>">
+                                    </div><br>        
+                                    </div>
 
                             <div class="form-item payment-item bg-color-white box-shadow p-3 p-lg-5 border-radius5">
                                 <h6>Payment</h6>
 
-                                <form action="#" class="payment-form">
-                                    
+                                <div class="payment-form">
+                                    <div class="input-item radio">
+                                        <input type="radio" name="payment" value="paypal" checked>
+                                        <label>M-pesa</label>
+                                    </div>
+
+                                    <div class="input-item radio">
+                                        <input type="radio" name="payment" value="cash on delivery">
+                                        <label>Cash on delivery</label>
+                                    </div>
+
                                     <div class="input-item radio">
                                         <input type="radio" name="payment" value="check payment">
                                         <label>Check Payment</label>
                                     </div>
 
-                                    <div class="input-item radio">
-                                        <input type="radio" name="payment" value="cash on delivary">
-                                        <label>Cash on delivery</label>
-                                    </div>
-
-                                    <div class="input-item radio">
-                                        <input type="radio" name="payment" value="paypal">
-                                        <label>M-pesa</label>
-                                    </div>
-                                </form>
+                                    
+                                </div>
                                 <div class="payment-method d-flex flex-wrap">
                                             <a href="#"><img src="../assets/images/payment/Mpesa-Logo.png" height="35px" width="55px" alt="payment"></a>
                                             <a href="#"><img src="../assets/images/payment/visa.png" alt="payment"></a>
@@ -149,9 +150,10 @@ echo $message;
                                             <a href="#"><img src="../assets/images/payment/paypal.png" alt="payment"></a>
                                         </div>
                                 <div class="text-right">
-                                    <a href="#" class="place-order-btn">Place Order</a>
+                                    <input type="submit" class="btn place-order-btn btn-md" id="completeOrder" value="Place Order">
                                 </div>
                             </div>
+                        </form>    
                         </div>
                         <div class="col-lg-5">
                             <div class="cart-item sitebar-cart bg-color-white box-shadow p-3 p-lg-5 border-radius5">
@@ -163,10 +165,17 @@ echo $message;
                                 foreach($cart_checker as $row)
                                {
                                 ?>
-                                    <div class="cart-product-item <?php if($row['Quantity'] < $row['Restock_Level'] ){ ?>stock-out<?php }?>">
+                                    <div class="cart-product-item <?php if($row['Quantity'] < $row['cartQty'] ){ ?>stock-out<?php }?>" id="item<?php echo $row['id']; ?>">
                                         <div class="row align-items-center">
                                             <div class="col-6">
-                                            
+                                                <?php 
+                                                if($row['Quantity'] < $row['cartQty'] ){ 
+                                                ?>
+                                                    <input type="hidden" name="hiddenAvailableQty" id="hiddenAvailableQty<?php echo $row["id"]; ?>" value="<?php echo $row['Quantity']-1; ?>">
+                                                    <input type="hidden" name="hiddenAvailableCost" id="hiddenAvailableCost<?php echo $row["id"]; ?>" value="<?php echo number_format(($row["Price"] - $row["Discount"]),2); ?>">
+                                                <?php 
+                                                }
+                                                ?>
                                             </div>
                                             <div class="col-6">
                                                 <span class="close-item mr-3"><a href="<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/checkout.php?action=delete&id='.$row["id"]; ?>" class="ml-5 text-danger">Remove <i class="fas fa-times"></i></a></span>
@@ -195,7 +204,7 @@ echo $message;
                                                 <div class="price-increase-decrese-group d-flex ml-4">
                                                     <span class="decrease-btn">
                                                         <button type="button"
-                                                            class="btn quantity-left-minus checkout_cart_decrease" id="<?php echo $row['id']; ?>" data-type="minus" data-field="">-
+                                                            class="btn quantity-left-minus checkout_cart_decrease" <?php if($row["cartQty"] == 0){?> disabled <?php } ?> id="<?php echo $row['id']; ?>" data-type="minus" data-field="">-
                                                         </button> 
                                                     </span>
                                                     <input type="text" name="quantity" disabled class="form-controls input-number" id="checkout_cart_qty<?php echo $row["id"]; ?>" value="<?php echo $row["cartQty"]; ?>">
@@ -222,7 +231,7 @@ echo $message;
                                 <div class="cart-footer">
                                     <div class="product-other-charge">
                                         <p class="d-flex justify-content-between">
-                                            <span>Delevery charge</span> 
+                                            <span>Delivery charge</span> 
                                             <span>Ksh8.00</span>
                                         </p>
                                         <a href="#">Do you have a voucher?</a>

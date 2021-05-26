@@ -1,12 +1,21 @@
 <?php
-    include('header.php');
-    $profile_details = mysqli_query($connection,"SELECT firstname,lastname,email,location,number FROM users where email = '$logged_in_email' ")or die($connection->error);
+include('header.php');
+$profile_details = mysqli_query($connection,"SELECT firstname,lastname,email,location,number FROM users where email = '$logged_in_email' ")or die($connection->error);
 $result = mysqli_fetch_array($profile_details);
 $firstname = $result['firstname'];
 $lastname = $result['lastname'];
 $mobile = $result['number'];
 $email = $result['email'];
 $location = $result['location'];
+$order_no = '';
+if(isset($_GET['id']))
+{
+   $order_no = $_GET['id'];
+}
+$orders_details = mysqli_query($connection,"SELECT SUM(orders.Quantity * (stock.Price - stock.Discount))as sum,order_status.status as status,DATE(order_status.Created_at) as order_date FROM order_status INNER JOIN orders ON orders.Status_id = order_status.id INNER JOIN stock on orders.Stock_id = stock.id  where order_status.id = '$order_no' GROUP BY order_status.id ORDER BY order_status.Created_at DESC")or die($connection->error);
+$row = mysqli_fetch_array($orders_details);
+$order_date = $row['order_date'];
+$orders = mysqli_query($connection,"SELECT stock.Name as name,stock.image as image,stock.Discount as discount,stock.Price as price,inventory_units.Name as unit,orders.Quantity as quantity,order_status.delivery_fee as delivery_fee,order_status.status as status FROM order_status INNER JOIN orders ON orders.Status_id = order_status.id INNER JOIN stock ON orders.Stock_id = stock.id INNER JOIN inventory_units ON stock.Unit_id = inventory_units.id where order_status.id = '$order_no' ORDER BY order_status.Created_at DESC")or die($connection->error);
 ?>
             <!-- page-header-section start -->
             <div class="page-header-section">
@@ -16,7 +25,7 @@ $location = $result['location'];
                             <ul class="breadcrumb">
                                 <li><a href="index.php">Home</a></li>
                                 <li><span>/</span></li>
-                                <li>Fruits & Vegetables</li>
+                                <li>Track Order (#<?php echo $order_no; ?>)</li>
                             </ul>
                         </div>
                     </div>
@@ -59,12 +68,12 @@ $location = $result['location'];
                         </div>
                         <div class="d-flex justify-content-between track-number-link align-items-center">
                             <div>
-                                <h6 class="order-number">Order#48376837</h6>
-                                <p class="date">09/21/2020</p>
-                                <p class="price">USD 2342</p>
+                                <h6 class="order-number">Order#<?php echo $order_no; ?></h6>
+                                <p class="date"><?php echo date('d.m.Y',strtotime($row ['order_date'])); ?></p>
+                                <p class="price">Ksh. <?php echo number_format($row ['sum'],2); ?></p>
                             </div>
                             <div>
-                                <a href="order-details.php" class="order-btn">Order Details</a>
+                                <a href="order-details.php?id=<?php echo $order_no; ?>" class="order-btn">Order Details</a>
                             </div>
                         </div>
                         <div class="order-details">
@@ -72,93 +81,66 @@ $location = $result['location'];
                                 <h6>Order Details</h6>
                             </div>
                             <div class="order-details-container">
+                                <?php
+                                $total_cost = 0;
+                                $total_discount = 0;
+                                foreach($orders as $row2){
+                                $total_discount += $row2['discount'];
+                                $total_cost += $row2['price'];
+                                ?>
                                 <div class="order-details-item d-sm-flex flex-wrap text-center text-sm-left align-items-center justify-content-between">
                                     <div class="thumb d-sm-flex flex-wrap align-items-center">
-                                        <a  onclick="openModal()"><img src="../assets/images//products/cart/03.png" alt="products"></a>
+                                        <a><img src="../assets/images/products/<?php echo $row2['image']; ?>" height="110" width="130" alt="products"></a>
                                         <div class="product-content">
-                                            <a  onclick="openModal()" class="product-title">Daisy Cont Oil</a>
+                                            <a class="product-title"><?php echo $row2['name']; ?></a>
                                         </div>
                                     </div>
                                     
                                     <div class="product-content pl-0">
                                         <div class="product-cart-info">
-                                            1kg
+                                            <?php echo $row2['quantity']; ?> <?php echo $row2['unit']; ?>
                                         </div>
                                     </div>
                                     <div class="product-content pl-0">
                                         <div class="product-price">
-                                            <del>$8.00</del><span class="ml-4">$5.00</span>
+                                        <?php if($row2['discount'] > 0){ ?><del>Ksh. <?php echo number_format($row2['price'],2); ?></del><?php } ?><span class="ml-4">Ksh. <?php echo number_format(($row2['price']-$row2['discount']),2); ?></span>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="order-details-item d-sm-flex flex-wrap text-center text-sm-left align-items-center justify-content-between">
-                                    <div class="thumb d-sm-flex flex-wrap align-items-center">
-                                        <a  onclick="openModal()"><img src="../assets/images//products/cart/03.png" alt="products"></a>
-                                        <div class="product-content">
-                                            <a  onclick="openModal()" class="product-title">Daisy Cont Oil</a>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="product-content pl-0">
-                                        <div class="product-cart-info">
-                                            1kg
-                                        </div>
-                                    </div>
-                                    <div class="product-content pl-0">
-                                        <div class="product-price">
-                                            <del>$8.00</del><span class="ml-4">$5.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="order-details-item d-sm-flex text-center text-sm-left flex-wrap align-items-center justify-content-between">
-                                    <div class="thumb d-sm-flex flex-wrap align-items-center">
-                                        <a  onclick="openModal()"><img src="../assets/images//products/cart/03.png" alt="products"></a>
-                                        <div class="product-content">
-                                            <a  onclick="openModal()" class="product-title">Daisy Cont Oil</a>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="product-content pl-0">
-                                        <div class="product-cart-info">
-                                            1kg
-                                        </div>
-                                    </div>
-                                    <div class="product-content pl-0">
-                                        <div class="product-price">
-                                            <del>$8.00</del><span class="ml-4">$5.00</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php
+                                }
+                                ?>
                             </div>
                         </div>
                         <div class="track-order-info">
                             <ul class="to-list">
                                 <li class="d-flex flex-wrap justify-content-between">
                                     <span class="t-title">Sub Total</span>
-                                    <span class="desc">$2.0</span>
+                                    <span class="desc">Ksh. <?php echo number_format($total_cost,2); ?></span>
                                 </li>
                                 <li class="d-flex flex-wrap justify-content-between">
                                     <span class="t-title">Delevary Fee</span>
-                                    <span class="desc">$2.0</span>
+                                    <span class="desc">Ksh. <?php echo number_format($row2['delivery_fee'],2); ?></span>
                                 </li>
                                 <li class="d-flex flex-wrap justify-content-between">
                                     <span class="t-title">Discount</span>
-                                    <span class="desc">$2.0</span>
+                                    <span class="desc">Ksh. <?php echo number_format($total_discount,2); ?></span>
                                 </li>
                                 <li class="inc-vat d-flex flex-wrap justify-content-between">
-                                    <span class="t-title">Total(inc) Vat</span>
-                                    <span class="desc">$2.0</span>
+                                    <span class="t-title">Total(inc) VAT</span>
+                                    <span class="desc">Ksh. <?php echo number_format($row ['sum'],2); ?></span>
                                 </li>
                             </ul>
                         </div>
                         <div class="delevary-time">
-                            <p>Ddelevary Time 10 may, 10am - 12am</p>
+                            <p>Delivery Date - <?php echo date('l, F d, Y',strtotime($row ['order_date'])); ?></p>
                         </div>
+                        <?php 
+                        $result2 = mysqli_fetch_array($orders);
+                        ?>
                         <div class="product-delevary-process">
                             <div class="process-bar">
-                                <div class="process-bar-active"></div>
+                                <!--<div class="process-bar-active"></div>-->
                                 <div class="process-bar-item-container d-flex justify-content-between align-items-center">
                                     <div class="process-bar-item">
                                         <div class="process-bar-item-inner active">
@@ -173,7 +155,7 @@ $location = $result['location'];
                                     </div>
 
                                     <div class="process-bar-item">
-                                        <div class="process-bar-item-inner active">
+                                        <div class="process-bar-item-inner <?php if($result2['status'] == 'Processed'){ ?>active<?php } ?>">
                                             <span class="check-icon"><i class="fas fa-check-circle"></i></span>
                                             <div class="icon-outer">
                                                 <div class="icon">
@@ -182,15 +164,15 @@ $location = $result['location'];
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="name">Process Warehouse</div>
+                                        <div class="name">Order Processing</div>
                                     </div>
 
                                     <div class="process-bar-item">
-                                        <div class="process-bar-item-inner active">
+                                        <div class="process-bar-item-inner <?php if($result2['status'] == 'Shipped'){ ?>active<?php } ?>">
                                             <span class="check-icon"><i class="fas fa-check-circle"></i></span>
                                             <div class="icon-outer">
                                                 <div class="icon">
-                                                    
+             
                                                     <svg id="Capa_1" enable-background="new 0 0 512.001 512.001" viewBox="0 0 512.001 512.001" xmlns="http://www.w3.org/2000/svg"><g><path d="m105.527 92.355c-4.143 0-7.5 3.358-7.5 7.5v6.421c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-6.421c0-4.143-3.358-7.5-7.5-7.5z"/><path d="m105.527 122.117c-4.143 0-7.5 3.358-7.5 7.5v6.422c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-6.422c0-4.142-3.358-7.5-7.5-7.5z"/><path d="m74.497 203.571v-6.422c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v6.422c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5z"/><path d="m113.027 203.571v-6.422c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v6.422c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5z"/><path d="m144.057 211.071c4.143 0 7.5-3.358 7.5-7.5v-6.422c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v6.422c0 4.142 3.357 7.5 7.5 7.5z"/><path d="m504.5 450.313c-33.98 0-36.59-22.689-68.474-28.722 8.507-44.711 39.909-83.63 73.549-114.554 2.276-2.092 3.035-5.365 1.913-8.245-1.123-2.88-3.897-4.776-6.988-4.776h-7.256c0-9.636 0-83.329 0-93.172 0-4.142-3.357-7.5-7.5-7.5-45.811 0-143.428 0-170.114 0-4.143 0-7.5 3.358-7.5 7.5v42.836h-56.078v-140.014l121.959-49.26v44.543h-35.028c-4.143 0-7.5 3.358-7.5 7.5v50.336c0 4.142 3.357 7.5 7.5 7.5h24.952c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-17.452v-35.336h70.058v35.336h-22.619c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h30.119c4.143 0 7.5-3.358 7.5-7.5v-50.336c0-4.142-3.357-7.5-7.5-7.5h-35.029v-50.601l19.794-7.995c3.841-1.551 5.697-5.922 4.146-9.763-1.551-3.84-5.921-5.697-9.763-4.146-32.979 13.32-119.929 48.44-151.136 61.044v-7.742c0-6.157-2.375-11.969-6.688-16.364l-23.795-24.247c-3.964-4.039-9.911-5.264-15.147-3.125-5.238 2.141-8.623 7.181-8.623 12.84v60.552l-22.451 9.068c-3.841 1.551-5.697 5.922-4.146 9.763 1.18 2.92 3.989 4.693 6.957 4.693.935 0 1.886-.176 2.806-.548l16.834-6.799v165.555l-21.674-8.912v-106.31c0-8.778-7.142-15.92-15.92-15.92h-13.891v-78.461c0-8.694-7.073-15.767-15.768-15.767h-21.52v-20.582h7.158c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-7.158v-11.132c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v11.131h-7.157c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h7.157v20.582h-21.52c-8.693 0-15.767 7.073-15.767 15.767v78.462h-13.89c-8.778 0-15.92 7.142-15.92 15.92v36.467c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-36.467c0-.507.413-.92.92-.92h117.354c.507 0 .92.413.92.92v100.143l-26.682-10.971c-1.732-.709-3.563-1.069-5.442-1.069h-.001-1.532v-26.802c0-6.761-5.5-12.261-12.261-12.261h-27.357c-6.761 0-12.262 5.5-12.262 12.261v26.802h-33.657v-21.649c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v21.649h-23.43c-2.477 0-4.793 1.223-6.191 3.267-1.397 2.044-1.696 4.646-.798 6.955l34.009 87.345 2.405 6.188c.713 1.847 1.075 3.772 1.075 5.726v46.83c0 6.359 1.231 12.656 3.575 18.529-8.917 6.343-17.599 11.458-34.075 11.458-4.143 0-7.5 3.357-7.5 7.5s3.357 7.5 7.5 7.5c42.93 0 45.999-30 82.837-30 37.792 0 38.771 30 82.837 30 44.11 0 44.995-30 82.833-30 37.791 0 38.767 30 82.831 30 44.109 0 44.996-30 82.832-30 37.799 0 38.753 30 82.83 30 4.143 0 7.5-3.357 7.5-7.5s-3.357-7.5-7.5-7.5zm-428.76-290.32v-78.462c0-.423.344-.767.767-.767h58.039c.423 0 .768.344.768.767v78.462zm251.39 134.023v-35.336h70.058v35.336zm85.058-35.337h70.057v35.336h-70.057zm70.056-15h-70.057v-35.336h70.057zm-155.114-35.336h70.058v35.336h-70.058zm-15 50.336v35.336h-56.078v-35.336zm-95.332-207.064 21.859 22.274c1.544 1.573 2.395 3.654 2.395 5.858v214.269h-24.254zm-122.211 188.337h21.88v24.063h-21.88zm38.282 39.064c11.404 4.688 51.011 20.972 67.874 27.904 3.375 1.391 6.934 2.096 10.577 2.096h274.573c-13.964 14.096-25.81 28.283-35.364 42.35h-403.894l-28.166-72.35zm205.969 171.297c-37.799 0-38.754-30-82.831-30-44.153 0-44.942 30-82.833 30-37.803 0-38.756-30-82.837-30-16.416 0-27.246 4.393-35.951 9.694-.904-3.137-1.386-6.395-1.386-9.682v-14.77h251.636c4.143 0 7.5-3.357 7.5-7.5s-3.357-7.5-7.5-7.5h-251.636v-17.061c0-2.41-.282-4.794-.84-7.13h389.004c-4.821 8.466-8.597 16.432-11.65 24.19h-94.891c-4.143 0-7.5 3.357-7.5 7.5s3.357 7.5 7.5 7.5h89.819c-1.398 4.91-2.544 9.841-3.427 14.765-43.456.316-44.555 29.994-82.177 29.994z"/><path d="m122.376 485.45c-9.554 0-11.31-9.803-27.067-9.803-15.768 0-17.487 9.803-27.068 9.803-4.143 0-7.5 3.357-7.5 7.5s3.357 7.5 7.5 7.5c15.768 0 17.487-9.803 27.068-9.803 9.425 0 11.439 9.803 27.067 9.803 4.143 0 7.5-3.357 7.5-7.5s-3.357-7.5-7.5-7.5z"/><path d="m283.069 485.45c-9.555 0-11.31-9.803-27.068-9.803-15.806 0-17.449 9.803-27.067 9.803-4.143 0-7.5 3.357-7.5 7.5s3.357 7.5 7.5 7.5c15.766 0 17.487-9.803 27.067-9.803 9.555 0 11.31 9.803 27.068 9.803 4.143 0 7.5-3.357 7.5-7.5s-3.358-7.5-7.5-7.5z"/><path d="m437.064 485.45c-9.425 0-11.439-9.803-27.067-9.803-15.768 0-17.487 9.803-27.068 9.803-4.143 0-7.5 3.357-7.5 7.5s3.357 7.5 7.5 7.5c15.768 0 17.487-9.803 27.068-9.803 9.554 0 11.31 9.803 27.067 9.803 4.143 0 7.5-3.357 7.5-7.5s-3.358-7.5-7.5-7.5z"/><path d="m396.253 338.753h13.743c4.143 0 7.5-3.357 7.5-7.5s-3.357-7.5-7.5-7.5h-13.743c-4.143 0-7.5 3.357-7.5 7.5s3.358 7.5 7.5 7.5z"/></g></svg>
                                                 </div>
                                             </div>
@@ -199,7 +181,7 @@ $location = $result['location'];
                                     </div>
 
                                     <div class="process-bar-item">
-                                        <div class="process-bar-item-inner">
+                                        <div class="process-bar-item-inner <?php if($result2['status'] == 'Delivered'){ ?>active<?php } ?>">
                                             <span class="check-icon"><i class="fas fa-check-circle"></i></span>
                                             <div class="icon-outer">
                                                 <div class="icon">
@@ -214,7 +196,7 @@ $location = $result['location'];
                             </div>
                         </div>
                         <div class="track-order-footer">
-                            <p>Helpline - <a href="#">Call Us</a></p>
+                            <p>Helpline - <a href="tel:<?php echo $contact_number; ?>">Call Us</a></p>
                         </div>
                     </div>
                 </div>
