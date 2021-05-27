@@ -97,211 +97,8 @@
     <link rel="stylesheet" type="../text/css" href="../assets/css/slick.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/slick-theme.css">
     <link rel="stylesheet" href="../assets/css/custom-select.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <script src="https://www.google.com/recaptcha/api.js?render=<?php echo $public_key; ?>"></script>
-    <style type="text/css">
-    /*******************
-Removing recaptcha icon
-********************/ 
-.grecaptcha-badge {
-display: none !important;
-}
-
-   /*******************
-Preloader
-********************/
-.preloader {
-  width: 100%;
-  height: 100%;
-  top: 0px;
-  position: fixed;
-  z-index: 99999;
-  background: #fff; }
-  .preloader .cssload-speeding-wheel {
-    position: absolute;
-    top: calc(50% - 3.5px);
-    left: calc(50% - 3.5px); }
-
-.loader,
-.loader__figure {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%); }
-
-.loader {
-  overflow: visible;
-  padding-top: 2em;
-  height: 0;
-  width: 2em; }
-
-.loader__figure {
-  height: 0;
-  width: 0;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  border: 0 solid #67BB4C;
-  border-radius: 50%;
-  -webkit-animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
-  -moz-animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
-  animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1); }
-
-.loader__label {
-  float: left;
-  margin-left: 50%;
-  -webkit-transform: translateX(-50%);
-  -moz-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  -o-transform: translateX(-50%);
-  transform: translateX(-50%);
-  margin: 0.5em 0 0 50%;
-  font-size: 0.875em;
-  letter-spacing: 0.1em;
-  line-height: 1.5em;
-  color: #67BB4C;
-  white-space: nowrap;
-  -webkit-animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
-  -moz-animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
-  animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1); }
-
-@-webkit-keyframes loader-figure {
-  0% {
-    height: 0;
-    width: 0;
-    background-color: #1976d2; }
-  29% {
-    background-color: #1976d2; }
-  30% {
-    height: 2em;
-    width: 2em;
-    background-color: transparent;
-    border-width: 1em;
-    opacity: 1; }
-  100% {
-    height: 2em;
-    width: 2em;
-    border-width: 0;
-    opacity: 0;
-    background-color: transparent; } }
-
-@-moz-keyframes loader-figure {
-  0% {
-    height: 0;
-    width: 0;
-    background-color: #1976d2; }
-  29% {
-    background-color: #1976d2; }
-  30% {
-    height: 2em;
-    width: 2em;
-    background-color: transparent;
-    border-width: 1em;
-    opacity: 1; }
-  100% {
-    height: 2em;
-    width: 2em;
-    border-width: 0;
-    opacity: 0;
-    background-color: transparent; } }
-
-@keyframes loader-figure {
-  0% {
-    height: 0;
-    width: 0;
-    background-color: #1976d2; }
-  29% {
-    background-color: #1976d2; }
-  30% {
-    height: 2em;
-    width: 2em;
-    background-color: transparent;
-    border-width: 1em;
-    opacity: 1; }
-  100% {
-    height: 2em;
-    width: 2em;
-    border-width: 0;
-    opacity: 0;
-    background-color: transparent; } }
-
-@-webkit-keyframes loader-label {
-  0% {
-    opacity: 0.25; }
-  30% {
-    opacity: 1; }
-  100% {
-    opacity: 0.25; } }
-
-@-moz-keyframes loader-label {
-  0% {
-    opacity: 0.25; }
-  30% {
-    opacity: 1; }
-  100% {
-    opacity: 0.25; } }
-
-@keyframes loader-label {
-  0% {
-    opacity: 0.25; }
-  30% {
-    opacity: 1; }
-  100% {
-    opacity: 0.25; } }
-
-    .cart-product-item.stock-out {
-  position: relative;
-}
-.cart-product-item.stock-out:after {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
-}
-.cart-product-item.stock-out:before {
-  content: "Quantity unavailable";
-  color:white;
-  background-color:red;  
-  left: 50%;
-  top: 50%;
-  z-index: 2;
-  border: 1px solid red;
-  padding: 6px 118px;
-  transform: translate(-50%, -50%);
-  border-radius: 3px;
-}
-.cart-product-item:hover.stock-out {
-  transform: scale(1);
-}
-
-    .comment-item .comment-author .author-image {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-
-  background: grey;
-  font-size: 25px;
-  color: #fff;
-  text-align: center;
-  line-height: 50px;
-  margin-top: 20px;
-}
-.cookieContainer{
-    padding:32px;
-    background-color:white;
-    box-shadow:0 -2px 16px rgba(47, 54, 64. 0.151);
-}
-
-.cookieContainer .cookie-btn{
-    background-color: #59b828;
-    color:white;
-}
- </style>
 </head>
 <body id="top-page">
     <div class="preloader">
@@ -765,7 +562,7 @@ Preloader
                     <?php
                     } 
                   } 
-                ?> class="procced-checkout">Proceed to Checkout</a>
+                ?> class="procced-checkout"  style=" background-color: #59b828;color: white;display: block;text-align: center;padding: 10px 30px;border-radius: 5px;margin-top: 10px;">Proceed to Checkout</a>
                 <a <?php if($cart_count == 0){?> href="#" <?php } else{ ?>href="<?php echo $protocol.$_SERVER['HTTP_HOST'].'/SymphaFresh/template/product-list.php?action=clear' ?>" <?php } ?> class="clear-cart" style=" background-color: #df4759;color: white;display: block;text-align: center;padding: 10px 30px;border-radius: 5px;margin-top: 10px;">Clear Cart</a>
             </div>
         </div>
@@ -928,7 +725,7 @@ Preloader
                     <div class="menu-area d-none d-xl-flex justify-content-between align-items-center">
                         <ul class="menu d-xl-flex flex-wrap list-unstyled">
                             <li class="nav-item"><a href="index.php"> Home</a></li>
-                            <li class="item-has-children" ><a href="#">About Us <i class="fas fa-angle-down"></i></a>
+                            <li class="item-has-children" ><a href="#">About Us<i class="fas fa-angle-down"></i></a>
                             <ul class="submenu">
                                     <li><a href="about.php#who_we_are">Who We Are</a></li>
                                     <li><a href="about.php#mission&vision">Mission & Vision</a></li>

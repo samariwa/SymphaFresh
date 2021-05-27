@@ -1106,4 +1106,35 @@ else{
 } 
 }
 }
+elseif ($where == 'process_order') {
+  $id = $_POST['id'];
+  $value = $_POST['value'];
+  $action = $_POST['action'];
+  $status = '';
+  if($action == 'Processed' && $value == '1')
+  {
+     $status = 'Processed';
+  }
+  elseif($action == 'Processed' && $value == '0')
+  {
+     $status = 'Pending';
+  }
+  elseif($action == 'Shipped' && $value == '1')
+  {
+    $status = 'Shipped';
+ }
+ elseif($action == 'Shipped' && $value == '0')
+  {
+    $status = 'Processed';
+ }
+ elseif($action == 'Delivered' && $value == '1')
+ {
+    $status = 'Delivered';
+ }
+ elseif($action == 'Delivered' && $value == '0')
+ {
+     $status = 'Shipped';
+ }
+mysqli_query($connection,"UPDATE `order_status` SET status = '".$status."' WHERE id = '".$id."'")or die($connection->error);
+}
  ?>

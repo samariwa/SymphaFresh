@@ -12,7 +12,7 @@ if(isset($_GET['id']))
 {
    $order_no = $_GET['id'];
 }
-$orders_details = mysqli_query($connection,"SELECT SUM(orders.Quantity * (stock.Price - stock.Discount))as sum,order_status.status as status,DATE(order_status.Created_at) as order_date FROM order_status INNER JOIN orders ON orders.Status_id = order_status.id INNER JOIN stock on orders.Stock_id = stock.id  where order_status.id = '$order_no' GROUP BY order_status.id ORDER BY order_status.Created_at DESC")or die($connection->error);
+$orders_details = mysqli_query($connection,"SELECT SUM(orders.Quantity * (stock.Price - stock.Discount))as sum,order_status.status as status,DATE(orders.Delivery_time) as order_date FROM order_status INNER JOIN orders ON orders.Status_id = order_status.id INNER JOIN stock on orders.Stock_id = stock.id  where order_status.id = '$order_no' GROUP BY order_status.id ORDER BY order_status.Created_at DESC")or die($connection->error);
 $row = mysqli_fetch_array($orders_details);
 $order_date = $row['order_date'];
 $orders = mysqli_query($connection,"SELECT stock.Name as name,stock.image as image,stock.Discount as discount,stock.Price as price,inventory_units.Name as unit,orders.Quantity as quantity,order_status.delivery_fee as delivery_fee,order_status.status as status FROM order_status INNER JOIN orders ON orders.Status_id = order_status.id INNER JOIN stock ON orders.Stock_id = stock.id INNER JOIN inventory_units ON stock.Unit_id = inventory_units.id where order_status.id = '$order_no' ORDER BY order_status.Created_at DESC")or die($connection->error);
@@ -119,7 +119,7 @@ $orders = mysqli_query($connection,"SELECT stock.Name as name,stock.image as ima
                                     <span class="desc">Ksh. <?php echo number_format($total_cost,2); ?></span>
                                 </li>
                                 <li class="d-flex flex-wrap justify-content-between">
-                                    <span class="t-title">Delevary Fee</span>
+                                    <span class="t-title">Delivery Fee</span>
                                     <span class="desc">Ksh. <?php echo number_format($row2['delivery_fee'],2); ?></span>
                                 </li>
                                 <li class="d-flex flex-wrap justify-content-between">
@@ -135,9 +135,6 @@ $orders = mysqli_query($connection,"SELECT stock.Name as name,stock.image as ima
                         <div class="delevary-time">
                             <p>Delivery Date - <?php echo date('l, F d, Y',strtotime($row ['order_date'])); ?></p>
                         </div>
-                        <?php 
-                        $result2 = mysqli_fetch_array($orders);
-                        ?>
                         <div class="product-delevary-process">
                             <div class="process-bar">
                                 <!--<div class="process-bar-active"></div>-->
@@ -153,9 +150,8 @@ $orders = mysqli_query($connection,"SELECT stock.Name as name,stock.image as ima
                                         </div>
                                         <div class="name">Placed Order</div>
                                     </div>
-
                                     <div class="process-bar-item">
-                                        <div class="process-bar-item-inner <?php if($result2['status'] == 'Processed'){ ?>active<?php } ?>">
+                                        <div class="process-bar-item-inner <?php if($row['status'] == 'Processed' || $row['status'] == 'Shipped' || $row['status'] == 'Delivered'){ ?>active<?php } ?>">
                                             <span class="check-icon"><i class="fas fa-check-circle"></i></span>
                                             <div class="icon-outer">
                                                 <div class="icon">
@@ -168,7 +164,7 @@ $orders = mysqli_query($connection,"SELECT stock.Name as name,stock.image as ima
                                     </div>
 
                                     <div class="process-bar-item">
-                                        <div class="process-bar-item-inner <?php if($result2['status'] == 'Shipped'){ ?>active<?php } ?>">
+                                        <div class="process-bar-item-inner <?php if($row['status'] == 'Shipped' || $row['status'] == 'Delivered'){ ?>active<?php } ?>">
                                             <span class="check-icon"><i class="fas fa-check-circle"></i></span>
                                             <div class="icon-outer">
                                                 <div class="icon">
@@ -181,7 +177,7 @@ $orders = mysqli_query($connection,"SELECT stock.Name as name,stock.image as ima
                                     </div>
 
                                     <div class="process-bar-item">
-                                        <div class="process-bar-item-inner <?php if($result2['status'] == 'Delivered'){ ?>active<?php } ?>">
+                                        <div class="process-bar-item-inner <?php if($row['status'] == 'Delivered'){ ?>active<?php } ?>">
                                             <span class="check-icon"><i class="fas fa-check-circle"></i></span>
                                             <div class="icon-outer">
                                                 <div class="icon">

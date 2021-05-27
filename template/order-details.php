@@ -12,7 +12,7 @@ if(isset($_GET['id']))
 {
    $order_no = $_GET['id'];
 }
-$orders_details = mysqli_query($connection,"SELECT SUM(orders.Quantity * (stock.Price - stock.Discount))as sum,order_status.status as status,DATE(order_status.Created_at) as order_date FROM order_status INNER JOIN orders ON orders.Status_id = order_status.id INNER JOIN stock on orders.Stock_id = stock.id  where order_status.id = '$order_no' GROUP BY order_status.id ORDER BY order_status.Created_at DESC")or die($connection->error);
+$orders_details = mysqli_query($connection,"SELECT SUM(orders.Quantity * (stock.Price - stock.Discount))as sum,order_status.status as status,DATE(orders.Delivery_time) as order_date FROM order_status INNER JOIN orders ON orders.Status_id = order_status.id INNER JOIN stock on orders.Stock_id = stock.id  where order_status.id = '$order_no' GROUP BY order_status.id ORDER BY order_status.Created_at DESC")or die($connection->error);
 $row = mysqli_fetch_array($orders_details);
 $order_date = $row['order_date'];
 $orders = mysqli_query($connection,"SELECT stock.Name as name,stock.image as image,stock.Discount as discount,stock.Price as price,inventory_units.Name as unit,orders.Quantity as quantity,order_status.delivery_fee as delivery_fee FROM order_status INNER JOIN orders ON orders.Status_id = order_status.id INNER JOIN stock ON orders.Stock_id = stock.id INNER JOIN inventory_units ON stock.Unit_id = inventory_units.id where order_status.id = '$order_no' ORDER BY order_status.Created_at DESC")or die($connection->error);
@@ -104,9 +104,10 @@ $orders = mysqli_query($connection,"SELECT stock.Name as name,stock.image as ima
                                 </div>
                                 <?php
                                 }
+                                $row3 = mysqli_fetch_array($orders);
                                 ?>
                             </div>
-                           
+
                         </div>
                         <div class="track-order-info">
                             <ul class="to-list">
@@ -116,7 +117,7 @@ $orders = mysqli_query($connection,"SELECT stock.Name as name,stock.image as ima
                                 </li>
                                 <li class="d-flex flex-wrap justify-content-between">
                                     <span class="t-title">Delivery Fee</span>
-                                    <span class="desc">Ksh. <?php echo number_format($row2['delivery_fee'],2); ?></span>
+                                    <span class="desc">Ksh. <?php echo number_format($row3['delivery_fee'],2); ?></span>
                                 </li>
                                 <li class="d-flex flex-wrap justify-content-between">
                                     <span class="t-title">Discount</span>

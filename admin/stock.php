@@ -167,7 +167,7 @@
         $stockrowcount = mysqli_num_rows($stockList);
       ?>
       <div class="offset-2"><h6 class="offset-4">Total Number: <?php echo $stockrowcount; ?></h6></div>
-      <table id="stockEditable" class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;">
+      <table id="stockEditable" class="table table-striped table-hover paginate " style="display:block;overflow-y:scroll;text-align: center;">
   <thead class="thead-dark">
   <tr>
       <th scope="col" width="4%">#</th>

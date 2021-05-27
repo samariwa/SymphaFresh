@@ -33,17 +33,20 @@
         <div class="col-md-2">
       <a href="addOrder.php" class="btn btn-success btn-md active" role="button" aria-pressed="true"><i class="fa fa-plus-circle"></i>&ensp;New Order</a>
       </div>
-      <div class="col-md-3">
-      <a href="distribution.php" class="btn btn-warning btn-md active offset-2" role="button" aria-pressed="true" >Goods Distribution</a>
+      <div class="col-md-2">
+      <a href="distribution.php" class="btn btn-warning btn-md active" role="button" aria-pressed="true">Distribution</a>
     </div>
     <div class="col-md-2">
-      <a href="receipt.php" class="btn btn-secondary btn-md active offset-1" role="button" aria-pressed="true" >Print Recipt</a>
+      <a href="processOrders.php" class="btn btn-light btn-md active" role="button" aria-pressed="true" >Process Orders</a>
     </div>
     <div class="col-md-2">
-      <a href="gatePass.php" class="btn btn-dark btn-md active offset-4" role="button" aria-pressed="true" >Gate Pass</a>
+      <a href="receipt.php" class="btn btn-secondary btn-md active" role="button" aria-pressed="true" >Print Recipt</a>
     </div>
-    <div class="col-md-3">
-      <a href="returned.php" class="btn btn-info btn-md active offset-4" role="button" aria-pressed="true">Returned Goods</a>
+    <div class="col-md-2">
+      <a href="gatePass.php" class="btn btn-dark btn-md active" role="button" aria-pressed="true" >Gate Pass</a>
+    </div>
+    <div class="col-md-2">
+      <a href="returned.php" class="btn btn-info btn-md active" role="button" aria-pressed="true">Returned Goods</a>
     </div>
     </div><br>
      <?php

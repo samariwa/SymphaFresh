@@ -17,8 +17,10 @@
           ?>
 
           <div class="row">
-      <a href="stock.php" class="btn btn-primary btn-md active float-left ml-3" role="button" aria-pressed="true"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
-      <div class="offset-3"> <h6 >Valuation based on live stock flow.</h6></div>
+          <div class="col-2">  
+      <a href="stock.php" class="btn btn-primary btn-md active float-left ml-3" role="button" aria-pressed="true"><i class="fa fa-arrow-left"></i>&ensp;Back</a> 
+          </div>
+      <div class="offset-4"> <h6 >Valuation based on live stock flow.</h6></div>
     </div><br>
     <table  class="table table-striped table-hover paginate" style="display:block;overflow-y:scroll;text-align: center;" id="valuationTable">
   <thead class="thead-dark">

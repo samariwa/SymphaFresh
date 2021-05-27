@@ -7,7 +7,7 @@ $lastname = $result['lastname'];
 $mobile = $result['number'];
 $email = $result['email'];
 $location = $result['location'];
-$my_orders = mysqli_query($connection,"SELECT order_status.id as status_id,order_status.status as status,DATE(order_status.Created_at) as order_date FROM order_status INNER JOIN orders ON orders.Status_id = order_status.id INNER JOIN customers ON orders.Customer_id = customers.id where orders.Customer_id = '$customer_id' GROUP BY order_status.id ORDER BY order_status.Created_at DESC")or die($connection->error);
+$my_orders = mysqli_query($connection,"SELECT order_status.id as status_id,order_status.status as status,DATE(orders.Delivery_time) as order_date FROM order_status INNER JOIN orders ON orders.Status_id = order_status.id INNER JOIN customers ON orders.Customer_id = customers.id where orders.Customer_id = '$customer_id' GROUP BY order_status.id ORDER BY order_status.Created_at DESC")or die($connection->error);
 ?>
             <!-- page-header-section start -->
             <div class="page-header-section">
@@ -50,12 +50,12 @@ $my_orders = mysqli_query($connection,"SELECT order_status.id as status_id,order
 
             <!-- dashboard-section start -->
             <section id="dashboard-nav" class="dashboard-section">
-                <div class="container">
-                    <ul class="dashboard-nav d-lg-flex flex-wrap align-items-center justify-content-between">
-                        <li><a href="user-dashboard.php#dashboard-nav"><i class="far fa-list-alt"></i>Your Orders</a></li>
+            <div class="container">
+                    <ul class="dashbord-nav d-lg-flex flex-wrap align-items-center justify-content-between">
+                        <li><a href="user-dashboard.php#dashboard-nav"><i class="far fa-list-alt"></i>My Orders</a></li>
                         <li><a class="active" href="track-order.php#dashboard-nav"><i class="fas fa-shipping-fast"></i>Track Orders</a></li>
-                        <li><a href="profile.php#dashboard-nav"><i class="far fa-user"></i>Your Profile</a></li>
-                        <li><a href="wishlist.php#dashboard-nav"><i class="far fa-heart"></i>Wish List</a></li>
+                        <li><a href="profile.php#dashboard-nav"><i class="far fa-user"></i>My Profile</a></li>
+                        <li><a href="wishlist.php#dashboard-nav"><i class="far fa-heart"></i>My Wish List</a></li>
                     </ul>
                 </div>
 
@@ -172,9 +172,6 @@ $my_orders = mysqli_query($connection,"SELECT order_status.id as status_id,order
                         <div class="delevary-time">
                             <p>Delivery Date - <?php echo date('l, F d, Y',strtotime($row ['order_date'])); ?></p>
                         </div>
-                        <?php
-                           $result2 = mysqli_fetch_array($orders);
-                        ?>
                         <div class="product-delevary-process">
                             <div class="process-bar">
                                 <!--<div class="process-bar-active"></div>-->
@@ -192,7 +189,7 @@ $my_orders = mysqli_query($connection,"SELECT order_status.id as status_id,order
                                     </div>
 
                                     <div class="process-bar-item">
-                                        <div class="process-bar-item-inner <?php if($result2['status'] == 'Processed'){ ?>active<?php } ?>">
+                                        <div class="process-bar-item-inner <?php if($row['status'] == 'Processed' || $row['status'] == 'Shipped' || $row['status'] == 'Delivered'){ ?>active<?php } ?>">
                                             <span class="check-icon"><i class="fas fa-check-circle"></i></span>
                                             <div class="icon-outer">
                                                 <div class="icon">
@@ -205,7 +202,7 @@ $my_orders = mysqli_query($connection,"SELECT order_status.id as status_id,order
                                     </div>
 
                                     <div class="process-bar-item">
-                                        <div class="process-bar-item-inner <?php if($result2['status'] == 'Shipped'){ ?>active<?php } ?>">
+                                        <div class="process-bar-item-inner <?php if($row['status'] == 'Shipped' || $row['status'] == 'Delivered'){ ?>active<?php } ?>">
                                             <span class="check-icon"><i class="fas fa-check-circle"></i></span>
                                             <div class="icon-outer">
                                                 <div class="icon">
@@ -218,7 +215,7 @@ $my_orders = mysqli_query($connection,"SELECT order_status.id as status_id,order
                                     </div>
 
                                     <div class="process-bar-item">
-                                        <div class="process-bar-item-inner <?php if($result2['status'] == 'Delivered'){ ?>active<?php } ?>">
+                                        <div class="process-bar-item-inner <?php if($row['status'] == 'Delivered'){ ?>active<?php } ?>">
                                             <span class="check-icon"><i class="fas fa-check-circle"></i></span>
                                             <div class="icon-outer">
                                                 <div class="icon">

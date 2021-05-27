@@ -49,19 +49,19 @@ $location = $result['location'];
 
             <!-- dashboard-section start -->
             <section id="dashboard-nav" class="dashboard-section">
-                <div class="container">
-                    <ul class="dashboard-nav d-lg-flex flex-wrap align-items-center justify-content-between">
-                        <li><a href="user-dashboard.php#dashboard-nav"><i class="far fa-list-alt"></i>Your Orders</a></li>
-                        <li><a href="track-order.php#dashboard-nav"><i class="fas fa-shipping-fast"></i>Track Orders</a></li>
-                        <li><a href="profile.php#dashboard-nav"><i class="far fa-user"></i>Your Profile</a></li>
-                        <li><a class="active" href="wishlist.php#dashboard-nav"><i class="far fa-heart"></i>Wish List</a></li>
+            <div class="container">
+                    <ul class="dashbord-nav d-lg-flex flex-wrap align-items-center justify-content-between">
+                        <li><a href="user-dashboard.php#dashboard-nav"><i class="far fa-list-alt"></i>My Orders</a></li>
+                        <li><a  href="track-order.php#dashboard-nav"><i class="fas fa-shipping-fast"></i>Track Orders</a></li>
+                        <li><a href="profile.php#dashboard-nav"><i class="far fa-user"></i>My Profile</a></li>
+                        <li><a class="active" href="wishlist.php#dashboard-nav"><i class="far fa-heart"></i>My Wish List</a></li>
                     </ul>
                 </div>
 
                 <div class="container">
                     <div class="dashboard-body wishlist">
                         <div class="wishlist-header">
-                            <h6>Shopping Wishlist</h6>
+                            <h6>My Wish List</h6>
                         </div>
                         <div class="wish-list-container">
                         <?php

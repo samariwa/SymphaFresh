@@ -1075,6 +1075,15 @@ $('#product_Search').keyup(function(){
     });
  });
 
+ $('.view').on('click',function(){
+    // $(this).text("Show Less"); 
+    $(this).parents('.order-card').addClass("show")
+});
+$('.show-less').on('click',function(){
+    // $(this).text("Show Less"); 
+    $(this).parents('.order-card').removeClass("show")
+});
+
  $(document).on('click','#completeOrder',function(){
     $('#confirmDetails input:required').each(function() {
         if ($(this).val() === ''){
@@ -1089,7 +1098,7 @@ $('#product_Search').keyup(function(){
         $.post("../add.php",{id:id,date:date,mode:mode,payment:payment,where:where},
         function(result){
            alert('Your order has been successfully made.');
-           window.location.href = 'user-dashboard.php#dashboard-nav';
+           window.location.href = 'order-success.php';
         });
 });
  

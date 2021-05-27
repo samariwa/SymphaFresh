@@ -14,7 +14,9 @@
            include "dashboard_tabs.php";
           ?>
         <div class="row">
+        <div class="col-2">  
           <a href="extra_sales.php" class="btn btn-primary btn-md active float-left ml-3" role="button" aria-pressed="true"><i class="fa fa-arrow-left"></i>&ensp;Back</a>
+         </div>
         </div><br>
         <form method="POST">
 

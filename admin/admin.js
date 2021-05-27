@@ -2621,6 +2621,21 @@ function saveOrderToday(idx){
        input2.value = "1";
      }
 
+     function processOrder(check,action) {
+       var id = check.value;
+       var value = '';
+       var where = 'process_order';
+       if (check.checked) {
+        value = '1';
+      } else {
+        value = '0';
+      }
+       $.post("../save.php",{id:id,value:value,action:action,where:where},
+        function(result){
+
+         });
+    }
+
      function displayname(input,_this) {
           if (input.files && input.files[0]) {
               var reader = new FileReader();
