@@ -379,7 +379,7 @@ $(document).on('click','.modalOpen',function(){
     $('#modal-product-name').text($(`#hidden_name${id}`).val());
     $('#modal-product-category').text($(`#itemCategory${id}`).text());
     $('#modal-product-price').text($(`#hidden_price${id}`).val());
-    $('#modal-product-image').append('<img src="../images/products/'+$(`#hidden_image${id}`).val()+' alt="product"></img>');
+    $('#modal-product-image').append('<img src="images/products/'+$(`#hidden_image${id}`).val()+' alt="product"></img>');
 });
 
 function closeModal() {
@@ -406,7 +406,7 @@ function CloseSignUpForm() {
 //         $.ajax({
 //             type: 'GET',
 //             success: function(){
-//                 $("#load-data").load("../components/edit-profile.html", function(responseTxt, statusTxt, xhr){
+//                 $("#load-data").load("components/edit-profile.html", function(responseTxt, statusTxt, xhr){
 //                     if(statusTxt == "success")
 //                       alert("External content loaded successfully!");
 //                     if(statusTxt == "error")
@@ -437,7 +437,7 @@ $(document).on('click','.userSubscription',function(){
     var email = $('.userSubscription').val();
     var token = $('.newsletter_token').val();
     var where = 'newsletter'
-    $.post("../add.php",{email:email,token:token,where:where},
+    $.post("add.php",{email:email,token:token,where:where},
     function(result){
         if (result == 'success') {
             alert('Thank you. Your newsletter subsription was successful!');
@@ -459,7 +459,7 @@ $(document).on('click','.anonymousSubscription',function(){
     var email = $('#anonymousEmail').val();
     var token = $('.newsletter_token').val();
     var where = 'newsletter'
-    $.post("../add.php",{email:email,token:token,where:where},
+    $.post("add.php",{email:email,token:token,where:where},
     function(result){
         if (result == 'success') {
             alert('Thank you. Your newsletter subsription was successful!');
@@ -473,6 +473,30 @@ $(document).on('click','.anonymousSubscription',function(){
            }
     }); 
   });
+
+  /*$(document).on('click','.cart-btn',function(){
+    var id = $(this).attr("id");
+    $.post("cart.php",{hidden_id:id,hidden_name:$(`#hidden_name${id}`).val(),hidden_unit:$(`#hidden_unit${id}`).val(),hidden_discount:$(`#hidden_discount${id}`).val(),hidden_price:$(`#hidden_price${id}`).val(),hidden_image:$(`#hidden_image${id}`).val(),'cart_button':'cart_button'},
+    function(result){
+        alert(result);
+            $('#actionAlert').html(result);
+            var data = $.parseJSON(result);
+            var subtotal = data[0];
+            var total = data[1];
+            var total_hidden = data[2];
+            var item_qty = data[3];
+            $(`#cart_subtotal${id}`).html(subtotal);
+            $('#total_value').html(total);
+            $('#navbar_cart_hidden').val(total_hidden);
+            $('#navbar_cart_total').html(total);
+            $(`#productlist_qty${id}`).val(item_qty);
+            $('#cart_total').val(total_hidden);
+            $(`#featured_qty${id}`).val(item_qty);
+            $(`#recommended_qty${id}`).val(item_qty);
+            $(`#cart_unit_qty${id}`).html(item_qty);
+            $('#mobile_cart_total').html(total);   
+    }); 
+  });*/
 
   $(document).on('click','.cart_increase',function(){
     var el = $(this);
@@ -769,7 +793,7 @@ $(document).on('click','.anonymousSubscription',function(){
     var message = $('#message').val();
     var token = $('.contact_page_token').val();
     var where = 'site_contact'
-    $.post("../add.php",{email:email,token:token,subject:subject,message:message,where:where},
+    $.post("add.php",{email:email,token:token,subject:subject,message:message,where:where},
     function(result){
         if (result == 'success') {
             alert('Your message was successfully sent! We shall get back to you in the shortest instance possible.');
@@ -792,7 +816,7 @@ $(document).on('click','#anonymous_contact',function(){
     var message = $('#message').val();
     var token = $('.contact_page_token').val();
     var where = 'site_contact';
-    $.post("../add.php",{name:name,email:email,token:token,number:number,subject:subject,message:message,where:where},
+    $.post("add.php",{name:name,email:email,token:token,number:number,subject:subject,message:message,where:where},
     function(result){
         if (result == 'success') {
             alert('Your message was successfully sent! We shall get back to you in the shortest instance possible.');
@@ -813,7 +837,7 @@ $(document).on('click','#user_comment',function(){
     var comment = $('#comment').val();
     var token = $('.comment_token').val();
     var where = 'site_comment';
-    $.post("../add.php",{id:id,email:email,token:token,comment:comment,where:where},
+    $.post("add.php",{id:id,email:email,token:token,comment:comment,where:where},
     function(result){ 
         if (result == 'success') {
             alert('Your comment was successfully posted! ');
@@ -837,7 +861,7 @@ $(document).on('click','#anonymous_comment',function(){
     var comment = $('#comment').val();
     var token = $('.comment_token').val();
     var where = 'site_comment';
-    $.post("../add.php",{id:id,name:name,email:email,token:token,comment:comment,where:where},
+    $.post("add.php",{id:id,name:name,email:email,token:token,comment:comment,where:where},
     function(result){
         if (result == 'success') {
             alert('Your comment was successfully posted! ');
@@ -902,7 +926,7 @@ $(document).on('click','.user_subcomment',function(){
     var subcomment = $('#subcomment').val();
     var token = $('.subcomment_token').val();
     var where = 'site_subcomment';
-    $.post("../add.php",{id:id,email:email,token:token,subcomment:subcomment,where:where},
+    $.post("add.php",{id:id,email:email,token:token,subcomment:subcomment,where:where},
     function(result){
         if (result == 'success') {
             alert('Your reply was successfully posted! ');
@@ -926,7 +950,7 @@ $(document).on('click','.anonymous_subcomment',function(){
     var subcomment = $('#subcomment').val();
     var token = $('.subcomment_token').val();
     var where = 'site_subcomment';
-    $.post("../add.php",{id:id,name:name,email:email,token:token,subcomment:subcomment,where:where},
+    $.post("add.php",{id:id,name:name,email:email,token:token,subcomment:subcomment,where:where},
     function(result){
         if (result == 'success') {
             alert('Your reply was successfully posted! ');
@@ -956,7 +980,7 @@ function filter_data()
         var maximum_price = arr.join(";");
         var category = get_filter('category_selector');
         var where = 'filter';
-        $.post("../load.php",{action:action,minimum_price:minimum_price,maximum_price:maximum_price,category:category,where:where},
+        $.post("load.php",{action:action,minimum_price:minimum_price,maximum_price:maximum_price,category:category,where:where},
     function(data){
         $('.product-list').html(data);
     });
@@ -988,7 +1012,7 @@ $(document).on('click','.editProfile',function(){
     var old_email = $('#old_email').val();
     var token= $('#token').val();
     var where = $('#where').val();
-    $.post("../save.php",{firstname:firstname,lastname:lastname,email:email,mobile:mobile,location:Location,old_email:old_email,token:token,where:where},
+    $.post("save.php",{firstname:firstname,lastname:lastname,email:email,mobile:mobile,location:Location,old_email:old_email,token:token,where:where},
     function(result){
         if (result == 'success') {
             alert('Your details have been edited successfully');
@@ -1007,7 +1031,7 @@ function paginate(page)
 {
     var where = 'pagination';
     $.ajax({
-        url:"../load.php",
+        url:"load.php",
         method:"POST",
         data:{page:page,where:where},
         success:function(data){
@@ -1028,7 +1052,7 @@ $('#product_Search').keyup(function(){
     if(txt != '')
     {
       $.ajax({
-        url: '../search.php',
+        url: 'search.php',
         type:"post",
         data:{search:txt,category:category},
         dataType:"text",
@@ -1055,7 +1079,7 @@ $('#product_Search').keyup(function(){
     if(txt != '')
     {
       $.ajax({
-        url: '../search.php',
+        url: 'search.php',
         type:"post",
         data:{search:txt,category:category},
         dataType:"text",
@@ -1095,7 +1119,7 @@ $('.show-less').on('click',function(){
         var payment = $("input[type='radio'][name='payment']:checked").val();
         var id = $("#customerId").val();
         var where = 'onlineOrder';
-        $.post("../add.php",{id:id,date:date,mode:mode,payment:payment,where:where},
+        $.post("add.php",{id:id,date:date,mode:mode,payment:payment,where:where},
         function(result){
            alert('Your order has been successfully made.');
            window.location.href = 'order-success.php';

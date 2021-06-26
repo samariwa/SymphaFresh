@@ -45,6 +45,14 @@ if (isset($_SESSION['logged_in'])) {
     }
     $_SESSION['LAST_ACTIVITY'] = time();
 }
+else{
+  header("Location: ../$logout_url");
+  exit;
+}
+}
+else{
+  header("Location: ../$logout_url");
+        exit;
 }
 ?>
 <!DOCTYPE html>

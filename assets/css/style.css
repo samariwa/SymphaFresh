@@ -6669,3 +6669,47 @@ Preloader
   .order-card.show .show-less {
     display: block;
   }
+
+  .error-page {
+    padding-top: calc(60px + 5.20vw);
+    padding-bottom: calc(60px + 5.20vw);
+  }
+  .error-page h1 {
+    font-size: calc(100px + 5.20vw);
+    color: #59b828;
+    line-height: calc(90px + 5.20vw);
+  }
+  .error-page h3 {
+    font-size: calc(22px + 0.52vw);
+    color: #222533;
+  }
+  .error-page p {
+    font-size: calc(15px + 0.20vw);
+    color: #222533;
+    margin-bottom: 30px;
+  }
+  .error-page .backhome {
+    font-size: 14px;
+    width: 180px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #59b828;
+    color: white;
+    display: inline-block;
+    border-radius: 4px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  @media only screen and (min-width: 1200px) {
+    .error-page .backhome {
+      font-size: 16px;
+      width: 240px;
+      height: 60px;
+      line-height: 60px;
+    }
+  }
+  .error-page .backhome:hover {
+    background-color: #222533;
+  }

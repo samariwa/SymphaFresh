@@ -37,7 +37,7 @@ if( $_POST['where'] == 'filter' )
                 <div class="product-thumb">
                     <!--you can add this onclick to anchor tag below when necessary-->
                         <!--onclick="openModal()"-->
-                    <a  class="modalOpen" id="'.$row['id'].'"><img src="../assets/images/products/'.$row['image'].'" alt="product"></a>
+                    <a  class="modalOpen" id="'.$row['id'].'"><img src="assets/images/products/'.$row['image'].'" alt="product"></a>
                     ';
                     if($row['Discount'] > 0){ 
                         $output .= '<span class="batch sale">Sale</span> ';
@@ -304,7 +304,7 @@ elseif( $_POST['where'] == 'pagination' )
         $output .= '<div class="col-md-6 col-lg-4 mb--30">
             <div class="post-item">
                 <div class="post-thumb">
-                    <a href="blog-single.php?id='.$id.'"><img src="../assets/images/blog/'.$image.'" alt="thumb"></a>
+                    <a href="blog-single.php?id='.$id.'"><img src="assets/images/blog/'.$image.'" alt="thumb"></a>
                 </div>
                 <div class="post-content border-effect">
                     <ul class="meta-post list-unstyled pl-0 d-flex justify-content-between">

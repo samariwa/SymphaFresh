@@ -72,7 +72,7 @@ $connection = mysqli_connect($hostname,$username, $password, $database, $port)
 or die("Unable to connect to Server");
 $login_url = 'auth/login.php';
 $logout_url = 'auth/logout.php';
-$home_url = 'template/index.php';
+$home_url = 'index.php';
 $admin_url = 'admin/dashboard.php';
 $protocol = $_SERVER['SERVER_PROTOCOL'];
 if(strpos($protocol, "https"))
