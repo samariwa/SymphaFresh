@@ -249,7 +249,7 @@ Preloader
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">Sympha Fresh</p>
+            <p class="loader__label"><?php echo $organization ?></p>
         </div>
     </div>
   <!-- Page Wrapper -->

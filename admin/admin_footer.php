@@ -31,6 +31,6 @@
    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
       <script src="../assets/js/mindmup-editabletable.js"></script>
-        <script type="text/javascript" src="admin.js?56464"></script>
+        <script type="text/javascript" src="admin.js?648464"></script>
       </body>
 </html>

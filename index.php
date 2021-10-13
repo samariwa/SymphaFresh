@@ -3,8 +3,8 @@ include('header.php');
 echo $message;
 ?>
              <!-- banner-section start -->
-             <section class="slider-banner">
-                <div class="banner-slider-container">
+             <section class="slider-banner" style="animation: 20s slider infinite">
+                <div class="banner-slider-container" >
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="banner-content-area" >
@@ -21,7 +21,7 @@ echo $message;
 
                         <div class="swiper-slide">
                             <div class="banner-content-area" >
-                                <div class="slider-image slider-image1" style="background-image:url('assets/images/banner/bg2.jpeg');background-size: 160%;"></div>
+                                <div class="slider-image slider-image1" style="background-image:url('assets/images/banner/bg10.jpeg');background-size: 160%;"></div>
                                 <div class="container">
                                     <div class="banner-content text-center">
                                         <h6 style="color: rgb(77, 72, 72);">Organic and fresh food</h6>

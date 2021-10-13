@@ -11,6 +11,12 @@ $hostname = "192.168.100.150";
 $database = "sympha_fresh";
 $port = "3307";
 
+/*$username = "root";
+$password = "";
+$hostname = "localhost";
+$database = "sympha_fresh";
+$port = "3307";*/
+
 //Defining authenticator credentials
 $authenticator_email = 'symphauthenticator@gmail.com';
 $authenticator_password = 'Kenya.2030';
@@ -19,7 +25,7 @@ $authenticator_password = 'Kenya.2030';
 $mail_host = "smtp.gmail.com";
 
 //site primary contact number
-$contact_number = "+254 713 932 911";
+$contact_number = "+254 797 233 726";
 
 //business physical address
 $physical_address = "This address";

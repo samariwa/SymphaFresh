@@ -41,7 +41,7 @@
                                     </ul>
                                     <h4 class="title mb-3"><?php echo $title; ?></h4>
                                     <h5 class="title mb-3"><a href="blog-single.php?id=<?php echo $id; ?>"><?php echo text_limit($blog, 100); ?></a></h5>
-                                    <a href="blog-single.php" class="blog-btn">Read More</a>
+                                    <a href="blog-single.php?id=<?php echo $id; ?>" class="blog-btn">Read More</a>
                                 </div>
                             </div>
                         </div>

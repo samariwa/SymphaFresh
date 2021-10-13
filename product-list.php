@@ -292,7 +292,7 @@
                                                         <input type="hidden" name="hidden_unit" id="hidden_unit<?php echo $row['id']; ?>" value="<?php echo $row['unit_name']; ?>">
                                                         <input type="hidden" name="hidden_discount" id="hidden_discount<?php echo $row['id']; ?>" value="<?php echo $row['Discount']; ?>">
                                                         <input type="hidden" name="hidden_price" id="hidden_price<?php echo $row['id']; ?>" value="<?php echo $row['Price']; ?>">
-                                                        <input type="hidden" name="hidden_image" id="hidden_image<?php echo $row['id']; ?>" value="<?php echo $row['image'];*/ ?>"> -->
+                                                        <input type="hidden" name="hidden_image" id="hidden_image<?php echo $row['id']; ?>" value="<?php echo $row['image']; */ ?>"> -->
                                                                 <div class="price-increase-decrese-group d-flex">
                                                                     <span class="decrease-btn">
                                                                         <button type="button"
